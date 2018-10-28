@@ -1,0 +1,39 @@
+#!/bin/bash
+DIR=`dirname $0	`
+Save_DIR="Save"
+cd $DIR 
+
+if  [ -d $Save_DIR ];then
+	rm  $Save_DIR/*
+else
+	mkdir  $Save_DIR
+fi
+
+
+
+
+for  i  in  *
+do
+
+	
+	if [ -d $i -a $i != $Save_DIR ];then
+		tar -zcvf  $i.tar.gz  $i 
+		mv $i.tar.gz  $Save_DIR
+ 	fi
+	
+done 
+
+
+for  i in $(ls) 
+do
+	if [ -f $i ];then
+		cp $i $Save_DIR
+	fi
+done
+
+cd $Save_DIR
+git init
+git remote add origin  git@github.com:qiracle/qiracle.github.io.git   #把drdeng改成你的github账户名
+git add -A .
+git commit -m "update"
+git push origin master:Save   #Save是我给分支起的名字 你可以随便取  如果不存在的话会自动创建

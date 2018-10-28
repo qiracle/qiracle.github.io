@@ -1,0 +1,7 @@
+#!/bin/sh
+
+tar  -zcvf blog.tar source themes _config.yml 
+#rm /media/qiracle/0009B8E500015FD1/blog.tar
+sleep 2
+mv ./blog.tar /media/qiracle/0009B8E500015FD11
+ 
