@@ -1588,10 +1588,10 @@ public boolean onTouchEvent(MotionEvent ev) {
       <url>http://qiracle.github.io/2016/12/24/20161224/</url>
       <content type="html"><![CDATA[<p>1.右击项目，选择Android Tools—&gt;Export Signed Application Package</p>
 <p>2.没有签名文件的话则选择第二个Create new keystore，选择签名文件保存的路径，记住自己所填的密码<a id="more"></a></p>
-<p><img src="http://ou3jfk5zy.bkt.clouddn.com/image/1.png" alt=""></p>
+<p><img src="http://94.191.72.22/blog/image/20161224/1.png" alt=""></p>
 <p>3.填写相应信息</p>
-<p><img src="http://ou3jfk5zy.bkt.clouddn.com/image/2.png" alt=""></p>
-<p>4.选择apk文件生成的路径，点击finish完成即可<br><img src="http://ou3jfk5zy.bkt.clouddn.com/image/3.png" alt=""></p>
+<p><img src="http://94.191.72.22/blog/image/20161224/2.png" alt=""></p>
+<p>4.选择apk文件生成的路径，点击finish完成即可<br><img src="http://94.191.72.22/blog/image/20161224/3.png" alt=""></p>
 ]]></content>
     </entry>
     
