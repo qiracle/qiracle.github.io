@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qiracle.github.io/"/>
-  <updated>2018-11-24T09:28:12.825Z</updated>
+  <updated>2018-10-21T04:51:58.000Z</updated>
   <id>http://qiracle.github.io/</id>
   
   <author>
@@ -14,33 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://qiracle.github.io/2018/11/24/hello-world/"/>
-    <id>http://qiracle.github.io/2018/11/24/hello-world/</id>
-    <published>2018-11-24T09:28:12.825Z</published>
-    <updated>2018-11-24T09:28:12.825Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Android Studio 导入 module</title>
@@ -84,7 +57,7 @@
     <link href="http://qiracle.github.io/2018/10/14/20181014/"/>
     <id>http://qiracle.github.io/2018/10/14/20181014/</id>
     <published>2018-10-13T16:00:00.000Z</published>
-    <updated>2018-10-14T06:29:47.000Z</updated>
+    <updated>2018-11-25T08:21:24.594Z</updated>
     
     <content type="html"><![CDATA[<h3 id="什么是混淆"><a href="#什么是混淆" class="headerlink" title="什么是混淆"></a>什么是混淆</h3><p>　　按照我的个人理解，混淆就是将代码里的包名，类名，方法名，变量名等用无意义的a，b，c等字母代替。这样做的目的是为了防止他人获取你的apk后可以轻松的反编译并读取你的源码，而加入混淆之后，反编译出的源码是很难被读懂的。详细解释可参考<a href="https://blog.csdn.net/sinat_36176987/article/details/79119876" target="_blank" rel="external">Android混淆是什么</a> 。<a id="more"></a>
 　　</p>
@@ -120,7 +93,7 @@
     <link href="http://qiracle.github.io/2018/03/28/20180328/"/>
     <id>http://qiracle.github.io/2018/03/28/20180328/</id>
     <published>2018-03-27T16:00:00.000Z</published>
-    <updated>2018-03-28T15:32:10.000Z</updated>
+    <updated>2018-11-25T08:21:24.592Z</updated>
     
     <content type="html"><![CDATA[<p>原文来自: <a href="http://showme.codes/2017-02-20/understand-https/" target="_blank" rel="external">也许，这样理解HTTPS更容易</a> </p>
 <h3 id="能不能用一句话总结HTTPS？"><a href="#能不能用一句话总结HTTPS？" class="headerlink" title="能不能用一句话总结HTTPS？"></a>能不能用一句话总结HTTPS？</h3><p>答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:</p>
@@ -295,7 +268,7 @@
     <link href="http://qiracle.github.io/2017/07/10/20170710/"/>
     <id>http://qiracle.github.io/2017/07/10/20170710/</id>
     <published>2017-07-09T16:00:00.000Z</published>
-    <updated>2017-08-13T10:22:31.000Z</updated>
+    <updated>2018-11-25T08:21:24.592Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-python把函数作为参数"><a href="#1-python把函数作为参数" class="headerlink" title="1.python把函数作为参数"></a>1.python把函数作为参数</h3><pre><code>import math
 def f(x,y)
@@ -416,7 +389,7 @@ print add(4, 9, f)
     <link href="http://qiracle.github.io/2017/07/01/20170701/"/>
     <id>http://qiracle.github.io/2017/07/01/20170701/</id>
     <published>2017-06-30T16:00:00.000Z</published>
-    <updated>2017-09-25T14:37:24.000Z</updated>
+    <updated>2018-11-25T08:21:24.594Z</updated>
     
     <content type="html"><![CDATA[<h3 id="静态-overlay-和动态-overlay"><a href="#静态-overlay-和动态-overlay" class="headerlink" title="静态 overlay 和动态 overlay"></a>静态 overlay 和动态 overlay</h3><p>静态 overlay：又称为编译时 overlay，编译时资源就已经覆盖了，一般用在有源码的apk中。<br>动态 overlay：又称为运行时 overlay，当 apk 在手机中运行时才发生资源覆盖，一般用在无源码的apk中。<a id="more"></a></p>
 <h3 id="overlay资源替换的前提和原则"><a href="#overlay资源替换的前提和原则" class="headerlink" title="overlay资源替换的前提和原则"></a>overlay资源替换的前提和原则</h3><p>前提：资源所在路径必须与overlay下资源路径完全相同。如要替换 Settings 这个应用的String.xml里的资源，该资源文件所在路径为packages/apps/res/values/,则对应overlay的路径必须为overlay/packages/apps/res/values/。</p>
@@ -461,7 +434,7 @@ print add(4, 9, f)
     <link href="http://qiracle.github.io/2017/06/25/2017062502/"/>
     <id>http://qiracle.github.io/2017/06/25/2017062502/</id>
     <published>2017-06-24T16:00:00.000Z</published>
-    <updated>2017-06-25T04:19:19.000Z</updated>
+    <updated>2018-11-25T08:21:24.594Z</updated>
     
     <content type="html"><![CDATA[<p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br><a id="more"></a></p>
 <pre><code>#include&lt;stdio.h&gt;
@@ -630,7 +603,7 @@ list_print(L);
     <link href="http://qiracle.github.io/2017/06/25/20170625/"/>
     <id>http://qiracle.github.io/2017/06/25/20170625/</id>
     <published>2017-06-24T16:00:00.000Z</published>
-    <updated>2017-06-25T03:49:18.000Z</updated>
+    <updated>2018-11-25T08:21:24.592Z</updated>
     
     <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
 <pre><code>#include&lt;stdio.h&gt;
@@ -815,7 +788,7 @@ int main(){
     <link href="http://qiracle.github.io/2017/04/26/20170426/"/>
     <id>http://qiracle.github.io/2017/04/26/20170426/</id>
     <published>2017-04-25T16:00:00.000Z</published>
-    <updated>2017-05-04T13:45:19.000Z</updated>
+    <updated>2018-11-25T08:21:24.593Z</updated>
     
     <content type="html"><![CDATA[<p>  初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
 <h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>  首先，我们要弄清以下三条命令的区别：</p>
@@ -859,7 +832,7 @@ int main(){
     <link href="http://qiracle.github.io/2017/04/25/20170425/"/>
     <id>http://qiracle.github.io/2017/04/25/20170425/</id>
     <published>2017-04-24T16:00:00.000Z</published>
-    <updated>2017-05-04T14:02:19.000Z</updated>
+    <updated>2018-11-25T08:21:24.593Z</updated>
     
     <content type="html"><![CDATA[<p>步骤：</p>
 <p> 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
@@ -892,7 +865,7 @@ int main(){
     <link href="http://qiracle.github.io/2017/03/16/20170316/"/>
     <id>http://qiracle.github.io/2017/03/16/20170316/</id>
     <published>2017-03-15T16:00:00.000Z</published>
-    <updated>2017-03-25T11:14:44.000Z</updated>
+    <updated>2018-11-25T08:21:24.594Z</updated>
     
     <content type="html"><![CDATA[<p>Git鼓励大量使用分支：</p>
 <blockquote>
@@ -937,7 +910,7 @@ int main(){
     <link href="http://qiracle.github.io/2017/01/17/20170117/"/>
     <id>http://qiracle.github.io/2017/01/17/20170117/</id>
     <published>2017-01-16T16:00:00.000Z</published>
-    <updated>2017-01-17T06:22:58.000Z</updated>
+    <updated>2018-11-25T08:21:24.593Z</updated>
     
     <content type="html"><![CDATA[<p>　　java中的回调简单来说就是A类调了B类里面的C方法，结果是B类调了A类里面的D方法。其中D就是回调方法，它存在于接口中，由A实现。回调分为同步回调和异步回调。他们之间的区别在于返回结果是否需要等待，若有延迟则为异步回调，否则为同步回调。下面为代码示例：<a id="more"></a></p>
 <pre><code>public interface CSCallBack {//回调接口
@@ -1078,7 +1051,7 @@ def getHtml(url):
     <link href="http://qiracle.github.io/2017/01/09/20170109/"/>
     <id>http://qiracle.github.io/2017/01/09/20170109/</id>
     <published>2017-01-08T16:00:00.000Z</published>
-    <updated>2017-01-10T12:29:58.000Z</updated>
+    <updated>2018-11-25T08:21:24.594Z</updated>
     
     <content type="html"><![CDATA[<p>1.新建setup.py文件，并将下面代码修改后复制到文件中</p>
 <pre><code>from distutils.core import setup
@@ -1126,7 +1099,7 @@ setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,descripti
     <link href="http://qiracle.github.io/2017/01/08/20170108/"/>
     <id>http://qiracle.github.io/2017/01/08/20170108/</id>
     <published>2017-01-07T16:00:00.000Z</published>
-    <updated>2017-01-08T06:10:48.000Z</updated>
+    <updated>2018-11-25T08:21:24.593Z</updated>
     
     <content type="html"><![CDATA[<p>python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。</p>
 <p>新建test.py文件，代码如下</p>
@@ -1192,6 +1165,35 @@ test.A()
     
     
       <category term="python" scheme="http://qiracle.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>程序的内存四区模型</title>
+    <link href="http://qiracle.github.io/2017/01/07/20170107/"/>
+    <id>http://qiracle.github.io/2017/01/07/20170107/</id>
+    <published>2017-01-06T16:00:00.000Z</published>
+    <updated>2017-08-13T10:09:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="内存四区的建立流程"><a href="#内存四区的建立流程" class="headerlink" title="内存四区的建立流程"></a>内存四区的建立流程</h3><p><img src="http://ou3jfk5zy.bkt.clouddn.com/20160107/1.png" alt=""></p>
+<a id="more"></a>
+<p><strong>流程说明</strong></p>
+<p>1、操作系统把物理硬盘代码load到内存</p>
+<p>2、操作系统把c代码分成四个区</p>
+<p>3、操作系统找到main函数入口执行</p>
+<h3 id="各区元素分析"><a href="#各区元素分析" class="headerlink" title="各区元素分析"></a>各区元素分析</h3><p><img src="http://ou3jfk5zy.bkt.clouddn.com/20160107/2.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;内存四区的建立流程&quot;&gt;&lt;a href=&quot;#内存四区的建立流程&quot; class=&quot;headerlink&quot; title=&quot;内存四区的建立流程&quot;&gt;&lt;/a&gt;内存四区的建立流程&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ou3jfk5zy.bkt.clouddn.com/20160107/1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="C/C++" scheme="http://qiracle.github.io/tags/C-C/"/>
     
   </entry>
   
