@@ -15,19 +15,24 @@
 
 
 
-<meta name="description" content="初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。
-git reset  首先，我们要弄清以下">
+<meta name="description" content="java IO流简介java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。
+输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。
+输出流又可分为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈git撤销回退相关用法">
-<meta property="og:url" content="http://qiracle.github.io/2017/04/26/20170426/index.html">
+<meta property="og:title" content="java IO流总结">
+<meta property="og:url" content="http://qiracle.github.io/2018/11/28/20181128/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。
-git reset  首先，我们要弄清以下">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.294Z">
+<meta property="og:description" content="java IO流简介java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。
+输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。
+输出流又可分为">
+<meta property="og:image" content="http://94.191.72.22/blog/image/20181128/io.bmp">
+<meta property="og:updated_time" content="2018-11-28T13:40:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈git撤销回退相关用法">
-<meta name="twitter:description" content="初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。
-git reset  首先，我们要弄清以下">
+<meta name="twitter:title" content="java IO流总结">
+<meta name="twitter:description" content="java IO流简介java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。
+输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。
+输出流又可分为">
+<meta name="twitter:image" content="http://94.191.72.22/blog/image/20181128/io.bmp">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +64,7 @@ git reset  首先，我们要弄清以下">
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>浅谈git撤销回退相关用法 | Qiracle&#39;s Blog</title>
+<title>java IO流总结 | Qiracle&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -275,11 +280,11 @@ git reset  首先，我们要弄清以下">
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-20170426" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20181128" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/04/26/20170426/" class="article-date">
-      <time datetime="2017-04-25T16:00:00.000Z" itemprop="datePublished">2017-04-26</time>
+      <a href="/2018/11/28/20181128/" class="article-date">
+      <time datetime="2018-11-27T16:00:00.000Z" itemprop="datePublished">2018-11-28</time>
 </a>
 
 
@@ -294,7 +299,7 @@ git reset  首先，我们要弄清以下">
         
   
     <h1 class="article-title" itemprop="name">
-      浅谈git撤销回退相关用法
+      java IO流总结
     </h1>
   
 
@@ -309,7 +314,7 @@ git reset  首先，我们要弄清以下">
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -319,21 +324,24 @@ git reset  首先，我们要弄清以下">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>  初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>  首先，我们要弄清以下三条命令的区别：</p>
-<blockquote>
-<p><strong>git reset –hard</strong></p>
-<p><strong>git reset –soft</strong></p>
-<p><strong>git reset</strong></p>
-</blockquote>
-<p><a id="more"></a>工作区，暂存区，本地仓库，远程仓库的概念我在这里就不介绍了。这是git最为基础的概念，可自行百度。下面说说这三条 git reset 指令的区别：</p>
-<p><strong>git reset –hard：</strong> 重置工作区，暂存区，本地仓库的所有文件到某一节点。例如 git reset –hard HEAD^ 表示工作区，暂存区，本地仓库的所有文件全部回退到上一个节点，也就是说你从上一个节点到这个节点之间所做的修改全部被撤销了。当然如果要回到特定的一个节点可以用 git reset –hard commitId 。通过指定要回到的节点值来回到对应的节点。</p>
-<p><strong>git reset –soft：</strong>只重置本地仓库的文件，工作区和暂存区的文件不变。</p>
-<p><strong>git reset</strong> 等同于 git reset –mixed，只重置本地仓库和暂存区文件，工作区文件不变。</p>
-<p>  当我们提交完并push代码到远程仓库后，发现代码有问题，想重新提交，首先在gerrit上abandon掉自己刚才上传的代码，接着，用git reset HEAD^或者git reset –soft HEAD^回到上一个节点（git reset HEAD^后，使用git add .就相当于git reset –soft），不要用git reset –hard。因为这会把你本地工作区修改的全部撤销，这样你之前的修改就全没了。虽然也有办法再找回来，只要找到那次提交的commitId就可以了，下面会介绍。</p>
-<p>另外，我们还可以用git reset file 来使一个已经添加到暂存区的file文件重新返回到工作区。</p>
-<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>  我们通过git log就可以查看到每次提交的 commitId 了，如果嫌 git log 显示的信息过多，可以使用 git log –pretty=oneline 让每次提交的关键信息在一行显示。但是如果使用了 git reset –hard，那么使用 git log 只能看到你重置点之前的提交 commitId，无法看到重置点之后的提交 commitId，要想找到重置点之后的 commitId 可以用git reflog。</p>
-<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p>  git checkout有两个作用，如果后面接的是文件名的话，如 git checkout file 可以将一个工作区的文件撤销其修改。如果后面接的是分支名的话，如 git checkout b表示的是切换到b分支。对于工作区新建立的文件，用 git clean -df 可将其移除工作区。</p>
+        <h3 id="java-IO流简介"><a href="#java-IO流简介" class="headerlink" title="java IO流简介"></a>java IO流简介</h3><p>java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。</p>
+<p>输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。</p>
+<p>输出流又可分为字节输出流和字符输出流。字节输出流的基类为OutputStream，我们常用到它的子类FileOutputStream, 字符输出流的基类为Writer，我们常用到它的子类FileWriter。</p>
+<a id="more"></a>
+<p><strong>那什么时候该用字节流，什么时候该用字符流呢？</strong></p>
+<p>一般来说，在输入输出一些二进制对象的时候比如图片，音乐，视频文件，我们用字节流。 在输入输出一些文本文件的时候比如文字，我们用字符流。字符其实可以理解为是字节+对应的编码表（utf-8,gbk等）构成的，相同的一段字节，用不同的编码格式，最后得到的字符是不一样的（生活常见的乱码就是这样产生的）</p>
+<p>另外，java在字节流和字符流中间提供了一层吧转换流，，可以将字节流转化为字符流。输入的转换流为InputStreamReader（InputStream is），输出的转换流为OutputStreamReader（OutputStream os ）。</p>
+<p>解释了这么多，不如用一图来总结一下：</p>
+<p><img src="http://94.191.72.22/blog/image/20181128/io.bmp" alt="IO流"></p>
+<p>　　</p>
+<h3 id="IO-流在代码中的实际应用"><a href="#IO-流在代码中的实际应用" class="headerlink" title="IO 流在代码中的实际应用"></a>IO 流在代码中的实际应用</h3><p>java提供了操作IO流的API，在代码中如何使用呢？ 接下来，直接附上几个比较实用的demo，可参考运用到自己的代码里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">public class CopyMp3Demo &#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		long start = System.currentTimeMillis();</span><br><span class="line">		method1(&quot;e:\\music.mp3&quot;, &quot;copy1.mp3&quot;);</span><br><span class="line">		method2(&quot;e:\\music.mp3&quot;, &quot;copy2.mp3&quot;);</span><br><span class="line">		method3(&quot;e:\\music.mp3&quot;, &quot;copy3.mp3&quot;);</span><br><span class="line">		method4(&quot;e:\\music.mp3&quot;, &quot;copy4.mp3&quot;);</span><br><span class="line"></span><br><span class="line">		long end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(&quot; 总共耗时：&quot; + (end - start) + &quot;毫秒&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节</span><br><span class="line">	public static void method1(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = fis.read()) != -1) &#123;</span><br><span class="line">			fos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节数组</span><br><span class="line">	public static void method2(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = fis.read(bys)) != -1) &#123;</span><br><span class="line">			fos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节：</span><br><span class="line"></span><br><span class="line">	public static void method3(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = bis.read()) != -1) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节数组：</span><br><span class="line"></span><br><span class="line">	public static void method4(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = bis.read(bys)) != -1) &#123;</span><br><span class="line">			bos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们的目的是利用IO流将E盘根目录下的music.mp3文件拷贝到项目工程目录下，前面说了，拷贝音乐文件用字节流，这里提供了四种拷贝方式，可以比较拷贝所需时间，其中第一种方式(基本字节流一次读写一个字节 )最慢，第四种（高效字节流一次读写一个字节数组）最快，中间两种差不多。</p>
+<p>说一下这里的BufferedInputStream是输入流（对应的输出流BufferedOutputStream）的缓冲流，又称装饰流，一般我们建议在基本流外面包上装饰流，因为这样可极大提升效率。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">//字符流读写数据的五种方式</span><br><span class="line">public class CopyTxtDemo &#123;</span><br><span class="line">	public static void main(String[] args) throws IOException &#123;</span><br><span class="line">		String SrcString = &quot;a.txt&quot;;</span><br><span class="line">		String DestString = &quot;b.txt&quot;;</span><br><span class="line">		// method1(SrcString,DestString);</span><br><span class="line">		// method3(SrcString,DestString);</span><br><span class="line">		// method4(SrcString,DestString);</span><br><span class="line">		method5(SrcString, DestString);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符</span><br><span class="line">	private static void method1(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read()) != -1) &#123;</span><br><span class="line">			fw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符数组</span><br><span class="line">	private static void method2(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read(chs)) != -1) &#123;</span><br><span class="line">			fw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字符流一次读写一个字符</span><br><span class="line">	private static void method3(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read()) != -1) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一个字符数组</span><br><span class="line">	private static void method4(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read(chs)) != -1) &#123;</span><br><span class="line">			bw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一行</span><br><span class="line">	private static void method5(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		String len = null;</span><br><span class="line">		while ((len = br.readLine()) != null) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">			bw.newLine();</span><br><span class="line">			bw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码的目的是将项目工程下的“a.txt”文件拷贝到b.txt里。前面说了拷贝文本文件用字符流。前四种拷贝方式就不说了，跟字节流差不多，第五种比较特殊，一次读写一行。</p>
+<p><strong>注意：上述代码最好加上try–catch，并在finally里关闭流。如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">(String src, String dest)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	BufferedInputStream bis =<span class="keyword">null</span>;</span><br><span class="line">	BufferedOutputStream bos = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">		bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> by = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((by = bis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		bos.close();</span><br><span class="line">		bis.close();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -345,16 +353,10 @@ git reset  首先，我们要弄清以下">
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/05/03/20170503/">
-                    Android系统工程模式启动过程详解
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/04/25/20170425/">
-                    在Android系统源码下编译apk
+                <a href="/2018/10/28/20181028/">
+                    Android 中的jar包，aar包以及module
                 </a>
             </div>
         
@@ -366,7 +368,7 @@ git reset  首先，我们要弄清以下">
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset"><span class="toc-number">1.</span> <span class="toc-text">git reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-log"><span class="toc-number">2.</span> <span class="toc-text">git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout"><span class="toc-number">3.</span> <span class="toc-text">git checkout</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-IO流简介"><span class="toc-number">1.</span> <span class="toc-text">java IO流简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO-流在代码中的实际应用"><span class="toc-number">2.</span> <span class="toc-text">IO 流在代码中的实际应用</span></a></li></ol>
         
     </div>
     <style>
@@ -402,7 +404,7 @@ git reset  首先，我们要弄清以下">
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"浅谈git撤销回退相关用法　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"java IO流总结　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -436,15 +438,13 @@ git reset  首先，我们要弄清以下">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/05/03/20170503/" title="上一篇: Android系统工程模式启动过程详解">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/04/25/20170425/" title="下一篇: 在Android系统源码下编译apk">
+            <a href="/2018/10/28/20181028/" title="下一篇: Android 中的jar包，aar包以及module">
                 <i class="fa fa-angle-right"></i>
             </a>
         

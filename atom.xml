@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qiracle.github.io/"/>
-  <updated>2018-11-25T08:40:22.295Z</updated>
+  <updated>2018-11-28T13:40:22.000Z</updated>
   <id>http://qiracle.github.io/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java IO流总结</title>
+    <link href="http://qiracle.github.io/2018/11/28/20181128/"/>
+    <id>http://qiracle.github.io/2018/11/28/20181128/</id>
+    <published>2018-11-27T16:00:00.000Z</published>
+    <updated>2018-11-28T13:40:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="java-IO流简介"><a href="#java-IO流简介" class="headerlink" title="java IO流简介"></a>java IO流简介</h3><p>java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。</p>
+<p>输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。</p>
+<p>输出流又可分为字节输出流和字符输出流。字节输出流的基类为OutputStream，我们常用到它的子类FileOutputStream, 字符输出流的基类为Writer，我们常用到它的子类FileWriter。</p>
+<a id="more"></a>
+<p><strong>那什么时候该用字节流，什么时候该用字符流呢？</strong></p>
+<p>一般来说，在输入输出一些二进制对象的时候比如图片，音乐，视频文件，我们用字节流。 在输入输出一些文本文件的时候比如文字，我们用字符流。字符其实可以理解为是字节+对应的编码表（utf-8,gbk等）构成的，相同的一段字节，用不同的编码格式，最后得到的字符是不一样的（生活常见的乱码就是这样产生的）</p>
+<p>另外，java在字节流和字符流中间提供了一层吧转换流，，可以将字节流转化为字符流。输入的转换流为InputStreamReader（InputStream is），输出的转换流为OutputStreamReader（OutputStream os ）。</p>
+<p>解释了这么多，不如用一图来总结一下：</p>
+<p><img src="http://94.191.72.22/blog/image/20181128/io.bmp" alt="IO流"></p>
+<p>　　</p>
+<h3 id="IO-流在代码中的实际应用"><a href="#IO-流在代码中的实际应用" class="headerlink" title="IO 流在代码中的实际应用"></a>IO 流在代码中的实际应用</h3><p>java提供了操作IO流的API，在代码中如何使用呢？ 接下来，直接附上几个比较实用的demo，可参考运用到自己的代码里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">public class CopyMp3Demo &#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		long start = System.currentTimeMillis();</span><br><span class="line">		method1(&quot;e:\\music.mp3&quot;, &quot;copy1.mp3&quot;);</span><br><span class="line">		method2(&quot;e:\\music.mp3&quot;, &quot;copy2.mp3&quot;);</span><br><span class="line">		method3(&quot;e:\\music.mp3&quot;, &quot;copy3.mp3&quot;);</span><br><span class="line">		method4(&quot;e:\\music.mp3&quot;, &quot;copy4.mp3&quot;);</span><br><span class="line"></span><br><span class="line">		long end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(&quot; 总共耗时：&quot; + (end - start) + &quot;毫秒&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节</span><br><span class="line">	public static void method1(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = fis.read()) != -1) &#123;</span><br><span class="line">			fos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节数组</span><br><span class="line">	public static void method2(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = fis.read(bys)) != -1) &#123;</span><br><span class="line">			fos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节：</span><br><span class="line"></span><br><span class="line">	public static void method3(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = bis.read()) != -1) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节数组：</span><br><span class="line"></span><br><span class="line">	public static void method4(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = bis.read(bys)) != -1) &#123;</span><br><span class="line">			bos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们的目的是利用IO流将E盘根目录下的music.mp3文件拷贝到项目工程目录下，前面说了，拷贝音乐文件用字节流，这里提供了四种拷贝方式，可以比较拷贝所需时间，其中第一种方式(基本字节流一次读写一个字节 )最慢，第四种（高效字节流一次读写一个字节数组）最快，中间两种差不多。</p>
+<p>说一下这里的BufferedInputStream是输入流（对应的输出流BufferedOutputStream）的缓冲流，又称装饰流，一般我们建议在基本流外面包上装饰流，因为这样可极大提升效率。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">//字符流读写数据的五种方式</span><br><span class="line">public class CopyTxtDemo &#123;</span><br><span class="line">	public static void main(String[] args) throws IOException &#123;</span><br><span class="line">		String SrcString = &quot;a.txt&quot;;</span><br><span class="line">		String DestString = &quot;b.txt&quot;;</span><br><span class="line">		// method1(SrcString,DestString);</span><br><span class="line">		// method3(SrcString,DestString);</span><br><span class="line">		// method4(SrcString,DestString);</span><br><span class="line">		method5(SrcString, DestString);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符</span><br><span class="line">	private static void method1(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read()) != -1) &#123;</span><br><span class="line">			fw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符数组</span><br><span class="line">	private static void method2(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read(chs)) != -1) &#123;</span><br><span class="line">			fw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字符流一次读写一个字符</span><br><span class="line">	private static void method3(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read()) != -1) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一个字符数组</span><br><span class="line">	private static void method4(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read(chs)) != -1) &#123;</span><br><span class="line">			bw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一行</span><br><span class="line">	private static void method5(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		String len = null;</span><br><span class="line">		while ((len = br.readLine()) != null) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">			bw.newLine();</span><br><span class="line">			bw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码的目的是将项目工程下的“a.txt”文件拷贝到b.txt里。前面说了拷贝文本文件用字符流。前四种拷贝方式就不说了，跟字节流差不多，第五种比较特殊，一次读写一行。</p>
+<p><strong>注意：上述代码最好加上try–catch，并在finally里关闭流。如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">(String src, String dest)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	BufferedInputStream bis =<span class="keyword">null</span>;</span><br><span class="line">	BufferedOutputStream bos = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">		bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> by = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((by = bis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		bos.close();</span><br><span class="line">		bis.close();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;java-IO流简介&quot;&gt;&lt;a href=&quot;#java-IO流简介&quot; class=&quot;headerlink&quot; title=&quot;java IO流简介&quot;&gt;&lt;/a&gt;java IO流简介&lt;/h3&gt;&lt;p&gt;java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。&lt;/p&gt;
+&lt;p&gt;输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。&lt;/p&gt;
+&lt;p&gt;输出流又可分为字节输出流和字符输出流。字节输出流的基类为OutputStream，我们常用到它的子类FileOutputStream, 字符输出流的基类为Writer，我们常用到它的子类FileWriter。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="java" scheme="http://qiracle.github.io/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Android 中的jar包，aar包以及module</title>
@@ -1125,80 +1167,6 @@ setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,descripti
     </summary>
     
       <category term="教程" scheme="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-      <category term="python" scheme="http://qiracle.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python中的__name__</title>
-    <link href="http://qiracle.github.io/2017/01/08/20170108/"/>
-    <id>http://qiracle.github.io/2017/01/08/20170108/</id>
-    <published>2017-01-07T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
-    
-    <content type="html"><![CDATA[<p>python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。</p>
-<p>新建test.py文件，代码如下</p>
-<pre><code>def A():
-
-    print(&quot;hello&quot;)
-</code></pre><p>再简历main.py文件，代码如下</p>
-<pre><code>import test
-
-test.A()
-</code></pre><p>此时用python main.py执行，打印 hello。</p>
-<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：<br><a id="more"></a></p>
-<pre><code>def A():
-
-    print(&quot;hello&quot;)
-
-A()//测试
-</code></pre><p>用python test.py执行，打印 hello。</p>
-<p>但此时如果测试代码没有删除，调用者用python main.py执行，则会打印 hello hello。<br>因为A()被执行了两次。</p>
-<p>为解决这一问题，我们需要这样做，在test.py文件里：</p>
-<pre><code>def A():
-
-    print(&quot;hello&quot;)
-
-
-if __name__ == &apos;__main__&apos;://加上这句在执行
-    A()
-</code></pre><p>用python main.py执行，则会打印 hello，结果正常</p>
-<p><strong>分析</strong></p>
-<p>在test.py中，加入print(__name__),看看__name__的值</p>
-<pre><code>def A():
-
-    print(&quot;hello&quot;)
-
-print(__name__)
-
-if __name__ == &apos;__main__&apos;://加上这句在执行
-    A()
-</code></pre><p>此时如果用python test.py，则会打印__main__ hello,此时__name<strong>的值为\</strong>main__</p>
-<p>如果用python main.py执行，则打印test hello，此时__name__的值为test</p>
-<p><strong>结论</strong></p>
-<p>因此可以看出，在函数所在的文件内调用函数，__name__的值为__main__</p>
-<p>但是如果通过导入模块调用函数，则函数所在文件的__name__值为函数所在文件的文件名</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。&lt;/p&gt;
-&lt;p&gt;新建test.py文件，代码如下&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;def A():
-
-    print(&amp;quot;hello&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再简历main.py文件，代码如下&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import test
-
-test.A()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时用python main.py执行，打印 hello。&lt;/p&gt;
-&lt;p&gt;但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：&lt;br&gt;
-    
-    </summary>
-    
-      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
     
     
       <category term="python" scheme="http://qiracle.github.io/tags/python/"/>
