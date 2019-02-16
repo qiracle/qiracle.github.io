@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qiracle.github.io/"/>
-  <updated>2019-01-20T11:55:32.000Z</updated>
+  <updated>2019-02-16T08:18:28.000Z</updated>
   <id>http://qiracle.github.io/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读《深入理解Java虚拟机》总结&lt;一自动内存管理机制&gt;</title>
+    <link href="http://qiracle.github.io/2019/02/16/20190216/"/>
+    <id>http://qiracle.github.io/2019/02/16/20190216/</id>
+    <published>2019-02-15T16:00:00.000Z</published>
+    <updated>2019-02-16T08:18:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这一周来比较空闲，读了《深入理解java虚拟机一书》以提高自己对java底层的认知，还没看完，只是挑选了书中自己比较感兴趣的两个章节来看，写下此篇博客一是为了总结，二是为了方便今后回顾。下面是第一部分<strong>自动内存管理机制</strong> <a id="more"></a></p>
+<h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><p><img src="http://94.191.72.22/blog/image/20190216/1.png" alt="java内存" title="java内存"></p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>程序计数器时一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。为了线程切换后能够恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程直接的计数器互不影响，独立存储，我们称这类内存区域为“线程私有”的内存。</p>
+<h4 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h4><p>与程序计数器一样，java虚拟机栈也是线程私有的，它的生命周期与线程相同。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
+<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackoverflowError异常；如果虚拟机栈可以动态扩展，当扩展时无法申请到足够的内存时会抛出OutOfMemoryError异常。</p>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>本地方法栈与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行java方法服务，而本地方法栈则是为虚拟机使用到的Native方法服务。。本地方法栈也会抛出StackoverflowError和OutOfMemoryError异常。</p>
+<h4 id="java堆"><a href="#java堆" class="headerlink" title="java堆"></a>java堆</h4><p>对于大多数应用来说，java堆是java虚拟机所管理的内存中最大的一块。java堆是所以线程共享的一块内存区域，在虚拟机启动时创建。java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可。如果在堆中没有内存完成实例分配，并且堆无法再扩展时，将会抛出OutOfMemoryError异常。</p>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>方法区与java堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息，常量，静态变量，即时编译器编译后的代码等数据。垃圾回收行为在这个区域是比较少出现的，这个区域内存回收目标主要是针对常量池的回收和对类型的卸载。。当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</p>
+<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>运行时常量池时方法区的一部分。Class文件除了有类的版本，字段，方法，接口等描述信息外，还有一项信息就是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区运行时常量池中。运行期间也可能将新的常量放入池中，如String类的intern()方法。</p>
+<h3 id="垃圾收集器与内存分配策略"><a href="#垃圾收集器与内存分配策略" class="headerlink" title="垃圾收集器与内存分配策略"></a>垃圾收集器与内存分配策略</h3><p>垃圾回收器在对堆进行回收前，第一件事情就是要确定这些对象有哪些还存活着，哪些已经死去。</p>
+<h4 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h4><p>给对象中添加一个引用计算器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器都为0的对象就是不可能再被使用的。。</p>
+<p>java语言没有选用引用计数法来管理内存，其中最主要的原因是它很难解决对象之间的相互循环引用的问题。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReferenceCountGC objA = new ReferenceCountGC();</span><br><span class="line">ReferenceCountGC objB = new ReferenceCountGC();</span><br><span class="line">objA.instance = objB;</span><br><span class="line">objB.instance = objA;</span><br><span class="line">objA = null;</span><br><span class="line">objB = null;</span><br></pre></td></tr></table></figure>
+<h4 id="根搜索算法"><a href="#根搜索算法" class="headerlink" title="根搜索算法"></a>根搜索算法</h4><p>在主流的商用程序语言中，都是使用根搜索算法判断对象是否存活的。基本思路是通过一系列的名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索走过的路径称为引用链，当一个对象待GC Roots没有任何引用链相连，则证明此对象是不可用的。</p>
+<p>Java语言里，可作为GC Roots对象包括下面几种：</p>
+<ul>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中的类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI的引用对象</li>
+</ul>
+<h4 id="java中的四种引用"><a href="#java中的四种引用" class="headerlink" title="java中的四种引用"></a>java中的四种引用</h4><p><strong>强引用：</strong>代码至中普遍存在。类似 Object obj  = new Object()。主要强引用还在，垃圾回收器永远不会回收掉被引用的对象。</p>
+<p><strong>软引用：</strong>当内存不够时，即系统将要发生内存溢出异常之前，将会把这些对象列进回收范围并进行二次回收。java中提供SoftReference类实现软引用。</p>
+<p><strong>弱引用：</strong>被弱引用关联的对象只能生存到下次垃圾收集发生之前，当垃圾收集器工作时，无论当前内存是否足够，都会回收掉被弱引用关联的对象。java中提供WeakReference类实现软引用。</p>
+<p><strong>虚引用</strong>：一个对象是否有虚引用的存在，完全不会对其生存时间构成影响，也无法通过虚引用来取得一个对象实例。为一个对象设置虚引用关联的唯一目的就是希望这个对象在被收集器回收时收到一个系统通知。java中提供PhantomReference类实现软引用。</p>
+<h4 id="对象死亡过程"><a href="#对象死亡过程" class="headerlink" title="对象死亡过程"></a>对象死亡过程</h4><p>在跟搜索算法中不可达的对象也并非是非死不可的。这些不可达的对象先会被判断是否有必要执行finalize()方法，<strong>当对象没有覆盖finalize()方法，或者finalize()方法已经被虚拟机调用过</strong>，虚拟机会将这两种情况都视为“没有必要执行”。</p>
+<p>finalize()方法是对象逃脱死亡命运的最后一次机会，如果对象想要在finalize()方法中成功拯救自己，只要重新与引用链上的任何一个对象建立关联即可。譬如把自己(this)赋值给某个类变量或者某个对象的成员变量。如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalizeEscapeGc</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FinalizeEscapeGc Save_HooK = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalized</span><span class="params">()</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.finalized();</span><br><span class="line">    FinalizeEscapeGc.Save_HooK = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>如何一个对象的finalize()方法都只会被系统自动调用一次，如果对象面临下一次回收，它的finalize()方法不会再次被执行。</strong></p>
+<h4 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h4><h5 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h5><p>首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。它的主要缺点有两个:</p>
+<p>一是效率问题，标记和清楚过程效率都不高</p>
+<p>二是空间问题，标记清除后会产生大量不连续的内存碎片。</p>
+<p><img src="http://94.191.72.22/blog/image/20190216/2.png" alt="标记-清除" title="标记-清除"></p>
+<h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h5><p>它将可用内存按容量划分为大小相同的两块，每次只使用其中的一块，当一块内存用完了，就将还存活的对象复制到另一块上面，然后再把已使用过的内存空间一次清理掉。这种算法的代价是将内存缩小为原来的一半未免太高了一些。</p>
+<p><img src="http://94.191.72.22/blog/image/20190216/3.png" alt="复制" title="复制"></p>
+<p>现在的商用虚拟机都采用这种收集算法来回收新生代，IBM的专门研究表明，新生代中的对象98%是朝生夕死的，所以并不需要按照1:1的比例来划分空间。而是将内存分为一块较大的Eden空间和两块较小的Survivor空间，每次使用Eden和其中一块Survivor。当回收时，将Eden和Survivor中还存活的对象一次性拷贝到另一块Survivor空间上，最后清理掉Eden和刚才用过的Survivor空间。HotSpot虚拟机默认Eden和Survivor的大小比例为8:1。当Survivor空间不够时，需要依赖其他内存（老年代）进行分配担保。</p>
+<h5 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h5><p>复制算法在对象存活率较高时需要执行较多的复制操作，更关键是如果不想浪费50%空间，就需要额外的空间进行担保，以应对内存中所有对象都100%存活的极端情况，所以老年代一般不能直接选用这种算法。</p>
+<p>标记-整理算法的标记过程仍然与标记-清除算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存活对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
+<p><img src="http://94.191.72.22/blog/image/20190216/4.png" alt="标记-整理" title="标记-整理"></p>
+<h5 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h5><p>根据对象的存活周期不同将内存划分为几块，一般是把Java堆分为新生代和老年代。在新生代中，每次垃圾收集时发现大批对象死去，只有少量存活，那就选用复制算法。老年代中因为对象存活率高，没有额外空间对它进行分配担保，就必须使用“标记-清理”，“标记-整理”算法来进行回收。</p>
+<h4 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h4><p><img src="http://94.191.72.22/blog/image/20190216/5.png" alt="垃圾收集器" title="垃圾收集器"></p>
+<p>如果两个收集器之间存在连线，就说明他们可以搭配使用。下面就只说下Serial收集器：</p>
+<h5 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h5><p>Serial收集器是最基本，历史最悠久的收集器，这是一个单线程的收集器。它在进行垃圾收集时，必须暂停其他所有工作线程指到它收集结束。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这一周来比较空闲，读了《深入理解java虚拟机一书》以提高自己对java底层的认知，还没看完，只是挑选了书中自己比较感兴趣的两个章节来看，写下此篇博客一是为了总结，二是为了方便今后回顾。下面是第一部分&lt;strong&gt;自动内存管理机制&lt;/strong&gt;
+    
+    </summary>
+    
+      <category term="总结" scheme="http://qiracle.github.io/categories/%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="java" scheme="http://qiracle.github.io/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOS下编译Hadoop</title>
@@ -149,7 +214,7 @@
     <link href="http://qiracle.github.io/2018/10/28/20181028/"/>
     <id>http://qiracle.github.io/2018/10/28/20181028/</id>
     <published>2018-10-27T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.295Z</updated>
+    <updated>2018-11-25T08:40:22.294Z</updated>
     
     <content type="html"><![CDATA[<p>Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.</p>
 <p>1.jar包的导入</p>
@@ -186,7 +251,7 @@
     <link href="http://qiracle.github.io/2018/10/21/20181021/"/>
     <id>http://qiracle.github.io/2018/10/21/20181021/</id>
     <published>2018-10-20T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.295Z</updated>
+    <updated>2018-11-25T08:40:22.294Z</updated>
     
     <content type="html"><![CDATA[<ol>
 <li>在当前工程里，点击 File-&gt;New-&gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib . <a id="more"></a>
@@ -223,7 +288,7 @@
     <link href="http://qiracle.github.io/2018/10/14/20181014/"/>
     <id>http://qiracle.github.io/2018/10/14/20181014/</id>
     <published>2018-10-13T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.295Z</updated>
+    <updated>2018-11-25T08:40:22.294Z</updated>
     
     <content type="html"><![CDATA[<h3 id="什么是混淆"><a href="#什么是混淆" class="headerlink" title="什么是混淆"></a>什么是混淆</h3><p>　　按照我的个人理解，混淆就是将代码里的包名，类名，方法名，变量名等用无意义的a，b，c等字母代替。这样做的目的是为了防止他人获取你的apk后可以轻松的反编译并读取你的源码，而加入混淆之后，反编译出的源码是很难被读懂的。详细解释可参考<a href="https://blog.csdn.net/sinat_36176987/article/details/79119876" target="_blank" rel="external">Android混淆是什么</a> 。<a id="more"></a>
 　　</p>
@@ -259,7 +324,7 @@
     <link href="http://qiracle.github.io/2018/03/28/20180328/"/>
     <id>http://qiracle.github.io/2018/03/28/20180328/</id>
     <published>2018-03-27T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.295Z</updated>
+    <updated>2018-11-25T08:40:22.294Z</updated>
     
     <content type="html"><![CDATA[<p>原文来自: <a href="http://showme.codes/2017-02-20/understand-https/" target="_blank" rel="external">也许，这样理解HTTPS更容易</a> </p>
 <h3 id="能不能用一句话总结HTTPS？"><a href="#能不能用一句话总结HTTPS？" class="headerlink" title="能不能用一句话总结HTTPS？"></a>能不能用一句话总结HTTPS？</h3><p>答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:</p>
@@ -286,7 +351,7 @@
     <link href="http://qiracle.github.io/2017/08/10/20170810/"/>
     <id>http://qiracle.github.io/2017/08/10/20170810/</id>
     <published>2017-08-09T16:00:00.000Z</published>
-    <updated>2018-11-25T08:49:05.173Z</updated>
+    <updated>2018-11-25T08:49:05.172Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Settings简介"><a href="#Settings简介" class="headerlink" title="Settings简介"></a>Settings简介</h3><p>　　Settings 是 Android 系统自带的一个很重要的应用，给用户提供了操作 Android 系统功能的界面。它里面包含了 Wireless &amp; network，device，personal 以及 system 等几大块的功能设置。在 Android 源码中，该应用位于 packages/apps/Settings 下。该应用的源码是相当复杂的，设计思想很是先进，很难完全讲清楚，笔者也是读了好几遍源码再综合了几篇博客才勉强懂了Settings其启动流程的大体思路。通过博客记录下来以加深理解和印象，同时分享给大家。<a id="more"></a>
 　　</p>
@@ -339,7 +404,7 @@
     <link href="http://qiracle.github.io/2017/08/09/20170809/"/>
     <id>http://qiracle.github.io/2017/08/09/20170809/</id>
     <published>2017-08-08T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.295Z</updated>
+    <updated>2018-11-25T08:40:22.294Z</updated>
     
     <content type="html"><![CDATA[<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><p>我们在做公司的项目的时候，代码都是大家共同编写的，通过git仓库进行管理。然而有的时候，我们写的代码会被别人修改了，而别人又没有加注释说明是某某人什么时候修改的什么功能。这时候你又想对曾经自己写的这块代码进行修改，但是你对他的代码不是很明白或者对需求不是很理解。这时最好的解决方法就是找到这个人问明白，最常见的方法是，通过git log查看提交记录，查出这笔提交的owner，但是如果是很久之前的提交，要找出来未免有些太慢了。有没有什么好的方法呢？<a id="more"></a>有，可以用git命令 —–git blame。</p>
 <h4 id="git-blame用法"><a href="#git-blame用法" class="headerlink" title="git blame用法"></a><strong>git blame用法</strong></h4><p>git blame +文件名，就可以显示出这该文件里每行代码的详细提交信息。放张图感受一下：<br><img src="http://94.191.72.22/blog/image/20170809/git_1.png" alt="这里写图片描述"></p>
@@ -364,7 +429,7 @@
     <link href="http://qiracle.github.io/2017/07/28/20170728/"/>
     <id>http://qiracle.github.io/2017/07/28/20170728/</id>
     <published>2017-07-27T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Android-系统-SystemUI-介绍"><a href="#Android-系统-SystemUI-介绍" class="headerlink" title="Android 系统 SystemUI 介绍"></a>Android 系统 SystemUI 介绍</h3><p>  Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版本在 SystemUI 上都有比较大的改动。而对开发者而言，理解 Android SystemUI 对优化Android系统界面，改善用户体验十分重要。<a id="more"></a></p>
 <h3 id="SystemUI-在哪"><a href="#SystemUI-在哪" class="headerlink" title="SystemUI 在哪"></a>SystemUI 在哪</h3><p>  在 Andorid 系统源码中，package/apps下放的是系统内置的一些 app，例如 settings，camera，Phone，Message 等等。而在 Framework/base/package 下，它们也是系统的 app，SystemUI 就在此目录下。它控制着整个Android系统的界面，但其实他也是一个 app，不同于一般的 app，它不可卸载也不可以被第三方应用替换。</p>
@@ -434,7 +499,7 @@
     <link href="http://qiracle.github.io/2017/07/10/20170710/"/>
     <id>http://qiracle.github.io/2017/07/10/20170710/</id>
     <published>2017-07-09T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-python把函数作为参数"><a href="#1-python把函数作为参数" class="headerlink" title="1.python把函数作为参数"></a>1.python把函数作为参数</h3><pre><code>import math
 def f(x,y)
@@ -529,7 +594,7 @@ print add(4, 9, f)
     <link href="http://qiracle.github.io/2017/07/07/20170707/"/>
     <id>http://qiracle.github.io/2017/07/07/20170707/</id>
     <published>2017-07-06T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<p>DeskClock时钟应用时区的添加，首先我们找到DeskClock该app所在的位置，它位于package/apps/DeskCock下，时区的读取文件位于src/com/android/deskclock/settings/settingsActivity.java中，接下来我们主要分析该文件中的代码。首先找到getAllTimeZones函数，<a id="more"></a>如下图：<br><img src="http://94.191.72.22/blog/image/20170707/clock_1.png" alt="这里写图片描述"></p>
 <p>该方法首先读取了string.xml里的string-array中name=timezone_values和timezone_labels，其中timezone_labels为城市名，timezone_values为城市所在大洲名/城市名。部分截图如下：<img src="http://94.191.72.22/blog/image/20170707/clock_2.png" alt="这里写图片描述"></p>
@@ -555,7 +620,7 @@ print add(4, 9, f)
     <link href="http://qiracle.github.io/2017/07/01/20170701/"/>
     <id>http://qiracle.github.io/2017/07/01/20170701/</id>
     <published>2017-06-30T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<h3 id="静态-overlay-和动态-overlay"><a href="#静态-overlay-和动态-overlay" class="headerlink" title="静态 overlay 和动态 overlay"></a>静态 overlay 和动态 overlay</h3><p>静态 overlay：又称为编译时 overlay，编译时资源就已经覆盖了，一般用在有源码的apk中。<br>动态 overlay：又称为运行时 overlay，当 apk 在手机中运行时才发生资源覆盖，一般用在无源码的apk中。<a id="more"></a></p>
 <h3 id="overlay资源替换的前提和原则"><a href="#overlay资源替换的前提和原则" class="headerlink" title="overlay资源替换的前提和原则"></a>overlay资源替换的前提和原则</h3><p>前提：资源所在路径必须与overlay下资源路径完全相同。如要替换 Settings 这个应用的String.xml里的资源，该资源文件所在路径为packages/apps/res/values/,则对应overlay的路径必须为overlay/packages/apps/res/values/。</p>
@@ -596,153 +661,11 @@ print add(4, 9, f)
   </entry>
   
   <entry>
-    <title>数据结构-顺序表的基本操作</title>
-    <link href="http://qiracle.github.io/2017/06/25/20170625/"/>
-    <id>http://qiracle.github.io/2017/06/25/20170625/</id>
-    <published>2017-06-24T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
-<pre><code>#include&lt;stdio.h&gt;
-
-#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-    ElemType data[MAXSIZE];
-    int length;
-
-
-}SeqList;
-
-SeqList init_list(){//初始化
-    SeqList L;
-    L.length =0;
-
-    return L;
-}
-
-int list_length(SeqList *L){//获取长度
-    return L-&gt;length;
-}
-
-int get_element(SeqList L,int i){//根据序号查找元素
-    if(i&lt;1 || i&gt;L.length){
-        printf(&quot;序号超出范围&quot;);
-        return -1;
-    }
-    return L.data[i-1];
-
-
-}
-
-int list_locate(SeqList L,ElemType x){//根据元素查找位置
-    int i;
-    for(i=0; i&lt;L.length;i++)
-        if(L.data[i]==x)
-            return (i+1);
-
-
-        return -1;//未找到
-
-}
-
-void list_insert(SeqList *L, ElemType x,int i){ //插入元素
-
-    int j;
-    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
-    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
-    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
-        L-&gt;data[j+1] =L-&gt;data[j];
-    L-&gt;data[i-1] =x;
-    L-&gt;length++;
-
-
-    }
-
-}
-
-void list_delete(SeqList *L,int i){//删除元素
-    int j;
-    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
-    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
-    else {
-        for(j=i;j&lt;=L-&gt;length-1;j++)
-            L-&gt;data[j-1] =L-&gt;data[j];
-        L-&gt;length--;
-    }
-
-
-}
-
-
-SeqList list_scanf(SeqList L){ //创建链表
-int x;
-int i;
-    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
-    for(i=0;;i++){
-        scanf(&quot;%d&quot;,&amp;x);
-        if(x==-1){
-            break;
-        }
- L.data[L.length] = x;
- L.length++; 
-    }
-
-    return L;
-}
-
-void list_print(SeqList L){//打印链表
-    int k;
-    printf(&quot;顺序表的元素有:&quot;);
-    for(k = 0; k&lt;L.length;k++){
-        printf(&quot;%3d &quot;,L.data[k]);
-    }
-    printf(&quot;\n&quot;);
-
-}
-
-
-int main(){
-        int pos;
-        int key;
-    SeqList L = init_list();
-    L = list_scanf(L);
-
-    list_insert(&amp;L, 3, 2);
-
-//    list_delete(&amp;L,1);
-     //pos= list_locate(L,2);
-//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
-//key = get_element(L,3);
-//printf(&quot;该元素为：%d \n&quot;,key);
-    list_print(L);
-    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
-    return 0;
-
-}
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.顺序表的定义&lt;br&gt;2.顺序表的初始化&lt;br&gt;3.顺序表元素增删改查&lt;br&gt;
-    
-    </summary>
-    
-      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-    
-    
-      <category term="数据结构" scheme="http://qiracle.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
     <title>数据结构-链表的基本操作</title>
     <link href="http://qiracle.github.io/2017/06/25/2017062502/"/>
     <id>http://qiracle.github.io/2017/06/25/2017062502/</id>
     <published>2017-06-24T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br><a id="more"></a></p>
 <pre><code>#include&lt;stdio.h&gt;
@@ -907,11 +830,153 @@ list_print(L);
   </entry>
   
   <entry>
+    <title>数据结构-顺序表的基本操作</title>
+    <link href="http://qiracle.github.io/2017/06/25/20170625/"/>
+    <id>http://qiracle.github.io/2017/06/25/20170625/</id>
+    <published>2017-06-24T16:00:00.000Z</published>
+    <updated>2018-11-25T08:40:22.293Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
+<pre><code>#include&lt;stdio.h&gt;
+
+#define MAXSIZE 20
+typedef int ElemType;
+
+typedef struct
+{
+    ElemType data[MAXSIZE];
+    int length;
+
+
+}SeqList;
+
+SeqList init_list(){//初始化
+    SeqList L;
+    L.length =0;
+
+    return L;
+}
+
+int list_length(SeqList *L){//获取长度
+    return L-&gt;length;
+}
+
+int get_element(SeqList L,int i){//根据序号查找元素
+    if(i&lt;1 || i&gt;L.length){
+        printf(&quot;序号超出范围&quot;);
+        return -1;
+    }
+    return L.data[i-1];
+
+
+}
+
+int list_locate(SeqList L,ElemType x){//根据元素查找位置
+    int i;
+    for(i=0; i&lt;L.length;i++)
+        if(L.data[i]==x)
+            return (i+1);
+
+
+        return -1;//未找到
+
+}
+
+void list_insert(SeqList *L, ElemType x,int i){ //插入元素
+
+    int j;
+    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
+    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
+    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
+        L-&gt;data[j+1] =L-&gt;data[j];
+    L-&gt;data[i-1] =x;
+    L-&gt;length++;
+
+
+    }
+
+}
+
+void list_delete(SeqList *L,int i){//删除元素
+    int j;
+    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
+    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
+    else {
+        for(j=i;j&lt;=L-&gt;length-1;j++)
+            L-&gt;data[j-1] =L-&gt;data[j];
+        L-&gt;length--;
+    }
+
+
+}
+
+
+SeqList list_scanf(SeqList L){ //创建链表
+int x;
+int i;
+    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
+    for(i=0;;i++){
+        scanf(&quot;%d&quot;,&amp;x);
+        if(x==-1){
+            break;
+        }
+ L.data[L.length] = x;
+ L.length++; 
+    }
+
+    return L;
+}
+
+void list_print(SeqList L){//打印链表
+    int k;
+    printf(&quot;顺序表的元素有:&quot;);
+    for(k = 0; k&lt;L.length;k++){
+        printf(&quot;%3d &quot;,L.data[k]);
+    }
+    printf(&quot;\n&quot;);
+
+}
+
+
+int main(){
+        int pos;
+        int key;
+    SeqList L = init_list();
+    L = list_scanf(L);
+
+    list_insert(&amp;L, 3, 2);
+
+//    list_delete(&amp;L,1);
+     //pos= list_locate(L,2);
+//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
+//key = get_element(L,3);
+//printf(&quot;该元素为：%d \n&quot;,key);
+    list_print(L);
+    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
+    return 0;
+
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.顺序表的定义&lt;br&gt;2.顺序表的初始化&lt;br&gt;3.顺序表元素增删改查&lt;br&gt;
+    
+    </summary>
+    
+      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="数据结构" scheme="http://qiracle.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android系统工程模式启动过程详解</title>
     <link href="http://qiracle.github.io/2017/05/03/20170503/"/>
     <id>http://qiracle.github.io/2017/05/03/20170503/</id>
     <published>2017-05-02T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<p>​    这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个过程。<a id="more"></a></p>
 <p>首先找到源码目录下  packages/apps/Dialer  这个应用，这是一个拨号应用，我们平常拨打电话用的就是这个 app。找到该 app 里 DialpadFragment.java 这个文件，如下图</p>
@@ -954,7 +1019,7 @@ list_print(L);
     <link href="http://qiracle.github.io/2017/04/26/20170426/"/>
     <id>http://qiracle.github.io/2017/04/26/20170426/</id>
     <published>2017-04-25T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<p>  初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
 <h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>  首先，我们要弄清以下三条命令的区别：</p>
@@ -998,7 +1063,7 @@ list_print(L);
     <link href="http://qiracle.github.io/2017/04/25/20170425/"/>
     <id>http://qiracle.github.io/2017/04/25/20170425/</id>
     <published>2017-04-24T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<p>步骤：</p>
 <p> 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
@@ -1031,7 +1096,7 @@ list_print(L);
     <link href="http://qiracle.github.io/2017/03/16/20170316/"/>
     <id>http://qiracle.github.io/2017/03/16/20170316/</id>
     <published>2017-03-15T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<p>Git鼓励大量使用分支：</p>
 <blockquote>
@@ -1076,7 +1141,7 @@ list_print(L);
     <link href="http://qiracle.github.io/2017/01/17/20170117/"/>
     <id>http://qiracle.github.io/2017/01/17/20170117/</id>
     <published>2017-01-16T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
+    <updated>2018-11-25T08:40:22.293Z</updated>
     
     <content type="html"><![CDATA[<p>　　java中的回调简单来说就是A类调了B类里面的C方法，结果是B类调了A类里面的D方法。其中D就是回调方法，它存在于接口中，由A实现。回调分为同步回调和异步回调。他们之间的区别在于返回结果是否需要等待，若有延迟则为异步回调，否则为同步回调。下面为代码示例：<a id="more"></a></p>
 <pre><code>public interface CSCallBack {//回调接口
@@ -1140,75 +1205,6 @@ public class Server {//B类
     
     
       <category term="java" scheme="http://qiracle.github.io/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单的python网络爬虫实现</title>
-    <link href="http://qiracle.github.io/2017/01/10/20170110/"/>
-    <id>http://qiracle.github.io/2017/01/10/20170110/</id>
-    <published>2017-01-09T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.294Z</updated>
-    
-    <content type="html"><![CDATA[<p>　　学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。<br>　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz" target="_blank" rel="external">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
-<pre><code>import urllib2
-import urllib
-import re
-import time
-
-
-
-def getHtml(url):
-    request = urllib2.Request(url)
-    request.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
-    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36&apos;)
-    response = urllib2.urlopen(request)
-    html=response.read()
-    return html
-</code></pre><a id="more"></a>
-<pre><code>def getImage(html):
-     imglist=re.findall(r&apos;data-original=&quot;(.*?\.(jpg|jpeg))&quot;&apos;,html)
-     print(len(imglist))
-     path =&quot;&quot;
-     x=0
-     for img in imglist:
-         urllib.urlretrieve(img[0],&quot;/home/qiracle/douyu/&quot;+str(x)+&quot;.&quot;+img[1])
-         x+=1
-         time.sleep(1)
-
-
-
-html =getHtml(&quot;https://www.douyu.com/directory/game/yz&quot;)
-getImage(html)
-</code></pre><p>最终爬到的结果如下：</p>
-<p><img src="http://94.191.72.22/blog/image/20170110/2017-01-10.png" alt="结果" title="结果"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;　　学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。&lt;br&gt;　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是&lt;a href=&quot;https://www.douyu.com/directory/game/yz&quot;&gt;https://www.douyu.com/directory/game/yz&lt;/a&gt; 。直接贴代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import urllib2
-import urllib
-import re
-import time
-
-
-
-def getHtml(url):
-    request = urllib2.Request(url)
-    request.add_header(&amp;apos;User-Agent&amp;apos;,&amp;apos;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
-    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36&amp;apos;)
-    response = urllib2.urlopen(request)
-    html=response.read()
-    return html
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-    
-    
-      <category term="python" scheme="http://qiracle.github.io/tags/python/"/>
     
   </entry>
   
