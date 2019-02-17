@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2019/02/17/20190217/</loc>
+    <lastmod>2019-02-17T05:51:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>读《深入理解Java虚拟机》总结<二.java内存模型与线程></title>
+        <pubTime>2019-02-16T16:00:00.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="总结" url="http://qiracle.github.io/categories/%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2019/02/16/20190216/</loc>
     <lastmod>2019-02-17T04:52:31.000Z</lastmod>
     <data>
@@ -124,46 +144,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/11/java.set/</loc>
-    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-    <data>
-        <display>
-        <title>javaSE基础-集合</title>
-        <pubTime>2016-12-10T16:00:00.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/12/markdown/</loc>
-    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-    <data>
-        <display>
-        <title>markdown语法小结</title>
-        <pubTime>2016-12-11T16:00:00.000Z</pubTime>
-        
-        <tag>markdown</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2016/12/16/linuxSum/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
@@ -184,19 +164,43 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2018/10/14/20181014/</loc>
+    <loc>http://qiracle.github.io/2016/12/13/life_code/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
         <display>
-        <title>Android 混淆机制</title>
-        <pubTime>2018-10-13T16:00:00.000Z</pubTime>
+        <title>小记(一)</title>
+        <pubTime>2016-12-12T16:00:00.000Z</pubTime>
         
-        <tag>Android</tag>
+        <tag>随笔</tag>
          
          
            
              
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2016/12/10/mianshi/</loc>
+    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+    <data>
+        <display>
+        <title>迟来的面试总结</title>
+        <pubTime>2016-12-09T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>java</tag>
+         
+        <tag>面试</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
           
         </display>
     </data>
@@ -264,23 +268,19 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/10/mianshi/</loc>
+    <loc>http://qiracle.github.io/2018/10/14/20181014/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
         <display>
-        <title>迟来的面试总结</title>
-        <pubTime>2016-12-09T16:00:00.000Z</pubTime>
+        <title>Android 混淆机制</title>
+        <pubTime>2018-10-13T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
-         
-        <tag>java</tag>
-         
-        <tag>面试</tag>
          
          
            
              
-              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -301,6 +301,26 @@
            
              
               <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2016/12/12/markdown/</loc>
+    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+    <data>
+        <display>
+        <title>markdown语法小结</title>
+        <pubTime>2016-12-11T16:00:00.000Z</pubTime>
+        
+        <tag>markdown</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -348,19 +368,19 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/13/life_code/</loc>
+    <loc>http://qiracle.github.io/2016/12/11/java.set/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
         <display>
-        <title>小记(一)</title>
-        <pubTime>2016-12-12T16:00:00.000Z</pubTime>
+        <title>javaSE基础-集合</title>
+        <pubTime>2016-12-10T16:00:00.000Z</pubTime>
         
-        <tag>随笔</tag>
+        <tag>java</tag>
          
          
            
              
-              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -528,19 +548,19 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/05/03/20170503/</loc>
+    <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
         <display>
-        <title>Android系统工程模式启动过程详解</title>
-        <pubTime>2017-05-02T16:00:00.000Z</pubTime>
+        <title>回忆2016</title>
+        <pubTime>2016-12-22T16:00:00.000Z</pubTime>
         
-        <tag>Android</tag>
+        <tag>随笔</tag>
          
          
            
              
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
           
         </display>
     </data>
@@ -648,72 +668,32 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/01/04/20170104/</loc>
-    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-    <data>
-        <display>
-        <title>Android开源项目推荐之「图片加载到底哪家强」(转)</title>
-        <pubTime>2017-01-03T16:00:00.000Z</pubTime>
-        
-        <tag>转载</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/29/20161229/</loc>
-    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-    <data>
-        <display>
-        <title>python学习（三）——字典</title>
-        <pubTime>2016-12-28T16:00:00.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
-    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-    <data>
-        <display>
-        <title>回忆2016</title>
-        <pubTime>2016-12-22T16:00:00.000Z</pubTime>
-        
-        <tag>随笔</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2017/07/28/20170728/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
         <display>
         <title>史上最详细的Android系统SystemUI 启动过程详细解析</title>
         <pubTime>2017-07-27T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2017/05/03/20170503/</loc>
+    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+    <data>
+        <display>
+        <title>Android系统工程模式启动过程详解</title>
+        <pubTime>2017-05-02T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -741,6 +721,26 @@
            
              
               <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2016/12/29/20161229/</loc>
+    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+    <data>
+        <display>
+        <title>python学习（三）——字典</title>
+        <pubTime>2016-12-28T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -828,6 +828,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2017/01/04/20170104/</loc>
+    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+    <data>
+        <display>
+        <title>Android开源项目推荐之「图片加载到底哪家强」(转)</title>
+        <pubTime>2017-01-03T16:00:00.000Z</pubTime>
+        
+        <tag>转载</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2017/01/05/20170105/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
@@ -888,46 +908,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/27/20161227/</loc>
-    <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-    <data>
-        <display>
-        <title>python学习（一）——常用字符串函数</title>
-        <pubTime>2016-12-26T16:00:00.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/19/20161219/</loc>
-    <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发中，那些让你相见恨晚的方法、类或接口(转)</title>
-        <pubTime>2016-12-18T16:00:00.000Z</pubTime>
-        
-        <tag>转载</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2016/12/28/20161228/</loc>
     <lastmod>2018-11-25T08:40:22.293Z</lastmod>
     <data>
@@ -948,14 +928,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/25/20161225/</loc>
+    <loc>http://qiracle.github.io/2016/12/27/20161227/</loc>
     <lastmod>2018-11-25T08:40:22.293Z</lastmod>
     <data>
         <display>
-        <title>Android中实现Listview下拉刷新的核心代码解析</title>
-        <pubTime>2016-12-24T16:00:00.000Z</pubTime>
+        <title>python学习（一）——常用字符串函数</title>
+        <pubTime>2016-12-26T16:00:00.000Z</pubTime>
         
-        <tag>Android</tag>
+        <tag>python</tag>
          
          
            
@@ -976,6 +956,26 @@
         <pubTime>2016-12-25T16:00:00.000Z</pubTime>
         
         <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2016/12/25/20161225/</loc>
+    <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+    <data>
+        <display>
+        <title>Android中实现Listview下拉刷新的核心代码解析</title>
+        <pubTime>2016-12-24T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
          
          
            
@@ -1036,6 +1036,26 @@
         <pubTime>2016-12-19T16:00:00.000Z</pubTime>
         
         <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2016/12/19/20161219/</loc>
+    <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发中，那些让你相见恨晚的方法、类或接口(转)</title>
+        <pubTime>2016-12-18T16:00:00.000Z</pubTime>
+        
+        <tag>转载</tag>
          
          
            

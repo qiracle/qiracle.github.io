@@ -15,43 +15,31 @@
 
 
 
-<meta name="description" content="系统及软件版本准备
-CentOS-6.7-64bit
+<meta name="description" content="系统及软件版本准备CentOS-6.7-64bit
 Hadoop-2.8.3-src
 java-1.8.0_141
 apache-maven-3.3.9
 protobuf-2.5.0
-findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
-相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n
-软件">
+findbugs-1.3.9">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS下编译Hadoop">
 <meta property="og:url" content="http://qiracle.github.io/2019/01/06/20190106/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="系统及软件版本准备
-CentOS-6.7-64bit
+<meta property="og:description" content="系统及软件版本准备CentOS-6.7-64bit
 Hadoop-2.8.3-src
 java-1.8.0_141
 apache-maven-3.3.9
 protobuf-2.5.0
-findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
-相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n
-软件">
+findbugs-1.3.9">
 <meta property="og:updated_time" content="2019-01-20T11:55:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下编译Hadoop">
-<meta name="twitter:description" content="系统及软件版本准备
-CentOS-6.7-64bit
+<meta name="twitter:description" content="系统及软件版本准备CentOS-6.7-64bit
 Hadoop-2.8.3-src
 java-1.8.0_141
 apache-maven-3.3.9
 protobuf-2.5.0
-findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
-相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n
-软件">
+findbugs-1.3.9">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -343,25 +331,19 @@ findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>系统及软件版本准备</h3>
-<p>CentOS-6.7-64bit</p>
+        <h3 id="系统及软件版本准备"><a href="#系统及软件版本准备" class="headerlink" title="系统及软件版本准备"></a>系统及软件版本准备</h3><p>CentOS-6.7-64bit</p>
 <p>Hadoop-2.8.3-src</p>
 <p>java-1.8.0_141</p>
 <p>apache-maven-3.3.9</p>
 <p>protobuf-2.5.0</p>
-<p>findbugs-1.3.9 &lt;!-- more --&gt;</p>
-<p>相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n</p>
-<h3>软件安装</h3>
-<h3>1.java-1.8.0_141</h3>
-<p>下载 jdk-8u141-linux-x64.tar.gz， 解压到 /root/apps/jdk1.8.0_141。解压命令:</p>
+<p>findbugs-1.3.9 <a id="more"></a></p>
+<p>相关软件下载地址： 链接：<a href="https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg" target="_blank" rel="external">https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg</a><br>提取码：l84n </p>
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h3 id="1-java-1-8-0-141"><a href="#1-java-1-8-0-141" class="headerlink" title="1.java-1.8.0_141"></a>1.java-1.8.0_141</h3><p>下载 jdk-8u141-linux-x64.tar.gz， 解压到 /root/apps/jdk1.8.0_141。解压命令:</p>
 <p><code>tar -xf jdk-8u141-linux-x64.tar.gz</code></p>
 <p>配置环境变量：</p>
-<p><code>vi /etc/profile</code></p>
+<p><code>vi  /etc/profile</code></p>
 <p>在文件最下面加上:</p>
-<p><code>export JAVA_HOME=/root/apps/jdk1.8.0_141</code>
-<code>export PATH=$PATH:$JAVA_HOME/bin</code>
-<code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
+<p><code>export JAVA_HOME=/root/apps/jdk1.8.0_141</code><br><code>export PATH=$PATH:$JAVA_HOME/bin</code><br><code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
 <p>添加完记得用下面的命令让其立即生效:</p>
 <p><code>source /etc/profile</code></p>
 <p><strong>注意：下面每次配置完环境变量都需要使用这个命令</strong></p>
@@ -369,59 +351,42 @@ findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
 <p><code>java -version</code></p>
 <p>如果输出下面信息，则表示安装成功：</p>
 <blockquote>
-<p>java version &quot;1.8.0_141&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_141-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</p>
+<p>java version “1.8.0_141”<br>Java(TM) SE Runtime Environment (build 1.8.0_141-b15)<br>Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</p>
 </blockquote>
-<h3>2.apache-maven-3.3.9</h3>
-<p>下载apache-maven-3.3.9-bin.zip，并使用 下面命令解压：</p>
+<h3 id="2-apache-maven-3-3-9"><a href="#2-apache-maven-3-3-9" class="headerlink" title="2.apache-maven-3.3.9"></a>2.apache-maven-3.3.9</h3><p>下载apache-maven-3.3.9-bin.zip，并使用 下面命令解压：</p>
 <p><code>unzip apache-maven-3.3.9-bin.zip</code></p>
 <p>我将其解压到了 /opt/software/a:pache-maven-3.3.9. 同样，配置环境变量，在/etc/profile中添加下面信息：</p>
-<p><code>export MAVEN_HOME=/opt/software/apache-maven-3.3.9</code>
-<code>export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot;</code>
-<code>export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p><code>export MAVEN_HOME=/opt/software/apache-maven-3.3.9</code><br><code>export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot;</code><br><code>export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
 <p>验证是否安装成功:</p>
 <p><code>mvn -version</code></p>
 <p>出现下列信息表明安装成功：</p>
 <blockquote>
-<p>Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)
-Maven home: /opt/software/apache-maven-3.3.9
-Java version: 1.8.0_141, vendor: Oracle Corporation
-Java home: /root/apps/jdk1.8.0_141/jre
-Default locale: en_US, platform encoding: UTF-8
-OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</p>
+<p>Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)<br>Maven home: /opt/software/apache-maven-3.3.9<br>Java version: 1.8.0_141, vendor: Oracle Corporation<br>Java home: /root/apps/jdk1.8.0_141/jre<br>Default locale: en_US, platform encoding: UTF-8<br>OS name: “linux”, version: “2.6.32-573.el6.x86_64”, arch: “amd64”, family: “unix”</p>
 </blockquote>
-<h3>3.protobuf-2.5.0</h3>
-<p>下载 protobuf-2.5.0.tar.gz ，解压到/opt/software/protobuf-2.5.0，接下来:</p>
-<p><code>cd protobuf-2.5.0</code></p>
+<h3 id="3-protobuf-2-5-0"><a href="#3-protobuf-2-5-0" class="headerlink" title="3.protobuf-2.5.0"></a>3.protobuf-2.5.0</h3><p>下载 protobuf-2.5.0.tar.gz ，解压到/opt/software/protobuf-2.5.0，接下来:</p>
+<p> <code>cd protobuf-2.5.0</code></p>
 <p><code>yum install -y gcc gcc-c++ make cmake</code></p>
-<p>./configure --prefix=/usr/local/protobuf</p>
-<p>make &amp;&amp; make install</p>
+<p> ./configure –prefix=/usr/local/protobuf</p>
+<p> make &amp;&amp; make install</p>
 <p>同样导入环境变量：</p>
-<p><code>export PROTOC_HOME=/usr/local/protobuf</code>
-<code>export PATH=$PROTOC_HOME/bin:$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p><code>export PROTOC_HOME=/usr/local/protobuf</code><br><code>export PATH=$PROTOC_HOME/bin:$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
 <p>验证是否安装成功：</p>
 <p><code>protoc --version</code></p>
 <p>出现下面信息表明安装成功：</p>
 <blockquote>
 <p>libprotoc 2.5.0</p>
 </blockquote>
-<h3>4. findbugs-1.3.9</h3>
-<p>下载findbugs-1.3.9.zip ，通过unzip findbugs-1.3.9.zip 解压到/opt/software/findbugs-1.3.9。</p>
+<h3 id="4-findbugs-1-3-9"><a href="#4-findbugs-1-3-9" class="headerlink" title="4. findbugs-1.3.9"></a>4. findbugs-1.3.9</h3><p>下载findbugs-1.3.9.zip ，通过unzip findbugs-1.3.9.zip 解压到/opt/software/findbugs-1.3.9。</p>
 <p>同样需要配置环境变量</p>
-<p><code>export FINDBUGS_HOME=/opt/software/findbugs-1.3.9</code>
-<code>export PATH=$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p><code>export FINDBUGS_HOME=/opt/software/findbugs-1.3.9</code><br><code>export PATH=$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
 <p>验证是否安装成功：</p>
 <p><code>findbugs -version</code></p>
 <p>出现下面信息表示安装成功：</p>
 <blockquote>
 <p>1.3.9</p>
 </blockquote>
-<h3>5.其他依赖的安装</h3>
-<p><code>yum install -y openssl openssl-devel svn ncurses-devel zlib-devel libtool</code>
-<code>yum install -y snappy snappy-devel bzip2 bzip2-devel lzo lzo-devel lzop autoconf automake</code></p>
-<h3>6.编译</h3>
-<p>下载hadoop-2.8.3-src.tar.gz并解压 tar -xf hadoop-2.8.3-src.tar.gz 到 /root/hadoop-2.8.3-src。运行下面命令：</p>
+<h3 id="5-其他依赖的安装"><a href="#5-其他依赖的安装" class="headerlink" title="5.其他依赖的安装"></a>5.其他依赖的安装</h3><p><code>yum install -y openssl openssl-devel svn ncurses-devel zlib-devel libtool</code><br><code>yum install -y snappy snappy-devel bzip2 bzip2-devel lzo lzo-devel lzop autoconf automake</code></p>
+<h3 id="6-编译"><a href="#6-编译" class="headerlink" title="6.编译"></a>6.编译</h3><p>下载hadoop-2.8.3-src.tar.gz并解压 tar -xf hadoop-2.8.3-src.tar.gz 到 /root/hadoop-2.8.3-src。运行下面命令：</p>
 <p><code>cd hadoop-2.8.3-src</code></p>
 <p><code>mvn clean package -Pdist,native -DskipTests -Dtar</code></p>
 <p>编译过程中需要下载很多东西，需要很长时间，同时因为网络原因可能会一直卡在某个地方，这时可以ctrl+c中止然后重新运行上面命令。最后如果出现 BUILD SUCCESS 字样则表明编译成功.</p>
@@ -458,7 +423,7 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">系统及软件版本准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">软件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">1.java-1.8.0_141</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">2.apache-maven-3.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">3.protobuf-2.5.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">4. findbugs-1.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">5.其他依赖的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">6.编译</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统及软件版本准备"><span class="toc-number">1.</span> <span class="toc-text">系统及软件版本准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件安装"><span class="toc-number">2.</span> <span class="toc-text">软件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-java-1-8-0-141"><span class="toc-number">3.</span> <span class="toc-text">1.java-1.8.0_141</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-apache-maven-3-3-9"><span class="toc-number">4.</span> <span class="toc-text">2.apache-maven-3.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-protobuf-2-5-0"><span class="toc-number">5.</span> <span class="toc-text">3.protobuf-2.5.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-findbugs-1-3-9"><span class="toc-number">6.</span> <span class="toc-text">4. findbugs-1.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-其他依赖的安装"><span class="toc-number">7.</span> <span class="toc-text">5.其他依赖的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-编译"><span class="toc-number">8.</span> <span class="toc-text">6.编译</span></a></li></ol>
         
     </div>
     <style>
@@ -542,7 +507,7 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 

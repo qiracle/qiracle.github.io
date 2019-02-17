@@ -15,34 +15,31 @@
 
 
 
-<meta name="description" content="创建字典
-&amp;gt;&amp;gt;&amp;gt; d1 = {}
-&amp;gt;&amp;gt;&amp;gt; d2 = {&apos;player&apos;:&apos;QVOD&apos;,&apos;game&apos;:&apos;kw&apos;}
+<meta name="description" content="创建字典&amp;gt;&amp;gt;&amp;gt; d1 = {}
+&amp;gt;&amp;gt;&amp;gt; d2 = {‘player’:’QVOD’,’game’:’kw’}
 &amp;gt;&amp;gt;&amp;gt; d1,d2
-({}, {&apos;player&apos;: &apos;QVOD&apos;, &apos;game&apos;: &apos;kw&apos;})
-&amp;gt;&amp;gt;&amp;gt; d3 = dict(([&apos;name&apos;,&apos;alex&apos;],[&apos;sex&apos;,&apos;man&apos;]))
-&amp;gt;&amp;gt;&amp;gt;">
+({}, {‘player’: ‘QVOD’, ‘game’: ‘kw’})
+&amp;gt;&amp;gt;&amp;gt; d3 = dict(([‘name’,’alex’],[‘sex’,’man’]))
+&amp;gt;&amp;gt;&amp;gt; d3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python学习（三）——字典">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/29/20161229/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="创建字典
-&amp;gt;&amp;gt;&amp;gt; d1 = {}
-&amp;gt;&amp;gt;&amp;gt; d2 = {&apos;player&apos;:&apos;QVOD&apos;,&apos;game&apos;:&apos;kw&apos;}
+<meta property="og:description" content="创建字典&amp;gt;&amp;gt;&amp;gt; d1 = {}
+&amp;gt;&amp;gt;&amp;gt; d2 = {‘player’:’QVOD’,’game’:’kw’}
 &amp;gt;&amp;gt;&amp;gt; d1,d2
-({}, {&apos;player&apos;: &apos;QVOD&apos;, &apos;game&apos;: &apos;kw&apos;})
-&amp;gt;&amp;gt;&amp;gt; d3 = dict(([&apos;name&apos;,&apos;alex&apos;],[&apos;sex&apos;,&apos;man&apos;]))
-&amp;gt;&amp;gt;&amp;gt;">
+({}, {‘player’: ‘QVOD’, ‘game’: ‘kw’})
+&amp;gt;&amp;gt;&amp;gt; d3 = dict(([‘name’,’alex’],[‘sex’,’man’]))
+&amp;gt;&amp;gt;&amp;gt; d3">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python学习（三）——字典">
-<meta name="twitter:description" content="创建字典
-&amp;gt;&amp;gt;&amp;gt; d1 = {}
-&amp;gt;&amp;gt;&amp;gt; d2 = {&apos;player&apos;:&apos;QVOD&apos;,&apos;game&apos;:&apos;kw&apos;}
+<meta name="twitter:description" content="创建字典&amp;gt;&amp;gt;&amp;gt; d1 = {}
+&amp;gt;&amp;gt;&amp;gt; d2 = {‘player’:’QVOD’,’game’:’kw’}
 &amp;gt;&amp;gt;&amp;gt; d1,d2
-({}, {&apos;player&apos;: &apos;QVOD&apos;, &apos;game&apos;: &apos;kw&apos;})
-&amp;gt;&amp;gt;&amp;gt; d3 = dict(([&apos;name&apos;,&apos;alex&apos;],[&apos;sex&apos;,&apos;man&apos;]))
-&amp;gt;&amp;gt;&amp;gt;">
+({}, {‘player’: ‘QVOD’, ‘game’: ‘kw’})
+&amp;gt;&amp;gt;&amp;gt; d3 = dict(([‘name’,’alex’],[‘sex’,’man’]))
+&amp;gt;&amp;gt;&amp;gt; d3">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -334,123 +331,104 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>创建字典</h3>
-<p>&gt;&gt;&gt; d1 = {}</p>
-<p>&gt;&gt;&gt; d2 = {'player':'QVOD','game':'kw'}</p>
-<p>&gt;&gt;&gt; d1,d2</p>
-<p>({}, {'player': 'QVOD', 'game': 'kw'})</p>
-<p>&gt;&gt;&gt; d3 = dict((['name','alex'],['sex','man']))</p>
-<p>&gt;&gt;&gt; d3
-&lt;!--more--&gt;
-{'name': 'alex', 'sex': 'man'}</p>
-<p>&gt;&gt;&gt; d33 = d3.copy()</p>
-<p>&gt;&gt;&gt; d33</p>
-<p>{'name': 'alex', 'sex': 'man'}</p>
-<p>&gt;&gt;&gt; d4 = {}.fromkeys(('alex','zhou'),1)</p>
-<p>&gt;&gt;&gt; d4</p>
-<p>{'alex': 1, 'zhou': 1}</p>
-<p>&gt;&gt;&gt; d5 = {}.fromkeys(('alex','zhou'))</p>
-<p>&gt;&gt;&gt; d5</p>
-<p>{'alex': None, 'zhou': None}</p>
-<h3>遍历字典</h3>
-<p>ps：访问一个不存在的key时，会发生KeyError异常，访问前可使用in或not in判断一下。</p>
-<p>d={&quot;name&quot;:&quot;python&quot;,&quot;english&quot;:33,&quot;math&quot;:35}</p>
-<p>print &quot;##for in &quot;</p>
-<p>for key in d:</p>
-<p>print '%s,%s' %(key,d[key])</p>
+        <h3 id="创建字典"><a href="#创建字典" class="headerlink" title="创建字典"></a>创建字典</h3><p>>&gt;&gt; d1 = {}</p>
+<p>>&gt;&gt; d2 = {‘player’:’QVOD’,’game’:’kw’}</p>
+<p>>&gt;&gt; d1,d2</p>
+<p>({}, {‘player’: ‘QVOD’, ‘game’: ‘kw’})</p>
+<p>>&gt;&gt; d3 = dict(([‘name’,’alex’],[‘sex’,’man’]))</p>
+<p>>&gt;&gt; d3<br><a id="more"></a><br>{‘name’: ‘alex’, ‘sex’: ‘man’}</p>
+<p>>&gt;&gt; d33 = d3.copy()</p>
+<p>>&gt;&gt; d33</p>
+<p>{‘name’: ‘alex’, ‘sex’: ‘man’}</p>
+<p>>&gt;&gt; d4 = {}.fromkeys((‘alex’,’zhou’),1)</p>
+<p>>&gt;&gt; d4</p>
+<p>{‘alex’: 1, ‘zhou’: 1}</p>
+<p>>&gt;&gt; d5 = {}.fromkeys((‘alex’,’zhou’))</p>
+<p>>&gt;&gt; d5</p>
+<p>{‘alex’: None, ‘zhou’: None}</p>
+<h3 id="遍历字典"><a href="#遍历字典" class="headerlink" title="遍历字典"></a>遍历字典</h3><p>ps：访问一个不存在的key时，会发生KeyError异常，访问前可使用in或not in判断一下。</p>
+<p>d={“name”:”python”,”english”:33,”math”:35}</p>
+<p>print “##for in “</p>
+<p> for key in d:</p>
+<p>   print ‘%s,%s’ %(key,d[key])</p>
 <p>for i in d:</p>
-<p>print &quot;d[%s]=&quot; % i,dict[i]</p>
-<p>print &quot;##items&quot;</p>
+<p>   print “d[%s]=” % i,dict[i]</p>
+<p>print “##items”</p>
 <p>for (k,v) in  d.items():</p>
-<p>print &quot;d[%s]=&quot; % k,v</p>
-<p>print &quot;##iteritems&quot;</p>
+<p>   print “d[%s]=” % k,v</p>
+<p>print “##iteritems”</p>
 <p>for k,v in d.iteritems():</p>
-<p>print &quot;d[%s]=&quot; % k,v</p>
-<p>&gt;&gt;&gt; d['name']</p>
-<p>'python'</p>
-<p>&gt;&gt;&gt; d2 = {'name':'alexzhou','age':100}</p>
-<p>&gt;&gt;&gt; print 'name: %s,age: %d' %(d2['name'],d2['age'])</p>
+<p>   print “d[%s]=” % k,v</p>
+<p>>&gt;&gt; d[‘name’]</p>
+<p>‘python’</p>
+<p>>&gt;&gt; d2 = {‘name’:’alexzhou’,’age’:100}</p>
+<p>>&gt;&gt; print ‘name: %s,age: %d’ %(d2[‘name’],d2[‘age’])</p>
 <p>name: alexzhou,age: 100</p>
-<p>&gt;&gt;&gt; d2['sex']</p>
+<p>>&gt;&gt; d2[‘sex’]</p>
 <p>Traceback (most recent call last):</p>
-<p>File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</p>
-<p>KeyError: 'sex'</p>
-<p>&gt;&gt;&gt; 'sex' in d2</p>
+<p>  File “<stdin>“, line 1, in <module></module></stdin></p>
+<p>KeyError: ‘sex’</p>
+<p>>&gt;&gt; ‘sex’ in d2</p>
 <p>False</p>
-<p>&gt;&gt;&gt; 'name' in d2</p>
+<p>>&gt;&gt; ‘name’ in d2</p>
 <p>True</p>
-<h3>更新字典</h3>
-<p>&gt;&gt;&gt; d = {'name':'alexzhou','age':100}</p>
-<p>&gt;&gt;&gt; d['age'] = 88</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'age': 88, 'name': 'alexzhou'}</p>
-<p>&gt;&gt;&gt; d.pop('age')</p>
+<h3 id="更新字典"><a href="#更新字典" class="headerlink" title="更新字典"></a>更新字典</h3><p>>&gt;&gt; d = {‘name’:’alexzhou’,’age’:100}</p>
+<p>>&gt;&gt; d[‘age’] = 88</p>
+<p>>&gt;&gt; d</p>
+<p>{‘age’: 88, ‘name’: ‘alexzhou’}</p>
+<p>>&gt;&gt; d.pop(‘age’)</p>
 <p>88</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'name': 'alexzhou'}</p>
-<p>&gt;&gt;&gt; d.clear()</p>
-<p>&gt;&gt;&gt; d</p>
+<p>>&gt;&gt; d</p>
+<p>{‘name’: ‘alexzhou’}</p>
+<p>>&gt;&gt; d.clear()</p>
+<p>>&gt;&gt; d</p>
 <p>{}</p>
-<h3>常用内建函数</h3>
-<h4>cmp()</h4>
-<p>字典的比较：首先是字典的大小，然后是键，最后是值</p>
-<p>&gt;&gt;&gt; d1 = {'abc':1,'efg':2}</p>
-<p>&gt;&gt;&gt; d2 = {'abc':1,'efg':2,'h':3}</p>
-<p>&gt;&gt;&gt; cmp(d1,d2)</p>
+<h3 id="常用内建函数"><a href="#常用内建函数" class="headerlink" title="常用内建函数"></a>常用内建函数</h3><h4 id="cmp"><a href="#cmp" class="headerlink" title="cmp()"></a>cmp()</h4><p>字典的比较：首先是字典的大小，然后是键，最后是值</p>
+<p>>&gt;&gt; d1 = {‘abc’:1,’efg’:2}</p>
+<p>>&gt;&gt; d2 = {‘abc’:1,’efg’:2,’h’:3}</p>
+<p>>&gt;&gt; cmp(d1,d2)</p>
 <p>-1</p>
-<p>&gt;&gt;&gt; d3 = {'ab':1,'efg':2}</p>
-<p>&gt;&gt;&gt; cmp(d1,d3)</p>
+<p>>&gt;&gt; d3 = {‘ab’:1,’efg’:2}</p>
+<p>>&gt;&gt; cmp(d1,d3)</p>
 <p>1</p>
-<p>&gt;&gt;&gt; d4 = {'abc':1,'efg':3}</p>
-<p>&gt;&gt;&gt; cmp(d1,d4)
--1</p>
-<p>&gt;&gt;&gt; d5 = {'abc':1,'efg':2}</p>
-<p>&gt;&gt;&gt; cmp(d1,d5)</p>
+<p>>&gt;&gt; d4 = {‘abc’:1,’efg’:3}</p>
+<p>>&gt;&gt; cmp(d1,d4)<br>-1</p>
+<p>>&gt;&gt; d5 = {‘abc’:1,’efg’:2}</p>
+<p>>&gt;&gt; cmp(d1,d5)</p>
 <p>0</p>
-<h4>len()</h4>
-<p>返回键值对的数目</p>
-<p>&gt;&gt;&gt; d = {'abc':1,'efg':2}
-&gt;&gt;&gt; len(d)
-2</p>
-<h4>keys()、values() 、items()</h4>
-<p>keys()返回一个包含字典所有键的列表</p>
+<h4 id="len"><a href="#len" class="headerlink" title="len()"></a>len()</h4><p>返回键值对的数目</p>
+<p>>&gt;&gt; d = {‘abc’:1,’efg’:2}<br>>&gt;&gt; len(d)<br>2</p>
+<h4 id="keys-、values-、items"><a href="#keys-、values-、items" class="headerlink" title="keys()、values() 、items()"></a>keys()、values() 、items()</h4><p>keys()返回一个包含字典所有键的列表</p>
 <p>values()返回一个包含字典所有值的列表</p>
 <p>items()返回一个包含键值元组的列表</p>
-<p>&gt;&gt;&gt; d = {'name':'alex','sex':'man'}</p>
-<p>&gt;&gt;&gt; d.keys()</p>
-<p>['name', 'sex']</p>
-<p>&gt;&gt;&gt; d.values()</p>
-<p>['alex', 'man']</p>
-<p>&gt;&gt;&gt; d.items()</p>
-<p>[('name', 'alex'), ('sex', 'man')]</p>
-<h4>dict.get(key,default=None)</h4>
-<p>返回字典中key对应的value，若key不存在则返回default</p>
-<p>&gt;&gt;&gt; d = {'name':'alex','sex':'man'}</p>
-<p>&gt;&gt;&gt; d.get('name','not exists')
-'alex'
-&gt;&gt;&gt; d.get('alex','not exists')
-'not exists'</p>
-<h4>dict.setdefault(key,default=None)</h4>
-<p>若key存在，则覆盖之前的值，若key不存在，则给字典添加key-value对</p>
-<p>&gt;&gt;&gt; d.setdefault('name','zhou')</p>
-<p>'alex'</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'name': 'alex', 'sex': 'man'}</p>
-<p>&gt;&gt;&gt; d.setdefault('haha','xixi')</p>
-<p>'xixi'</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'haha': 'xixi', 'name': 'alex', 'sex': 'man'}</p>
-<h4>dict.update(dict2)</h4>
-<p>将字典dict2的键值对添加到dict</p>
-<p>&gt;&gt;&gt; d = {'name':'alex','sex':'man'}</p>
-<p>&gt;&gt;&gt; d1 = {'age':100,'address':'shenzhen'}</p>
-<p>&gt;&gt;&gt; d.update(d1)</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'age': 100, 'address': 'shenzhen', 'name': 'alex', 'sex': 'man'}</p>
-<h4>sorted(dict)</h4>
-<p>返回一个有序的包含字典所有key的列表</p>
-<p>&gt;&gt;&gt; sorted(d)</p>
-<p>['address', 'age', 'name', 'sex']</p>
+<p>>&gt;&gt; d = {‘name’:’alex’,’sex’:’man’}</p>
+<p>>&gt;&gt; d.keys()</p>
+<p>[‘name’, ‘sex’]</p>
+<p>>&gt;&gt; d.values()</p>
+<p>[‘alex’, ‘man’]</p>
+<p>>&gt;&gt; d.items()</p>
+<p>[(‘name’, ‘alex’), (‘sex’, ‘man’)]</p>
+<h4 id="dict-get-key-default-None"><a href="#dict-get-key-default-None" class="headerlink" title="dict.get(key,default=None)"></a>dict.get(key,default=None)</h4><p>返回字典中key对应的value，若key不存在则返回default</p>
+<p>>&gt;&gt; d = {‘name’:’alex’,’sex’:’man’}</p>
+<p>>&gt;&gt; d.get(‘name’,’not exists’)<br>‘alex’<br>>&gt;&gt; d.get(‘alex’,’not exists’)<br>‘not exists’</p>
+<h4 id="dict-setdefault-key-default-None"><a href="#dict-setdefault-key-default-None" class="headerlink" title="dict.setdefault(key,default=None)"></a>dict.setdefault(key,default=None)</h4><p>若key存在，则覆盖之前的值，若key不存在，则给字典添加key-value对</p>
+<p>>&gt;&gt; d.setdefault(‘name’,’zhou’)</p>
+<p>‘alex’</p>
+<p>>&gt;&gt; d</p>
+<p>{‘name’: ‘alex’, ‘sex’: ‘man’}</p>
+<p>>&gt;&gt; d.setdefault(‘haha’,’xixi’)</p>
+<p>‘xixi’</p>
+<p>>&gt;&gt; d</p>
+<p>{‘haha’: ‘xixi’, ‘name’: ‘alex’, ‘sex’: ‘man’}</p>
+<h4 id="dict-update-dict2"><a href="#dict-update-dict2" class="headerlink" title="dict.update(dict2)"></a>dict.update(dict2)</h4><p>将字典dict2的键值对添加到dict</p>
+<p>>&gt;&gt; d = {‘name’:’alex’,’sex’:’man’}</p>
+<p>>&gt;&gt; d1 = {‘age’:100,’address’:’shenzhen’}</p>
+<p>>&gt;&gt; d.update(d1)</p>
+<p>>&gt;&gt; d</p>
+<p>{‘age’: 100, ‘address’: ‘shenzhen’, ‘name’: ‘alex’, ‘sex’: ‘man’}</p>
+<h4 id="sorted-dict"><a href="#sorted-dict" class="headerlink" title="sorted(dict)"></a>sorted(dict)</h4><p>返回一个有序的包含字典所有key的列表</p>
+<p>>&gt;&gt; sorted(d)</p>
+<p>[‘address’, ‘age’, ‘name’, ‘sex’]</p>
 
       
     </div>
@@ -483,7 +461,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">创建字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">遍历字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">更新字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">常用内建函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.1.</span> <span class="toc-text">cmp()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.2.</span> <span class="toc-text">len()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.3.</span> <span class="toc-text">keys()、values() 、items()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.4.</span> <span class="toc-text">dict.get(key,default=None)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.5.</span> <span class="toc-text">dict.setdefault(key,default=None)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.6.</span> <span class="toc-text">dict.update(dict2)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.7.</span> <span class="toc-text">sorted(dict)</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建字典"><span class="toc-number">1.</span> <span class="toc-text">创建字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历字典"><span class="toc-number">2.</span> <span class="toc-text">遍历字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新字典"><span class="toc-number">3.</span> <span class="toc-text">更新字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用内建函数"><span class="toc-number">4.</span> <span class="toc-text">常用内建函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cmp"><span class="toc-number">4.1.</span> <span class="toc-text">cmp()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#len"><span class="toc-number">4.2.</span> <span class="toc-text">len()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#keys-、values-、items"><span class="toc-number">4.3.</span> <span class="toc-text">keys()、values() 、items()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dict-get-key-default-None"><span class="toc-number">4.4.</span> <span class="toc-text">dict.get(key,default=None)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dict-setdefault-key-default-None"><span class="toc-number">4.5.</span> <span class="toc-text">dict.setdefault(key,default=None)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dict-update-dict2"><span class="toc-number">4.6.</span> <span class="toc-text">dict.update(dict2)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sorted-dict"><span class="toc-number">4.7.</span> <span class="toc-text">sorted(dict)</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -567,7 +545,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 

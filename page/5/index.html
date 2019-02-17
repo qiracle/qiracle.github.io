@@ -278,6 +278,77 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20161222" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/22/20161222/" class="article-date">
+      <time datetime="2016-12-21T16:00:00.000Z" itemprop="datePublished">2016-12-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/22/20161222/">ActionBar的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="ActionBar的引入"><a href="#ActionBar的引入" class="headerlink" title="ActionBar的引入"></a>ActionBar的引入</h3><ol>
+<li>引用v7-appcompat</li>
+<li>Activity继承ActionBarActivity</li>
+<li>android:theme=”@style/Theme.AppCompat.Light” &gt;
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/12/22/20161222/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20161221" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -307,9 +378,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>何为成熟？与你在乎的人吵架的最高潮，能让他全盘崩溃的那句话就在你的舌尖上，你却忍住了没有说。
-对局面有掌控，对未来留余地，对他人有宽容，对自己有约束。&lt;!--more--&gt;</p>
-
+              <p>何为成熟？与你在乎的人吵架的最高潮，能让他全盘崩溃的那句话就在你的舌尖上，你却忍住了没有说。<br>对局面有掌控，对未来留余地，对他人有宽容，对自己有约束。
+          
       
     </div>
     
@@ -326,6 +396,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/21/20161221/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -372,19 +446,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4>1.单一职责原则:不要存在多于一个导致类变更的原因。</h4>
-<p>通俗的说:即一个类只负责一项职责。</p>
-<h4>2.里氏替换原则:所有引用基类的地方必须能透明地使用其子类的对象。</h4>
-<p>通俗的说:当使用继承时。类 B 继承类 A 时，除添加新的方法完成新增功能 外，尽量不要重写父类 A的方法， 也尽量不要重载父类 A 的方法。 如果子类对这些非抽象方法任意修改，就会对整个继承体系造成破坏。子类可以扩展父类的功能，但不能改变父类原有的功能。&lt;!--more--&gt;</p>
-<h4>3.依赖倒置原则:高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。</h4>
-<p>通俗的说:在 java 中，抽象指的是接口或者抽象类，细节就是具体的实现类，使用接口或者抽象类的目的是制定好规范和契约，而不去涉及任何具体的操作，把展现细节的任务交给他们的实现类去完成。依赖倒置原则的核心思想是面向接口编程.</p>
-<h4>4.接口隔离原则:客户端不应该依赖它不需要的接口； 一个类对另一个类的依赖应该建立在最小的接口上。</h4>
-<p>通俗的说:建立单一接口，不要建立庞大臃肿的接口，尽量细化接口，接口中的方法尽量少。也就是说，我们要为各个类建立专用的接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。</p>
-<h4>5.迪米特法则:一个对象应该对其他对象保持最少的了解</h4>
-<p>通俗的说:尽量降低类与类之间的耦合。</p>
-<h4>6.开闭原则:一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。</h4>
-<p>通俗的说:用抽象构建框架，用实现扩展细节。因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节，我们用从抽象派生的实现类来进行扩展，当软件需要发生变化时，我们只需要根据需求重新派生一个实现类来扩展就可以了。</p>
-
+              <h4 id="1-单一职责原则-不要存在多于一个导致类变更的原因。"><a href="#1-单一职责原则-不要存在多于一个导致类变更的原因。" class="headerlink" title="1.单一职责原则:不要存在多于一个导致类变更的原因。"></a>1.单一职责原则:不要存在多于一个导致类变更的原因。</h4><p>通俗的说:即一个类只负责一项职责。</p>
+<h4 id="2-里氏替换原则-所有引用基类的地方必须能透明地使用其子类的对象。"><a href="#2-里氏替换原则-所有引用基类的地方必须能透明地使用其子类的对象。" class="headerlink" title="2.里氏替换原则:所有引用基类的地方必须能透明地使用其子类的对象。"></a>2.里氏替换原则:所有引用基类的地方必须能透明地使用其子类的对象。</h4><p>通俗的说:当使用继承时。类 B 继承类 A 时，除添加新的方法完成新增功能 外，尽量不要重写父类 A的方法， 也尽量不要重载父类 A 的方法。 如果子类对这些非抽象方法任意修改，就会对整个继承体系造成破坏。子类可以扩展父类的功能，但不能改变父类原有的功能。
+          
       
     </div>
     
@@ -401,6 +465,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/20/20161220/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -447,42 +515,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ul>
+              <ul>
 <li><strong>getParent().requestDisallowInterceptTouchEvent(true)</strong>;剥夺父view 对touch 事件的处理权，谁用谁知道。</li>
 <li><strong>ArgbEvaluator.evaluate(float fraction, Object startValue, Object endValue)</strong>; 用于根据一个起始颜色值和一个结束颜色值以及一个偏移量生成一个新的颜色，分分钟实现类似于微信底部栏滑动颜色渐变。</li>
 <li><strong>Canvas中clipRect、clipPath和clipRegion</strong> 剪切区域的API。</li>
-<li><strong>Bitmap.extractAlpha ()</strong>;返回一个新的Bitmap，capture原始图片的alpha 值。有的时候我们需要动态的修改一个元素的背景图片又不希望使用多张图片的时候，通过这个方法，&lt;!--more--&gt;结合Canvas 和Paint 可以动态的修改一个纯色Bitmap的颜色。</li>
-<li><strong>HandlerThread</strong>，代替不停new Thread 开子线程的重复体力写法。</li>
-<li><strong>IntentService</strong>,一个可以干完活后自己去死且不需要我们去管理子线程的Service。</li>
-<li><strong>Palette，5.0加入的可以提取一个Bitmap 中突出颜色的类</strong>，结合上面的Bitmap.extractAlpha，你懂的。</li>
-<li><strong>Executors. newSingleThreadExecutor()</strong>;这个是java 的，之前不知道它，自己花很大功夫去研究了单线程顺序执行的任务队列。。</li>
-<li><strong>android:animateLayoutChanges=”true”</strong>，LinearLayout中添加View 的动画的办法，支持通过setLayoutTransition()自定义动画。</li>
-<li><strong>ViewDragHelper</strong>，自定义一个子View可拖拽的ViewGroup 时，处理各种事件很累吧，嗯? what the fuck!!</li>
-<li><strong>GradientDrawable</strong>，之前接手公司的项目，发现有个阴影效果还不错，以为是切的图片，一看代码，什么鬼= =！
--<strong>AsyncQueryHandler</strong>，如果做系统工具类的开发，比如联系人短信辅助工具等，肯定免不了和ContentProvider打交道，如果数据量不是很大的情况下，随便搞，如果数据量大的情况下，了解下这个类是很有必要的，需要注意的是，这玩意儿吃异常..</li>
-<li><strong>ViewFlipper</strong>，实现多个view的切换(循环)，可自定义动画效果，且可针对单个切换指定动画。</li>
-<li><strong>View.setLayerType(View.LAYER_TYPE_SOFTWARE, null)</strong>;有朋友提到了在自定义View时有些方法在开启硬件加速的时候没有效果的问题，在API16之后确实有很多方法不支持硬件加速，通常我们关闭硬件加速都是在清单文件中通过，其实android也提供了针对特定View关闭硬件加速的方法,调用View.setLayerType(View.LAYER_TYPE_SOFTWARE, null)即可。</li>
-<li><strong>android util包中的Pair类</strong>，可以方便的用来存储一”组”数据。注意不是key value。</li>
-<li><strong>PointF，graphics包中的一个类</strong>，我们经常见到在处理Touch事件的时候分别定义一个downX，一个downY用来存储一个坐标，如果坐标少还好，如果要记录的坐标过多那代码就不好看了。用PointF(float x, float y);来描述一个坐标点会清楚很多。</li>
-<li><strong>StateListDrawable</strong>，定义Selector通常的办法都是xml文件，但是有的时候我们的图片资源可能是从服务器动态获取的，比如很多app所谓的皮肤，这种时候就只能通StateListDrawable
-来完成了，各种addState即可。</li>
-<li><strong>android:descendantFocusability</strong>，ListView的item中CheckBox等元素抢焦点导致item点击事件无法响应时，除了给对应的元素设置 focusable,更简单的是在item根布局加上android:descendantFocusability=”blocksDescendants”</li>
-<li><strong>android:duplicateParentState=”true”</strong>，让子View跟随其Parent的状态，如pressed等。常见的使用场景是某些时候一个按钮很小，我们想要扩大其点击区域的时候通常会再给其包裹一层布局，将点击事件写到Parent上，这时候如果希望被包裹按钮的点击效果对应的Selector继续生效的话，这时候duplicateParentState就派上用场了。</li>
-<li><strong>includeFontPadding=”false”</strong>，TextView默认上下是有一定的padding的，有时候我们可能不需要上下这部分留白，加上它即可。</li>
-<li><strong>Messenge</strong>r，面试的时候通常都会被问到进程间通信，一般情况下大家都是开始背书，AIDL巴拉巴拉。。有一天在鸿神的博客看到这个，嗯，如他所说，又可以装一下了。</li>
-<li><strong>TextView.setError()</strong>;用于验证用户输入。</li>
-<li><strong>ViewConfiguration.getScaledTouchSlop()</strong>;触发移动事件的最小距离，自定义View处理touch事件的时候，有的时候需要判断用户是否真的存在movie，系统提供了这样的方法。</li>
-<li><strong>ValueAnimator.reverse()</strong>; 顺畅的取消动画效果。</li>
-<li><strong>ViewStub</strong>，有的时候一块区域需要根据情况显示不同的布局，通常我们都会通过setVisibility的方法来显示和隐藏不同的布局，但是这样默认是全部加载的，用ViewStub可以更好的提升性能。</li>
-<li><strong>onTrimMemory</strong>，在Activity中重写此方法，会在内存紧张的时候回调（支持多个级别），便于我们主动的进行资源释放，避免OOM。</li>
-<li><strong>EditTxt.setImeOptions</strong>， 使用EditText弹出软键盘时，修改回车键的显示内容(一直很讨厌用回车键来交互，所以之前一直不知道这玩意儿)</li>
-<li><strong>TextView.setCompoundDrawablePadding</strong>，代码设置TextView的drawable padding。</li>
-<li><strong>ImageSwitcher</strong>，可以用来做图片切换的一个类，类似于幻灯片。</li>
-<li><strong>WeakHashMap</strong>，直接使用HashMap有时候会带来内存溢出的风险，使用WaekHashMap实例化Map。当使用者不再有对象引用的时候，WeakHashMap将自动被移除对应Key值的对象</li>
-</ul>
-<p><strong>注：</strong>
-本文转自：http://liukun.engineer/2016/04/11/Android开发中，那些让你相见恨晚的方法、类或接口/</p>
-
+<li><strong>Bitmap.extractAlpha ()</strong>;返回一个新的Bitmap，capture原始图片的alpha 值。有的时候我们需要动态的修改一个元素的背景图片又不希望使用多张图片的时候，通过这个方法，
+          
       
     </div>
     
@@ -499,6 +537,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/19/20161219/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -545,33 +587,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>设置环境变量</h3>
-<p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量
-选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
-<h3>配置default.ini文件</h3>
-<p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：&lt;!--more--&gt;
-[mysqld]
-basedir=C:\Program Files\MySQL\MySQL Server 5.6（mysql所在目录）
-datadir=C:\Program Files\MySQL\MySQL Server 5.6\data （mysql所在目录\data）</p>
-<h3>安装</h3>
-<p>环境变量设置完成后，打开终端输入mysqld -install。</p>
-<h3>登录</h3>
-<p>输入mysql -u root -p（第一次登录没有密码，直接按回车过）,登录成功</p>
-<h3>修改密码</h3>
-<p>在Windows命令行下修改mysql数据库密码步骤如下：</p>
-<ol>
-<li>打开终端</li>
-<li>输入“mysql -u root -p”，回车进入mysql命令状态；</li>
-<li>如果root原来有密码，mysql将提示输入原密码，再进入mysql命令状态；</li>
-<li>这里假设将root用户密码修改为mysql56，则在mysql命令状态下输入：
-update mysql.user set password=PASSWORD('mysql56') where user='root';
-提示Query OK，说明已更新。</li>
-<li>输入FLUSH PRIVILEGES;来保存修改内容，在mysql命令状态下输入：
-FLUSH PRIVILEGES;回车，至此，密码修改完成</li>
-</ol>
-<p><strong>附：mysql解压缩版下载地址：</strong>
-http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
-
+              <h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量<br>选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
+<h3 id="配置default-ini文件"><a href="#配置default-ini文件" class="headerlink" title="配置default.ini文件"></a>配置default.ini文件</h3><p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：
+          
       
     </div>
     
@@ -588,6 +606,10 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/18/20161218_mysql/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -634,12 +656,8 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>当你在想玩什么，有人在想学什么——<strong>时间</strong>；
-当你在做计划，有人已出发——<strong>执行</strong>；
-当你为上次失败沮丧，有人已开始下次尝试——<strong>心态</strong>；
-当你想放弃，有人却坚信前进就有希望。
-所以，道理真的很简单，那些比你走得远的人，并不比你聪慧，只是每天多走了一点。&lt;!--more--&gt;</p>
-
+              <p>当你在想玩什么，有人在想学什么——<strong>时间</strong>；<br>当你在做计划，有人已出发——<strong>执行</strong>；<br>当你为上次失败沮丧，有人已开始下次尝试——<strong>心态</strong>；<br>当你想放弃，有人却坚信前进就有希望。<br>所以，道理真的很简单，那些比你走得远的人，并不比你聪慧，只是每天多走了一点。
+          
       
     </div>
     
@@ -656,6 +674,10 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/17/20161217/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -702,92 +724,13 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4>cd</h4>
-<p>cd 进入某个目录</p>
+              <h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>cd 进入某个目录</p>
 <p>cd ~ 返回最初目录</p>
 <p>cd - 返回上次目录</p>
 <hr>
-<h4>文件</h4>
-<p>touch 1.txt 创建1.txt文件</p>
-<p>cp 复制文件，格式：cp 源文件 目标文件
-&lt;!--more--&gt;
-mv 移动文件 格式如上</p>
-<p>rm 删除文件 （rm 文件夹 -r 递归删除文件夹内所有内容，并删除文件夹）</p>
-<hr>
-<h4>文件夹</h4>
-<p>mkdir 创建文件夹</p>
-<p>rmdir 删除文件夹 文件夹有内容时不可删</p>
-<hr>
-<h4>ls</h4>
-<p>ls -alh 显示当前目录下所有文件并显示文件大小</p>
-<p>ls 1* 显示所有文件名以1开头的文件</p>
-<p>ls 1? 显示文件名只有两个字母且第一个字符为1的文件</p>
-<p>ls &gt;1.txt 重定向 将ls的内容显示在1.txt中</p>
-<p>ls &gt;&gt;1.txt 将ls的内容追加在1.txt中</p>
-<hr>
-<h4>查看cat、more</h4>
-<p>cat 1.txt 查看1.txt里的内容</p>
-<p>more 1.txt 1.txt内容过多时，分页显示</p>
-<hr>
-<h4>查找grep、find</h4>
-<p>grep -n  '123' ./1.txt 显示当前目录下1.txt里含有字符123所在的行，并显示其行号 （可用正则表达式表示）</p>
-<p>find ./ -name 'qq*' 显示当前目录下文件名以qq的开头的文件</p>
-<hr>
-<h4>软、硬链接ln</h4>
-<p>ln 1.txt link1.txt 给1.txt建立一个硬链接link1.txt</p>
-<p>ln -s 1.txt link1.txt 给1.txt建立一个软链接link1.txt</p>
-<hr>
-<h4>系统集成ps、top、kill</h4>
-<p>ps 显示当前进程信息</p>
-<p>top 动态显示显示当前系统进程信息</p>
-<p>kill 根据进程id杀死进程</p>
-<p>kill -9 强制杀死某进程</p>
-<hr>
-<h4>解压打包</h4>
-<p>tar -zxvf FileName.tar 解压</p>
-<p>tar -zcvf FileName.tar DirName 打包并压缩</p>
-<hr>
-<h4>用户操作</h4>
-<p>useradd 用户名 -m</p>
-<p>passwd</p>
-<p>ssh user@ip地址</p>
-<p>su 用户名 切到其他用户</p>
-<p>cat /etc/group</p>
-<p>groupmod tab*3</p>
-<p>groupadd</p>
-<p>groupdel
-groups 用户名 查看所在组</p>
-<p>usermod -a -G 组名 用户名 修改用户所在组。。必须在adm和sudo组的用户才能拥有root权限</p>
-<hr>
-<h4>权限修改chmod</h4>
-<p>a 所有的</p>
-<p>u 当前用户</p>
-<p>g 当前用户组</p>
-<p>o 其他用户</p>
-<p>r 读 w写 x执行</p>
-<p>a+r 表示给所有用户增加读权限</p>
-<p>a-r 表示给所有用户删除读权限</p>
-<p>u+r 表示给当前用户增加读权限</p>
-<p>u-r 表示给当前用户删除读权限</p>
-<p>a=rw 给所有用户增加读写权限</p>
-<p>其他以此类推</p>
-<p>例子：chmod u+r,g+r,o+r 文件名 表示被所有用户增加读写可执行权限  与 chmod a+r 用户名 作用相同</p>
-<p>权限表示：</p>
-<p>1 执行</p>
-<p>2 写</p>
-<p>4 读</p>
-<p>7=1+2+4表示可读可写可执行，类似的6=4+2可读可写，，以此类推</p>
-<p>chmod 776 文件名 则表示当前用户和当前用户组拥有可读可写可执行权限，其他用户拥有可读可写权限</p>
-<p>chown 用户 文件名 表示修改文件所有者</p>
-<p>chgrp 用户组 文件名 表示修改用户所在用户组</p>
-<hr>
-<h4>vim</h4>
-<p>vim</p>
-<p>i 命令模式进入编辑模式</p>
-<p>shift+；进入末行模式</p>
-<p>esc  返回上个模式</p>
-<p>wq等价于x 保存并退出</p>
-
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>touch 1.txt 创建1.txt文件</p>
+<p>cp 复制文件，格式：cp 源文件 目标文件<br>
+          
       
     </div>
     
@@ -804,6 +747,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/16/linuxSum/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -850,70 +797,14 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4>基本</h4>
-<ul>
+              <h4 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h4><ul>
 <li>简历不要太花哨, 你是应聘的技术, 不是设计师</li>
 <li>简历把一些基本信息要说清楚（无关的不要写, 比如头像之类的）</li>
 <li>有个人博客, 跟GitHub的写上, 若没有内容那就算了</li>
 <li>应届毕业生需写上相关证书之类, 有经验的可不写</li>
 <li>简历控制在两页 A4 纸</li>
 </ul>
-<p>&lt;!--more--&gt;</p>
-<h4>项目经验</h4>
-<ul>
-<li>一般写 2, 3个代表性的项目就好, 优先写本职工作相关的</li>
-<li>时间为倒序</li>
-<li>说明你在项目当中的职责作用</li>
-<li>项目模块需要了解大概逻辑与思路, 以及一些关键的技术点, 以防面试官问到</li>
-<li>没有项目经验的也要模仿一两个小 Demo</li>
-</ul>
-<h4>闲聊</h4>
-<ul>
-<li>自己亲自做的东西一定要明白, 如果不是自己亲自做的, 请慎重骗面试官</li>
-<li>问的时候会问一些知识点相关的话题, 比如你的数据是需要api交互的, 那可能会问http相关, json数据解析相关, 缓存相关, 图片加载相关等</li>
-<li>对用到的知识点虽用不着一定要看源码的地步, 但是最好要懂原理, 比如图片加载一定要知道二级缓存, 一些常见的缓存算法</li>
-</ul>
-<h4>注意事项</h4>
-<ul>
-<li>去面试前一定要花点时间了解下你面试的这家公司(本身有自己产品的下载体验一下, 以防面试过程中问到, 或者可以给产品提点意见)</li>
-<li>面试的时候态度要谦虚点</li>
-<li>学习能力很重要(一定要让面试官感受到你是一个好学的人)</li>
-<li>个人兴趣(不要提什么打游戏, 唱歌之类的, 可以说一下业余时间提下自己经常上一些技术社区,看一些技术博客之类的)</li>
-<li>除了基本的知识点, 面试官通常都会问一些比较深的领域(可能你没有接触过,但不要气馁, 面试官在考察下你的技术的深度, 这些领域一般包括设计模式, 虚拟机, 插件化, React Native之类的)</li>
-</ul>
-<h4>常问的知识点</h4>
-<ul>
-<li>初级
-<ul>
-<li>那基本的 Activity/Fragment的生命周期</li>
-<li>四大组件的具体作用以及用法</li>
-<li>Activity四种启动模式的区别</li>
-<li>ListView的优化</li>
-<li>一些动画的使用</li>
-<li>Java一些基础知识(如最基本的 String, StringBuilder, StringBuffer的区别; 如ArrayList, LinkedList的区别; Java线程的几种用法)</li>
-</ul>
-</li>
-<li>中级
-<ul>
-<li>屏幕适配经验，性能优化的经验</li>
-<li>中级的还有Java线程几种用法等</li>
-</ul>
-</li>
-<li>高级
-<ul>
-<li>如插件化, 如网络的优化, 如缓存的处理, 如插件化, 如Service保活</li>
-<li>对产品的一些看法, 对代码质量的要求, 对团队合作的理解等</li>
-</ul>
-</li>
-</ul>
-<h4>工资(一线城市, 不同的公司水平也有高低, 只能是大概)</h4>
-<ul>
-<li>一年以下一般8k以下吧(能力优秀的可以达到1w左右)</li>
-<li>中级的大概在10k—15k左右</li>
-<li>高级的在15-25k范围</li>
-</ul>
-<p><strong>注</strong>:本文转自stormZhang，微信公众号：AndroidDeveloper</p>
-
+          
       
     </div>
     
@@ -930,6 +821,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/15/stornzhangTalk/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -976,82 +871,14 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>1.加高法</h3>
-<p>浮动的元素，只能被有高度的盒子关住。 也就是说，如果盒子内部有浮动，这个盒子有高，那么妥妥的，浮动不会互相影响。但是，工作上，我们绝对不会给所有的盒子加高度，这是因为麻烦，并且不能适应页面的快速变化。</p>
+              <h3 id="1-加高法"><a href="#1-加高法" class="headerlink" title="1.加高法"></a>1.加高法</h3><p>浮动的元素，只能被有高度的盒子关住。 也就是说，如果盒子内部有浮动，这个盒子有高，那么妥妥的，浮动不会互相影响。但是，工作上，我们绝对不会给所有的盒子加高度，这是因为麻烦，并且不能适应页面的快速变化。</p>
 <pre><code>&lt;div&gt;   → 设置height
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
-<p>&lt;!--more--&gt;	
-	&lt;div&gt;   → 设置height
-		&lt;p&gt;&lt;/p&gt;
-		&lt;p&gt;&lt;/p&gt;
-		&lt;p&gt;&lt;/p&gt;
-	&lt;/div&gt;</p>
-<h3>2.clear:both法</h3>
-<p>最简单的清除浮动的方法，就是给盒子增加clear:both；表示自己的内部元素，不受其他盒子的影响。</p>
-<pre><code>&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div&gt;   → clear:both;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>浮动确实被清除了，不会互相影响了。但是有一个问题，就是margin失效。两个div之间，没有任何的间隙了。</p>
-<h3>3.隔墙法</h3>
-<p>在两部分浮动元素中间，建一个墙。隔开两部分浮动，让后面的浮动元素，不去追前面的浮动元素。墙用自己的身体当做了间隙。</p>
-<pre><code>&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;cl h10&quot;&gt;&lt;/div&gt;
-
-&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>我们发现，隔墙法好用，但是第一个div，还是没有高度。如果我们现在想让第一个div，自动的根据自己的儿子，撑出高度，我们就要想一些“小伎俩”，“奇淫技巧”。</p>
-<h3>4.内墙法</h3>
-<pre><code>&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;div class=&quot;cl h10&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>内墙法的优点就是，不仅仅能够让后部分的p不去追前部分的p了，并且能把第一个div撑出高度。这样，这个div的背景、边框就能够根据p的高度来撑开了。</p>
-<h3>5.overflow:hidden</h3>
-<p>这个属性的本意，就是将所有溢出盒子的内容，隐藏掉。但是，我们发现这个东西能够用于浮动的清除。我们知道，一个父亲，不能被自己浮动的儿子撑出高度，但是，如果这个父亲加上了overflow:hidden；那么这个父亲就能够被浮动的儿子撑出高度了。这个现象，不能解释，就是浏览器的小偏方。并且,overflow:hidden;能够让margin生效。</p>
-<pre><code>&lt;div&gt; ----&gt;设置overflow:hidden属性
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-
+          
       
     </div>
     
@@ -1068,6 +895,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/14/float_clear/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1114,23 +945,8 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>做自己必须的要做事还是做自己喜欢的事，鱼和熊掌不可兼得
-		for（day=start；；day++）｛
-		doMymustTodoThings（）；
-		knowledge++；
-		experience++;
-		happy--;
-		if(i want）{
-&lt;!--more--&gt;
-		continue;
-		}
-		else{
-		break;
-		}
-		}
-		doMyLoveThings();
-		happy++;</p>
-
+              <p>做自己必须的要做事还是做自己喜欢的事，鱼和熊掌不可兼得<br>        for（day=start；；day++）｛<br>        doMymustTodoThings（）；<br>        knowledge++；<br>        experience++;<br>        happy–;<br>        if(i want）{<br>
+          
       
     </div>
     
@@ -1148,89 +964,9 @@ groups 用户名 查看所在组</p>
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-markdown" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/12/markdown/" class="article-date">
-      <time datetime="2016-12-11T16:00:00.000Z" itemprop="datePublished">2016-12-12</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/12/markdown/">markdown语法小结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h3>1.标题</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/1.png" alt=""></p>
-<p>&lt;!--more--&gt;</p>
-<h3>2.列表</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/2.png" alt="列表" title="列表"></p>
-<h3>3.引用</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/3.png" alt="引用" title="引用"></p>
-<h3>4.代码块</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/9.png" alt="代码块" title="代码块"></p>
-<h3>5.粗体和斜体</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/4.png" alt=""></p>
-<h3>6.超链接</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/5.png" alt=""></p>
-<h3>7.分割线</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/6.png" alt=""></p>
-<h3>8.表格</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/7.png" alt=""></p>
-<h3>9.工具栏</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/8.png" alt=""></p>
-<h3>10.总结</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/sum.png" alt=""></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
-    </div>
-
+        <p class="article-more-link">
+          <a href="/2016/12/13/life_code/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
