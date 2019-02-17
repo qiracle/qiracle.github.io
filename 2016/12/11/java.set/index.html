@@ -15,16 +15,40 @@
 
 
 
-<meta name="description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
+<meta name="description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
+　　&amp;lt;!--more--&amp;gt;
+Collection(单列集合):
+####	List(有序,可重复):
+ArrayList
+			底层数据结构是数组,查询快,增删慢
+			线程不安全,效率高
+
+#####	 Vector">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javaSE基础-集合">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/11/java.set/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.294Z">
+<meta property="og:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
+　　&amp;lt;!--more--&amp;gt;
+Collection(单列集合):
+####	List(有序,可重复):
+ArrayList
+			底层数据结构是数组,查询快,增删慢
+			线程不安全,效率高
+
+#####	 Vector">
+<meta property="og:updated_time" content="2018-11-25T08:40:22.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javaSE基础-集合">
-<meta name="twitter:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
+<meta name="twitter:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
+　　&amp;lt;!--more--&amp;gt;
+Collection(单列集合):
+####	List(有序,可重复):
+ArrayList
+			底层数据结构是数组,查询快,增删慢
+			线程不安全,效率高
+
+#####	 Vector">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -316,124 +340,151 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>　　当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下<br>　　<a id="more"></a></p>
-<h3 id="Collection-单列集合"><a href="#Collection-单列集合" class="headerlink" title="Collection(单列集合):"></a>Collection(单列集合):</h3><h4 id="List-有序-可重复"><a href="#List-有序-可重复" class="headerlink" title="List(有序,可重复):"></a>List(有序,可重复):</h4><h5 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h5><pre><code>底层数据结构是数组,查询快,增删慢
-线程不安全,效率高
-</code></pre><h5 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h5><pre><code>底层数据结构是数组,查询快,增删慢
-线程安全,效率低
-</code></pre><h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><pre><code>底层数据结构是链表,查询慢,增删快
-线程不安全,效率高
-</code></pre><h4 id="Set-无序-唯一"><a href="#Set-无序-唯一" class="headerlink" title="Set(无序,唯一):"></a>Set(无序,唯一):</h4><h5 id="HashSet"><a href="#HashSet" class="headerlink" title="　HashSet"></a>　HashSet</h5><pre><code>底层数据结构是哈希表。
-哈希表依赖两个方法：hashCode()和equals()
-执行顺序：
-    首先判断hashCode()值是否相同
-        是：继续执行equals(),看其返回值
-            是true:说明元素重复，不添加
-            是false:就直接添加到集合
-        否：就直接添加到集合
-最终：
-    自动生成hashCode()和equals()即可
-</code></pre><h5 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="　LinkedHashSet"></a>　LinkedHashSet</h5><pre><code>底层数据结构由链表和哈希表组成。
-由链表保证元素有序。
-由哈希表保证元素唯一。
-</code></pre><h5 id="TreeSet"><a href="#TreeSet" class="headerlink" title="　TreeSet"></a>　TreeSet</h5><pre><code>底层数据结构是红黑树。(是一种自平衡的二叉树)
-如何保证元素唯一性呢?
-    根据比较的返回值是否是0来决定
-如何保证元素的排序呢?
-    两种方式
-        自然排序(元素具备比较性)
-            让元素所属的类实现Comparable接口
-        比较器排序(集合具备比较性)
-            让集合接收一个Comparator的实现类对象
-</code></pre><h3 id="Map-双列集合"><a href="#Map-双列集合" class="headerlink" title="Map(双列集合):"></a>Map(双列集合):</h3><pre><code>A:Map集合的数据结构仅仅针对键有效，与值无关。
-B:存储的是键值对形式的元素，键唯一，值可重复。
-</code></pre><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><pre><code>底层数据结构是哈希表。线程不安全，效率高
-    哈希表依赖两个方法：hashCode()和equals()
-    执行顺序：
-        首先判断hashCode()值是否相同
-            是：继续执行equals(),看其返回值
-                是true:说明元素重复，不添加
-                是false:就直接添加到集合
-            否：就直接添加到集合
-    最终：
-        自动生成hashCode()和equals()即可
-</code></pre><h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><pre><code>底层数据结构由链表和哈希表组成。
-    由链表保证元素有序。
-    由哈希表保证元素唯一。
-</code></pre><h5 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h5><pre><code>底层数据结构是哈希表。线程安全，效率低
-    哈希表依赖两个方法：hashCode()和equals()
-    执行顺序：
-        首先判断hashCode()值是否相同
-            是：继续执行equals(),看其返回值
-                是true:说明元素重复，不添加
-                是false:就直接添加到集合
-            否：就直接添加到集合
-    最终：
-        自动生成hashCode()和equals()即可
-</code></pre><h5 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h5><pre><code>底层数据结构是红黑树。(是一种自平衡的二叉树)
-    如何保证元素唯一性呢?
-        根据比较的返回值是否是0来决定
-    如何保证元素的排序呢?
-        两种方式
-            自然排序(元素具备比较性)
-                让元素所属的类实现Comparable接口
-            比较器排序(集合具备比较性)
-                让集合接收一个Comparator的实现类对象
-</code></pre><p>2:到底使用那种集合<br>    看需求。</p>
+        <p>当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
+　　&lt;!--more--&gt;</p>
+<h3>Collection(单列集合):</h3>
+<p>####	List(有序,可重复):</p>
+<h5>ArrayList</h5>
+<pre><code>			底层数据结构是数组,查询快,增删慢
+			线程不安全,效率高
+</code></pre>
+<p>#####	 Vector
+				底层数据结构是数组,查询快,增删慢
+				线程安全,效率低
+#####	 LinkedList
+				底层数据结构是链表,查询慢,增删快
+				线程不安全,效率高</p>
+<p>####	Set(无序,唯一):
+#####	　HashSet
+				底层数据结构是哈希表。
+				哈希表依赖两个方法：hashCode()和equals()
+				执行顺序：
+					首先判断hashCode()值是否相同
+						是：继续执行equals(),看其返回值
+							是true:说明元素重复，不添加
+							是false:就直接添加到集合
+						否：就直接添加到集合
+				最终：
+					自动生成hashCode()和equals()即可</p>
+<p>#####	　LinkedHashSet
+					底层数据结构由链表和哈希表组成。
+					由链表保证元素有序。
+					由哈希表保证元素唯一。
+#####	　TreeSet
+				底层数据结构是红黑树。(是一种自平衡的二叉树)
+				如何保证元素唯一性呢?
+					根据比较的返回值是否是0来决定
+				如何保证元素的排序呢?
+					两种方式
+						自然排序(元素具备比较性)
+							让元素所属的类实现Comparable接口
+						比较器排序(集合具备比较性)
+							让集合接收一个Comparator的实现类对象</p>
+<h3>Map(双列集合):</h3>
+<pre><code>	A:Map集合的数据结构仅仅针对键有效，与值无关。
+	B:存储的是键值对形式的元素，键唯一，值可重复。
+</code></pre>
+<h4>HashMap</h4>
+<pre><code>		底层数据结构是哈希表。线程不安全，效率高
+			哈希表依赖两个方法：hashCode()和equals()
+			执行顺序：
+				首先判断hashCode()值是否相同
+					是：继续执行equals(),看其返回值
+						是true:说明元素重复，不添加
+						是false:就直接添加到集合
+					否：就直接添加到集合
+			最终：
+				自动生成hashCode()和equals()即可
+</code></pre>
+<h4>LinkedHashMap</h4>
+<pre><code>			底层数据结构由链表和哈希表组成。
+				由链表保证元素有序。
+				由哈希表保证元素唯一。
+</code></pre>
+<h5>Hashtable</h5>
+<pre><code>		底层数据结构是哈希表。线程安全，效率低
+			哈希表依赖两个方法：hashCode()和equals()
+			执行顺序：
+				首先判断hashCode()值是否相同
+					是：继续执行equals(),看其返回值
+						是true:说明元素重复，不添加
+						是false:就直接添加到集合
+					否：就直接添加到集合
+			最终：
+				自动生成hashCode()和equals()即可
+</code></pre>
+<p>#####	 TreeMap
+			底层数据结构是红黑树。(是一种自平衡的二叉树)
+				如何保证元素唯一性呢?
+					根据比较的返回值是否是0来决定
+				如何保证元素的排序呢?
+					两种方式
+						自然排序(元素具备比较性)
+							让元素所属的类实现Comparable接口
+						比较器排序(集合具备比较性)
+							让集合接收一个Comparator的实现类对象</p>
+<p>2:到底使用那种集合
+	看需求。</p>
 <pre><code>是否是键值对象形式:
-    是：Map
-        键是否需要排序:
-            是：TreeMap
-            否：HashMap
-        不知道，就使用HashMap。
-
-    否：Collection
-        元素是否唯一:
-            是：Set
-                元素是否需要排序:
-                    是：TreeSet
-                    否：HashSet
-                不知道，就使用HashSet
-
-            否：List
-                要安全吗:
-                    是：Vector(其实我们也不用它，有其他方法可以替代)
-                    否：ArrayList或者LinkedList
-                        增删多：LinkedList
-                        查询多：ArrayList
-                    不知道，就使用ArrayList
-        不知道，就使用ArrayList
-</code></pre><p>3:集合的常见方法及遍历方式</p>
-<h5 id="Collection"><a href="#Collection" class="headerlink" title="Collection:"></a>Collection:</h5><pre><code>常见方法：
-    add()
-    remove()
-    contains()
-    iterator()
-    size()
-
-    遍历：
-        增强for
-        迭代器
-
-    |--List
-        get()
-
-        遍历：
-            普通for
-    |--Set
-</code></pre><h4 id="Map"><a href="#Map" class="headerlink" title="Map:"></a>Map:</h4><pre><code>put()
-remove()
-containskey(),containsValue()
-keySet()
-get()
-value()
-entrySet()
-size()
-
-遍历：
-    根据键找值
-    根据键值对对象分别找键和值
-</code></pre><p>4:ArrayList,LinkedList,HashSet,HashMap(掌握)<br>    存储字符串和自定义对象数据并遍历</p>
+	是：Map
+		键是否需要排序:
+			是：TreeMap
+			否：HashMap
+		不知道，就使用HashMap。
+		
+	否：Collection
+		元素是否唯一:
+			是：Set
+				元素是否需要排序:
+					是：TreeSet
+					否：HashSet
+				不知道，就使用HashSet
+				
+			否：List
+				要安全吗:
+					是：Vector(其实我们也不用它，有其他方法可以替代)
+					否：ArrayList或者LinkedList
+						增删多：LinkedList
+						查询多：ArrayList
+					不知道，就使用ArrayList
+		不知道，就使用ArrayList
+</code></pre>
+<p>3:集合的常见方法及遍历方式</p>
+<h5>Collection:</h5>
+<pre><code>常见方法：
+	add()
+	remove()
+	contains()
+	iterator()
+	size()
+	
+	遍历：
+		增强for
+		迭代器
+		
+	|--List
+		get()
+		
+		遍历：
+			普通for
+	|--Set
+</code></pre>
+<h4>Map:</h4>
+<pre><code>	put()
+	remove()
+	containskey(),containsValue()
+	keySet()
+	get()
+	value()
+	entrySet()
+	size()
+	
+	遍历：
+		根据键找值
+		根据键值对对象分别找键和值
+</code></pre>
+<p>4:ArrayList,LinkedList,HashSet,HashMap(掌握)
+	存储字符串和自定义对象数据并遍历</p>
 <p>5:集合的嵌套遍历(理解)</p>
 
       
@@ -467,7 +518,7 @@ size()
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-单列集合"><span class="toc-number">1.</span> <span class="toc-text">Collection(单列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List-有序-可重复"><span class="toc-number">1.1.</span> <span class="toc-text">List(有序,可重复):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ArrayList"><span class="toc-number">1.1.1.</span> <span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Vector"><span class="toc-number">1.1.2.</span> <span class="toc-text">Vector</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedList"><span class="toc-number">1.1.3.</span> <span class="toc-text">LinkedList</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-无序-唯一"><span class="toc-number">1.2.</span> <span class="toc-text">Set(无序,唯一):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HashSet"><span class="toc-number">1.2.1.</span> <span class="toc-text">　HashSet</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedHashSet"><span class="toc-number">1.2.2.</span> <span class="toc-text">　LinkedHashSet</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeSet"><span class="toc-number">1.2.3.</span> <span class="toc-text">　TreeSet</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-双列集合"><span class="toc-number">2.</span> <span class="toc-text">Map(双列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap"><span class="toc-number">2.1.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedHashMap"><span class="toc-number">2.2.</span> <span class="toc-text">LinkedHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Hashtable"><span class="toc-number">2.2.1.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeMap"><span class="toc-number">2.2.2.</span> <span class="toc-text">TreeMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Collection"><span class="toc-number">2.2.3.</span> <span class="toc-text">Collection:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map"><span class="toc-number">2.3.</span> <span class="toc-text">Map:</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Collection(单列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.0.1.</span> <span class="toc-text">ArrayList</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">Map(双列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">LinkedHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.1.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.2.</span> <span class="toc-text">Collection:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">Map:</span></a></li></ol></li></ol>
         
     </div>
     <style>

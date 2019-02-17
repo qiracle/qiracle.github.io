@@ -8,7 +8,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2019/02/16/20190216/</loc>
-        <lastmod>2019-02-16T08:18:28.000Z</lastmod>
+        <lastmod>2019-02-17T04:52:31.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -40,7 +40,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/08/10/20170810/</loc>
-        <lastmod>2018-11-25T08:49:05.172Z</lastmod>
+        <lastmod>2018-11-25T08:49:05.173Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -48,7 +48,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/08/09/20170809/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -56,15 +56,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2018/03/28/20180328/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2018/10/14/20181014/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -72,7 +64,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2018/10/21/20181021/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -80,7 +72,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2018/10/28/20181028/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -88,7 +80,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/14/float_clear/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -96,15 +88,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/09/github.io/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2016/12/11/java.set/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -112,15 +96,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/13/life_code/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2016/12/12/markdown/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -128,15 +104,23 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/16/linuxSum/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/2016/12/10/mianshi/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <loc>http://qiracle.github.io/2016/12/12/markdown/</loc>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2016/12/11/java.set/</loc>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -144,7 +128,23 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/15/stornzhangTalk/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2018/10/14/20181014/</loc>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2016/12/10/mianshi/</loc>
+        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -152,7 +152,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/29/20161229/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -160,23 +160,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/30/20161230/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2016/12/31/20161231/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2017/01/02/20170102/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -184,23 +168,15 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/01/20170101/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2017/01/04/20170104/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <loc>http://qiracle.github.io/2017/01/02/20170102/</loc>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -208,15 +184,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/03/20170103/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2017/01/06/20170106/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -224,7 +192,15 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/05/20170105/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2017/01/06/20170106/</loc>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -232,7 +208,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/07/20170107/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -240,7 +216,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/08/20170108/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -248,7 +224,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/09/20170109/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -256,7 +232,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/10/20170110/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -264,7 +240,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/01/17/20170117/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -272,7 +248,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/03/16/20170316/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -280,7 +256,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/04/25/20170425/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -288,7 +264,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/04/26/20170426/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -296,7 +272,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/05/03/20170503/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -304,7 +280,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/06/25/20170625/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -312,7 +288,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/06/25/2017062502/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -320,7 +296,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/07/01/20170701/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -328,7 +304,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/07/07/20170707/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -336,7 +312,15 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/07/10/20170710/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2017/01/04/20170104/</loc>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -344,7 +328,23 @@
 
     <url>
         <loc>http://qiracle.github.io/2017/07/28/20170728/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2016/12/31/20161231/</loc>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
+        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -352,7 +352,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/17/20161217/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -360,15 +360,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/18/20161218_mysql/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2016/12/19/20161219/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -376,15 +368,7 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/20/20161220/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/2016/12/22/20161222/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -392,15 +376,15 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/21/20161221/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/2016/12/25/20161225/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <loc>http://qiracle.github.io/2016/12/22/20161222/</loc>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -408,15 +392,15 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/26/20161226/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/2016/12/27/20161227/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <loc>http://qiracle.github.io/2016/12/25/20161225/</loc>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -424,7 +408,23 @@
 
     <url>
         <loc>http://qiracle.github.io/2016/12/28/20161228/</loc>
-        <lastmod>2018-11-25T08:40:22.292Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2016/12/19/20161219/</loc>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/2016/12/27/20161227/</loc>
+        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -15,19 +15,28 @@
 
 
 
-<meta name="description" content="设置环境变量我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )
-配置default.ini文件mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-defaul">
+<meta name="description" content="设置环境变量
+我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量
+选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )
+配置default.ini文件
+mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-def">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows下MySQL 5.6 解压版配置与安装">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/18/20161218_mysql/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="设置环境变量我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )
-配置default.ini文件mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-defaul">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.292Z">
+<meta property="og:description" content="设置环境变量
+我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量
+选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )
+配置default.ini文件
+mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-def">
+<meta property="og:updated_time" content="2018-11-25T08:40:22.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows下MySQL 5.6 解压版配置与安装">
-<meta name="twitter:description" content="设置环境变量我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )
-配置default.ini文件mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-defaul">
+<meta name="twitter:description" content="设置环境变量
+我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量
+选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )
+配置default.ini文件
+mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-def">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -319,19 +328,32 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量<br>选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
-<h3 id="配置default-ini文件"><a href="#配置default-ini文件" class="headerlink" title="配置default.ini文件"></a>配置default.ini文件</h3><p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：<a id="more"></a><br>[mysqld]<br>basedir=C:\Program Files\MySQL\MySQL Server 5.6（mysql所在目录）<br>datadir=C:\Program Files\MySQL\MySQL Server 5.6\data （mysql所在目录\data）</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>环境变量设置完成后，打开终端输入mysqld -install。</p>
-<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p>输入mysql -u root -p（第一次登录没有密码，直接按回车过）,登录成功</p>
-<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><p>在Windows命令行下修改mysql数据库密码步骤如下：</p>
+        <h3>设置环境变量</h3>
+<p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量
+选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
+<h3>配置default.ini文件</h3>
+<p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：&lt;!--more--&gt;
+[mysqld]
+basedir=C:\Program Files\MySQL\MySQL Server 5.6（mysql所在目录）
+datadir=C:\Program Files\MySQL\MySQL Server 5.6\data （mysql所在目录\data）</p>
+<h3>安装</h3>
+<p>环境变量设置完成后，打开终端输入mysqld -install。</p>
+<h3>登录</h3>
+<p>输入mysql -u root -p（第一次登录没有密码，直接按回车过）,登录成功</p>
+<h3>修改密码</h3>
+<p>在Windows命令行下修改mysql数据库密码步骤如下：</p>
 <ol>
 <li>打开终端</li>
 <li>输入“mysql -u root -p”，回车进入mysql命令状态；</li>
 <li>如果root原来有密码，mysql将提示输入原密码，再进入mysql命令状态；</li>
-<li>这里假设将root用户密码修改为mysql56，则在mysql命令状态下输入：<br>update mysql.user set password=PASSWORD(‘mysql56’) where user=’root’;<br>提示Query OK，说明已更新。</li>
-<li>输入FLUSH PRIVILEGES;来保存修改内容，在mysql命令状态下输入：<br>FLUSH PRIVILEGES;回车，至此，密码修改完成</li>
+<li>这里假设将root用户密码修改为mysql56，则在mysql命令状态下输入：
+update mysql.user set password=PASSWORD('mysql56') where user='root';
+提示Query OK，说明已更新。</li>
+<li>输入FLUSH PRIVILEGES;来保存修改内容，在mysql命令状态下输入：
+FLUSH PRIVILEGES;回车，至此，密码修改完成</li>
 </ol>
-<p><strong>附：mysql解压缩版下载地址：</strong><br><a href="http://dev.mysql.com/downloads/mysql/5.6.html#downloads" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/5.6.html#downloads</a></p>
+<p><strong>附：mysql解压缩版下载地址：</strong>
+http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
 
       
     </div>
@@ -364,7 +386,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置环境变量"><span class="toc-number">1.</span> <span class="toc-text">设置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置default-ini文件"><span class="toc-number">2.</span> <span class="toc-text">配置default.ini文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登录"><span class="toc-number">4.</span> <span class="toc-text">登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改密码"><span class="toc-number">5.</span> <span class="toc-text">修改密码</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">设置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">配置default.ini文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">修改密码</span></a></li></ol>
         
     </div>
     <style>

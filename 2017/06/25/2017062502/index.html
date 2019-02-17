@@ -15,16 +15,58 @@
 
 
 
-<meta name="description" content="1.链表的定义2.链表的初始化3.链表元素增删改查">
+<meta name="description" content="1.链表的定义
+2.链表的初始化
+3.链表元素增删改查
+&amp;lt;!--more--&amp;gt;
+#include&amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;time.h&amp;gt;
+typedef int ElemType;
+
+typedef struct Node
+{
+	
+	
+	ElemType data;
+	struct Node* n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-链表的基本操作">
 <meta property="og:url" content="http://qiracle.github.io/2017/06/25/2017062502/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="1.链表的定义2.链表的初始化3.链表元素增删改查">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.293Z">
+<meta property="og:description" content="1.链表的定义
+2.链表的初始化
+3.链表元素增删改查
+&amp;lt;!--more--&amp;gt;
+#include&amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;time.h&amp;gt;
+typedef int ElemType;
+
+typedef struct Node
+{
+	
+	
+	ElemType data;
+	struct Node* n">
+<meta property="og:updated_time" content="2018-11-25T08:40:22.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-链表的基本操作">
-<meta name="twitter:description" content="1.链表的定义2.链表的初始化3.链表元素增删改查">
+<meta name="twitter:description" content="1.链表的定义
+2.链表的初始化
+3.链表元素增删改查
+&amp;lt;!--more--&amp;gt;
+#include&amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;time.h&amp;gt;
+typedef int ElemType;
+
+typedef struct Node
+{
+	
+	
+	ElemType data;
+	struct Node* n">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -316,7 +358,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br><a id="more"></a></p>
+        <p>1.链表的定义
+2.链表的初始化
+3.链表元素增删改查
+&lt;!--more--&gt;</p>
 <pre><code>#include&lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;time.h&gt;
@@ -324,124 +369,124 @@ typedef int ElemType;
 
 typedef struct Node
 {
-
-
-    ElemType data;
-    struct Node* next;
+	
+	
+	ElemType data;
+	struct Node* next;
 }Node;
 
 typedef struct Node* LinkList;
 
 
 int getElem(LinkList L,int i){//根据序号查找元素
-
-    int j;
-    LinkList p;
-    p = L-&gt;next;
-    j = 1;
-    while(p &amp;&amp; j&lt;i)
-    {
-        p = p-&gt;next;
-        ++j;
-    }
-    if(!p || j&gt;i)
-        return -1;
-    else
-        return p-&gt;data;
-
+	
+	int j;
+	LinkList p;
+	p = L-&gt;next;
+	j = 1;
+	while(p &amp;&amp; j&lt;i)
+	{
+		p = p-&gt;next;
+		++j;
+	}
+	if(!p || j&gt;i)
+		return -1;
+	else
+		return p-&gt;data;
+	
 }
 
 int list_insert(LinkList *L,int i,ElemType e){//插入
-    int j;
-    LinkList p,s;
-    p=*L;
-    j=1;
-    while(p&amp;&amp;j&lt;i)
-    {
-        p=p-&gt;next;
-        ++j;
-    }
-    if(!p||j&gt;i)
-        return -1;
-    else{
-        s = (LinkList)malloc(sizeof(Node));
-        s-&gt;data =e;
-        s-&gt;next = p-&gt;next;
-        p-&gt;next =s;
-        return 1;}
-
+	int j;
+	LinkList p,s;
+	p=*L;
+	j=1;
+	while(p&amp;&amp;j&lt;i)
+	{
+		p=p-&gt;next;
+		++j;
+	}
+	if(!p||j&gt;i)
+		return -1;
+	else{
+		s = (LinkList)malloc(sizeof(Node));
+		s-&gt;data =e;
+		s-&gt;next = p-&gt;next;
+		p-&gt;next =s;
+		return 1;}
+	
 }
 int list_delete(LinkList *L,int i){//删除
-    int j;
-    int key;
-    LinkList p,q;
-    p =*L;
-    j =1;
-    while(p-&gt;next&amp;&amp;j&lt;i)
-    {
-        p = p-&gt;next;
-        ++j;
-    }
-
-    if(!(p-&gt;next)||j&gt;i)
-        return -1;
-    q = p-&gt;next;
-    p-&gt;next =q-&gt;next;
-    key = q-&gt;data;
-    free(q);
-    return key;    
+	int j;
+	int key;
+	LinkList p,q;
+	p =*L;
+	j =1;
+	while(p-&gt;next&amp;&amp;j&lt;i)
+	{
+		p = p-&gt;next;
+		++j;
+	}
+	
+	if(!(p-&gt;next)||j&gt;i)
+		return -1;
+	q = p-&gt;next;
+	p-&gt;next =q-&gt;next;
+	key = q-&gt;data;
+	free(q);
+	return key;	
 }
 
 void list_createHead(LinkList *L,int n){//头插法
-
-    LinkList p;
-    int i;
-    srand(time(0));
-    *L=(LinkList)malloc(sizeof(Node));
-    (*L)-&gt;next =NULL;
-    for(i=0;i&lt;n;i++){
-
-        p=(LinkList)malloc(sizeof(Node));
-        p-&gt;data =rand()%100+1;
-        p-&gt;next = (*L)-&gt;next;
-        (*L)-&gt;next =p;
-    }
+	
+	LinkList p;
+	int i;
+	srand(time(0));
+	*L=(LinkList)malloc(sizeof(Node));
+	(*L)-&gt;next =NULL;
+	for(i=0;i&lt;n;i++){
+		
+		p=(LinkList)malloc(sizeof(Node));
+		p-&gt;data =rand()%100+1;
+		p-&gt;next = (*L)-&gt;next;
+		(*L)-&gt;next =p;
+	}
 }
 
 void list_createTail(LinkList *L,int n){//尾插法
-
-    LinkList p,r;
-    int i;
-    srand(time(0));
-    *L=(LinkList)malloc(sizeof(Node));
-    r=*L;
-    for(i=0;i&lt;n;i++){
-        p =(Node *)malloc(sizeof(Node));
-        p-&gt;data =rand()%100+1;
-        r-&gt;next=p;
-        r=p;
-    }
-    r-&gt;next =NULL;
-
+	
+	LinkList p,r;
+	int i;
+	srand(time(0));
+	*L=(LinkList)malloc(sizeof(Node));
+	r=*L;
+	for(i=0;i&lt;n;i++){
+		p =(Node *)malloc(sizeof(Node));
+		p-&gt;data =rand()%100+1;
+		r-&gt;next=p;
+		r=p;
+	}
+	r-&gt;next =NULL;
+	
 }
 
 void list_print(LinkList L){//打印链表
 
-    LinkList p = L-&gt;next;                            //将头节点的指针给予临时节点p
-
-
+	LinkList p = L-&gt;next;                            //将头节点的指针给予临时节点p
+	
+	
     while(NULL != p)                                //节点p不为空，循环
-
+		
     {
         printf(&quot;%d &quot;,p-&gt;data); 
         p = p-&gt;next;
     }
-    printf(&quot;\n&quot;);
+	printf(&quot;\n&quot;);
 }
 
 int main(){
-    int x = 0;
-    int y = 0;
+	int x = 0;
+	int y = 0;
 LinkList L;
 list_createTail(&amp;L,10);
 printf(&quot;尾插法：&quot;);
@@ -461,9 +506,10 @@ printf(&quot;第三个数是：%d \n&quot;,x);
 list_insert(&amp;L,6,100);
 printf(&quot;第六位插入数字100：\n&quot;);
 list_print(L);
-    return 0;
+	return 0;
 }
 </code></pre>
+
       
     </div>
     

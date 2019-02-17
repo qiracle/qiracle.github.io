@@ -307,7 +307,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>　　学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。<br>　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
+        <p>学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。
+　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz" target="_blank" rel="external">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
 <pre><code>import urllib2
 import urllib
 import re
@@ -316,14 +317,29 @@ import time
 
 
 def getHtml(url):
-    request = urllib2.Request(url)
-    request.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
-    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36&apos;)
-    response = urllib2.urlopen(request)
-    html=response.read()
-    return html
+	request = urllib2.Request(url)
+	request.add_header('User-Agent','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
+	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36')
+	response = urllib2.urlopen(request)
+	html=response.read()
+	return html
 </code></pre>
-          
+<p>&lt;!--more--&gt;
+	def getImage(html):
+	 	imglist=re.findall(r'data-original=&quot;(.*?.(jpg|jpeg))&quot;',html)
+	 	print(len(imglist))
+	 	path =&quot;&quot;
+	 	x=0
+	 	for img in imglist:
+	 		urllib.urlretrieve(img[0],&quot;/home/qiracle/douyu/&quot;+str(x)+&quot;.&quot;+img[1])
+	 		x+=1
+	 		time.sleep(1)</p>
+<pre><code>html =getHtml(&quot;https://www.douyu.com/directory/game/yz&quot;)
+getImage(html)
+</code></pre>
+<p>最终爬到的结果如下：</p>
+<p><img src="http://94.191.72.22/blog/image/20170110/2017-01-10.png" alt="结果" title="结果"></p>
+
       
     </div>
     
@@ -340,10 +356,6 @@ def getHtml(url):
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/10/20170110/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -390,12 +402,58 @@ def getHtml(url):
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.新建setup.py文件，并将下面代码修改后复制到文件中</p>
+        <p>1.新建setup.py文件，并将下面代码修改后复制到文件中</p>
 <pre><code>from distutils.core import setup
 
-setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle&apos;s module&quot;,author=&quot;qiracle&quot;,py_modules=[&quot;test1&quot;,&quot;test2&quot;])
-</code></pre><p>这里py_modules列表里填的是模块的名字
-          
+setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle's module&quot;,author=&quot;qiracle&quot;,py_modules=[&quot;test1&quot;,&quot;test2&quot;])
+</code></pre>
+<p>这里py_modules列表里填的是模块的名字&lt;!--more--&gt;</p>
+<p>2.python3 setup.py build</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+copying test1.py -&gt; build/lib.linux-x86_64-2.7
+copying test2.py -&gt; build/lib.linux-x86_64-2.7</p>
+</blockquote>
+<p>3.python3 setup.py sdist</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running sdist
+running check
+warning: check: missing required meta-data: url
+warning: check: missing meta-data: if 'author' supplied, 'author_email' must be supplied too
+warning: sdist: manifest template 'MANIFEST.in' does not exist (using default file list)
+warning: sdist: standard file not found: should have one of README, README.txt
+writing manifest file 'MANIFEST'
+creating qiracle-1.0
+making hard links in qiracle-1.0...
+hard linking setup.py -&gt; qiracle-1.0
+hard linking test1.py -&gt; qiracle-1.0
+hard linking test2.py -&gt; qiracle-1.0
+creating dist
+Creating tar archive
+removing 'qiracle-1.0' (and everything under it)</p>
+</blockquote>
+<p>4.找到模块的压缩包，解压，进入setup.py所在文件夹后执行命令:</p>
+<p>python3 setup.py install（需要管理员权限）</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running install
+running build
+running build_py
+running install_lib
+copying build/lib/test2.py -&gt; /usr/local/lib/python3.4/dist-packages
+copying build/lib/test1.py -&gt; /usr/local/lib/python3.4/dist-packages
+byte-compiling /usr/local/lib/python3.4/dist-packages/test2.py to test2.cpython-34.pyc
+byte-compiling /usr/local/lib/python3.4/dist-packages/test1.py to test1.cpython-34.pyc
+running install_egg_info
+Writing /usr/local/lib/python3.4/dist-packages/qiracle-1.0.egg-info</p>
+</blockquote>
+<p>此时表明安装成功,在之后的python程序中任意路径下都可直接import包名使用</p>
+
       
     </div>
     
@@ -412,10 +470,6 @@ setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/09/20170109/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -462,18 +516,56 @@ setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。</p>
+        <p>python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。</p>
 <p>新建test.py文件，代码如下</p>
 <pre><code>def A():
 
-    print(&quot;hello&quot;)
-</code></pre><p>再简历main.py文件，代码如下</p>
+	print(&quot;hello&quot;)
+</code></pre>
+<p>再简历main.py文件，代码如下</p>
 <pre><code>import test
 
 test.A()
-</code></pre><p>此时用python main.py执行，打印 hello。</p>
-<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：<br>
-          
+</code></pre>
+<p>此时用python main.py执行，打印 hello。</p>
+<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：
+&lt;!--more--&gt;</p>
+<pre><code>def A():
+
+	print(&quot;hello&quot;)
+
+A()//测试
+</code></pre>
+<p>用python test.py执行，打印 hello。</p>
+<p>但此时如果测试代码没有删除，调用者用python main.py执行，则会打印 hello hello。
+因为A()被执行了两次。</p>
+<p>为解决这一问题，我们需要这样做，在test.py文件里：</p>
+<pre><code>def A():
+
+	print(&quot;hello&quot;)
+
+
+if __name__ == '__main__'://加上这句在执行
+	A()
+</code></pre>
+<p>用python main.py执行，则会打印 hello，结果正常</p>
+<p><strong>分析</strong></p>
+<p>在test.py中，加入print(_<em>name_</em>),看看__name__的值</p>
+<pre><code>def A():
+
+	print(&quot;hello&quot;)
+
+print(__name__)
+
+if __name__ == '__main__'://加上这句在执行
+	A()
+</code></pre>
+<p>此时如果用python test.py，则会打印_<em>main_</em> hello,此时__name__的值为_<em>main_</em></p>
+<p>如果用python main.py执行，则打印test hello，此时__name__的值为test</p>
+<p><strong>结论</strong></p>
+<p>因此可以看出，在函数所在的文件内调用函数，__name__的值为_<em>main_</em></p>
+<p>但是如果通过导入模块调用函数，则函数所在文件的__name__值为函数所在文件的文件名</p>
+
       
     </div>
     
@@ -490,10 +582,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/08/20170108/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -540,8 +628,16 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="内存四区的建立流程"><a href="#内存四区的建立流程" class="headerlink" title="内存四区的建立流程"></a>内存四区的建立流程</h3><p><img src="http://94.191.72.22/blog/image/20170107/1.png" alt=""></p>
-          
+        <h3>内存四区的建立流程</h3>
+<p><img src="http://94.191.72.22/blog/image/20170107/1.png" alt=""></p>
+<p>&lt;!--more--&gt;</p>
+<p><strong>流程说明</strong></p>
+<p>1、操作系统把物理硬盘代码load到内存</p>
+<p>2、操作系统把c代码分成四个区</p>
+<p>3、操作系统找到main函数入口执行</p>
+<h3>各区元素分析</h3>
+<p><img src="http://94.191.72.22/blog/image/20170107/2.png" alt=""></p>
+
       
     </div>
     
@@ -558,10 +654,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/07/20170107/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -608,10 +700,17 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>在Python中有一些内置的方法，这些方法命名都有比较特殊的地方（其方法名以2个下划线开始然后以2个下划线结束）。类中最常用的就是构造方法和析构方法。</p>
-<p>　构造方法__init__(self,….)：在生成对象时调用，可以用来进行一些初始化操作，不需要显示去调用，系统会默认去执行。构造方法支持重载，如果用户自己没有重新定义构造方法，系统就自动执行默认的构造方法。</p>
-<p>　析构方法__del__(self)：在释放对象时调用，支持重载，可以在里面进行一些释放资源的操作，不需要显示调用。
-          
+        <p>在Python中有一些内置的方法，这些方法命名都有比较特殊的地方（其方法名以2个下划线开始然后以2个下划线结束）。类中最常用的就是构造方法和析构方法。</p>
+<p>构造方法_<em>init_</em>(self,....)：在生成对象时调用，可以用来进行一些初始化操作，不需要显示去调用，系统会默认去执行。构造方法支持重载，如果用户自己没有重新定义构造方法，系统就自动执行默认的构造方法。</p>
+<p>析构方法_<em>del_</em>(self)：在释放对象时调用，支持重载，可以在里面进行一些释放资源的操作，不需要显示调用。&lt;!--more--&gt;</p>
+<p>_<em>new_</em>():_<em>new_</em>()在_<em>init</em>_()之前被调用，用于生成实例对象。利用这个方法和类属性的特性可以实现设计模式中的单例模式。单例模式是指创建唯一对象吗，单例模式设计的类只能实例化一个对象。</p>
+<p>_<em>getattr_</em>()、_<em>setattr_</em>()和_<em>getattribute_</em>():当读取对象的某个属性时，python会自动调用_<em>getattr</em>_()方法。</p>
+<p>_<em>getitem_</em>():如果类把某个属性定义为序列，可以使用_<em>getitem</em>_()输出序列属性中的某个元素</p>
+<p>_str_<em>():_<em>str_</em>()用于表示对象代表的含义，返回一个字符串.实现了_<em>str_</em>()方法后，可以直接使用print语句输出对象，也可以通过函数str()触发_<em>str</em></em>()的执行。这样就把对象和字符串关联起来，便于某些程序的实现，可以用这个字符串来表示某个类</p>
+<p>_<em>call_</em>():在类中实现_<em>call_</em>()方法，可以在对象创建时直接返回_<em>call</em>_()的内容。使用该方法可以模拟静态方法</p>
+<p>下面是常用的内置方法：
+<img src="http://94.191.72.22/blog/image/20170106/__func__.png" alt="常用方法"></p>
+
       
     </div>
     
@@ -628,10 +727,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/06/20170106/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -678,12 +773,89 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>类初始化时构造函数调用顺序：</p>
-<p> （1）初始化对象的存储空间为零或null值；</p>
-<p>  （2）调用父类构造函数；</p>
-<p>  （3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；</p>
-<p>  （4）调用本身构造函数。
-          
+        <p>类初始化时构造函数调用顺序：</p>
+<p>（1）初始化对象的存储空间为零或null值；</p>
+<p>（2）调用父类构造函数；</p>
+<p>（3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；</p>
+<p>（4）调用本身构造函数。&lt;!--more--&gt;</p>
+<p>例子:</p>
+<pre><code>public class Dog extends Animal{
+ Cat c=new Cat();
+
+ public Dog(){
+  
+  System.out.println(&quot;Dog 构造方法!&quot;);
+
+ }
+ public static void main(String[] args){
+  
+  new Dog();
+  
+ }
+}
+class Animal{
+ public Animal(){
+  System.out.println(&quot;Animal构造方法&quot;);
+ }
+}
+class Cat{
+ public Cat(){
+  System.out.println(&quot;Cat 构造方法&quot;);
+ }
+}
+</code></pre>
+<p>输出结果:</p>
+<p>Animal构造方法</p>
+<p>Cat 构造方法</p>
+<p>Dog 构造方法</p>
+<p>在我们的程序中，实例化一个类对象的时候，运行顺序为：</p>
+<p>静态块</p>
+<p>父类构造器</p>
+<p>本类中的块</p>
+<p>本类的构造器</p>
+<pre><code>public class Dog {   
+   public Dog() {   
+ System.out.println(&quot;Dog&quot;);   
+}   
+static{   //静态块
+    System.out.println(&quot;super static block&quot;);   
+}       
+{   
+    System.out.println(&quot;super block&quot;);   
+}   
+}  
+public class Mastiff extends Dog {   
+public Mastiff() {   
+    System.out.println(&quot;Mastiff&quot;);   
+}   
+ {   
+    System.out.println(&quot;block&quot;);   
+   }   
+static {   
+  System.out.println(&quot;static block&quot;);   
+}   
+public static void  main(String[] args){   
+  Mastiff mastiff=new Mastiff();         //实例化一个对象
+}   
+}   
+</code></pre>
+<p>输出结果：</p>
+<p>super static block</p>
+<p>static block</p>
+<p>super block</p>
+<p>Dog</p>
+<p>block</p>
+<p>Mastiff</p>
+<p>也就是说此时的运行顺序为：</p>
+<ol>
+<li>父类静态块</li>
+<li>自身静态块</li>
+<li>父类块</li>
+<li>父类构造器</li>
+<li>自身块</li>
+<li>自身构造器</li>
+</ol>
+
       
     </div>
     
@@ -700,10 +872,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/05/20170105/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -750,9 +918,37 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>图片加载几乎是任何 Android 项目中必备的需求，而图片加载的开源库也越来越多，我们姑且在 GitHub 上搜索下 android image 关键字，出来的前五个按照 Star 数排序的项目如下：</p>
-<p>可以看到前四个是大家比较熟知的图片加载库，有 UniversalImageLoader、Picasso、Fresco、Glide，至于第五个 ion 其实是一个网络库，只不过也提供了图片加载的功能，跟 Volley 类似，也提供图片加载的功能，但是如果图片加载是一个强需求的话，我更喜欢专注的库，所以本文只讨论单纯的图片加载库。
-          
+        <p>图片加载几乎是任何 Android 项目中必备的需求，而图片加载的开源库也越来越多，我们姑且在 GitHub 上搜索下 android image 关键字，出来的前五个按照 Star 数排序的项目如下：</p>
+<p>可以看到前四个是大家比较熟知的图片加载库，有 UniversalImageLoader、Picasso、Fresco、Glide，至于第五个 ion 其实是一个网络库，只不过也提供了图片加载的功能，跟 Volley 类似，也提供图片加载的功能，但是如果图片加载是一个强需求的话，我更喜欢专注的库，所以本文只讨论单纯的图片加载库。&lt;!--more--&gt;</p>
+<p>我相信大家很纠结到底该选择哪一个呢？貌似它们在GitHub上都有自己的一席之地，Star 数都蛮高的，确实很难抉择，那么今天我就来给大家分析下，图片加载到底该怎么选择！</p>
+<h3>UniversalImageLoader</h3>
+<p>https://github.com/nostra13/Android-Universal-Image-Loader</p>
+<p>UIL可以算是老牌最火的图片加载库了，使用过这个开源库的项目可以说是多的令人发指，即使到现在 GitHub 上他的 Star 数仍然是众多图片加载库最多的。</p>
+<p>可惜的是该作者在项目中说明，从去年的9月份，他就已经停止了对该项目的维护。这就意味着以后任何的 bug 都不会修复，任何的新特性都不会再继续开发，所以毫无疑问 UIL 不推荐在项目中使用了。</p>
+<h3>Picasso</h3>
+<p>https://github.com/square/picasso</p>
+<p>Picasso 是 Square 公司的大作，名字起的也这么文艺，叫「毕加索」，意为加载图片就像画画一样，是一门艺术。这个库是我之前一直很喜欢的，因为他不仅具备图片加载应有尽有的强大功能，他的调用也是如此简洁文艺：</p>
+<p>Picasso.with(context).load(&quot;http://i.imgur.com/DvpvklR.png&quot;).into(imageView);</p>
+<p>以上代码就是给一个 ImageView 加载远程图片的一个示例，是不是很简洁？</p>
+<p>当然不止如此，他还提供更多的用法，足以满足你实际项目中的各种需求，具体这些用法本文就不提了，可以去官网自行研究。</p>
+<h3>Glide</h3>
+<p>https://github.com/bumptech/glide</p>
+<p>Glide 是 Google 一位员工的大作，他完全是基于 Picasso 的，沿袭了 Picasso 的简洁风格，但是在此做了大量优化与改进。</p>
+<p>Glide 默认的 Bitmap 格式是 RGB_565 格式，而 Picasso 默认的是 ARGB_8888 格式，这个内存开销要小一半。</p>
+<p>在磁盘缓存方面，Picasso 只会缓存原始尺寸的图片，而 Glide 缓存的是多种规格，也就意味着 Glide 会根据你 ImageView 的大小来缓存相应大小的图片尺寸，比如你 ImageView 大小是200<em>200，原图是 400</em>400 ，而使用 Glide 就会缓存 200<em>200 规格的图，而 Picasso 只会缓存 400</em>400 规格的。这个改进就会导致 Glide 比 Picasso 加载的速度要快，毕竟少了每次裁剪重新渲染的过程。</p>
+<p>最重要的一个特性是 Glide 支持加载 Gif 动态图，而 Picasso 不支持该特性。</p>
+<p>除此之外，还有很多其他配置选项的增加。</p>
+<p>总体来说，Glide 是在 Picasso 基础之上进行的二次开发，各个方面做了不少改进，不过这也导致他的包比 Picasso 大不少，不过也就不到 500k，Picasso 是100多k，方法数也比 Picasso 多不少，不过毕竟级别还是蛮小的，影响不是很大。</p>
+<h3>Fresco</h3>
+<p>https://github.com/facebook/fresco</p>
+<p>Fresco 是 Facebook 出品，他是新一代的图片加载库，我们知道 Android 应用程序可用的内存有限，经常会因为图片加载导致 OOM，虽然我们有各种手段去优化，尽量减少出现 OOM 的可能性，但是永远没法避免，尤其某些低端手机 OOM 更是严重。而 Facebook 就另辟蹊径，既然没法在 Java 层处理，我们就在更底层的 Native 堆做手脚。于是 Fresco 将图片放到一个特别的内存区域叫 Ashmem 区，就是属于 Native 堆，图片将不再占用 App 的内存，Java 层对此无能为力，这里是属于 C++ 的地盘，所以能大大的减少 OOM。</p>
+<p>所以此库很强大，不过用起来也比较复杂，包也比较大，貌似有2、3M，底层涉及到的 C++ 领域，想读源码也比较困难。</p>
+<h3>总结</h3>
+<p>综合来看，毫无疑问 Glide 与 Picasso 之间优先推荐选择 Glide，尤其是如果你的项目想要支持 Gif 动态图，那更该选择 Glide 。</p>
+<p>但是如果你的项目使用了 Square 公司的全家桶，如 Retrofit 或者 OkHttp ，那么搭配 Picasso 一起使用也不是不可，兼容性可能会更好些，占用体积也会少些。</p>
+<p>对于一般的 App 使用 Fresco 未免有些大材小用了，大部分情况 Glide 都能满足你的需求了，但是如果你的 App 中大量使用图片，比如是类似 Instagram 一类的图片社交 App ，那么推荐使用 Fresco ，虽然稍复杂，但是还是推荐使用 Fresco ，对提升你 App 的性能与体验有不少帮助，值得花时间去研究并应用到自己的 App 上来。</p>
+<p><strong>注</strong>：本文转自stormzhang，原文链接：https://zhuanlan.zhihu.com/p/21397115</p>
+
       
     </div>
     
@@ -769,10 +965,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/04/20170104/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -819,8 +1011,41 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="1-原则"><a href="#1-原则" class="headerlink" title="1. 原则"></a>1. 原则</h3><p>本篇说的网络请求专指 http 请求，在选择一个框架之前，我个人有个习惯，就是我喜欢选择专注的库，其实在软件设计领域有一个原则叫做 「单一职责原则」，跟我所说的「专注」不谋而合，一个库能把一件事做好就很不错了。现如今有很多大而全的库，比如这个库可以网络请求，同时又可以图片加载，又可以数据存储，又可以 View 注解等等，我们使用这种库当然方便了，但是你有没有想过？这样会使得你整个项目对它依赖性太强，万一以后这个库不维护了，或者中间某个模块出问题了，这个影响非常大，而且我一直认为大而全的框架可能某一块都做的不够好，所以我在选择的时候更喜欢专注某一领域的框架。
-          
+        <h3>1. 原则</h3>
+<p>本篇说的网络请求专指 http 请求，在选择一个框架之前，我个人有个习惯，就是我喜欢选择专注的库，其实在软件设计领域有一个原则叫做 「单一职责原则」，跟我所说的「专注」不谋而合，一个库能把一件事做好就很不错了。现如今有很多大而全的库，比如这个库可以网络请求，同时又可以图片加载，又可以数据存储，又可以 View 注解等等，我们使用这种库当然方便了，但是你有没有想过？这样会使得你整个项目对它依赖性太强，万一以后这个库不维护了，或者中间某个模块出问题了，这个影响非常大，而且我一直认为大而全的框架可能某一块都做的不够好，所以我在选择的时候更喜欢专注某一领域的框架。&lt;!--more--&gt;</p>
+<p>在上面原则的基础上，所以目前来说单纯的网络请求库就锁定在了 Volley、OkHttp、Retrofit 三个，android-async-http 的作者已经不维护，所以这里就不多说了，下面我们分别来说说这三个库的区别。</p>
+<h3>2. OkHttp</h3>
+<p>我们知道在 Android 开发中是可以直接使用现成的 api 进行网络请求的，就是使用 HttpClient、HttpUrlConnection 进行操作，目前 HttpClient 已经被废弃，而 android-async-http 是基于 HttpClient 的，我想可能也是因为这个原因作者放弃维护。</p>
+<p>而 OkHttp 是 Square 公司开源的针对 Java 和 Android 程序，封装的一个高性能 http 请求库，所以它的职责跟 HttpUrlConnection 是一样的，支持 spdy、http 2.0、websocket ，支持同步、异步，而且 OkHttp 又封装了线程池，封装了数据转换，封装了参数使用、错误处理等，api 使用起来更加方便。可以把它理解成是一个封装之后的类似 HttpUrlConnection 的一个东西，但是你在使用的时候仍然需要自己再做一层封装，这样才能像使用一个框架一样更加顺手。</p>
+<p>OkHttp 的具体使用方法这里就不赘述，地址在这里：</p>
+<p>http://square.github.io/okhttp/</p>
+<h3>3. Volley</h3>
+<p>Volley 是 Google 官方出的一套小而巧的异步请求库，该框架封装的扩展性很强，支持 HttpClient、HttpUrlConnection，甚至支持 OkHttp，具体方法可以看 Jake 大神的这个 Gist 文件：</p>
+<p>https://gist.github.com/JakeWharton/5616899</p>
+<p>而且 Volley 里面也封装了 ImageLoader ，所以如果你愿意你甚至不需要使用图片加载框架，不过这块功能没有一些专门的图片加载框架强大，对于简单的需求可以使用，对于稍复杂点的需求还是需要用到专门的图片加载框架。</p>
+<p>Volley 也有缺陷，比如不支持 post 大数据，所以不适合上传文件。不过 Volley 设计的初衷本身也就是为频繁的、数据量小的网络请求而生！</p>
+<p>关于 Volley 的具体用法可以见我很早在 GitHub 的一个 demo ：</p>
+<p>https://github.com/stormzhang/AndroidVolley</p>
+<h3>4. Retrofit</h3>
+<p>Retrofit 是 Square 公司出品的默认基于 OkHttp 封装的一套 RESTful 网络请求框架，不了解 RESTful 概念的不妨去搜索学习下，RESTful 可以说是目前流行的一套 api 设计的风格，并不是标准。Retrofit 的封装可以说是很强大，里面涉及到一堆的设计模式，你可以通过注解直接配置请求，你可以使用不同的 http 客户端，虽然默认是用 http ，可以使用不同 Json Converter 来序列化数据，同时提供对 RxJava 的支持，使用 Retrofit + OkHttp + RxJava + Dagger2 可以说是目前比较潮的一套框架，但是需要有比较高的门槛。</p>
+<p>Retrofit 的具体使用方法与地址在这里：</p>
+<p>http://square.github.io/retrofit/</p>
+<h3>5. Volley VS OkHttp</h3>
+<p>毫无疑问 Volley 的优势在于封装的更好，而使用 OkHttp 你需要有足够的能力再进行一次封装。而 OkHttp 的优势在于性能更高，因为 OkHttp 基于 NIO 和 Okio ，所以性能上要比 Volley更快。</p>
+<p>估计有些读者不理解 IO 和 NIO 的概念，这里姑且简单提下，这两个都是 Java 中的概念，如果我从硬盘读取数据，第一种方式就是程序一直等，数据读完后才能继续操作，这种是最简单的也叫阻塞式 IO，还有一种就是你读你的，我程序接着往下执行，等数据处理完你再来通知我，然后再处理回调。而第二种就是 NIO 的方式，非阻塞式。</p>
+<p>所以 NIO 当然要比 IO 的性能要好了， 而 Okio 是 Square 公司基于 IO 和 NIO 基础上做的一个更简单、高效处理数据流的一个库。</p>
+<p>理论上如果 Volley 和 OkHttp 对比的话，我更倾向于使用 Volley，因为 Volley 内部同样支持使用 OkHttp ，这点 OkHttp 的性能优势就没了，而且 Volley 本身封装的也更易用，扩展性更好些。</p>
+<h3>6. OkHttp VS Retrofit</h3>
+<p>毫无疑问，Retrofit 默认是基于 OkHttp 而做的封装，这点来说没有可比性，肯定首选 Retrofit。</p>
+<h3>7. Volley VS Retrofit</h3>
+<p>这两个库都做了非常不错的封装，但是 Retrofit 解耦的更彻底，尤其 Retrofit 2.0 出来，Jake 对之前 1.0 设计不合理的地方做了大量重构，职责更细分，而且 Retrofit 默认使用 OkHttp ，性能上也要比 Volley 占优势，再有如果你的项目如果采用了 RxJava ，那更该使用 Retrofit 。</p>
+<p>所以说这两个库相比，Retrofit 毫无疑问更有优势，你在能掌握两个框架的前提下该优先使用 Retrofit。但是个人认为 Retrofit 门槛要比 Volley 稍高些，你要理解他的原理，各种用法，想彻底搞明白还是需要花些功夫的，如果你对它一知半解，那还是建议在商业项目使用 Volley 吧。</p>
+<h3>8. 总结</h3>
+<p>所以综上，如果以上三种网络库你都能熟练掌握，那么优先推荐使用 Retrofit ，前提是最好你们的后台 api 也能遵循 RESTful 的风格，其次如果你不想使用或者没能力掌握 Retrofit ，那么推荐使用 Volley ，毕竟 Volley 你不需要做过多的封装，当然如果你们需要上传大数据，那么不建议使用 Volley，否则你该采用 OkHttp 。</p>
+<p>最后，我知道可能有些人会纠结 Volley 与 OkHttp 的选择，那是因为我认为 OkHttp 还是需要一定的能力做一层封装的，如果你有能力封装的话那不如直接用 Retrofit 了，如果没能力封装还是乖乖的用 Volley 吧，如果你能有一些不错的基于 OkHttp 封装好的开源库，那么另说了，Volley 与 OkHttp 怎么选择随你便呗。</p>
+<p>最最后，以上只是我一家之言，如有误导，概不负责！欢迎讨论与交流</p>
+<p>**注：**本文转自stormzhang，原文链接：https://zhuanlan.zhihu.com/p/21879931</p>
+
       
     </div>
     
@@ -837,10 +1062,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/03/20170103/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -887,15 +1108,100 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="铁律1：指针是一种数据类型"><a href="#铁律1：指针是一种数据类型" class="headerlink" title="铁律1：指针是一种数据类型"></a>铁律1：指针是一种数据类型</h3><p>1）指针也是一种变量，占有内存空间，用来保存内存地址</p>
+        <h3>铁律1：指针是一种数据类型</h3>
+<p>1）指针也是一种变量，占有内存空间，用来保存内存地址</p>
 <p>测试指针变量占有内存空间大小</p>
 <p>2）*p操作内存</p>
 <p>在指针声明时，*号表示所声明的变量为指针</p>
 <p>在指针使用时，*号表示 操作 指针所指向的内存空间中的值</p>
 <p>*p相当于通过地址(p变量的值)找到一块内存；然后操作内存</p>
 <p>*p放在等号的左边赋值（给内存赋值）</p>
-<p>*p放在等号的右边取值（从内存获取值）<br>
-          
+<p>*p放在等号的右边取值（从内存获取值）
+&lt;!--more--&gt;
+3）指针变量和它指向的内存块是两个不同的概念</p>
+<p>//含义1 给p赋值p=0x1111; 只会改变指针变量值，不会改变所指的内容；p = p +1; //p++</p>
+<p>//含义2 给<em>p赋值</em>p='a'; 不会改变指针变量的值，只会改变所指的内存块的值</p>
+<p>//含义3 =左边<em>p 表示 给内存赋值， =右边</em>p 表示取值 含义不同切结！</p>
+<p>//含义4 =左边char *p</p>
+<p>//含义5 保证所指的内存块能修改</p>
+<p>4）指针是一种数据类型，是指它指向的内存空间的数据类型</p>
+<p>含义1：指针步长（p++），根据所致内存空间的数据类型来确定</p>
+<p>p++=(unsigned char )p+sizeof(a);</p>
+<p>结论：指针的步长，根据所指内存空间类型来定。</p>
+<p>注意：	建立指针指向谁，就把把谁的地址赋值给指针。图和代码和二为一。</p>
+<p>不断的给指针变量赋值，就是不断的改变指针变量（和所指向内存空间没有任何关系）。</p>
+<h3>铁律2：间接赋值（*p）是指针存在的最大意义</h3>
+<p>1）两码事：指针变量和它指向的内存块变量</p>
+<p>2）条件反射：指针指向某个变量，就是把某个变量地址否给指针</p>
+<p>3）*p间接赋值成立条件：3个条件</p>
+<p>a)2个变量（通常一个实参，一个形参）</p>
+<p>b) 建立关系，实参取地址赋给形参指针</p>
+<p>c) *p形参去间接修改实参的值</p>
+<p>Int iNum = 0; //实参</p>
+<p>int *p = NULL;</p>
+<p>p = &amp;iNum;</p>
+<p>iNum = 1;</p>
+<p><em>p =2 ; //通过</em>形参 == 间接地改变实参的值</p>
+<p>*p成立的三个条件：</p>
+<p>4）引申： 函数调用时,用n指针（形参）改变n-1指针（实参）的值。</p>
+<p>//改变0级指针（int iNum = 1）的值有2种方式</p>
+<p>//改变1级指针（eg char *p = 0x1111 ）的值，有2种方式</p>
+<p>//改变2级指针的（eg char **pp1 = 0x1111 ）的值，有2种方式</p>
+<p>//函数调用时，形参传给实参，用实参取地址，传给形参，在被调用函数里面用*p，来改变实参，把运算结果传出来。</p>
+<p>//指针作为函数参数的精髓。</p>
+<h3>铁律3：理解指针必须和内存四区概念相结合</h3>
+<p>1）	主调函数 被调函数</p>
+<p>a)	主调函数可把堆区、栈区、全局数据内存地址传给被调用函数</p>
+<p>b)	被调用函数只能返回堆区、全局数据</p>
+<p>2）	内存分配方式</p>
+<p>a)	指针做函数参数，是有输入和输出特性的。</p>
+<h3>铁律4：应用指针必须和函数调用相结合（指针做函数参数）</h3>
+<p><img src="http://94.191.72.22/blog/image/20170102/zhizhen.png" alt="">
+<img src="http://94.191.72.22/blog/image/20170102/zhizhen2.png" alt=""></p>
+<p>指针做函数参数，问题的实质不是指针，而是看内存块，内存块是1维、2维。</p>
+<p>1）	如果基础类int变量，不需要用指针；</p>
+<p>2）	若内存块是1维、2维。</p>
+<h3>铁律5：一级指针典型用法（指针做函数参数）</h3>
+<p>一级指针做输入</p>
+<p>int showbuf(char *p)</p>
+<p>int showArray(int *array, int iNum)</p>
+<p>一级指针做输出</p>
+<p>int geLen(char *pFileName, int *pfileLen);</p>
+<p>理解</p>
+<p>主调函数还是被调用函数分配内存</p>
+<p>被调用函数是在heap/stack上分配内存</p>
+<h3>铁律6：二级指针典型用法（指针做函数参数）</h3>
+<p>二级指针做输入</p>
+<p>int main(int arc ,char *arg[]); 字符串数组</p>
+<p>int shouMatrix(int [3][4], int iLine);</p>
+<p>二级指针做输出</p>
+<p>int Demo64_GetTeacher(Teacher **ppTeacher);</p>
+<p>int Demo65_GetTeacher_Free(Teacher **ppTeacher);</p>
+<p>int getData(char **data, int *dataLen);</p>
+<p>Int getData_Free(void *data);</p>
+<p>Int getData_Free2(void **data); //避免野指针</p>
+<p>理解</p>
+<p>主调函数还是被调用函数分配内存</p>
+<p>被调用函数是在heap/stack上分配内存</p>
+<h3>铁律7： 三级指针输出典型用法</h3>
+<p>三级指针做输出</p>
+<p>int getFileAllLine(char ***content, int *pLine);</p>
+<p>int getFileAllLine_Free(char ***content, int *pLine);</p>
+<p>理解</p>
+<p>主调函数还是被调用函数分配内存</p>
+<p>被调用函数是在heap/stack上分配内存</p>
+<h3>铁律8：杂项，指针用法几点扩充</h3>
+<p>1）野指针 2种free形式</p>
+<p>int getData(char **data, int *dataLen);</p>
+<p>int getData_Free(void *data);</p>
+<p>int getData_Free2(void **data);</p>
+<p>2）2次调用</p>
+<p>主调函数第一次调用被调用函数求长度；根据长度，分配内存，调用被调用函数。</p>
+<p>3）返回值char */int/char **</p>
+<p>4）C程序书写结构</p>
+<p>商业软件，每一个出错的地方都要有日志，日志级别</p>
+<h3>铁律9：一般应用禁用malloc/new</h3>
+
       
     </div>
     
@@ -912,10 +1218,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/02/20170102/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -962,11 +1264,30 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p><strong>strcpy</strong>： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：</p>
+        <p><strong>strcpy</strong>： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：</p>
 <pre><code>char *a = &quot;0123456789&quot;, *b = &quot;abcdefghijk&quot;;
 char c[5];
-</code></pre><p>输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是经过strcpy后a的剩余字符也拷贝过去了，如果c后面是系统程序空间，那就要出问题了。
-          
+</code></pre>
+<p>输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是经过strcpy后a的剩余字符也拷贝过去了，如果c后面是系统程序空间，那就要出问题了。&lt;!--more--&gt;</p>
+<p><strong>strncpy</strong>：strcpy的改进版本，多了一个拷贝长度的参数。需要注意的是长度参数应该为目的空间的大小，并且这个函数不会自己附加字符串结束符'\0'，要自己加。看下面的例子：</p>
+<pre><code>strncpy(c,b,strlen(b))=abcdefghijkw //拷贝长度不对，还是越界
+strncpy(c,a,sizeof(c))=01234fghijkw //拷贝长度正确，但是因为拷贝长度内不包括'\0'，所以输出的时候还是会把原本的空间内容输出，知道遇到一个结束符'\0'。
+</code></pre>
+<p>所以正确的做法应该是： strncpy(c, a, sizeof(c)-1); c[5] = '\0';</p>
+<p><strong>memcpy</strong>： 最后说一下这个函数，这个函数是个很强大的工具，因为它可以简单的根据字节数拷贝内存空间内容，所以经常被用于结构体的拷贝。需要注意两点：1、memcpy拷贝的时候源空间的长度和目标空间的长度都需要程序员自己考虑，如果按照源空间的长度拷贝，要注意是否会写溢出，如果按照目标空间的长度拷贝，则要考虑是否造成读溢出（把不该拷贝的内容也拷贝过去了），而读溢出在某些系统环境下（比如AIX），可能会造成coredump（当读到不该读的地址）；2、源空间和目标空间不能重叠。如下例：</p>
+<pre><code>char src1[] = &quot;src1&quot;, src2[]=&quot;source2, this is a long src&quot;;
+char dest[] = &quot;destination&quot;;
+</code></pre>
+<p>输出：
+memcpy(dest, src1, strlen(dest)） = src1 //读越界</p>
+<p>memcpy(dest, src2, strlen(src2)） = source2, this is a long srcis is a long src //写越界</p>
+<p>memcpy(dest, dest+2, strlen(dest2) = stination // 重叠，结果是混乱</p>
+<pre><code>char p1[]=&quot;123456789&quot;；
+char p2[]=&quot;******&quot;;
+memcpy(p1,p2,6);
+printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
+</code></pre>
+
       
     </div>
     
@@ -983,10 +1304,6 @@ char c[5];
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/01/20170101/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
