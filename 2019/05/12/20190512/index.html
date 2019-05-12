@@ -15,28 +15,25 @@
 
 
 
-<meta name="description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
-
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
-
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+<meta name="description" content="1. 广播的接收权限设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
+首先发送方的应用在清单文件里自定义一个权限：
+12&amp;lt;permission android:name=&quot;cn.qiracle.RECEIVER&quot;    android:protectionLevel=&quot;signature&quot; /&amp;gt;
+这里 protectio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python学习（二）——列表">
-<meta property="og:url" content="http://qiracle.github.io/2016/12/28/20161228/index.html">
+<meta property="og:title" content="Android Boardcast 权限的使用">
+<meta property="og:url" content="http://qiracle.github.io/2019/05/12/20190512/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
-
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
-
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.293Z">
+<meta property="og:description" content="1. 广播的接收权限设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
+首先发送方的应用在清单文件里自定义一个权限：
+12&amp;lt;permission android:name=&quot;cn.qiracle.RECEIVER&quot;    android:protectionLevel=&quot;signature&quot; /&amp;gt;
+这里 protectio">
+<meta property="og:updated_time" content="2019-05-12T04:25:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python学习（二）——列表">
-<meta name="twitter:description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
-
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
-
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+<meta name="twitter:title" content="Android Boardcast 权限的使用">
+<meta name="twitter:description" content="1. 广播的接收权限设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
+首先发送方的应用在清单文件里自定义一个权限：
+12&amp;lt;permission android:name=&quot;cn.qiracle.RECEIVER&quot;    android:protectionLevel=&quot;signature&quot; /&amp;gt;
+这里 protectio">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -68,7 +65,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>python学习（二）——列表 | Qiracle&#39;s Blog</title>
+<title>Android Boardcast 权限的使用 | Qiracle&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -284,11 +281,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-20161228" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190512" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/28/20161228/" class="article-date">
-      <time datetime="2016-12-27T16:00:00.000Z" itemprop="datePublished">2016-12-28</time>
+      <a href="/2019/05/12/20190512/" class="article-date">
+      <time datetime="2019-05-11T16:00:00.000Z" itemprop="datePublished">2019-05-12</time>
 </a>
 
 
@@ -303,7 +300,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      python学习（二）——列表
+      Android Boardcast 权限的使用
     </h1>
   
 
@@ -318,7 +315,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -328,51 +325,24 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="列表的创建"><a href="#列表的创建" class="headerlink" title="列表的创建"></a>列表的创建</h3><p>使用 [ ] 把数据包含起来，便可以创建一个列表了。</p>
-<ol>
-<li><p>[ ] 可以不包含任何数据，则表示创建一个空列表<br>>&gt;&gt; name = []</p>
-</li>
-<li><p>[  ] 也可以包含多种数据类型的数据<br>>&gt;&gt; name = [“damao”, 30, “ermao”]</p>
-<a id="more"></a>
-</li>
-</ol>
-<h3 id="列表的打印"><a href="#列表的打印" class="headerlink" title="列表的打印"></a>列表的打印</h3><ol>
-<li><p>使用内置函数print() 便可打印整个列表里的数据”<br>>&gt;&gt; print(name)<br>[“damao”, 30, “ermao”]</p>
-</li>
-<li><p>当然也可以打印列表的某个下标的数据：<br>>&gt;&gt; print(name[0])<br>damao</p>
-</li>
-<li><p>也可以分片打印列表的某段下标的数据<br>>&gt;&gt; print(name[0:2])<br>[‘damao’, 30] #注意，没有打印name[2]的数据:)</p>
-</li>
-<li><p>如果想要分别打印列表里的每个数据，只需要一个for就可以搞定：<br>>&gt;&gt; for each in name:<br>print(each)<br>damao<br>30<br>ermao</p>
-</li>
-<li><p>当然也可以直接打印出列表内数据的个数：<br>>&gt;&gt; print(len(name))<br>3</p>
-</li>
-</ol>
-<h3 id="列表的扩展"><a href="#列表的扩展" class="headerlink" title="列表的扩展"></a>列表的扩展</h3><ol>
-<li><p>我们可以在列表末尾追加一个任意数据类型数据：<br>>&gt;&gt; name.append([“daoluan”, 666])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, [‘daoluan’, 666]]</p>
-</li>
-<li><p>也可以在列表末尾追加一个列表里的所有数据：<br>>&gt;&gt; name.extend([“sanmao”, 10, “simao”])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, [‘daoluan’, 666], ‘sanmao’, 10, ‘simao’]<br>#注意，append和entend这两个方法看起来有些类似，但实际上是不同的。append只接受一个参数，但是这个参数可以是任意数据类型，比如列表和元组等，而且只是将这个数据追加到原列表后面独立存在。<br>extend也是只接受一个参数，不同的是这个参数必须是一个列表，而且会把这个列表的每个元素拆分出来，依次追加到原列表后面。</p>
-</li>
-<li><p>当然也可以在指定位置增加一个任意数据类型数据(append的既视感)：<br>/# 第一个参数为指定的列表下标，第二个参数为增加的数据<br>>&gt;&gt; name.insert(3, 20)<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], ‘sanmao’, 10, ‘simao’]</p>
-</li>
-</ol>
-<h3 id="列表的删除："><a href="#列表的删除：" class="headerlink" title="列表的删除："></a>列表的删除：</h3><ol>
-<li><p>删除列表末尾的一个数据：<br>>&gt;&gt; name.pop()<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], ‘sanmao’, 10]</p>
-</li>
-<li><p>也可以删除列表指定的某一个数据：<br>>&gt;&gt; name.remove(“sanmao”)<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], 10]</p>
-</li>
-<li><p>或者删除列表的某个下标的数据：<br>>&gt;&gt; del(name[4])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, 10]<br>#注意，de()函数支持列表分片删除，同样的，也支持删除整个列表。</p>
-</li>
-</ol>
-<h3 id="列表的合并："><a href="#列表的合并：" class="headerlink" title="列表的合并："></a>列表的合并：</h3><p>只需要像I + I + I = III一样，就可以合并多个列表：<br>>&gt;&gt; mao = name + [20, “ermao”] + [30, “damao”]<br>>&gt;&gt; print(mao)<br>[‘damao’, 30, ‘ermao’, 20, 10, 20, ‘ermao’, 30, ‘damao’]</p>
-<h3 id="列表的排序："><a href="#列表的排序：" class="headerlink" title="列表的排序："></a>列表的排序：</h3><p>首先，列表里的每个元素类型相同才可以进行排序，对此我们可以选择手写排序算法，也可以选择Pythoy提供的更简便且强大的的方法：sort()和sorted()</p>
-<ol>
-<li><p>原地排序：<br>>&gt;&gt; fruit = [“banana”, “pear”, “orange”, “apple”]<br>>&gt;&gt; fruit.sort()<br>>&gt;&gt; print(fruit)<br>[‘apple’, ‘banana’, ‘orange’, ‘pear’]<br># sort() 方法可以在原列表的基础上进行排序，同时改变原列表的顺序。</p>
-</li>
-<li><p>复制排序：<br>>&gt;&gt; nums = [23, 12, -34, 0, 101, 2]<br>>&gt;&gt;newNums = sorted(nums)<br>>&gt;&gt; print(newNums)<br>[-34, 0, 2, 12, 23, 101]<br>>&gt;&gt; print(nums)<br>[23, 12, -34, 0, 101, 2]<br># sorted() 函数通过复制排序可以对几乎任何数据结构排序，同时返回一个新的排序后的数据结构，而且不会改变原数据结构的序列。<br>#注意，不管使用sort()还是使用sorted()，默认都是升序排序。如果想按照降序排序，只要传入 reverse = True 参数就可以啦，比如 fruit.sort(reverse = True) 或者 newNums = sorted(nums, reverse = True)</p>
-</li>
-</ol>
-
+        <h3 id="1-广播的接收权限"><a href="#1-广播的接收权限" class="headerlink" title="1. 广播的接收权限"></a>1. 广播的接收权限</h3><p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
+<p>首先发送方的应用在清单文件里自定义一个权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。<a id="more"></a></p>
+<p>然后发送广播时调用如下 sendBoradcast 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static final String PERMISSION_RECEIVER= &quot;cn.qiracle.RECEIVER&quot;;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">sendBroadcast(intent,PERMISSION_RECEIVER);</span><br></pre></td></tr></table></figure>
+<p>此时接收方app若是想接收到这个广播，需要在接收方应用的清单文件里添加如下权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-广播的发送权限"><a href="#2-广播的发送权限" class="headerlink" title="2.广播的发送权限"></a>2.广播的发送权限</h3><p>设置广播的发送权限<strong>目的</strong>在于避免自己的应用里的 receiver 被其他恶意应用发送的带有同样 action 的广播所骚扰。简单来说就是定义<strong>谁能给我发送广播</strong>。用法如下：</p>
+<p>首先在接收方应用的清单文件里自定义一个权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后注册广播时采用如下regiserReceiver方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PERMISSION_SEND = <span class="string">"cn.qiracle.SEND"</span>;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">registerReceiver(<span class="keyword">new</span> MyReceiver(),intentFilter,PERMISSION_SEND,<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p>上面是动态注册，静态注册广播方式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".receiver.MyReceiver"</span></span><br><span class="line">    <span class="attr">android:permission</span>=<span class="string">"cn.qiracle.SEND"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.MYRECEIVER"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>推荐使用动态注册</strong>的方式，因为笔者尝试发现自定义权限时，静态注册的方式在 <strong>Android8.0 </strong>及以上会不起作用。</p>
+<p>此时广播的发送方 app 要想给这个应用发送广播，必须在清单文件里添加如下权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -383,16 +353,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/12/29/20161229/">
-                    python学习（三）——字典
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/12/27/20161227/">
-                    python学习（一）——常用字符串函数
+                <a href="/2019/02/17/20190217/">
+                    读《深入理解Java虚拟机》总结&lt;二.java内存模型与线程&gt;
                 </a>
             </div>
         
@@ -404,7 +368,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的创建"><span class="toc-number">1.</span> <span class="toc-text">列表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的打印"><span class="toc-number">2.</span> <span class="toc-text">列表的打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的扩展"><span class="toc-number">3.</span> <span class="toc-text">列表的扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的删除："><span class="toc-number">4.</span> <span class="toc-text">列表的删除：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的合并："><span class="toc-number">5.</span> <span class="toc-text">列表的合并：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的排序："><span class="toc-number">6.</span> <span class="toc-text">列表的排序：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-广播的接收权限"><span class="toc-number">1.</span> <span class="toc-text">1. 广播的接收权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-广播的发送权限"><span class="toc-number">2.</span> <span class="toc-text">2.广播的发送权限</span></a></li></ol>
         
     </div>
     <style>
@@ -440,7 +404,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"python学习（二）——列表　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Android Boardcast 权限的使用　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -474,15 +438,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/12/29/20161229/" title="上一篇: python学习（三）——字典">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/12/27/20161227/" title="下一篇: python学习（一）——常用字符串函数">
+            <a href="/2019/02/17/20190217/" title="下一篇: 读《深入理解Java虚拟机》总结&lt;二.java内存模型与线程&gt;">
                 <i class="fa fa-angle-right"></i>
             </a>
         

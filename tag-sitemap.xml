@@ -107,13 +107,6 @@
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/Android/</loc>
-        <lastmod>2018-11-25T08:55:47.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://qiracle.github.io/tags/hadoop/</loc>
         <lastmod>2019-01-20T11:55:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -123,6 +116,13 @@
     <url>
         <loc>http://qiracle.github.io/tags/java/</loc>
         <lastmod>2019-02-17T05:53:42.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/Android/</loc>
+        <lastmod>2019-05-12T04:25:19.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

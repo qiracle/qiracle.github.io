@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2019/05/12/20190512/</loc>
+    <lastmod>2019-05-12T04:25:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android Boardcast 权限的使用</title>
+        <pubTime>2019-05-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2019/02/17/20190217/</loc>
     <lastmod>2019-02-17T05:53:42.000Z</lastmod>
     <data>
@@ -124,14 +144,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/08/09/20170809/</loc>
+    <loc>http://qiracle.github.io/2016/12/12/markdown/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
         <display>
-        <title>记一个实用的git命令---谁动了我的代码</title>
-        <pubTime>2017-08-08T16:00:00.000Z</pubTime>
+        <title>markdown语法小结</title>
+        <pubTime>2016-12-11T16:00:00.000Z</pubTime>
         
-        <tag>git</tag>
+        <tag>markdown</tag>
          
          
            
@@ -208,6 +228,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2017/08/09/20170809/</loc>
+    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+    <data>
+        <display>
+        <title>记一个实用的git命令---谁动了我的代码</title>
+        <pubTime>2017-08-08T16:00:00.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2018/03/28/20180328/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
@@ -268,6 +308,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2016/12/09/github.io/</loc>
+    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+    <data>
+        <display>
+        <title>初识github.io</title>
+        <pubTime>2016-12-08T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="教程" url="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2018/10/14/20181014/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
@@ -308,26 +368,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/12/markdown/</loc>
-    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-    <data>
-        <display>
-        <title>markdown语法小结</title>
-        <pubTime>2016-12-11T16:00:00.000Z</pubTime>
-        
-        <tag>markdown</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2016/12/14/float_clear/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
@@ -348,26 +388,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/09/github.io/</loc>
-    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-    <data>
-        <display>
-        <title>初识github.io</title>
-        <pubTime>2016-12-08T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="教程" url="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2016/12/11/java.set/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
@@ -376,26 +396,6 @@
         <pubTime>2016-12-10T16:00:00.000Z</pubTime>
         
         <tag>java</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2017/01/07/20170107/</loc>
-    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-    <data>
-        <display>
-        <title>程序的内存四区模型</title>
-        <pubTime>2017-01-06T16:00:00.000Z</pubTime>
-        
-        <tag>C/C++</tag>
          
          
            
@@ -548,19 +548,19 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
+    <loc>http://qiracle.github.io/2017/05/03/20170503/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
         <display>
-        <title>回忆2016</title>
-        <pubTime>2016-12-22T16:00:00.000Z</pubTime>
+        <title>Android系统工程模式启动过程详解</title>
+        <pubTime>2017-05-02T16:00:00.000Z</pubTime>
         
-        <tag>随笔</tag>
+        <tag>Android</tag>
          
          
            
              
-              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -688,46 +688,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/05/03/20170503/</loc>
-    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-    <data>
-        <display>
-        <title>Android系统工程模式启动过程详解</title>
-        <pubTime>2017-05-02T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/31/20161231/</loc>
-    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-    <data>
-        <display>
-        <title>技术不是全部（转）</title>
-        <pubTime>2016-12-30T16:00:00.000Z</pubTime>
-        
-        <tag>转载</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2016/12/29/20161229/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
@@ -848,6 +808,46 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2016/12/31/20161231/</loc>
+    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+    <data>
+        <display>
+        <title>技术不是全部（转）</title>
+        <pubTime>2016-12-30T16:00:00.000Z</pubTime>
+        
+        <tag>转载</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
+    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+    <data>
+        <display>
+        <title>回忆2016</title>
+        <pubTime>2016-12-22T16:00:00.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2017/01/05/20170105/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
@@ -876,6 +876,26 @@
         <pubTime>2017-01-05T16:00:00.000Z</pubTime>
         
         <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2017/01/07/20170107/</loc>
+    <lastmod>2018-11-25T08:40:22.294Z</lastmod>
+    <data>
+        <display>
+        <title>程序的内存四区模型</title>
+        <pubTime>2017-01-06T16:00:00.000Z</pubTime>
+        
+        <tag>C/C++</tag>
          
          
            
