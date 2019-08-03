@@ -15,16 +15,34 @@
 
 
 
-<meta name="description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
+<meta name="description" content="Handler
+Handler 的回调方法是在 Looper.loop()所调用的线程进行的；
+
+Handler 的创建需要先调用 Looper.prepare() ，然后再手动调用 loop()方法开启循环；
+
+App 启动时会在ActivityThread.main()方法中创建主线程的 Looper ,并开启循环，所以主线程使用 Handler 不用调用第2点的逻辑；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javaSE基础-集合">
-<meta property="og:url" content="http://qiracle.github.io/2016/12/11/java.set/index.html">
+<meta property="og:title" content="Android 知识点总结（一）">
+<meta property="og:url" content="http://qiracle.github.io/2019/08/03/20190803/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.295Z">
+<meta property="og:description" content="Handler
+Handler 的回调方法是在 Looper.loop()所调用的线程进行的；
+
+Handler 的创建需要先调用 Looper.prepare() ，然后再手动调用 loop()方法开启循环；
+
+App 启动时会在ActivityThread.main()方法中创建主线程的 Looper ,并开启循环，所以主线程使用 Handler 不用调用第2点的逻辑；">
+<meta property="og:image" content="http://94.191.72.22/blog/image/20190803/2019080301.png">
+<meta property="og:image" content="http://94.191.72.22/blog/image/20190803/2019080302.png">
+<meta property="og:updated_time" content="2019-08-03T07:19:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javaSE基础-集合">
-<meta name="twitter:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
+<meta name="twitter:title" content="Android 知识点总结（一）">
+<meta name="twitter:description" content="Handler
+Handler 的回调方法是在 Looper.loop()所调用的线程进行的；
+
+Handler 的创建需要先调用 Looper.prepare() ，然后再手动调用 loop()方法开启循环；
+
+App 启动时会在ActivityThread.main()方法中创建主线程的 Looper ,并开启循环，所以主线程使用 Handler 不用调用第2点的逻辑；">
+<meta name="twitter:image" content="http://94.191.72.22/blog/image/20190803/2019080301.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +74,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>javaSE基础-集合 | Qiracle&#39;s Blog</title>
+<title>Android 知识点总结（一） | Qiracle&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -272,11 +290,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-java.set" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190803" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/11/java.set/" class="article-date">
-      <time datetime="2016-12-10T16:00:00.000Z" itemprop="datePublished">2016-12-11</time>
+      <a href="/2019/08/03/20190803/" class="article-date">
+      <time datetime="2019-08-02T16:00:00.000Z" itemprop="datePublished">2019-08-03</time>
 </a>
 
 
@@ -291,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      javaSE基础-集合
+      Android 知识点总结（一）
     </h1>
   
 
@@ -306,7 +324,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -316,125 +334,49 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>　　当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下<br>　　<a id="more"></a></p>
-<h3 id="Collection-单列集合"><a href="#Collection-单列集合" class="headerlink" title="Collection(单列集合):"></a>Collection(单列集合):</h3><h4 id="List-有序-可重复"><a href="#List-有序-可重复" class="headerlink" title="List(有序,可重复):"></a>List(有序,可重复):</h4><h5 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h5><pre><code>底层数据结构是数组,查询快,增删慢
-线程不安全,效率高
-</code></pre><h5 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h5><pre><code>底层数据结构是数组,查询快,增删慢
-线程安全,效率低
-</code></pre><h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><pre><code>底层数据结构是链表,查询慢,增删快
-线程不安全,效率高
-</code></pre><h4 id="Set-无序-唯一"><a href="#Set-无序-唯一" class="headerlink" title="Set(无序,唯一):"></a>Set(无序,唯一):</h4><h5 id="HashSet"><a href="#HashSet" class="headerlink" title="　HashSet"></a>　HashSet</h5><pre><code>底层数据结构是哈希表。
-哈希表依赖两个方法：hashCode()和equals()
-执行顺序：
-    首先判断hashCode()值是否相同
-        是：继续执行equals(),看其返回值
-            是true:说明元素重复，不添加
-            是false:就直接添加到集合
-        否：就直接添加到集合
-最终：
-    自动生成hashCode()和equals()即可
-</code></pre><h5 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="　LinkedHashSet"></a>　LinkedHashSet</h5><pre><code>底层数据结构由链表和哈希表组成。
-由链表保证元素有序。
-由哈希表保证元素唯一。
-</code></pre><h5 id="TreeSet"><a href="#TreeSet" class="headerlink" title="　TreeSet"></a>　TreeSet</h5><pre><code>底层数据结构是红黑树。(是一种自平衡的二叉树)
-如何保证元素唯一性呢?
-    根据比较的返回值是否是0来决定
-如何保证元素的排序呢?
-    两种方式
-        自然排序(元素具备比较性)
-            让元素所属的类实现Comparable接口
-        比较器排序(集合具备比较性)
-            让集合接收一个Comparator的实现类对象
-</code></pre><h3 id="Map-双列集合"><a href="#Map-双列集合" class="headerlink" title="Map(双列集合):"></a>Map(双列集合):</h3><pre><code>A:Map集合的数据结构仅仅针对键有效，与值无关。
-B:存储的是键值对形式的元素，键唯一，值可重复。
-</code></pre><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><pre><code>底层数据结构是哈希表。线程不安全，效率高
-    哈希表依赖两个方法：hashCode()和equals()
-    执行顺序：
-        首先判断hashCode()值是否相同
-            是：继续执行equals(),看其返回值
-                是true:说明元素重复，不添加
-                是false:就直接添加到集合
-            否：就直接添加到集合
-    最终：
-        自动生成hashCode()和equals()即可
-</code></pre><h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><pre><code>底层数据结构由链表和哈希表组成。
-    由链表保证元素有序。
-    由哈希表保证元素唯一。
-</code></pre><h5 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h5><pre><code>底层数据结构是哈希表。线程安全，效率低
-    哈希表依赖两个方法：hashCode()和equals()
-    执行顺序：
-        首先判断hashCode()值是否相同
-            是：继续执行equals(),看其返回值
-                是true:说明元素重复，不添加
-                是false:就直接添加到集合
-            否：就直接添加到集合
-    最终：
-        自动生成hashCode()和equals()即可
-</code></pre><h5 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h5><pre><code>底层数据结构是红黑树。(是一种自平衡的二叉树)
-    如何保证元素唯一性呢?
-        根据比较的返回值是否是0来决定
-    如何保证元素的排序呢?
-        两种方式
-            自然排序(元素具备比较性)
-                让元素所属的类实现Comparable接口
-            比较器排序(集合具备比较性)
-                让集合接收一个Comparator的实现类对象
-</code></pre><p>2:到底使用那种集合<br>    看需求。</p>
-<pre><code>是否是键值对象形式:
-    是：Map
-        键是否需要排序:
-            是：TreeMap
-            否：HashMap
-        不知道，就使用HashMap。
-
-    否：Collection
-        元素是否唯一:
-            是：Set
-                元素是否需要排序:
-                    是：TreeSet
-                    否：HashSet
-                不知道，就使用HashSet
-
-            否：List
-                要安全吗:
-                    是：Vector(其实我们也不用它，有其他方法可以替代)
-                    否：ArrayList或者LinkedList
-                        增删多：LinkedList
-                        查询多：ArrayList
-                    不知道，就使用ArrayList
-        不知道，就使用ArrayList
-</code></pre><p>3:集合的常见方法及遍历方式</p>
-<h5 id="Collection"><a href="#Collection" class="headerlink" title="Collection:"></a>Collection:</h5><pre><code>常见方法：
-    add()
-    remove()
-    contains()
-    iterator()
-    size()
-
-    遍历：
-        增强for
-        迭代器
-
-    |--List
-        get()
-
-        遍历：
-            普通for
-    |--Set
-</code></pre><h4 id="Map"><a href="#Map" class="headerlink" title="Map:"></a>Map:</h4><pre><code>put()
-remove()
-containskey(),containsValue()
-keySet()
-get()
-value()
-entrySet()
-size()
-
-遍历：
-    根据键找值
-    根据键值对对象分别找键和值
-</code></pre><p>4:ArrayList,LinkedList,HashSet,HashMap(掌握)<br>    存储字符串和自定义对象数据并遍历</p>
-<p>5:集合的嵌套遍历(理解)</p>
+        <h3 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h3><ol>
+<li><p>Handler 的回调方法是在 Looper.loop()所调用的线程进行的；</p>
+</li>
+<li><p>Handler 的创建需要先调用 Looper.prepare() ，然后再手动调用 loop()方法开启循环；</p>
+</li>
+<li><p>App 启动时会在ActivityThread.main()方法中创建主线程的 Looper ,并开启循环，所以主线程使用 Handler 不用调用第2点的逻辑；<a id="more"></a></p>
+</li>
+<li><p>延时消息并不会阻塞消息队列；</p>
+</li>
+<li><p>异步消息不会马上执行，插入队列的方式跟同步消息一样，唯一的区别是当有消息屏障时，异步消息可以继续执行，同步消息则不行；</p>
+</li>
+<li><p>Callback.handleMessage() 的优先级比 Handler.handleMessage()要高*</p>
+</li>
+<li><p>Handler.post(Runnable)传递的 Runnale 对象并不会在新的线程执行；</p>
+</li>
+<li><p>Message 的创建推荐使用 Message.obtain() 来获取，内部采用缓存消息池实现；</p>
+</li>
+<li><p>不要在 handleMessage()中对消息进行异步处理；</p>
+</li>
+<li><p>可以通过removeCallbacksAndMessages(null)或者静态类加弱引用的方式防止内存泄漏；</p>
+</li>
+<li><p>Looper.loop()不会造成应用卡死，里面使用了 Linux 的 epoll 机制。</p>
+</li>
+</ol>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>源码中的注释是这么来解释Context的：Context提供了关于应用环境全局信息的接口。<strong>它是一个抽象类，它的执行被Android系统所提供</strong>。它允许获取以应用为特征的资源和类型，是一个统领一些资源（应用程序环境变量等）的上下文。就是说，它描述一个应用程序环境的信息（即上下文）；是一个抽象类，Android提供了该抽象类的具体实现类；通过它我们可以获取应用程序的资源和类（包括应用级别操作，如启动Activity，发广播，接受Intent等）。既然上面Context是一个抽象类，那么肯定有他的实现类咯，我们在Context的源码中通过IDE可以查看到他的子类最终可以得到如下关系图：</p>
+<p><img src="http://94.191.72.22/blog/image/20190803/2019080301.png" alt=""></p>
+<p>Context类本身是一个纯abstract类，它有两个具体的实现子类：ContextImpl和ContextWrapper。其中ContextWrapper类，如其名所言，这只是一个包装而已，ContextWrapper构造函数中必须包含一个真正的Context引用，同时ContextWrapper中提供了attachBaseContext（）用于给ContextWrapper对象中指定真正的Context对象，调用ContextWrapper的方法都会被转向其所包含的真正的Context对象。ContextThemeWrapper类，如其名所言，其内部包含了与主题（Theme）相关的接口，这里所说的主题就是指在AndroidManifest.xml中通过android：theme为Application元素或者Activity元素指定的主题。当然，只有Activity才需要主题，Service是不需要主题的，因为Service是没有界面的后台场景，所以Service直接继承于ContextWrapper，Application同理。而ContextImpl类则真正实现了Context中的所以函数，应用程序中所调用的各种Context类的方法，其实现均来自于该类。一句话总结：<strong>Context的两个子类分工明确，其中ContextImpl是Context的具体实现类，ContextWrapper是Context的包装类。Activity，Application，Service虽都继承自ContextWrapper（Activity继承自ContextWrapper的子类ContextThemeWrapper），但它们初始化的过程中都会创建ContextImpl对象，由ContextImpl实现Context中的方法。</strong></p>
+<p><strong>一个应用程序有几个Context？</strong></p>
+<p>实这个问题本身并没有什么意义，关键还是在于对Context的理解，从上面的关系图我们已经可以得出答案了，在应用程序中Context的具体实现子类就是：Activity，Service，Application。<strong>那么Context数量=Activity数量+Service数量+1</strong>。当然如果你足够细心，可能会有疑问：我们常说四大组件，这里怎么只有Activity，Service持有Context，那Broadcast Receiver，Content Provider呢？Broadcast Receiver，Content Provider并不是Context的子类，他们所持有的Context都是其他地方传过去的，所以并不计入Context总数。上面的关系图也从另外一个侧面告诉我们Context类在整个Android系统中的地位是多么的崇高，因为很显然Activity，Service，Application都是其子类，其地位和作用不言而喻。</p>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p><strong>Activity</strong></p>
+<p>Activity并不负责视图控制，它只是控制生命周期和处理事件。真正控制视图的是Window。一个Activity包含了一个Window，Window才是真正代表一个窗口。<strong>Activity就像一个控制器，统筹视图的添加与显示，以及通过其他回调方法，来与Window、以及View进行交互。</strong></p>
+<p><strong>Window</strong></p>
+<p>Window是视图的承载器，内部持有一个 DecorView，而这个DecorView才是 view 的根布局。<strong>Window是一个抽象类，实际在Activity中持有的是其子类PhoneWindow。PhoneWindow中有个内部类DecorView，通过创建DecorView来加载Activity中设置的布局R.layout.activity_main</strong>。Window 通过WindowManager将DecorView加载其中，并将DecorView交给ViewRoot，进行视图绘制以及其他交互。</p>
+<p><strong>DecorView</strong></p>
+<p>DecorView是FrameLayout的子类，它可以被认为是Android视图树的根节点视图。DecorView作为顶级View，一般情况下它内部包含一个竖直方向的LinearLayout，<strong>在这个LinearLayout里面有上下三个部分，上面是个ViewStub，延迟加载的视图（应该是设置ActionBar，根据Theme设置），中间的是标题栏(根据Theme设置，有的布局没有)，下面的是内容栏。</strong></p>
+<p><strong>ViewRoot</strong></p>
+<p>ViewRoot可能比较陌生，但是其作用非常重大。所有View的绘制以及事件分发等交互都是通过它来执行或传递的。</p>
+<p><strong>ViewRoot对应ViewRootImpl类，它是连接WindowManagerService和DecorView的纽带，View的三大流程（测量（measure），布局（layout），绘制（draw））均通过ViewRoot来完成。</strong></p>
+<p>ViewRoot并不属于View树的一份子。从源码实现上来看，它既非View的子类，也非View的父类，但是，它实现了ViewParent接口，这让它可以作为View的名义上的父视图。RootView继承了Handler类，可以接收事件并分发，Android的所有触屏事件、按键事件、界面刷新等事件都是通过ViewRoot进行分发的。</p>
+<p><img src="http://94.191.72.22/blog/image/20190803/2019080302.png" alt=""></p>
+<p>要知道，当用户点击屏幕产生一个触摸行为，这个触摸行为则是通过底层硬件来传递捕获，然后交给ViewRootImpl，接着将事件传递给DecorView，而DecorView再交给PhoneWindow，PhoneWindow再交给Activity，然后接下来就是我们常见的View事件分发了。</p>
+<p><strong>硬件 -&gt; ViewRootImpl -&gt; DecorView -&gt; PhoneWindow -&gt; Activity</strong></p>
+<p><strong>通过以上了解可以知道，Activity就像个控制器，不负责视图部分。Window像个承载器，装着内部视图。DecorView就是个顶层视图，是所有View的最外层布局。ViewRoot像个连接器，负责沟通，通过硬件的感知来通知视图，进行用户之间的交互。</strong></p>
 
       
     </div>
@@ -446,16 +388,10 @@ size()
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/12/12/markdown/">
-                    markdown语法小结
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/12/10/mianshi/">
-                    迟来的面试总结
+                <a href="/2019/05/12/20190512/">
+                    Android Boardcast 权限的使用
                 </a>
             </div>
         
@@ -467,7 +403,7 @@ size()
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-单列集合"><span class="toc-number">1.</span> <span class="toc-text">Collection(单列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List-有序-可重复"><span class="toc-number">1.1.</span> <span class="toc-text">List(有序,可重复):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ArrayList"><span class="toc-number">1.1.1.</span> <span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Vector"><span class="toc-number">1.1.2.</span> <span class="toc-text">Vector</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedList"><span class="toc-number">1.1.3.</span> <span class="toc-text">LinkedList</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-无序-唯一"><span class="toc-number">1.2.</span> <span class="toc-text">Set(无序,唯一):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HashSet"><span class="toc-number">1.2.1.</span> <span class="toc-text">　HashSet</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedHashSet"><span class="toc-number">1.2.2.</span> <span class="toc-text">　LinkedHashSet</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeSet"><span class="toc-number">1.2.3.</span> <span class="toc-text">　TreeSet</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-双列集合"><span class="toc-number">2.</span> <span class="toc-text">Map(双列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap"><span class="toc-number">2.1.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedHashMap"><span class="toc-number">2.2.</span> <span class="toc-text">LinkedHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Hashtable"><span class="toc-number">2.2.1.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeMap"><span class="toc-number">2.2.2.</span> <span class="toc-text">TreeMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Collection"><span class="toc-number">2.2.3.</span> <span class="toc-text">Collection:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map"><span class="toc-number">2.3.</span> <span class="toc-text">Map:</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Handler"><span class="toc-number">1.</span> <span class="toc-text">Handler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Context"><span class="toc-number">2.</span> <span class="toc-text">Context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#视图"><span class="toc-number">3.</span> <span class="toc-text">视图</span></a></li></ol>
         
     </div>
     <style>
@@ -503,7 +439,7 @@ size()
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"javaSE基础-集合　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Android 知识点总结（一）　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -537,15 +473,13 @@ size()
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/12/12/markdown/" title="上一篇: markdown语法小结">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/12/10/mianshi/" title="下一篇: 迟来的面试总结">
+            <a href="/2019/05/12/20190512/" title="下一篇: Android Boardcast 权限的使用">
                 <i class="fa fa-angle-right"></i>
             </a>
         

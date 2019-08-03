@@ -86,14 +86,14 @@
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/markdown/</loc>
+        <loc>http://qiracle.github.io/tags/Linux/</loc>
         <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/Linux/</loc>
+        <loc>http://qiracle.github.io/tags/markdown/</loc>
         <lastmod>2018-11-25T08:40:22.295Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -122,7 +122,7 @@
 
     <url>
         <loc>http://qiracle.github.io/tags/Android/</loc>
-        <lastmod>2019-08-03T06:26:48.000Z</lastmod>
+        <lastmod>2019-08-03T07:19:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -278,6 +278,79 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20190803" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/08/03/20190803/" class="article-date">
+      <time datetime="2019-08-02T16:00:00.000Z" itemprop="datePublished">2019-08-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/03/20190803/">Android 知识点总结（一）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h3><ol>
+<li><p>Handler 的回调方法是在 Looper.loop()所调用的线程进行的；</p>
+</li>
+<li><p>Handler 的创建需要先调用 Looper.prepare() ，然后再手动调用 loop()方法开启循环；</p>
+</li>
+<li><p>App 启动时会在ActivityThread.main()方法中创建主线程的 Looper ,并开启循环，所以主线程使用 Handler 不用调用第2点的逻辑；
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/08/03/20190803/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20190512" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -887,74 +960,6 @@
       
         <p class="article-more-link">
           <a href="/2018/03/28/20180328/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20170810" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/08/10/20170810/" class="article-date">
-      <time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished">2017-08-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="Settings简介"><a href="#Settings简介" class="headerlink" title="Settings简介"></a>Settings简介</h3><p>　　Settings 是 Android 系统自带的一个很重要的应用，给用户提供了操作 Android 系统功能的界面。它里面包含了 Wireless &amp; network，device，personal 以及 system 等几大块的功能设置。在 Android 源码中，该应用位于 packages/apps/Settings 下。该应用的源码是相当复杂的，设计思想很是先进，很难完全讲清楚，笔者也是读了好几遍源码再综合了几篇博客才勉强懂了Settings其启动流程的大体思路。通过博客记录下来以加深理解和印象，同时分享给大家。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/08/10/20170810/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
