@@ -122,7 +122,14 @@
 
     <url>
         <loc>http://qiracle.github.io/tags/Android/</loc>
-        <lastmod>2019-08-03T07:19:32.000Z</lastmod>
+        <lastmod>2019-08-10T05:01:58.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/AIDL/</loc>
+        <lastmod>2019-08-10T05:01:58.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

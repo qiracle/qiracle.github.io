@@ -197,7 +197,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AIDL/">AIDL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
                     </div>
                 </section>
                 
@@ -278,6 +278,91 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20170426" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/26/20170426/" class="article-date">
+      <time datetime="2017-04-25T16:00:00.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
+<h3>git reset</h3>
+<p>首先，我们要弄清以下三条命令的区别：</p>
+<blockquote>
+<p><strong>git reset --hard</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>git reset --soft</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>git reset</strong></p>
+</blockquote>
+<p>&lt;!--more--&gt;工作区，暂存区，本地仓库，远程仓库的概念我在这里就不介绍了。这是git最为基础的概念，可自行百度。下面说说这三条 git reset 指令的区别：</p>
+<p><strong>git reset --hard：</strong> 重置工作区，暂存区，本地仓库的所有文件到某一节点。例如 git reset --hard HEAD^ 表示工作区，暂存区，本地仓库的所有文件全部回退到上一个节点，也就是说你从上一个节点到这个节点之间所做的修改全部被撤销了。当然如果要回到特定的一个节点可以用 git reset --hard commitId 。通过指定要回到的节点值来回到对应的节点。</p>
+<p>**git reset --soft：**只重置本地仓库的文件，工作区和暂存区的文件不变。</p>
+<p><strong>git reset</strong> 等同于 git reset --mixed，只重置本地仓库和暂存区文件，工作区文件不变。</p>
+<p>当我们提交完并push代码到远程仓库后，发现代码有问题，想重新提交，首先在gerrit上abandon掉自己刚才上传的代码，接着，用git reset HEAD^或者git reset --soft HEAD^回到上一个节点（git reset HEAD^后，使用git add .就相当于git reset --soft），不要用git reset --hard。因为这会把你本地工作区修改的全部撤销，这样你之前的修改就全没了。虽然也有办法再找回来，只要找到那次提交的commitId就可以了，下面会介绍。</p>
+<p>另外，我们还可以用git reset file 来使一个已经添加到暂存区的file文件重新返回到工作区。</p>
+<h3>git log</h3>
+<p>我们通过git log就可以查看到每次提交的 commitId 了，如果嫌 git log 显示的信息过多，可以使用 git log --pretty=oneline 让每次提交的关键信息在一行显示。但是如果使用了 git reset --hard，那么使用 git log 只能看到你重置点之前的提交 commitId，无法看到重置点之后的提交 commitId，要想找到重置点之后的 commitId 可以用git reflog。</p>
+<h3>git checkout</h3>
+<p>git checkout有两个作用，如果后面接的是文件名的话，如 git checkout file 可以将一个工作区的文件撤销其修改。如果后面接的是分支名的话，如 git checkout b表示的是切换到b分支。对于工作区新建立的文件，用 git clean -df 可将其移除工作区。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20170425" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -307,11 +392,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>步骤：</p>
-<p> 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
-<p> 二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
-<p> 三.编写Android.mk文件。下面为我写的例子：<br>
-          
+        <p>步骤：</p>
+<p>一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
+<p>二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
+<p>三.编写Android.mk文件。下面为我写的例子：
+&lt;!--more--&gt;</p>
+<blockquote>
+<p>LOCAL_PATH:= $(call my-dir) //设置当前模块的编译路径为当前文件夹路径。即当前Android.mk 所在的目录
+include $(CLEAR_VARS)	//清除变量
+LOCAL_MODULE_TAGS := optional //指该模块在所有版本下都编译(user,eng,debug等)
+LOCAL_CERTIFICATE := platform //使用平台签名，PRESIGNED 表示这个apk已经签过名了，不需要再签名
+LOCAL_ASSERT_DIR := packages/apps/Test/asserts //导入assets目录下的文件
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES :=android-support-v4 \ //导入jar包
+LOCAL_DEX_PREOPT :=false //是生成apk程序时只生成apk的包，不再生成odex
+LOCAL_SRC_FILES := <br>
+$(call all-java-files-under,src) \ //把src下的所有java文件包含进来</p>
+<p>src/com/android/internal/telephony/ITelephony.aidl //如果有aidl，还需单独将aidl文件加进来
+LOCAL_PACKAGE_NAME :=Test //应用名称
+LOCAL_MODULE_PATH := $(TARGET_OUT)/vendor/operator/app //应用生成路径
+include $(BUILD_PACKAGE)</p>
+</blockquote>
+
       
     </div>
     
@@ -328,10 +429,6 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/04/25/20170425/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -378,16 +475,35 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>Git鼓励大量使用分支：</p>
+        <p>Git鼓励大量使用分支：</p>
 <blockquote>
 <p>查看分支：git branch</p>
-<p>创建分支：git branch <name></p>
-<p>切换分支：git checkout <name></p>
-<p>创建+切换分支：git checkout -b <name></p>
-<p>合并某分支到当前分支：git merge <name></p>
-<p>删除分支：git branch -d <name></p>
 </blockquote>
-          
+<blockquote>
+<p>创建分支：git branch &lt;name&gt;</p>
+</blockquote>
+<blockquote>
+<p>切换分支：git checkout &lt;name&gt;</p>
+</blockquote>
+<blockquote>
+<p>创建+切换分支：git checkout -b &lt;name&gt;</p>
+</blockquote>
+<blockquote>
+<p>合并某分支到当前分支：git merge &lt;name&gt;</p>
+</blockquote>
+<blockquote>
+<p>删除分支：git branch -d &lt;name&gt;</p>
+</blockquote>
+<p>&lt;!--more--&gt;</p>
+<p><strong>详细过程：</strong>
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000</p>
+<p><strong>注意</strong>：
+git checkout --file是把file文件在工作区的修改全部撤销掉，分为两种情况：</p>
+<p>1.一种是file自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
+<p>2.一种是file已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。若工作区的file文件被删除，则可以用git checkout –file还原file文件。</p>
+<p>git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令</p>
+
       
     </div>
     
@@ -404,10 +520,6 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/03/16/20170316/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -454,8 +566,58 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>　　java中的回调简单来说就是A类调了B类里面的C方法，结果是B类调了A类里面的D方法。其中D就是回调方法，它存在于接口中，由A实现。回调分为同步回调和异步回调。他们之间的区别在于返回结果是否需要等待，若有延迟则为异步回调，否则为同步回调。下面为代码示例：
-          
+        <p>java中的回调简单来说就是A类调了B类里面的C方法，结果是B类调了A类里面的D方法。其中D就是回调方法，它存在于接口中，由A实现。回调分为同步回调和异步回调。他们之间的区别在于返回结果是否需要等待，若有延迟则为异步回调，否则为同步回调。下面为代码示例：&lt;!--more--&gt;</p>
+<pre><code>public interface CSCallBack {//回调接口
+    public void process(String status);//回调方法
+}
+
+public class Client implements CSCallBack {//A类
+
+    private Server server;
+
+    public Client(Server server) {
+        this.server = server;
+    }
+
+    public void sendMsg(final String msg){
+        System.out.println(&quot;客户端：发送的消息为：&quot; + msg);
+		//此处为异步回调，同步回调不需要新开线程进行
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+				Thread.sleep(2000);
+			//相当于A类调了B类里面的C方法
+                server.getClientMsg(Client.this,msg);
+            }
+        }).start();
+        System.out.println(&quot;客户端：异步发送成功&quot;);
+    }
+
+    @Override
+    public void process(String status) {//D方法，回调方法
+        System.out.println(&quot;客户端：服务端回调状态为：&quot; + status);
+    }
+}
+
+
+public class Server {//B类
+
+    public void getClientMsg(CSCallBack csCallBack , String msg) {
+        System.out.println(&quot;服务端：服务端接收到客户端发送的消息为:&quot; + msg);
+
+        // 模拟服务端需要对数据处理
+        try {
+            Thread.sleep(5 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(&quot;服务端:数据处理成功，返回成功状态 200&quot;);
+        String status = &quot;200&quot;;
+        csCallBack.process(status);//相当于B类调了A类里面的D方法
+    }
+}
+</code></pre>
+
       
     </div>
     
@@ -472,10 +634,6 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/17/20170117/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -522,7 +680,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>　　学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。<br>　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
+        <p>学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。
+　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz" target="_blank" rel="external">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
 <pre><code>import urllib2
 import urllib
 import re
@@ -531,14 +690,29 @@ import time
 
 
 def getHtml(url):
-    request = urllib2.Request(url)
-    request.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
-    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36&apos;)
-    response = urllib2.urlopen(request)
-    html=response.read()
-    return html
+	request = urllib2.Request(url)
+	request.add_header('User-Agent','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
+	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36')
+	response = urllib2.urlopen(request)
+	html=response.read()
+	return html
 </code></pre>
-          
+<p>&lt;!--more--&gt;
+	def getImage(html):
+	 	imglist=re.findall(r'data-original=&quot;(.*?.(jpg|jpeg))&quot;',html)
+	 	print(len(imglist))
+	 	path =&quot;&quot;
+	 	x=0
+	 	for img in imglist:
+	 		urllib.urlretrieve(img[0],&quot;/home/qiracle/douyu/&quot;+str(x)+&quot;.&quot;+img[1])
+	 		x+=1
+	 		time.sleep(1)</p>
+<pre><code>html =getHtml(&quot;https://www.douyu.com/directory/game/yz&quot;)
+getImage(html)
+</code></pre>
+<p>最终爬到的结果如下：</p>
+<p><img src="http://94.191.72.22/blog/image/20170110/2017-01-10.png" alt="结果" title="结果"></p>
+
       
     </div>
     
@@ -555,10 +729,6 @@ def getHtml(url):
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/10/20170110/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -605,12 +775,58 @@ def getHtml(url):
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.新建setup.py文件，并将下面代码修改后复制到文件中</p>
+        <p>1.新建setup.py文件，并将下面代码修改后复制到文件中</p>
 <pre><code>from distutils.core import setup
 
-setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle&apos;s module&quot;,author=&quot;qiracle&quot;,py_modules=[&quot;test1&quot;,&quot;test2&quot;])
-</code></pre><p>这里py_modules列表里填的是模块的名字
-          
+setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle's module&quot;,author=&quot;qiracle&quot;,py_modules=[&quot;test1&quot;,&quot;test2&quot;])
+</code></pre>
+<p>这里py_modules列表里填的是模块的名字&lt;!--more--&gt;</p>
+<p>2.python3 setup.py build</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+copying test1.py -&gt; build/lib.linux-x86_64-2.7
+copying test2.py -&gt; build/lib.linux-x86_64-2.7</p>
+</blockquote>
+<p>3.python3 setup.py sdist</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running sdist
+running check
+warning: check: missing required meta-data: url
+warning: check: missing meta-data: if 'author' supplied, 'author_email' must be supplied too
+warning: sdist: manifest template 'MANIFEST.in' does not exist (using default file list)
+warning: sdist: standard file not found: should have one of README, README.txt
+writing manifest file 'MANIFEST'
+creating qiracle-1.0
+making hard links in qiracle-1.0...
+hard linking setup.py -&gt; qiracle-1.0
+hard linking test1.py -&gt; qiracle-1.0
+hard linking test2.py -&gt; qiracle-1.0
+creating dist
+Creating tar archive
+removing 'qiracle-1.0' (and everything under it)</p>
+</blockquote>
+<p>4.找到模块的压缩包，解压，进入setup.py所在文件夹后执行命令:</p>
+<p>python3 setup.py install（需要管理员权限）</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running install
+running build
+running build_py
+running install_lib
+copying build/lib/test2.py -&gt; /usr/local/lib/python3.4/dist-packages
+copying build/lib/test1.py -&gt; /usr/local/lib/python3.4/dist-packages
+byte-compiling /usr/local/lib/python3.4/dist-packages/test2.py to test2.cpython-34.pyc
+byte-compiling /usr/local/lib/python3.4/dist-packages/test1.py to test1.cpython-34.pyc
+running install_egg_info
+Writing /usr/local/lib/python3.4/dist-packages/qiracle-1.0.egg-info</p>
+</blockquote>
+<p>此时表明安装成功,在之后的python程序中任意路径下都可直接import包名使用</p>
+
       
     </div>
     
@@ -627,10 +843,6 @@ setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/09/20170109/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -677,18 +889,56 @@ setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。</p>
+        <p>python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。</p>
 <p>新建test.py文件，代码如下</p>
 <pre><code>def A():
 
-    print(&quot;hello&quot;)
-</code></pre><p>再简历main.py文件，代码如下</p>
+	print(&quot;hello&quot;)
+</code></pre>
+<p>再简历main.py文件，代码如下</p>
 <pre><code>import test
 
 test.A()
-</code></pre><p>此时用python main.py执行，打印 hello。</p>
-<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：<br>
-          
+</code></pre>
+<p>此时用python main.py执行，打印 hello。</p>
+<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：
+&lt;!--more--&gt;</p>
+<pre><code>def A():
+
+	print(&quot;hello&quot;)
+
+A()//测试
+</code></pre>
+<p>用python test.py执行，打印 hello。</p>
+<p>但此时如果测试代码没有删除，调用者用python main.py执行，则会打印 hello hello。
+因为A()被执行了两次。</p>
+<p>为解决这一问题，我们需要这样做，在test.py文件里：</p>
+<pre><code>def A():
+
+	print(&quot;hello&quot;)
+
+
+if __name__ == '__main__'://加上这句在执行
+	A()
+</code></pre>
+<p>用python main.py执行，则会打印 hello，结果正常</p>
+<p><strong>分析</strong></p>
+<p>在test.py中，加入print(_<em>name_</em>),看看__name__的值</p>
+<pre><code>def A():
+
+	print(&quot;hello&quot;)
+
+print(__name__)
+
+if __name__ == '__main__'://加上这句在执行
+	A()
+</code></pre>
+<p>此时如果用python test.py，则会打印_<em>main_</em> hello,此时__name__的值为_<em>main_</em></p>
+<p>如果用python main.py执行，则打印test hello，此时__name__的值为test</p>
+<p><strong>结论</strong></p>
+<p>因此可以看出，在函数所在的文件内调用函数，__name__的值为_<em>main_</em></p>
+<p>但是如果通过导入模块调用函数，则函数所在文件的__name__值为函数所在文件的文件名</p>
+
       
     </div>
     
@@ -705,10 +955,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/08/20170108/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -755,8 +1001,16 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="内存四区的建立流程"><a href="#内存四区的建立流程" class="headerlink" title="内存四区的建立流程"></a>内存四区的建立流程</h3><p><img src="http://94.191.72.22/blog/image/20170107/1.png" alt=""></p>
-          
+        <h3>内存四区的建立流程</h3>
+<p><img src="http://94.191.72.22/blog/image/20170107/1.png" alt=""></p>
+<p>&lt;!--more--&gt;</p>
+<p><strong>流程说明</strong></p>
+<p>1、操作系统把物理硬盘代码load到内存</p>
+<p>2、操作系统把c代码分成四个区</p>
+<p>3、操作系统找到main函数入口执行</p>
+<h3>各区元素分析</h3>
+<p><img src="http://94.191.72.22/blog/image/20170107/2.png" alt=""></p>
+
       
     </div>
     
@@ -773,10 +1027,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/07/20170107/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -823,10 +1073,17 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>在Python中有一些内置的方法，这些方法命名都有比较特殊的地方（其方法名以2个下划线开始然后以2个下划线结束）。类中最常用的就是构造方法和析构方法。</p>
-<p>　构造方法__init__(self,….)：在生成对象时调用，可以用来进行一些初始化操作，不需要显示去调用，系统会默认去执行。构造方法支持重载，如果用户自己没有重新定义构造方法，系统就自动执行默认的构造方法。</p>
-<p>　析构方法__del__(self)：在释放对象时调用，支持重载，可以在里面进行一些释放资源的操作，不需要显示调用。
-          
+        <p>在Python中有一些内置的方法，这些方法命名都有比较特殊的地方（其方法名以2个下划线开始然后以2个下划线结束）。类中最常用的就是构造方法和析构方法。</p>
+<p>构造方法_<em>init_</em>(self,....)：在生成对象时调用，可以用来进行一些初始化操作，不需要显示去调用，系统会默认去执行。构造方法支持重载，如果用户自己没有重新定义构造方法，系统就自动执行默认的构造方法。</p>
+<p>析构方法_<em>del_</em>(self)：在释放对象时调用，支持重载，可以在里面进行一些释放资源的操作，不需要显示调用。&lt;!--more--&gt;</p>
+<p>_<em>new_</em>():_<em>new_</em>()在_<em>init</em>_()之前被调用，用于生成实例对象。利用这个方法和类属性的特性可以实现设计模式中的单例模式。单例模式是指创建唯一对象吗，单例模式设计的类只能实例化一个对象。</p>
+<p>_<em>getattr_</em>()、_<em>setattr_</em>()和_<em>getattribute_</em>():当读取对象的某个属性时，python会自动调用_<em>getattr</em>_()方法。</p>
+<p>_<em>getitem_</em>():如果类把某个属性定义为序列，可以使用_<em>getitem</em>_()输出序列属性中的某个元素</p>
+<p>_str_<em>():_<em>str_</em>()用于表示对象代表的含义，返回一个字符串.实现了_<em>str_</em>()方法后，可以直接使用print语句输出对象，也可以通过函数str()触发_<em>str</em></em>()的执行。这样就把对象和字符串关联起来，便于某些程序的实现，可以用这个字符串来表示某个类</p>
+<p>_<em>call_</em>():在类中实现_<em>call_</em>()方法，可以在对象创建时直接返回_<em>call</em>_()的内容。使用该方法可以模拟静态方法</p>
+<p>下面是常用的内置方法：
+<img src="http://94.191.72.22/blog/image/20170106/__func__.png" alt="常用方法"></p>
+
       
     </div>
     
@@ -843,10 +1100,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/06/20170106/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -893,12 +1146,89 @@ test.A()
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>类初始化时构造函数调用顺序：</p>
-<p> （1）初始化对象的存储空间为零或null值；</p>
-<p>  （2）调用父类构造函数；</p>
-<p>  （3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；</p>
-<p>  （4）调用本身构造函数。
-          
+        <p>类初始化时构造函数调用顺序：</p>
+<p>（1）初始化对象的存储空间为零或null值；</p>
+<p>（2）调用父类构造函数；</p>
+<p>（3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；</p>
+<p>（4）调用本身构造函数。&lt;!--more--&gt;</p>
+<p>例子:</p>
+<pre><code>public class Dog extends Animal{
+ Cat c=new Cat();
+
+ public Dog(){
+  
+  System.out.println(&quot;Dog 构造方法!&quot;);
+
+ }
+ public static void main(String[] args){
+  
+  new Dog();
+  
+ }
+}
+class Animal{
+ public Animal(){
+  System.out.println(&quot;Animal构造方法&quot;);
+ }
+}
+class Cat{
+ public Cat(){
+  System.out.println(&quot;Cat 构造方法&quot;);
+ }
+}
+</code></pre>
+<p>输出结果:</p>
+<p>Animal构造方法</p>
+<p>Cat 构造方法</p>
+<p>Dog 构造方法</p>
+<p>在我们的程序中，实例化一个类对象的时候，运行顺序为：</p>
+<p>静态块</p>
+<p>父类构造器</p>
+<p>本类中的块</p>
+<p>本类的构造器</p>
+<pre><code>public class Dog {   
+   public Dog() {   
+ System.out.println(&quot;Dog&quot;);   
+}   
+static{   //静态块
+    System.out.println(&quot;super static block&quot;);   
+}       
+{   
+    System.out.println(&quot;super block&quot;);   
+}   
+}  
+public class Mastiff extends Dog {   
+public Mastiff() {   
+    System.out.println(&quot;Mastiff&quot;);   
+}   
+ {   
+    System.out.println(&quot;block&quot;);   
+   }   
+static {   
+  System.out.println(&quot;static block&quot;);   
+}   
+public static void  main(String[] args){   
+  Mastiff mastiff=new Mastiff();         //实例化一个对象
+}   
+}   
+</code></pre>
+<p>输出结果：</p>
+<p>super static block</p>
+<p>static block</p>
+<p>super block</p>
+<p>Dog</p>
+<p>block</p>
+<p>Mastiff</p>
+<p>也就是说此时的运行顺序为：</p>
+<ol>
+<li>父类静态块</li>
+<li>自身静态块</li>
+<li>父类块</li>
+<li>父类构造器</li>
+<li>自身块</li>
+<li>自身构造器</li>
+</ol>
+
       
     </div>
     
@@ -915,79 +1245,6 @@ test.A()
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/01/05/20170105/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20170104" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/04/20170104/" class="article-date">
-      <time datetime="2017-01-03T16:00:00.000Z" itemprop="datePublished">2017-01-04</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>图片加载几乎是任何 Android 项目中必备的需求，而图片加载的开源库也越来越多，我们姑且在 GitHub 上搜索下 android image 关键字，出来的前五个按照 Star 数排序的项目如下：</p>
-<p>可以看到前四个是大家比较熟知的图片加载库，有 UniversalImageLoader、Picasso、Fresco、Glide，至于第五个 ion 其实是一个网络库，只不过也提供了图片加载的功能，跟 Volley 类似，也提供图片加载的功能，但是如果图片加载是一个强需求的话，我更喜欢专注的库，所以本文只讨论单纯的图片加载库。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/01/04/20170104/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
