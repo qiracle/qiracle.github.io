@@ -121,15 +121,22 @@
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/Android/</loc>
+        <loc>http://qiracle.github.io/tags/AIDL/</loc>
         <lastmod>2019-08-10T05:01:58.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/AIDL/</loc>
-        <lastmod>2019-08-10T05:01:58.000Z</lastmod>
+        <loc>http://qiracle.github.io/tags/Android/</loc>
+        <lastmod>2019-08-24T06:18:21.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/JNI/</loc>
+        <lastmod>2019-08-24T06:18:21.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
