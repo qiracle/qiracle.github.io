@@ -278,6 +278,78 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-2019091502" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/09/15/2019091502/" class="article-date">
+      <time datetime="2019-09-14T16:00:00.000Z" itemprop="datePublished">2019-09-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h4 id="PX-pixel"><a href="#PX-pixel" class="headerlink" title="PX(pixel):"></a><strong>PX(pixel):</strong></h4><p>即传统计算机语言中描述的像素，在Android则代表绝对像素。</p>
+<p>之所以Android中不推荐使用这种单位，正是因为不同生产厂商，不同品牌，不同屏幕的设备，其分辨率亦不一。</p>
+<p>举例来说，我们现在将某个Button的width设为160px，则会出现如下情况：</p>
+<p>在分辨率为“320宽”的设备里，该按钮显示占屏幕宽度一半；</p>
+<p>在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一；</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/09/15/2019091502/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20190915" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -890,76 +962,6 @@
       
         <p class="article-more-link">
           <a href="/2018/11/28/20181128/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20181028" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/10/28/20181028/" class="article-date">
-      <time datetime="2018-10-27T16:00:00.000Z" itemprop="datePublished">2018-10-28</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.</p>
-<p>1.jar包的导入</p>
-<p>第一种：<br>一般用于比较流行的第三方库上，直接将你在GitHub上看到的jar包compile放入build.gradle的dependencies里面，然后sync同步一下就可以了。例如：导入v7包。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/教程/">教程</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/10/28/20181028/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
