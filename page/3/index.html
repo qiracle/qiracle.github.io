@@ -278,11 +278,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-2017062502" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20170701" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/06/25/2017062502/" class="article-date">
-      <time datetime="2017-06-24T16:00:00.000Z" itemprop="datePublished">2017-06-25</time>
+      <a href="/2017/07/01/20170701/" class="article-date">
+      <time datetime="2017-06-30T16:00:00.000Z" itemprop="datePublished">2017-07-01</time>
 </a>
 
 
@@ -297,7 +297,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a>
+      <a class="article-title" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a>
     </h1>
   
 
@@ -307,7 +307,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br>
+              <h3 id="静态-overlay-和动态-overlay"><a href="#静态-overlay-和动态-overlay" class="headerlink" title="静态 overlay 和动态 overlay"></a>静态 overlay 和动态 overlay</h3><p>静态 overlay：又称为编译时 overlay，编译时资源就已经覆盖了，一般用在有源码的apk中。<br>动态 overlay：又称为运行时 overlay，当 apk 在手机中运行时才发生资源覆盖，一般用在无源码的apk中。
           
       
     </div>
@@ -322,12 +322,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a href="/2017/06/25/2017062502/#more">阅读全文 >></a>
+          <a href="/2017/07/01/20170701/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -396,6 +396,74 @@
       
         <p class="article-more-link">
           <a href="/2017/06/25/20170625/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2017062502" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/25/2017062502/" class="article-date">
+      <time datetime="2017-06-24T16:00:00.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/06/25/2017062502/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -927,87 +995,9 @@ setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle
 
 
   
-    <article id="post-20170108" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/08/20170108/" class="article-date">
-      <time datetime="2017-01-07T16:00:00.000Z" itemprop="datePublished">2017-01-08</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/08/20170108/">python中的__name__</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>python中我们常将一些方法封装在一个模块里，然后在另一个文件里通过import导入模块进行调用。</p>
-<p>新建test.py文件，代码如下</p>
-<pre><code>def A():
-
-    print(&quot;hello&quot;)
-</code></pre><p>再简历main.py文件，代码如下</p>
-<pre><code>import test
-
-test.A()
-</code></pre><p>此时用python main.py执行，打印 hello。</p>
-<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/01/08/20170108/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>
