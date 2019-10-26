@@ -18,7 +18,7 @@
 <meta name="description" content="1.新建setup.py文件，并将下面代码修改后复制到文件中
 from distutils.core import setup
 
-setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,description=&amp;quot;qiracle&apos;s module&amp;quot;,author=&amp;quot;qiracle&amp;quot;,py_modules=[">
+setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,description=&amp;quot;qiracle&amp;apos;s module&amp;quot;,author=&amp;quot;qiracle&amp;quot;,py_modu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将自己制作的python包安装到ubuntu系统中">
 <meta property="og:url" content="http://qiracle.github.io/2017/01/09/20170109/index.html">
@@ -26,14 +26,14 @@ setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,descripti
 <meta property="og:description" content="1.新建setup.py文件，并将下面代码修改后复制到文件中
 from distutils.core import setup
 
-setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,description=&amp;quot;qiracle&apos;s module&amp;quot;,author=&amp;quot;qiracle&amp;quot;,py_modules=[">
+setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,description=&amp;quot;qiracle&amp;apos;s module&amp;quot;,author=&amp;quot;qiracle&amp;quot;,py_modu">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="将自己制作的python包安装到ubuntu系统中">
 <meta name="twitter:description" content="1.新建setup.py文件，并将下面代码修改后复制到文件中
 from distutils.core import setup
 
-setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,description=&amp;quot;qiracle&apos;s module&amp;quot;,author=&amp;quot;qiracle&amp;quot;,py_modules=[">
+setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,description=&amp;quot;qiracle&amp;apos;s module&amp;quot;,author=&amp;quot;qiracle&amp;quot;,py_modu">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -328,52 +328,23 @@ setup(name=&amp;quot;qiracle&amp;quot;,version=&amp;quot;1.0&amp;quot;,descripti
         <p>1.新建setup.py文件，并将下面代码修改后复制到文件中</p>
 <pre><code>from distutils.core import setup
 
-setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle's module&quot;,author=&quot;qiracle&quot;,py_modules=[&quot;test1&quot;,&quot;test2&quot;])
-</code></pre>
-<p>这里py_modules列表里填的是模块的名字&lt;!--more--&gt;</p>
-<p>2.python3 setup.py build</p>
+setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle&apos;s module&quot;,author=&quot;qiracle&quot;,py_modules=[&quot;test1&quot;,&quot;test2&quot;])
+</code></pre><p>这里py_modules列表里填的是模块的名字<a id="more"></a></p>
+<p> 2.python3 setup.py build</p>
 <p>执行完后出现：</p>
 <blockquote>
-<p>running build
-running build_py
-creating build
-creating build/lib.linux-x86_64-2.7
-copying test1.py -&gt; build/lib.linux-x86_64-2.7
-copying test2.py -&gt; build/lib.linux-x86_64-2.7</p>
+<p>running build<br>running build_py<br>creating build<br>creating build/lib.linux-x86_64-2.7<br>copying test1.py -&gt; build/lib.linux-x86_64-2.7<br>copying test2.py -&gt; build/lib.linux-x86_64-2.7</p>
 </blockquote>
 <p>3.python3 setup.py sdist</p>
 <p>执行完后出现：</p>
 <blockquote>
-<p>running sdist
-running check
-warning: check: missing required meta-data: url
-warning: check: missing meta-data: if 'author' supplied, 'author_email' must be supplied too
-warning: sdist: manifest template 'MANIFEST.in' does not exist (using default file list)
-warning: sdist: standard file not found: should have one of README, README.txt
-writing manifest file 'MANIFEST'
-creating qiracle-1.0
-making hard links in qiracle-1.0...
-hard linking setup.py -&gt; qiracle-1.0
-hard linking test1.py -&gt; qiracle-1.0
-hard linking test2.py -&gt; qiracle-1.0
-creating dist
-Creating tar archive
-removing 'qiracle-1.0' (and everything under it)</p>
+<p>running sdist<br>running check<br>warning: check: missing required meta-data: url<br>warning: check: missing meta-data: if ‘author’ supplied, ‘author_email’ must be supplied too<br>warning: sdist: manifest template ‘MANIFEST.in’ does not exist (using default file list)<br>warning: sdist: standard file not found: should have one of README, README.txt<br>writing manifest file ‘MANIFEST’<br>creating qiracle-1.0<br>making hard links in qiracle-1.0…<br>hard linking setup.py -&gt; qiracle-1.0<br>hard linking test1.py -&gt; qiracle-1.0<br>hard linking test2.py -&gt; qiracle-1.0<br>creating dist<br>Creating tar archive<br>removing ‘qiracle-1.0’ (and everything under it)</p>
 </blockquote>
 <p>4.找到模块的压缩包，解压，进入setup.py所在文件夹后执行命令:</p>
 <p>python3 setup.py install（需要管理员权限）</p>
 <p>执行完后出现：</p>
 <blockquote>
-<p>running install
-running build
-running build_py
-running install_lib
-copying build/lib/test2.py -&gt; /usr/local/lib/python3.4/dist-packages
-copying build/lib/test1.py -&gt; /usr/local/lib/python3.4/dist-packages
-byte-compiling /usr/local/lib/python3.4/dist-packages/test2.py to test2.cpython-34.pyc
-byte-compiling /usr/local/lib/python3.4/dist-packages/test1.py to test1.cpython-34.pyc
-running install_egg_info
-Writing /usr/local/lib/python3.4/dist-packages/qiracle-1.0.egg-info</p>
+<p>running install<br>running build<br>running build_py<br>running install_lib<br>copying build/lib/test2.py -&gt; /usr/local/lib/python3.4/dist-packages<br>copying build/lib/test1.py -&gt; /usr/local/lib/python3.4/dist-packages<br>byte-compiling /usr/local/lib/python3.4/dist-packages/test2.py to test2.cpython-34.pyc<br>byte-compiling /usr/local/lib/python3.4/dist-packages/test1.py to test1.cpython-34.pyc<br>running install_egg_info<br>Writing /usr/local/lib/python3.4/dist-packages/qiracle-1.0.egg-info</p>
 </blockquote>
 <p>此时表明安装成功,在之后的python程序中任意路径下都可直接import包名使用</p>
 

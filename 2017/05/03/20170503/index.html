@@ -15,26 +15,26 @@
 
 
 
-<meta name="description" content="​	这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个">
+<meta name="description" content="​    这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android系统工程模式启动过程详解">
 <meta property="og:url" content="http://qiracle.github.io/2017/05/03/20170503/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="​	这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_1.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_2.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_3.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_4.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_5.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_6.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_7.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_8.png">
-<meta property="og:image" content="http://94.191.72.22/blog/image/20170503/emode_9.png">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
+<meta property="og:description" content="​    这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_1.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_2.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_3.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_4.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_5.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_6.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_7.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_8.png">
+<meta property="og:image" content="http://qiracle.cn/img/20170503/emode_9.png">
+<meta property="og:updated_time" content="2019-10-26T07:20:33.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android系统工程模式启动过程详解">
-<meta name="twitter:description" content="​	这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个">
-<meta name="twitter:image" content="http://94.191.72.22/blog/image/20170503/emode_1.png">
+<meta name="twitter:description" content="​    这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样">
+<meta name="twitter:image" content="http://qiracle.cn/img/20170503/emode_1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -326,25 +326,25 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>​	这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个过程。&lt;!--more--&gt;</p>
+        <p>​    这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个过程。<a id="more"></a></p>
 <p>首先找到源码目录下  packages/apps/Dialer  这个应用，这是一个拨号应用，我们平常拨打电话用的就是这个 app。找到该 app 里 DialpadFragment.java 这个文件，如下图</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_1.png" alt="img"></p>
+<p><img src="http://qiracle.cn/img/20170503/emode_1.png" alt="img"></p>
 <p>里面有个监听 EditText 获取数字变化后的回调方法 afterTextChange</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_2.png" alt="img"></p>
+<p><img src="http://qiracle.cn/img/20170503/emode_2.png" alt="img"></p>
 <p>在这个方法里又调用了 handleChars，进入到 handleChars 方法里如下：</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_3.png" alt="img"></p>
-<p>该方法定义位于<img src="http://94.191.72.22/blog/image/20170503/emode_4.png" alt="img">，如果相关宏控打开的话，则会执行</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_3.png" alt="img"></p>
+<p>该方法定义位于<img src="http://qiracle.cn/img/20170503/emode_4.png" alt="img">，如果相关宏控打开的话，则会执行</p>
 <p>handleCustomCode（）方法。进入该方法：</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_5.png" alt="img"></p>
+<p><img src="http://qiracle.cn/img/20170503/emode_5.png" alt="img"></p>
 <p>在该方法里传入了一个 intent，发送了一条广播。我们继续查找这条广播的接收者，我们在 EmodeReceiver.java 找到了该广播接受者，路径如下：</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_6.png" alt="img"></p>
+<p><img src="http://qiracle.cn/img/20170503/emode_6.png" alt="img"></p>
 <p>在这个文件中，，可以看到这么一段代码：</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_7.png" alt="img"></p>
+<p><img src="http://qiracle.cn/img/20170503/emode_7.png" alt="img"></p>
 <p>在收到这条广播后，调用了 startActivityByCode 方法，从该方法名字就可以看出，是通过不同的 Code 来跳转到不同的 Activity，而该 code 就是用户从拨号盘输入的字符。</p>
 <p>我们进入到 startActivityByCode 方法中，，看看该方法是怎么实现的，该方法同样位于 EmodeReceiver.java 文件中，在该方法中，我们很容易看到这么一段代码：</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_8.png" alt="img"></p>
+<p><img src="http://qiracle.cn/img/20170503/emode_8.png" alt="img"></p>
 <p>switch-case语句，很明显，底层就是通过这种方式来根据用户输入在拨号盘输入不同的字符来进入特定的工程模式界面的。但是仔细一看，，问题来了，我们在键盘输入的都是数字+*#号，这A，B是咋回事？往上一看：</p>
-<p><img src="http://94.191.72.22/blog/image/20170503/emode_9.png" alt="img"></p>
+<p><img src="http://qiracle.cn/img/20170503/emode_9.png" alt="img"></p>
 <p>这样我们就明白了，这里把 * 和 # 号全部替换成了 A 和 B。</p>
 <p>至此，工程模式的启动过程就完成了。我们再来总结一下这个过程，首先用户在拨号盘输入特定的字符串，DialpadFragment 里的回调方法 afterTextChange 监听到拨号盘的EditText里内容变化后，如果变化后后的字符串跟特定某些的字符串一致，则会进行相应的处理并发送一条广播，并将这个字符串一同放进广播中，该广播的接收者受到这条广播后，获取到里面的字符串，然后打开与该字符串对应的 Activity。由拨号盘界面到工程模式界面的启动就此完成！</p>
 
