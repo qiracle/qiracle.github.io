@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2019/08/24/20190824/</loc>
+    <lastmod>2019-10-26T05:23:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 配置 JNI</title>
+        <pubTime>2019-08-23T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>JNI</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2019/09/21/20190921/</loc>
     <lastmod>2019-09-21T07:42:11.000Z</lastmod>
     <data>
@@ -52,28 +74,6 @@
         <pubTime>2019-09-14T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2019/08/24/20190824/</loc>
-    <lastmod>2019-08-24T06:18:21.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android Studio 配置 JNI</title>
-        <pubTime>2019-08-23T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>JNI</tag>
          
          
            
@@ -268,6 +268,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2016/12/15/stornzhangTalk/</loc>
+    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+    <data>
+        <display>
+        <title>面试注意事项（转）</title>
+        <pubTime>2016-12-14T16:00:00.000Z</pubTime>
+        
+        <tag>转载</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2016/12/10/mianshi/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
@@ -305,26 +325,6 @@
            
              
               <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/15/stornzhangTalk/</loc>
-    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-    <data>
-        <display>
-        <title>面试注意事项（转）</title>
-        <pubTime>2016-12-14T16:00:00.000Z</pubTime>
-        
-        <tag>转载</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
           
         </display>
     </data>
@@ -452,26 +452,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2018/10/28/20181028/</loc>
-    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-    <data>
-        <display>
-        <title>Android 中的jar包，aar包以及module</title>
-        <pubTime>2018-10-27T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="教程" url="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2016/12/14/float_clear/</loc>
     <lastmod>2018-11-25T08:40:22.295Z</lastmod>
     <data>
@@ -500,6 +480,26 @@
         <pubTime>2016-12-08T16:00:00.000Z</pubTime>
         
         <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="教程" url="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2018/10/28/20181028/</loc>
+    <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+    <data>
+        <display>
+        <title>Android 中的jar包，aar包以及module</title>
+        <pubTime>2018-10-27T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
          
          
            
@@ -612,14 +612,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
+    <loc>http://qiracle.github.io/2016/12/31/20161231/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
         <display>
-        <title>回忆2016</title>
-        <pubTime>2016-12-22T16:00:00.000Z</pubTime>
+        <title>技术不是全部（转）</title>
+        <pubTime>2016-12-30T16:00:00.000Z</pubTime>
         
-        <tag>随笔</tag>
+        <tag>转载</tag>
          
          
            
@@ -712,14 +712,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/31/20161231/</loc>
+    <loc>http://qiracle.github.io/2016/12/23/2016summary/</loc>
     <lastmod>2018-11-25T08:40:22.294Z</lastmod>
     <data>
         <display>
-        <title>技术不是全部（转）</title>
-        <pubTime>2016-12-30T16:00:00.000Z</pubTime>
+        <title>回忆2016</title>
+        <pubTime>2016-12-22T16:00:00.000Z</pubTime>
         
-        <tag>转载</tag>
+        <tag>随笔</tag>
          
          
            
@@ -1032,19 +1032,19 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/18/20161218_mysql/</loc>
+    <loc>http://qiracle.github.io/2016/12/19/20161219/</loc>
     <lastmod>2018-11-25T08:40:22.293Z</lastmod>
     <data>
         <display>
-        <title>Windows下MySQL 5.6 解压版配置与安装</title>
-        <pubTime>2016-12-17T16:00:00.000Z</pubTime>
+        <title>Android开发中，那些让你相见恨晚的方法、类或接口(转)</title>
+        <pubTime>2016-12-18T16:00:00.000Z</pubTime>
         
-        <tag>mysql</tag>
+        <tag>转载</tag>
          
          
            
              
-              <breadCrumb title="教程" url="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -1192,19 +1192,19 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/19/20161219/</loc>
+    <loc>http://qiracle.github.io/2016/12/18/20161218_mysql/</loc>
     <lastmod>2018-11-25T08:40:22.293Z</lastmod>
     <data>
         <display>
-        <title>Android开发中，那些让你相见恨晚的方法、类或接口(转)</title>
-        <pubTime>2016-12-18T16:00:00.000Z</pubTime>
+        <title>Windows下MySQL 5.6 解压版配置与安装</title>
+        <pubTime>2016-12-17T16:00:00.000Z</pubTime>
         
-        <tag>转载</tag>
+        <tag>mysql</tag>
          
          
            
              
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+              <breadCrumb title="教程" url="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
           
         </display>
     </data>

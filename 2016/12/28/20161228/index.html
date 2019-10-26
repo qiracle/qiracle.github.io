@@ -15,28 +15,64 @@
 
 
 
-<meta name="description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
+<meta name="description" content="列表的创建
+使用 [ ] 把数据包含起来，便可以创建一个列表了。
 
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
 
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+[ ] 可以不包含任何数据，则表示创建一个空列表
+&amp;gt;&amp;gt;&amp;gt; name = []
+
+
+[  ] 也可以包含多种数据类型的数据
+&amp;gt;&amp;gt;&amp;gt; name = [&amp;quot;damao&amp;quot;, 30, &amp;quot;ermao&amp;quot;]
+&amp;lt;!--more--&amp;gt;
+
+
+列表的打印
+
+
+使用内置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python学习（二）——列表">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/28/20161228/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
+<meta property="og:description" content="列表的创建
+使用 [ ] 把数据包含起来，便可以创建一个列表了。
 
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
 
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+[ ] 可以不包含任何数据，则表示创建一个空列表
+&amp;gt;&amp;gt;&amp;gt; name = []
+
+
+[  ] 也可以包含多种数据类型的数据
+&amp;gt;&amp;gt;&amp;gt; name = [&amp;quot;damao&amp;quot;, 30, &amp;quot;ermao&amp;quot;]
+&amp;lt;!--more--&amp;gt;
+
+
+列表的打印
+
+
+使用内置">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python学习（二）——列表">
-<meta name="twitter:description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
+<meta name="twitter:description" content="列表的创建
+使用 [ ] 把数据包含起来，便可以创建一个列表了。
 
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
 
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+[ ] 可以不包含任何数据，则表示创建一个空列表
+&amp;gt;&amp;gt;&amp;gt; name = []
+
+
+[  ] 也可以包含多种数据类型的数据
+&amp;gt;&amp;gt;&amp;gt; name = [&amp;quot;damao&amp;quot;, 30, &amp;quot;ermao&amp;quot;]
+&amp;lt;!--more--&amp;gt;
+
+
+列表的打印
+
+
+使用内置">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -328,48 +364,122 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="列表的创建"><a href="#列表的创建" class="headerlink" title="列表的创建"></a>列表的创建</h3><p>使用 [ ] 把数据包含起来，便可以创建一个列表了。</p>
+        <h3>列表的创建</h3>
+<p>使用 [ ] 把数据包含起来，便可以创建一个列表了。</p>
 <ol>
-<li><p>[ ] 可以不包含任何数据，则表示创建一个空列表<br>>&gt;&gt; name = []</p>
+<li>
+<p>[ ] 可以不包含任何数据，则表示创建一个空列表
+&gt;&gt;&gt; name = []</p>
 </li>
-<li><p>[  ] 也可以包含多种数据类型的数据<br>>&gt;&gt; name = [“damao”, 30, “ermao”]</p>
-<a id="more"></a>
-</li>
-</ol>
-<h3 id="列表的打印"><a href="#列表的打印" class="headerlink" title="列表的打印"></a>列表的打印</h3><ol>
-<li><p>使用内置函数print() 便可打印整个列表里的数据”<br>>&gt;&gt; print(name)<br>[“damao”, 30, “ermao”]</p>
-</li>
-<li><p>当然也可以打印列表的某个下标的数据：<br>>&gt;&gt; print(name[0])<br>damao</p>
-</li>
-<li><p>也可以分片打印列表的某段下标的数据<br>>&gt;&gt; print(name[0:2])<br>[‘damao’, 30] #注意，没有打印name[2]的数据:)</p>
-</li>
-<li><p>如果想要分别打印列表里的每个数据，只需要一个for就可以搞定：<br>>&gt;&gt; for each in name:<br>print(each)<br>damao<br>30<br>ermao</p>
-</li>
-<li><p>当然也可以直接打印出列表内数据的个数：<br>>&gt;&gt; print(len(name))<br>3</p>
+<li>
+<p>[  ] 也可以包含多种数据类型的数据
+&gt;&gt;&gt; name = [&quot;damao&quot;, 30, &quot;ermao&quot;]
+&lt;!--more--&gt;</p>
 </li>
 </ol>
-<h3 id="列表的扩展"><a href="#列表的扩展" class="headerlink" title="列表的扩展"></a>列表的扩展</h3><ol>
-<li><p>我们可以在列表末尾追加一个任意数据类型数据：<br>>&gt;&gt; name.append([“daoluan”, 666])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, [‘daoluan’, 666]]</p>
-</li>
-<li><p>也可以在列表末尾追加一个列表里的所有数据：<br>>&gt;&gt; name.extend([“sanmao”, 10, “simao”])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, [‘daoluan’, 666], ‘sanmao’, 10, ‘simao’]<br>#注意，append和entend这两个方法看起来有些类似，但实际上是不同的。append只接受一个参数，但是这个参数可以是任意数据类型，比如列表和元组等，而且只是将这个数据追加到原列表后面独立存在。<br>extend也是只接受一个参数，不同的是这个参数必须是一个列表，而且会把这个列表的每个元素拆分出来，依次追加到原列表后面。</p>
-</li>
-<li><p>当然也可以在指定位置增加一个任意数据类型数据(append的既视感)：<br>/# 第一个参数为指定的列表下标，第二个参数为增加的数据<br>>&gt;&gt; name.insert(3, 20)<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], ‘sanmao’, 10, ‘simao’]</p>
-</li>
-</ol>
-<h3 id="列表的删除："><a href="#列表的删除：" class="headerlink" title="列表的删除："></a>列表的删除：</h3><ol>
-<li><p>删除列表末尾的一个数据：<br>>&gt;&gt; name.pop()<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], ‘sanmao’, 10]</p>
-</li>
-<li><p>也可以删除列表指定的某一个数据：<br>>&gt;&gt; name.remove(“sanmao”)<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], 10]</p>
-</li>
-<li><p>或者删除列表的某个下标的数据：<br>>&gt;&gt; del(name[4])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, 10]<br>#注意，de()函数支持列表分片删除，同样的，也支持删除整个列表。</p>
-</li>
-</ol>
-<h3 id="列表的合并："><a href="#列表的合并：" class="headerlink" title="列表的合并："></a>列表的合并：</h3><p>只需要像I + I + I = III一样，就可以合并多个列表：<br>>&gt;&gt; mao = name + [20, “ermao”] + [30, “damao”]<br>>&gt;&gt; print(mao)<br>[‘damao’, 30, ‘ermao’, 20, 10, 20, ‘ermao’, 30, ‘damao’]</p>
-<h3 id="列表的排序："><a href="#列表的排序：" class="headerlink" title="列表的排序："></a>列表的排序：</h3><p>首先，列表里的每个元素类型相同才可以进行排序，对此我们可以选择手写排序算法，也可以选择Pythoy提供的更简便且强大的的方法：sort()和sorted()</p>
+<h3>列表的打印</h3>
 <ol>
-<li><p>原地排序：<br>>&gt;&gt; fruit = [“banana”, “pear”, “orange”, “apple”]<br>>&gt;&gt; fruit.sort()<br>>&gt;&gt; print(fruit)<br>[‘apple’, ‘banana’, ‘orange’, ‘pear’]<br># sort() 方法可以在原列表的基础上进行排序，同时改变原列表的顺序。</p>
+<li>
+<p>使用内置函数print() 便可打印整个列表里的数据”
+&gt;&gt;&gt; print(name)
+[&quot;damao&quot;, 30, &quot;ermao&quot;]</p>
 </li>
-<li><p>复制排序：<br>>&gt;&gt; nums = [23, 12, -34, 0, 101, 2]<br>>&gt;&gt;newNums = sorted(nums)<br>>&gt;&gt; print(newNums)<br>[-34, 0, 2, 12, 23, 101]<br>>&gt;&gt; print(nums)<br>[23, 12, -34, 0, 101, 2]<br># sorted() 函数通过复制排序可以对几乎任何数据结构排序，同时返回一个新的排序后的数据结构，而且不会改变原数据结构的序列。<br>#注意，不管使用sort()还是使用sorted()，默认都是升序排序。如果想按照降序排序，只要传入 reverse = True 参数就可以啦，比如 fruit.sort(reverse = True) 或者 newNums = sorted(nums, reverse = True)</p>
+<li>
+<p>当然也可以打印列表的某个下标的数据：
+&gt;&gt;&gt; print(name[0])
+damao</p>
+</li>
+<li>
+<p>也可以分片打印列表的某段下标的数据
+&gt;&gt;&gt; print(name[0:2])
+['damao', 30] #注意，没有打印name[2]的数据:)</p>
+</li>
+<li>
+<p>如果想要分别打印列表里的每个数据，只需要一个for就可以搞定：
+&gt;&gt;&gt; for each in name:
+print(each)
+damao
+30
+ermao</p>
+</li>
+<li>
+<p>当然也可以直接打印出列表内数据的个数：
+&gt;&gt;&gt; print(len(name))
+3</p>
+</li>
+</ol>
+<h3>列表的扩展</h3>
+<ol>
+<li>
+<p>我们可以在列表末尾追加一个任意数据类型数据：
+&gt;&gt;&gt; name.append([&quot;daoluan&quot;, 666])
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', ['daoluan', 666]]</p>
+</li>
+<li>
+<p>也可以在列表末尾追加一个列表里的所有数据：
+&gt;&gt;&gt; name.extend([&quot;sanmao&quot;, 10, &quot;simao&quot;])
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', ['daoluan', 666], 'sanmao', 10, 'simao']
+#注意，append和entend这两个方法看起来有些类似，但实际上是不同的。append只接受一个参数，但是这个参数可以是任意数据类型，比如列表和元组等，而且只是将这个数据追加到原列表后面独立存在。
+extend也是只接受一个参数，不同的是这个参数必须是一个列表，而且会把这个列表的每个元素拆分出来，依次追加到原列表后面。</p>
+</li>
+<li>
+<p>当然也可以在指定位置增加一个任意数据类型数据(append的既视感)：
+/# 第一个参数为指定的列表下标，第二个参数为增加的数据
+&gt;&gt;&gt; name.insert(3, 20)
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, ['daoluan', 666], 'sanmao', 10, 'simao']</p>
+</li>
+</ol>
+<h3>列表的删除：</h3>
+<ol>
+<li>
+<p>删除列表末尾的一个数据：
+&gt;&gt;&gt; name.pop()
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, ['daoluan', 666], 'sanmao', 10]</p>
+</li>
+<li>
+<p>也可以删除列表指定的某一个数据：
+&gt;&gt;&gt; name.remove(&quot;sanmao&quot;)
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, ['daoluan', 666], 10]</p>
+</li>
+<li>
+<p>或者删除列表的某个下标的数据：
+&gt;&gt;&gt; del(name[4])
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, 10]
+#注意，de()函数支持列表分片删除，同样的，也支持删除整个列表。</p>
+</li>
+</ol>
+<h3>列表的合并：</h3>
+<p>只需要像I + I + I = III一样，就可以合并多个列表：
+&gt;&gt;&gt; mao = name + [20, &quot;ermao&quot;] + [30, &quot;damao&quot;]
+&gt;&gt;&gt; print(mao)
+['damao', 30, 'ermao', 20, 10, 20, 'ermao', 30, 'damao']</p>
+<h3>列表的排序：</h3>
+<p>首先，列表里的每个元素类型相同才可以进行排序，对此我们可以选择手写排序算法，也可以选择Pythoy提供的更简便且强大的的方法：sort()和sorted()</p>
+<ol>
+<li>
+<p>原地排序：
+&gt;&gt;&gt; fruit = [&quot;banana&quot;, &quot;pear&quot;, &quot;orange&quot;, &quot;apple&quot;]
+&gt;&gt;&gt; fruit.sort()
+&gt;&gt;&gt; print(fruit)
+['apple', 'banana', 'orange', 'pear']
+# sort() 方法可以在原列表的基础上进行排序，同时改变原列表的顺序。</p>
+</li>
+<li>
+<p>复制排序：
+&gt;&gt;&gt; nums = [23, 12, -34, 0, 101, 2]
+&gt;&gt;&gt;newNums = sorted(nums)
+&gt;&gt;&gt; print(newNums)
+[-34, 0, 2, 12, 23, 101]
+&gt;&gt;&gt; print(nums)
+[23, 12, -34, 0, 101, 2]
+# sorted() 函数通过复制排序可以对几乎任何数据结构排序，同时返回一个新的排序后的数据结构，而且不会改变原数据结构的序列。
+#注意，不管使用sort()还是使用sorted()，默认都是升序排序。如果想按照降序排序，只要传入 reverse = True 参数就可以啦，比如 fruit.sort(reverse = True) 或者 newNums = sorted(nums, reverse = True)</p>
 </li>
 </ol>
 
@@ -404,7 +514,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的创建"><span class="toc-number">1.</span> <span class="toc-text">列表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的打印"><span class="toc-number">2.</span> <span class="toc-text">列表的打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的扩展"><span class="toc-number">3.</span> <span class="toc-text">列表的扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的删除："><span class="toc-number">4.</span> <span class="toc-text">列表的删除：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的合并："><span class="toc-number">5.</span> <span class="toc-text">列表的合并：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的排序："><span class="toc-number">6.</span> <span class="toc-text">列表的排序：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">列表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">列表的打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">列表的扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">列表的删除：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">列表的合并：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">列表的排序：</span></a></li></ol>
         
     </div>
     <style>
@@ -488,7 +598,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 
