@@ -307,42 +307,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ul>
+              <ul>
 <li><strong>getParent().requestDisallowInterceptTouchEvent(true)</strong>;剥夺父view 对touch 事件的处理权，谁用谁知道。</li>
 <li><strong>ArgbEvaluator.evaluate(float fraction, Object startValue, Object endValue)</strong>; 用于根据一个起始颜色值和一个结束颜色值以及一个偏移量生成一个新的颜色，分分钟实现类似于微信底部栏滑动颜色渐变。</li>
 <li><strong>Canvas中clipRect、clipPath和clipRegion</strong> 剪切区域的API。</li>
-<li><strong>Bitmap.extractAlpha ()</strong>;返回一个新的Bitmap，capture原始图片的alpha 值。有的时候我们需要动态的修改一个元素的背景图片又不希望使用多张图片的时候，通过这个方法，&lt;!--more--&gt;结合Canvas 和Paint 可以动态的修改一个纯色Bitmap的颜色。</li>
-<li><strong>HandlerThread</strong>，代替不停new Thread 开子线程的重复体力写法。</li>
-<li><strong>IntentService</strong>,一个可以干完活后自己去死且不需要我们去管理子线程的Service。</li>
-<li><strong>Palette，5.0加入的可以提取一个Bitmap 中突出颜色的类</strong>，结合上面的Bitmap.extractAlpha，你懂的。</li>
-<li><strong>Executors. newSingleThreadExecutor()</strong>;这个是java 的，之前不知道它，自己花很大功夫去研究了单线程顺序执行的任务队列。。</li>
-<li><strong>android:animateLayoutChanges=”true”</strong>，LinearLayout中添加View 的动画的办法，支持通过setLayoutTransition()自定义动画。</li>
-<li><strong>ViewDragHelper</strong>，自定义一个子View可拖拽的ViewGroup 时，处理各种事件很累吧，嗯? what the fuck!!</li>
-<li><strong>GradientDrawable</strong>，之前接手公司的项目，发现有个阴影效果还不错，以为是切的图片，一看代码，什么鬼= =！
--<strong>AsyncQueryHandler</strong>，如果做系统工具类的开发，比如联系人短信辅助工具等，肯定免不了和ContentProvider打交道，如果数据量不是很大的情况下，随便搞，如果数据量大的情况下，了解下这个类是很有必要的，需要注意的是，这玩意儿吃异常..</li>
-<li><strong>ViewFlipper</strong>，实现多个view的切换(循环)，可自定义动画效果，且可针对单个切换指定动画。</li>
-<li><strong>View.setLayerType(View.LAYER_TYPE_SOFTWARE, null)</strong>;有朋友提到了在自定义View时有些方法在开启硬件加速的时候没有效果的问题，在API16之后确实有很多方法不支持硬件加速，通常我们关闭硬件加速都是在清单文件中通过，其实android也提供了针对特定View关闭硬件加速的方法,调用View.setLayerType(View.LAYER_TYPE_SOFTWARE, null)即可。</li>
-<li><strong>android util包中的Pair类</strong>，可以方便的用来存储一”组”数据。注意不是key value。</li>
-<li><strong>PointF，graphics包中的一个类</strong>，我们经常见到在处理Touch事件的时候分别定义一个downX，一个downY用来存储一个坐标，如果坐标少还好，如果要记录的坐标过多那代码就不好看了。用PointF(float x, float y);来描述一个坐标点会清楚很多。</li>
-<li><strong>StateListDrawable</strong>，定义Selector通常的办法都是xml文件，但是有的时候我们的图片资源可能是从服务器动态获取的，比如很多app所谓的皮肤，这种时候就只能通StateListDrawable
-来完成了，各种addState即可。</li>
-<li><strong>android:descendantFocusability</strong>，ListView的item中CheckBox等元素抢焦点导致item点击事件无法响应时，除了给对应的元素设置 focusable,更简单的是在item根布局加上android:descendantFocusability=”blocksDescendants”</li>
-<li><strong>android:duplicateParentState=”true”</strong>，让子View跟随其Parent的状态，如pressed等。常见的使用场景是某些时候一个按钮很小，我们想要扩大其点击区域的时候通常会再给其包裹一层布局，将点击事件写到Parent上，这时候如果希望被包裹按钮的点击效果对应的Selector继续生效的话，这时候duplicateParentState就派上用场了。</li>
-<li><strong>includeFontPadding=”false”</strong>，TextView默认上下是有一定的padding的，有时候我们可能不需要上下这部分留白，加上它即可。</li>
-<li><strong>Messenge</strong>r，面试的时候通常都会被问到进程间通信，一般情况下大家都是开始背书，AIDL巴拉巴拉。。有一天在鸿神的博客看到这个，嗯，如他所说，又可以装一下了。</li>
-<li><strong>TextView.setError()</strong>;用于验证用户输入。</li>
-<li><strong>ViewConfiguration.getScaledTouchSlop()</strong>;触发移动事件的最小距离，自定义View处理touch事件的时候，有的时候需要判断用户是否真的存在movie，系统提供了这样的方法。</li>
-<li><strong>ValueAnimator.reverse()</strong>; 顺畅的取消动画效果。</li>
-<li><strong>ViewStub</strong>，有的时候一块区域需要根据情况显示不同的布局，通常我们都会通过setVisibility的方法来显示和隐藏不同的布局，但是这样默认是全部加载的，用ViewStub可以更好的提升性能。</li>
-<li><strong>onTrimMemory</strong>，在Activity中重写此方法，会在内存紧张的时候回调（支持多个级别），便于我们主动的进行资源释放，避免OOM。</li>
-<li><strong>EditTxt.setImeOptions</strong>， 使用EditText弹出软键盘时，修改回车键的显示内容(一直很讨厌用回车键来交互，所以之前一直不知道这玩意儿)</li>
-<li><strong>TextView.setCompoundDrawablePadding</strong>，代码设置TextView的drawable padding。</li>
-<li><strong>ImageSwitcher</strong>，可以用来做图片切换的一个类，类似于幻灯片。</li>
-<li><strong>WeakHashMap</strong>，直接使用HashMap有时候会带来内存溢出的风险，使用WaekHashMap实例化Map。当使用者不再有对象引用的时候，WeakHashMap将自动被移除对应Key值的对象</li>
-</ul>
-<p><strong>注：</strong>
-本文转自：http://liukun.engineer/2016/04/11/Android开发中，那些让你相见恨晚的方法、类或接口/</p>
-
+<li><strong>Bitmap.extractAlpha ()</strong>;返回一个新的Bitmap，capture原始图片的alpha 值。有的时候我们需要动态的修改一个元素的背景图片又不希望使用多张图片的时候，通过这个方法，
+          
       
     </div>
     
@@ -359,6 +329,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/19/20161219/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -405,33 +379,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>设置环境变量</h3>
-<p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量
-选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
-<h3>配置default.ini文件</h3>
-<p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：&lt;!--more--&gt;
-[mysqld]
-basedir=C:\Program Files\MySQL\MySQL Server 5.6（mysql所在目录）
-datadir=C:\Program Files\MySQL\MySQL Server 5.6\data （mysql所在目录\data）</p>
-<h3>安装</h3>
-<p>环境变量设置完成后，打开终端输入mysqld -install。</p>
-<h3>登录</h3>
-<p>输入mysql -u root -p（第一次登录没有密码，直接按回车过）,登录成功</p>
-<h3>修改密码</h3>
-<p>在Windows命令行下修改mysql数据库密码步骤如下：</p>
-<ol>
-<li>打开终端</li>
-<li>输入“mysql -u root -p”，回车进入mysql命令状态；</li>
-<li>如果root原来有密码，mysql将提示输入原密码，再进入mysql命令状态；</li>
-<li>这里假设将root用户密码修改为mysql56，则在mysql命令状态下输入：
-update mysql.user set password=PASSWORD('mysql56') where user='root';
-提示Query OK，说明已更新。</li>
-<li>输入FLUSH PRIVILEGES;来保存修改内容，在mysql命令状态下输入：
-FLUSH PRIVILEGES;回车，至此，密码修改完成</li>
-</ol>
-<p><strong>附：mysql解压缩版下载地址：</strong>
-http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
-
+              <h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量<br>选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
+<h3 id="配置default-ini文件"><a href="#配置default-ini文件" class="headerlink" title="配置default.ini文件"></a>配置default.ini文件</h3><p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：
+          
       
     </div>
     
@@ -448,6 +398,10 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/18/20161218_mysql/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -494,12 +448,8 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>当你在想玩什么，有人在想学什么——<strong>时间</strong>；
-当你在做计划，有人已出发——<strong>执行</strong>；
-当你为上次失败沮丧，有人已开始下次尝试——<strong>心态</strong>；
-当你想放弃，有人却坚信前进就有希望。
-所以，道理真的很简单，那些比你走得远的人，并不比你聪慧，只是每天多走了一点。&lt;!--more--&gt;</p>
-
+              <p>当你在想玩什么，有人在想学什么——<strong>时间</strong>；<br>当你在做计划，有人已出发——<strong>执行</strong>；<br>当你为上次失败沮丧，有人已开始下次尝试——<strong>心态</strong>；<br>当你想放弃，有人却坚信前进就有希望。<br>所以，道理真的很简单，那些比你走得远的人，并不比你聪慧，只是每天多走了一点。
+          
       
     </div>
     
@@ -516,6 +466,10 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/17/20161217/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -562,92 +516,13 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4>cd</h4>
-<p>cd 进入某个目录</p>
+              <h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>cd 进入某个目录</p>
 <p>cd ~ 返回最初目录</p>
 <p>cd - 返回上次目录</p>
 <hr>
-<h4>文件</h4>
-<p>touch 1.txt 创建1.txt文件</p>
-<p>cp 复制文件，格式：cp 源文件 目标文件
-&lt;!--more--&gt;
-mv 移动文件 格式如上</p>
-<p>rm 删除文件 （rm 文件夹 -r 递归删除文件夹内所有内容，并删除文件夹）</p>
-<hr>
-<h4>文件夹</h4>
-<p>mkdir 创建文件夹</p>
-<p>rmdir 删除文件夹 文件夹有内容时不可删</p>
-<hr>
-<h4>ls</h4>
-<p>ls -alh 显示当前目录下所有文件并显示文件大小</p>
-<p>ls 1* 显示所有文件名以1开头的文件</p>
-<p>ls 1? 显示文件名只有两个字母且第一个字符为1的文件</p>
-<p>ls &gt;1.txt 重定向 将ls的内容显示在1.txt中</p>
-<p>ls &gt;&gt;1.txt 将ls的内容追加在1.txt中</p>
-<hr>
-<h4>查看cat、more</h4>
-<p>cat 1.txt 查看1.txt里的内容</p>
-<p>more 1.txt 1.txt内容过多时，分页显示</p>
-<hr>
-<h4>查找grep、find</h4>
-<p>grep -n  '123' ./1.txt 显示当前目录下1.txt里含有字符123所在的行，并显示其行号 （可用正则表达式表示）</p>
-<p>find ./ -name 'qq*' 显示当前目录下文件名以qq的开头的文件</p>
-<hr>
-<h4>软、硬链接ln</h4>
-<p>ln 1.txt link1.txt 给1.txt建立一个硬链接link1.txt</p>
-<p>ln -s 1.txt link1.txt 给1.txt建立一个软链接link1.txt</p>
-<hr>
-<h4>系统集成ps、top、kill</h4>
-<p>ps 显示当前进程信息</p>
-<p>top 动态显示显示当前系统进程信息</p>
-<p>kill 根据进程id杀死进程</p>
-<p>kill -9 强制杀死某进程</p>
-<hr>
-<h4>解压打包</h4>
-<p>tar -zxvf FileName.tar 解压</p>
-<p>tar -zcvf FileName.tar DirName 打包并压缩</p>
-<hr>
-<h4>用户操作</h4>
-<p>useradd 用户名 -m</p>
-<p>passwd</p>
-<p>ssh user@ip地址</p>
-<p>su 用户名 切到其他用户</p>
-<p>cat /etc/group</p>
-<p>groupmod tab*3</p>
-<p>groupadd</p>
-<p>groupdel
-groups 用户名 查看所在组</p>
-<p>usermod -a -G 组名 用户名 修改用户所在组。。必须在adm和sudo组的用户才能拥有root权限</p>
-<hr>
-<h4>权限修改chmod</h4>
-<p>a 所有的</p>
-<p>u 当前用户</p>
-<p>g 当前用户组</p>
-<p>o 其他用户</p>
-<p>r 读 w写 x执行</p>
-<p>a+r 表示给所有用户增加读权限</p>
-<p>a-r 表示给所有用户删除读权限</p>
-<p>u+r 表示给当前用户增加读权限</p>
-<p>u-r 表示给当前用户删除读权限</p>
-<p>a=rw 给所有用户增加读写权限</p>
-<p>其他以此类推</p>
-<p>例子：chmod u+r,g+r,o+r 文件名 表示被所有用户增加读写可执行权限  与 chmod a+r 用户名 作用相同</p>
-<p>权限表示：</p>
-<p>1 执行</p>
-<p>2 写</p>
-<p>4 读</p>
-<p>7=1+2+4表示可读可写可执行，类似的6=4+2可读可写，，以此类推</p>
-<p>chmod 776 文件名 则表示当前用户和当前用户组拥有可读可写可执行权限，其他用户拥有可读可写权限</p>
-<p>chown 用户 文件名 表示修改文件所有者</p>
-<p>chgrp 用户组 文件名 表示修改用户所在用户组</p>
-<hr>
-<h4>vim</h4>
-<p>vim</p>
-<p>i 命令模式进入编辑模式</p>
-<p>shift+；进入末行模式</p>
-<p>esc  返回上个模式</p>
-<p>wq等价于x 保存并退出</p>
-
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>touch 1.txt 创建1.txt文件</p>
+<p>cp 复制文件，格式：cp 源文件 目标文件<br>
+          
       
     </div>
     
@@ -664,6 +539,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/16/linuxSum/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -710,70 +589,14 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4>基本</h4>
-<ul>
+              <h4 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h4><ul>
 <li>简历不要太花哨, 你是应聘的技术, 不是设计师</li>
 <li>简历把一些基本信息要说清楚（无关的不要写, 比如头像之类的）</li>
 <li>有个人博客, 跟GitHub的写上, 若没有内容那就算了</li>
 <li>应届毕业生需写上相关证书之类, 有经验的可不写</li>
 <li>简历控制在两页 A4 纸</li>
 </ul>
-<p>&lt;!--more--&gt;</p>
-<h4>项目经验</h4>
-<ul>
-<li>一般写 2, 3个代表性的项目就好, 优先写本职工作相关的</li>
-<li>时间为倒序</li>
-<li>说明你在项目当中的职责作用</li>
-<li>项目模块需要了解大概逻辑与思路, 以及一些关键的技术点, 以防面试官问到</li>
-<li>没有项目经验的也要模仿一两个小 Demo</li>
-</ul>
-<h4>闲聊</h4>
-<ul>
-<li>自己亲自做的东西一定要明白, 如果不是自己亲自做的, 请慎重骗面试官</li>
-<li>问的时候会问一些知识点相关的话题, 比如你的数据是需要api交互的, 那可能会问http相关, json数据解析相关, 缓存相关, 图片加载相关等</li>
-<li>对用到的知识点虽用不着一定要看源码的地步, 但是最好要懂原理, 比如图片加载一定要知道二级缓存, 一些常见的缓存算法</li>
-</ul>
-<h4>注意事项</h4>
-<ul>
-<li>去面试前一定要花点时间了解下你面试的这家公司(本身有自己产品的下载体验一下, 以防面试过程中问到, 或者可以给产品提点意见)</li>
-<li>面试的时候态度要谦虚点</li>
-<li>学习能力很重要(一定要让面试官感受到你是一个好学的人)</li>
-<li>个人兴趣(不要提什么打游戏, 唱歌之类的, 可以说一下业余时间提下自己经常上一些技术社区,看一些技术博客之类的)</li>
-<li>除了基本的知识点, 面试官通常都会问一些比较深的领域(可能你没有接触过,但不要气馁, 面试官在考察下你的技术的深度, 这些领域一般包括设计模式, 虚拟机, 插件化, React Native之类的)</li>
-</ul>
-<h4>常问的知识点</h4>
-<ul>
-<li>初级
-<ul>
-<li>那基本的 Activity/Fragment的生命周期</li>
-<li>四大组件的具体作用以及用法</li>
-<li>Activity四种启动模式的区别</li>
-<li>ListView的优化</li>
-<li>一些动画的使用</li>
-<li>Java一些基础知识(如最基本的 String, StringBuilder, StringBuffer的区别; 如ArrayList, LinkedList的区别; Java线程的几种用法)</li>
-</ul>
-</li>
-<li>中级
-<ul>
-<li>屏幕适配经验，性能优化的经验</li>
-<li>中级的还有Java线程几种用法等</li>
-</ul>
-</li>
-<li>高级
-<ul>
-<li>如插件化, 如网络的优化, 如缓存的处理, 如插件化, 如Service保活</li>
-<li>对产品的一些看法, 对代码质量的要求, 对团队合作的理解等</li>
-</ul>
-</li>
-</ul>
-<h4>工资(一线城市, 不同的公司水平也有高低, 只能是大概)</h4>
-<ul>
-<li>一年以下一般8k以下吧(能力优秀的可以达到1w左右)</li>
-<li>中级的大概在10k—15k左右</li>
-<li>高级的在15-25k范围</li>
-</ul>
-<p><strong>注</strong>:本文转自stormZhang，微信公众号：AndroidDeveloper</p>
-
+          
       
     </div>
     
@@ -790,6 +613,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/15/stornzhangTalk/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -836,82 +663,14 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>1.加高法</h3>
-<p>浮动的元素，只能被有高度的盒子关住。 也就是说，如果盒子内部有浮动，这个盒子有高，那么妥妥的，浮动不会互相影响。但是，工作上，我们绝对不会给所有的盒子加高度，这是因为麻烦，并且不能适应页面的快速变化。</p>
+              <h3 id="1-加高法"><a href="#1-加高法" class="headerlink" title="1.加高法"></a>1.加高法</h3><p>浮动的元素，只能被有高度的盒子关住。 也就是说，如果盒子内部有浮动，这个盒子有高，那么妥妥的，浮动不会互相影响。但是，工作上，我们绝对不会给所有的盒子加高度，这是因为麻烦，并且不能适应页面的快速变化。</p>
 <pre><code>&lt;div&gt;   → 设置height
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
-<p>&lt;!--more--&gt;	
-	&lt;div&gt;   → 设置height
-		&lt;p&gt;&lt;/p&gt;
-		&lt;p&gt;&lt;/p&gt;
-		&lt;p&gt;&lt;/p&gt;
-	&lt;/div&gt;</p>
-<h3>2.clear:both法</h3>
-<p>最简单的清除浮动的方法，就是给盒子增加clear:both；表示自己的内部元素，不受其他盒子的影响。</p>
-<pre><code>&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div&gt;   → clear:both;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>浮动确实被清除了，不会互相影响了。但是有一个问题，就是margin失效。两个div之间，没有任何的间隙了。</p>
-<h3>3.隔墙法</h3>
-<p>在两部分浮动元素中间，建一个墙。隔开两部分浮动，让后面的浮动元素，不去追前面的浮动元素。墙用自己的身体当做了间隙。</p>
-<pre><code>&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;cl h10&quot;&gt;&lt;/div&gt;
-
-&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>我们发现，隔墙法好用，但是第一个div，还是没有高度。如果我们现在想让第一个div，自动的根据自己的儿子，撑出高度，我们就要想一些“小伎俩”，“奇淫技巧”。</p>
-<h3>4.内墙法</h3>
-<pre><code>&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;div class=&quot;cl h10&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>内墙法的优点就是，不仅仅能够让后部分的p不去追前部分的p了，并且能把第一个div撑出高度。这样，这个div的背景、边框就能够根据p的高度来撑开了。</p>
-<h3>5.overflow:hidden</h3>
-<p>这个属性的本意，就是将所有溢出盒子的内容，隐藏掉。但是，我们发现这个东西能够用于浮动的清除。我们知道，一个父亲，不能被自己浮动的儿子撑出高度，但是，如果这个父亲加上了overflow:hidden；那么这个父亲就能够被浮动的儿子撑出高度了。这个现象，不能解释，就是浏览器的小偏方。并且,overflow:hidden;能够让margin生效。</p>
-<pre><code>&lt;div&gt; ----&gt;设置overflow:hidden属性
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-
+          
       
     </div>
     
@@ -928,6 +687,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/14/float_clear/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -974,23 +737,8 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>做自己必须的要做事还是做自己喜欢的事，鱼和熊掌不可兼得
-		for（day=start；；day++）｛
-		doMymustTodoThings（）；
-		knowledge++；
-		experience++;
-		happy--;
-		if(i want）{
-&lt;!--more--&gt;
-		continue;
-		}
-		else{
-		break;
-		}
-		}
-		doMyLoveThings();
-		happy++;</p>
-
+              <p>做自己必须的要做事还是做自己喜欢的事，鱼和熊掌不可兼得<br>        for（day=start；；day++）｛<br>        doMymustTodoThings（）；<br>        knowledge++；<br>        experience++;<br>        happy–;<br>        if(i want）{<br>
+          
       
     </div>
     
@@ -1007,6 +755,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/13/life_code/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1053,28 +805,8 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>1.标题</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/1.png" alt=""></p>
-<p>&lt;!--more--&gt;</p>
-<h3>2.列表</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/2.png" alt="列表" title="列表"></p>
-<h3>3.引用</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/3.png" alt="引用" title="引用"></p>
-<h3>4.代码块</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/9.png" alt="代码块" title="代码块"></p>
-<h3>5.粗体和斜体</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/4.png" alt=""></p>
-<h3>6.超链接</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/5.png" alt=""></p>
-<h3>7.分割线</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/6.png" alt=""></p>
-<h3>8.表格</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/7.png" alt=""></p>
-<h3>9.工具栏</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/8.png" alt=""></p>
-<h3>10.总结</h3>
-<p><img src="http://94.191.72.22/blog/image/20161212/sum.png" alt=""></p>
-
+              <h3 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h3><p> <img src="http://94.191.72.22/blog/image/20161212/1.png" alt=""></p>
+          
       
     </div>
     
@@ -1091,6 +823,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/12/markdown/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1137,153 +873,8 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
-　　&lt;!--more--&gt;</p>
-<h3>Collection(单列集合):</h3>
-<p>####	List(有序,可重复):</p>
-<h5>ArrayList</h5>
-<pre><code>			底层数据结构是数组,查询快,增删慢
-			线程不安全,效率高
-</code></pre>
-<p>#####	 Vector
-				底层数据结构是数组,查询快,增删慢
-				线程安全,效率低
-#####	 LinkedList
-				底层数据结构是链表,查询慢,增删快
-				线程不安全,效率高</p>
-<p>####	Set(无序,唯一):
-#####	　HashSet
-				底层数据结构是哈希表。
-				哈希表依赖两个方法：hashCode()和equals()
-				执行顺序：
-					首先判断hashCode()值是否相同
-						是：继续执行equals(),看其返回值
-							是true:说明元素重复，不添加
-							是false:就直接添加到集合
-						否：就直接添加到集合
-				最终：
-					自动生成hashCode()和equals()即可</p>
-<p>#####	　LinkedHashSet
-					底层数据结构由链表和哈希表组成。
-					由链表保证元素有序。
-					由哈希表保证元素唯一。
-#####	　TreeSet
-				底层数据结构是红黑树。(是一种自平衡的二叉树)
-				如何保证元素唯一性呢?
-					根据比较的返回值是否是0来决定
-				如何保证元素的排序呢?
-					两种方式
-						自然排序(元素具备比较性)
-							让元素所属的类实现Comparable接口
-						比较器排序(集合具备比较性)
-							让集合接收一个Comparator的实现类对象</p>
-<h3>Map(双列集合):</h3>
-<pre><code>	A:Map集合的数据结构仅仅针对键有效，与值无关。
-	B:存储的是键值对形式的元素，键唯一，值可重复。
-</code></pre>
-<h4>HashMap</h4>
-<pre><code>		底层数据结构是哈希表。线程不安全，效率高
-			哈希表依赖两个方法：hashCode()和equals()
-			执行顺序：
-				首先判断hashCode()值是否相同
-					是：继续执行equals(),看其返回值
-						是true:说明元素重复，不添加
-						是false:就直接添加到集合
-					否：就直接添加到集合
-			最终：
-				自动生成hashCode()和equals()即可
-</code></pre>
-<h4>LinkedHashMap</h4>
-<pre><code>			底层数据结构由链表和哈希表组成。
-				由链表保证元素有序。
-				由哈希表保证元素唯一。
-</code></pre>
-<h5>Hashtable</h5>
-<pre><code>		底层数据结构是哈希表。线程安全，效率低
-			哈希表依赖两个方法：hashCode()和equals()
-			执行顺序：
-				首先判断hashCode()值是否相同
-					是：继续执行equals(),看其返回值
-						是true:说明元素重复，不添加
-						是false:就直接添加到集合
-					否：就直接添加到集合
-			最终：
-				自动生成hashCode()和equals()即可
-</code></pre>
-<p>#####	 TreeMap
-			底层数据结构是红黑树。(是一种自平衡的二叉树)
-				如何保证元素唯一性呢?
-					根据比较的返回值是否是0来决定
-				如何保证元素的排序呢?
-					两种方式
-						自然排序(元素具备比较性)
-							让元素所属的类实现Comparable接口
-						比较器排序(集合具备比较性)
-							让集合接收一个Comparator的实现类对象</p>
-<p>2:到底使用那种集合
-	看需求。</p>
-<pre><code>是否是键值对象形式:
-	是：Map
-		键是否需要排序:
-			是：TreeMap
-			否：HashMap
-		不知道，就使用HashMap。
-		
-	否：Collection
-		元素是否唯一:
-			是：Set
-				元素是否需要排序:
-					是：TreeSet
-					否：HashSet
-				不知道，就使用HashSet
-				
-			否：List
-				要安全吗:
-					是：Vector(其实我们也不用它，有其他方法可以替代)
-					否：ArrayList或者LinkedList
-						增删多：LinkedList
-						查询多：ArrayList
-					不知道，就使用ArrayList
-		不知道，就使用ArrayList
-</code></pre>
-<p>3:集合的常见方法及遍历方式</p>
-<h5>Collection:</h5>
-<pre><code>常见方法：
-	add()
-	remove()
-	contains()
-	iterator()
-	size()
-	
-	遍历：
-		增强for
-		迭代器
-		
-	|--List
-		get()
-		
-		遍历：
-			普通for
-	|--Set
-</code></pre>
-<h4>Map:</h4>
-<pre><code>	put()
-	remove()
-	containskey(),containsValue()
-	keySet()
-	get()
-	value()
-	entrySet()
-	size()
-	
-	遍历：
-		根据键找值
-		根据键值对对象分别找键和值
-</code></pre>
-<p>4:ArrayList,LinkedList,HashSet,HashMap(掌握)
-	存储字符串和自定义对象数据并遍历</p>
-<p>5:集合的嵌套遍历(理解)</p>
-
+              <p>　　当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下<br>
+          
       
     </div>
     
@@ -1300,6 +891,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/11/java.set/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1346,19 +941,9 @@ groups 用户名 查看所在组</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>从今年九月底开始，一直到十月底，前前后后总共大概面试了十来家公司，其中有少于二十人的创业公司，也有像美团那样的大公司，也算是面试经历丰富了。因为是校招，所谓金九银十，但当时自己并不知情，所以错过了好多大公司在九月份的校招，实在是挺可惜的。</p>
-<h3>简历筛选</h3>
-<p>先从简历投递开始说起，我想说毕业院校真的很重要，笔者是一所普通二本院校，虽然面试的是技术岗位，但是那些985,211毕业的学生确实还是具有很大优势&lt;!--more--&gt;，最明显的就是在简历筛选环节，其实大多数hr看你简历上一个毕业院校就决定你是否被pass了，其实 也不必抱怨不公平，hr从985,211里挑出优秀学生的概率确实是要比在普通学校挑出优秀学生的概率大的多，hr每天面对上百份简历，没那么多时间慢慢看，大多数简历一扫而过，毕业院校当然是观察的重点了。几年前的那场高考就决定了你是否输在了起跑线。普通的学生除非你曾获得过好多荣誉，才能让hr多看一眼你的简历。不过还好笔者大学并没有荒废，拿过一些小奖，做个一些小项目，写在简历上确实很加分。所以简历通过率还是很高的。</p>
-<h3>笔试</h3>
-<p>简历筛选完后，技术岗一般都会有笔试，笔者应聘的是Android开发工程师，java语言运用比较熟练，但在笔试阶段，好多公司对于不同技术岗位都是同一套试卷，好多都是用C/C++答题，说来羞愧，虽然笔者在大一大二花过时间学习过C/C++，但是大三一年基本在学java，所以C方面的知识好多都忘了，尤其指针方面的，导致有些公司笔试时被刷了。也有一些比较良心的公司会针对不同职位安排不同的试卷，这样的笔试我一般做起来比较顺手，基本都通过了。之后拿到几个offer的公司当中也都是这样分开出题的。不过还是建议大家有时间多看看C/C++，因为我们只能去适应市场，不可能让市场来适应你。然后C/C++也是学校规定的课程，企业有这样的要求也没有错。
-　　然后说一下我遇到的校招笔试的大体内容，常见排序算法至少能手写出两个吧，他们的时间复杂度都必须记得，二分查找也要会写，面向对象的特点，，hashcode和equals方法，，Sting类的常用方法，java集合类的特点和用法（必须搞清楚），多线程（笔试比较常考，面试必问的），数据库多表查询（这是笔者最薄弱的部分），反射，，设计模式（单例模式必须懂），IO流和网络编程（这两个笔试较少）然后就是一些编程题（以对字符串的操作居多，还有数据结构算法题）。。一般一些大公司必考数据结构与算法，像栈，，队列，二叉树，，红黑树，图啊等等他们的一些特性，，最好能手写代码（笔者目前还做不到）。另外还有还会考一些CS的基本素养了，比如计算机网络（TCP/IP协议，HTTP等协议），，操作系统（FIFO，LRU等分页算法）啥的。还有就是智力题也占一部分，常见的就是找规律填数字，求概率等等。。笔者所做的Android部分常考的有：Acticity生命周期，Fragment生命周期，广播注册的两种方式，andorid的数据存储方式，四大组件的基本使用，，五大布局的各自特点，handler消息机制，listview的优化，防止内存泄露的方法，intent意图，Android动画等等。</p>
-<h3>面试</h3>
-<p>最后说说面试，面试时笔者感觉一直都是很不错的，问的问题基本都能答上来，越面越自信，也是重在基础。下面就以科大讯飞和美团作为例子吧，虽然这两家公司都没通过，但笔者认为很有借鉴意义，可以从失败中吸取教训，这两家公司问的问题几乎涵盖了我面试的其他家公司问的问题，所以十几次面试我就准备了一次，有时上午面完下午面，一面完了二面，晚上又去参加宣讲会笔试，总之是没那么多时间准备的，其实也不需要要多次准备，充足准备好一次就行了。回到正题，先说说科大讯飞，介绍完后，两面试官，上来就问我如何实现线程同步，这其实是很老的问题了，百度上都有，五种方法吧，我当时只答了个synchronized ，就这个问题没答好，确实没准备。后来又问我面向对象特点，java集合，接口与抽象类的区别，json解析，设计模式，盒子模型（css里的），还有好多问题忘了。反正后面的答的都很好，然后就是闲聊，重在突出自己知识面广，学习能力强，对cs抱有很大热情。最好面试官问我考不考研，，我说不考，然后面试官说，像你这样的是不用考研了，你比很多研究生水平都要好了。当时心里很开心。过了两天。没出意外，告诉我面试过了，准备二面。到了二面，是一个面试官，没想到它不安常理出牌。我以为他会问java，，Android方面的，没想到他一直问网络通信方面的知识，比如tcp与udp的区别，get与post请求的区别，tcp在网络哪一层，还有对http协议的了解等等，我完全蒙蔽了带猜带蒙的回答了一点。。结果，，然后就没有结果了。从这次失败的面试中我也真的是收获不少，恶补了线程同步以及网络方面的知识，，在之后的面试（如美团）中，果然有再次被问到，然后我回答的都很不错。。恩，聪明的人总会从失败中吸取经验。
-　　再说说美团面试，在一家逼格挺高的酒店进行的，我对自己简历筛选和笔试通过已经很惊讶了，然后当时已经有了别的公司的offer，所以全当体验一把。因为我知道这类大公司最喜欢问数据结构与算法，现场手写代码，而这正是我最薄弱的，因为之前并没有特意的去刷数据结果与算法题，当时去现场看到很多人拿着本剑指offer在那刷题，没有意外最后我也就死在了算法题上。。。面试我的只有一个面试官，先是针对我简历上的项目问的特别细致，花了将近一半的时间，然后跟他说了Android的事件传递机制，handler消息机制，图片的三级缓存，内存泄露，listview的下拉刷新和上拉加载更多以及常用的Android网络请求开源框架（Okhttp，Volley，Retrofit）以及自己经常使用的一些开源项目（Slidingmenu，XUtils，Gson）等问题，接着就是大量的多线程方面的问题，如sleep与wait方法的区别，多线程启动方法，线程同步问题（这个之前在科大讯飞就被问到，这次答的就很顺利），这些我答的都很轻松。然后给我假设Android里的一些特殊情景，怎样用多线程实现，具体啥问题记不得了。然后问我java反射的一些问题，感觉答得也还行，然后又问了好多网络方面的问题，tcp与udp的区别，get与post请求的区别，http请求除了get，post还有哪些，tcp协议几次握手几次挥手等等，这些问题我之前面试都被问过，所以回答的很完整。。到最好，果然还是出了两道算法题，一道是二叉树左右子树互换，我直接放弃了，因为我根本没去复习数据结构这块，还有一道是链表的逆序，这题我写出来了，他说时间复杂度太高。面试总体感觉百分之七八十的问题都答出来了。。最后出来，，hr说没过，好吧，，我估计就死在算法题上了，也没有遗憾，这方面确实不足啊。</p>
-<h3>总结</h3>
-<p>现在挺怀念面试那个时候的，很享受面试的过程，每天过得很充实，，有目标，特别是最后收到offer的时候，这是别人对你的认可，毕竟从简历筛选到笔试再到面试一面二面，感觉自己的辛苦有了回报。最后一共收到三个offer，选择了一家上海的公司，对于我们这类二本院校的学生来说也还行吧，找好落脚点，重在以后发展，加油吧骚年！</p>
-<p></p>
-
+              <p>　　从今年九月底开始，一直到十月底，前前后后总共大概面试了十来家公司，其中有少于二十人的创业公司，也有像美团那样的大公司，也算是面试经历丰富了。因为是校招，所谓金九银十，但当时自己并不知情，所以错过了好多大公司在九月份的校招，实在是挺可惜的。</p>
+<h3 id="简历筛选"><a href="#简历筛选" class="headerlink" title="简历筛选"></a>简历筛选</h3><p>　　先从简历投递开始说起，我想说毕业院校真的很重要，笔者是一所普通二本院校，虽然面试的是技术岗位，但是那些985,211毕业的学生确实还是具有很大优势
+          
       
     </div>
     
@@ -1375,6 +960,10 @@ groups 用户名 查看所在组</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/10/mianshi/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

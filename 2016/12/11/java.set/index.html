@@ -15,40 +15,16 @@
 
 
 
-<meta name="description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
-　　&amp;lt;!--more--&amp;gt;
-Collection(单列集合):
-####	List(有序,可重复):
-ArrayList
-			底层数据结构是数组,查询快,增删慢
-			线程不安全,效率高
-
-#####	 Vector">
+<meta name="description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javaSE基础-集合">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/11/java.set/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
-　　&amp;lt;!--more--&amp;gt;
-Collection(单列集合):
-####	List(有序,可重复):
-ArrayList
-			底层数据结构是数组,查询快,增删慢
-			线程不安全,效率高
-
-#####	 Vector">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.295Z">
+<meta property="og:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
+<meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javaSE基础-集合">
-<meta name="twitter:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
-　　&amp;lt;!--more--&amp;gt;
-Collection(单列集合):
-####	List(有序,可重复):
-ArrayList
-			底层数据结构是数组,查询快,增删慢
-			线程不安全,效率高
-
-#####	 Vector">
+<meta name="twitter:description" content="当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -340,151 +316,124 @@ ArrayList
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下
-　　&lt;!--more--&gt;</p>
-<h3>Collection(单列集合):</h3>
-<p>####	List(有序,可重复):</p>
-<h5>ArrayList</h5>
-<pre><code>			底层数据结构是数组,查询快,增删慢
-			线程不安全,效率高
-</code></pre>
-<p>#####	 Vector
-				底层数据结构是数组,查询快,增删慢
-				线程安全,效率低
-#####	 LinkedList
-				底层数据结构是链表,查询慢,增删快
-				线程不安全,效率高</p>
-<p>####	Set(无序,唯一):
-#####	　HashSet
-				底层数据结构是哈希表。
-				哈希表依赖两个方法：hashCode()和equals()
-				执行顺序：
-					首先判断hashCode()值是否相同
-						是：继续执行equals(),看其返回值
-							是true:说明元素重复，不添加
-							是false:就直接添加到集合
-						否：就直接添加到集合
-				最终：
-					自动生成hashCode()和equals()即可</p>
-<p>#####	　LinkedHashSet
-					底层数据结构由链表和哈希表组成。
-					由链表保证元素有序。
-					由哈希表保证元素唯一。
-#####	　TreeSet
-				底层数据结构是红黑树。(是一种自平衡的二叉树)
-				如何保证元素唯一性呢?
-					根据比较的返回值是否是0来决定
-				如何保证元素的排序呢?
-					两种方式
-						自然排序(元素具备比较性)
-							让元素所属的类实现Comparable接口
-						比较器排序(集合具备比较性)
-							让集合接收一个Comparator的实现类对象</p>
-<h3>Map(双列集合):</h3>
-<pre><code>	A:Map集合的数据结构仅仅针对键有效，与值无关。
-	B:存储的是键值对形式的元素，键唯一，值可重复。
-</code></pre>
-<h4>HashMap</h4>
-<pre><code>		底层数据结构是哈希表。线程不安全，效率高
-			哈希表依赖两个方法：hashCode()和equals()
-			执行顺序：
-				首先判断hashCode()值是否相同
-					是：继续执行equals(),看其返回值
-						是true:说明元素重复，不添加
-						是false:就直接添加到集合
-					否：就直接添加到集合
-			最终：
-				自动生成hashCode()和equals()即可
-</code></pre>
-<h4>LinkedHashMap</h4>
-<pre><code>			底层数据结构由链表和哈希表组成。
-				由链表保证元素有序。
-				由哈希表保证元素唯一。
-</code></pre>
-<h5>Hashtable</h5>
-<pre><code>		底层数据结构是哈希表。线程安全，效率低
-			哈希表依赖两个方法：hashCode()和equals()
-			执行顺序：
-				首先判断hashCode()值是否相同
-					是：继续执行equals(),看其返回值
-						是true:说明元素重复，不添加
-						是false:就直接添加到集合
-					否：就直接添加到集合
-			最终：
-				自动生成hashCode()和equals()即可
-</code></pre>
-<p>#####	 TreeMap
-			底层数据结构是红黑树。(是一种自平衡的二叉树)
-				如何保证元素唯一性呢?
-					根据比较的返回值是否是0来决定
-				如何保证元素的排序呢?
-					两种方式
-						自然排序(元素具备比较性)
-							让元素所属的类实现Comparable接口
-						比较器排序(集合具备比较性)
-							让集合接收一个Comparator的实现类对象</p>
-<p>2:到底使用那种集合
-	看需求。</p>
+        <p>　　当初学java基础的时候感觉集合这块挺复杂的，但是在之后的java，Android项目中运用的特别多，所以感觉比较重要，今天翻电脑偶然翻到之前的笔记，分享一下<br>　　<a id="more"></a></p>
+<h3 id="Collection-单列集合"><a href="#Collection-单列集合" class="headerlink" title="Collection(单列集合):"></a>Collection(单列集合):</h3><h4 id="List-有序-可重复"><a href="#List-有序-可重复" class="headerlink" title="List(有序,可重复):"></a>List(有序,可重复):</h4><h5 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h5><pre><code>底层数据结构是数组,查询快,增删慢
+线程不安全,效率高
+</code></pre><h5 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h5><pre><code>底层数据结构是数组,查询快,增删慢
+线程安全,效率低
+</code></pre><h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><pre><code>底层数据结构是链表,查询慢,增删快
+线程不安全,效率高
+</code></pre><h4 id="Set-无序-唯一"><a href="#Set-无序-唯一" class="headerlink" title="Set(无序,唯一):"></a>Set(无序,唯一):</h4><h5 id="HashSet"><a href="#HashSet" class="headerlink" title="　HashSet"></a>　HashSet</h5><pre><code>底层数据结构是哈希表。
+哈希表依赖两个方法：hashCode()和equals()
+执行顺序：
+    首先判断hashCode()值是否相同
+        是：继续执行equals(),看其返回值
+            是true:说明元素重复，不添加
+            是false:就直接添加到集合
+        否：就直接添加到集合
+最终：
+    自动生成hashCode()和equals()即可
+</code></pre><h5 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="　LinkedHashSet"></a>　LinkedHashSet</h5><pre><code>底层数据结构由链表和哈希表组成。
+由链表保证元素有序。
+由哈希表保证元素唯一。
+</code></pre><h5 id="TreeSet"><a href="#TreeSet" class="headerlink" title="　TreeSet"></a>　TreeSet</h5><pre><code>底层数据结构是红黑树。(是一种自平衡的二叉树)
+如何保证元素唯一性呢?
+    根据比较的返回值是否是0来决定
+如何保证元素的排序呢?
+    两种方式
+        自然排序(元素具备比较性)
+            让元素所属的类实现Comparable接口
+        比较器排序(集合具备比较性)
+            让集合接收一个Comparator的实现类对象
+</code></pre><h3 id="Map-双列集合"><a href="#Map-双列集合" class="headerlink" title="Map(双列集合):"></a>Map(双列集合):</h3><pre><code>A:Map集合的数据结构仅仅针对键有效，与值无关。
+B:存储的是键值对形式的元素，键唯一，值可重复。
+</code></pre><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><pre><code>底层数据结构是哈希表。线程不安全，效率高
+    哈希表依赖两个方法：hashCode()和equals()
+    执行顺序：
+        首先判断hashCode()值是否相同
+            是：继续执行equals(),看其返回值
+                是true:说明元素重复，不添加
+                是false:就直接添加到集合
+            否：就直接添加到集合
+    最终：
+        自动生成hashCode()和equals()即可
+</code></pre><h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><pre><code>底层数据结构由链表和哈希表组成。
+    由链表保证元素有序。
+    由哈希表保证元素唯一。
+</code></pre><h5 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h5><pre><code>底层数据结构是哈希表。线程安全，效率低
+    哈希表依赖两个方法：hashCode()和equals()
+    执行顺序：
+        首先判断hashCode()值是否相同
+            是：继续执行equals(),看其返回值
+                是true:说明元素重复，不添加
+                是false:就直接添加到集合
+            否：就直接添加到集合
+    最终：
+        自动生成hashCode()和equals()即可
+</code></pre><h5 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h5><pre><code>底层数据结构是红黑树。(是一种自平衡的二叉树)
+    如何保证元素唯一性呢?
+        根据比较的返回值是否是0来决定
+    如何保证元素的排序呢?
+        两种方式
+            自然排序(元素具备比较性)
+                让元素所属的类实现Comparable接口
+            比较器排序(集合具备比较性)
+                让集合接收一个Comparator的实现类对象
+</code></pre><p>2:到底使用那种集合<br>    看需求。</p>
 <pre><code>是否是键值对象形式:
-	是：Map
-		键是否需要排序:
-			是：TreeMap
-			否：HashMap
-		不知道，就使用HashMap。
-		
-	否：Collection
-		元素是否唯一:
-			是：Set
-				元素是否需要排序:
-					是：TreeSet
-					否：HashSet
-				不知道，就使用HashSet
-				
-			否：List
-				要安全吗:
-					是：Vector(其实我们也不用它，有其他方法可以替代)
-					否：ArrayList或者LinkedList
-						增删多：LinkedList
-						查询多：ArrayList
-					不知道，就使用ArrayList
-		不知道，就使用ArrayList
-</code></pre>
-<p>3:集合的常见方法及遍历方式</p>
-<h5>Collection:</h5>
-<pre><code>常见方法：
-	add()
-	remove()
-	contains()
-	iterator()
-	size()
-	
-	遍历：
-		增强for
-		迭代器
-		
-	|--List
-		get()
-		
-		遍历：
-			普通for
-	|--Set
-</code></pre>
-<h4>Map:</h4>
-<pre><code>	put()
-	remove()
-	containskey(),containsValue()
-	keySet()
-	get()
-	value()
-	entrySet()
-	size()
-	
-	遍历：
-		根据键找值
-		根据键值对对象分别找键和值
-</code></pre>
-<p>4:ArrayList,LinkedList,HashSet,HashMap(掌握)
-	存储字符串和自定义对象数据并遍历</p>
+    是：Map
+        键是否需要排序:
+            是：TreeMap
+            否：HashMap
+        不知道，就使用HashMap。
+
+    否：Collection
+        元素是否唯一:
+            是：Set
+                元素是否需要排序:
+                    是：TreeSet
+                    否：HashSet
+                不知道，就使用HashSet
+
+            否：List
+                要安全吗:
+                    是：Vector(其实我们也不用它，有其他方法可以替代)
+                    否：ArrayList或者LinkedList
+                        增删多：LinkedList
+                        查询多：ArrayList
+                    不知道，就使用ArrayList
+        不知道，就使用ArrayList
+</code></pre><p>3:集合的常见方法及遍历方式</p>
+<h5 id="Collection"><a href="#Collection" class="headerlink" title="Collection:"></a>Collection:</h5><pre><code>常见方法：
+    add()
+    remove()
+    contains()
+    iterator()
+    size()
+
+    遍历：
+        增强for
+        迭代器
+
+    |--List
+        get()
+
+        遍历：
+            普通for
+    |--Set
+</code></pre><h4 id="Map"><a href="#Map" class="headerlink" title="Map:"></a>Map:</h4><pre><code>put()
+remove()
+containskey(),containsValue()
+keySet()
+get()
+value()
+entrySet()
+size()
+
+遍历：
+    根据键找值
+    根据键值对对象分别找键和值
+</code></pre><p>4:ArrayList,LinkedList,HashSet,HashMap(掌握)<br>    存储字符串和自定义对象数据并遍历</p>
 <p>5:集合的嵌套遍历(理解)</p>
 
       
@@ -518,7 +467,7 @@ ArrayList
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Collection(单列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.0.1.</span> <span class="toc-text">ArrayList</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">Map(双列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">LinkedHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.1.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.2.</span> <span class="toc-text">Collection:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">Map:</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-单列集合"><span class="toc-number">1.</span> <span class="toc-text">Collection(单列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List-有序-可重复"><span class="toc-number">1.1.</span> <span class="toc-text">List(有序,可重复):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ArrayList"><span class="toc-number">1.1.1.</span> <span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Vector"><span class="toc-number">1.1.2.</span> <span class="toc-text">Vector</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedList"><span class="toc-number">1.1.3.</span> <span class="toc-text">LinkedList</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-无序-唯一"><span class="toc-number">1.2.</span> <span class="toc-text">Set(无序,唯一):</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HashSet"><span class="toc-number">1.2.1.</span> <span class="toc-text">　HashSet</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedHashSet"><span class="toc-number">1.2.2.</span> <span class="toc-text">　LinkedHashSet</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeSet"><span class="toc-number">1.2.3.</span> <span class="toc-text">　TreeSet</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-双列集合"><span class="toc-number">2.</span> <span class="toc-text">Map(双列集合):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap"><span class="toc-number">2.1.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedHashMap"><span class="toc-number">2.2.</span> <span class="toc-text">LinkedHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Hashtable"><span class="toc-number">2.2.1.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeMap"><span class="toc-number">2.2.2.</span> <span class="toc-text">TreeMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Collection"><span class="toc-number">2.2.3.</span> <span class="toc-text">Collection:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map"><span class="toc-number">2.3.</span> <span class="toc-text">Map:</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -602,7 +551,7 @@ ArrayList
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 

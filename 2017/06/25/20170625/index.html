@@ -15,64 +15,16 @@
 
 
 
-<meta name="description" content="1.顺序表的定义
-2.顺序表的初始化
-3.顺序表元素增删改查
-&amp;lt;!--more--&amp;gt;
-	#include&amp;lt;stdio.h&amp;gt;
-#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-	ElemType data[MAXSIZE];
-	int length;
-	
-	
-}SeqList;
-
-SeqList init_l">
+<meta name="description" content="1.顺序表的定义2.顺序表的初始化3.顺序表元素增删改查">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-顺序表的基本操作">
 <meta property="og:url" content="http://qiracle.github.io/2017/06/25/20170625/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="1.顺序表的定义
-2.顺序表的初始化
-3.顺序表元素增删改查
-&amp;lt;!--more--&amp;gt;
-	#include&amp;lt;stdio.h&amp;gt;
-#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-	ElemType data[MAXSIZE];
-	int length;
-	
-	
-}SeqList;
-
-SeqList init_l">
-<meta property="og:updated_time" content="2018-11-25T08:40:22.294Z">
+<meta property="og:description" content="1.顺序表的定义2.顺序表的初始化3.顺序表元素增删改查">
+<meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-顺序表的基本操作">
-<meta name="twitter:description" content="1.顺序表的定义
-2.顺序表的初始化
-3.顺序表元素增删改查
-&amp;lt;!--more--&amp;gt;
-	#include&amp;lt;stdio.h&amp;gt;
-#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-	ElemType data[MAXSIZE];
-	int length;
-	
-	
-}SeqList;
-
-SeqList init_l">
+<meta name="twitter:description" content="1.顺序表的定义2.顺序表的初始化3.顺序表元素增删改查">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -364,129 +316,127 @@ SeqList init_l">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1.顺序表的定义
-2.顺序表的初始化
-3.顺序表元素增删改查
-&lt;!--more--&gt;
-	#include&lt;stdio.h&gt;</p>
-<pre><code>#define MAXSIZE 20
+        <p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
+<pre><code>#include&lt;stdio.h&gt;
+
+#define MAXSIZE 20
 typedef int ElemType;
 
 typedef struct
 {
-	ElemType data[MAXSIZE];
-	int length;
-	
-	
+    ElemType data[MAXSIZE];
+    int length;
+
+
 }SeqList;
 
 SeqList init_list(){//初始化
-	SeqList L;
-	L.length =0;
+    SeqList L;
+    L.length =0;
 
-	return L;
+    return L;
 }
 
 int list_length(SeqList *L){//获取长度
-	return L-&gt;length;
+    return L-&gt;length;
 }
 
 int get_element(SeqList L,int i){//根据序号查找元素
-	if(i&lt;1 || i&gt;L.length){
-		printf(&quot;序号超出范围&quot;);
-		return -1;
-	}
-	return L.data[i-1];
-	
-	
+    if(i&lt;1 || i&gt;L.length){
+        printf(&quot;序号超出范围&quot;);
+        return -1;
+    }
+    return L.data[i-1];
+
+
 }
 
 int list_locate(SeqList L,ElemType x){//根据元素查找位置
-	int i;
-	for(i=0; i&lt;L.length;i++)
-		if(L.data[i]==x)
-			return (i+1);
-		
-		
-		return -1;//未找到
-		
+    int i;
+    for(i=0; i&lt;L.length;i++)
+        if(L.data[i]==x)
+            return (i+1);
+
+
+        return -1;//未找到
+
 }
 
 void list_insert(SeqList *L, ElemType x,int i){ //插入元素
-	
-	int j;
-	if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
-	else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
-	else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
-		L-&gt;data[j+1] =L-&gt;data[j];
-	L-&gt;data[i-1] =x;
-	L-&gt;length++;
-	
-	
-	}
-	
+
+    int j;
+    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
+    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
+    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
+        L-&gt;data[j+1] =L-&gt;data[j];
+    L-&gt;data[i-1] =x;
+    L-&gt;length++;
+
+
+    }
+
 }
 
 void list_delete(SeqList *L,int i){//删除元素
-	int j;
-	if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
-	if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
-	else {
-		for(j=i;j&lt;=L-&gt;length-1;j++)
-			L-&gt;data[j-1] =L-&gt;data[j];
-		L-&gt;length--;
-	}
-	
-	
+    int j;
+    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
+    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
+    else {
+        for(j=i;j&lt;=L-&gt;length-1;j++)
+            L-&gt;data[j-1] =L-&gt;data[j];
+        L-&gt;length--;
+    }
+
+
 }
 
 
 SeqList list_scanf(SeqList L){ //创建链表
 int x;
 int i;
-	printf(&quot;请输入顺序表的元素(-1结束)&quot;);
-	for(i=0;;i++){
-		scanf(&quot;%d&quot;,&amp;x);
-		if(x==-1){
-			break;
-		}
+    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
+    for(i=0;;i++){
+        scanf(&quot;%d&quot;,&amp;x);
+        if(x==-1){
+            break;
+        }
  L.data[L.length] = x;
  L.length++; 
-	}
+    }
 
-	return L;
+    return L;
 }
 
 void list_print(SeqList L){//打印链表
-	int k;
-	printf(&quot;顺序表的元素有:&quot;);
-	for(k = 0; k&lt;L.length;k++){
-		printf(&quot;%3d &quot;,L.data[k]);
-	}
-	printf(&quot;\n&quot;);
+    int k;
+    printf(&quot;顺序表的元素有:&quot;);
+    for(k = 0; k&lt;L.length;k++){
+        printf(&quot;%3d &quot;,L.data[k]);
+    }
+    printf(&quot;\n&quot;);
 
 }
 
 
 int main(){
-		int pos;
-		int key;
-	SeqList L = init_list();
-	L = list_scanf(L);
+        int pos;
+        int key;
+    SeqList L = init_list();
+    L = list_scanf(L);
 
-	list_insert(&amp;L, 3, 2);
+    list_insert(&amp;L, 3, 2);
 
-//	list_delete(&amp;L,1);
-	 //pos= list_locate(L,2);
-//	printf(&quot;查找到该元素位于：%d \n&quot;,pos);
+//    list_delete(&amp;L,1);
+     //pos= list_locate(L,2);
+//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
 //key = get_element(L,3);
 //printf(&quot;该元素为：%d \n&quot;,key);
-	list_print(L);
-	printf(&quot;length:%d \n&quot;,list_length(&amp;L));
-	return 0;
-	
-}</code></pre>
+    list_print(L);
+    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
+    return 0;
 
+}
+</code></pre>
       
     </div>
     
@@ -498,15 +448,15 @@ int main(){
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/06/25/2017062502/">
-                    数据结构-链表的基本操作
+                <a href="/2017/07/01/20170701/">
+                    Android 系统 overlay 机制重点小结
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/05/03/20170503/">
-                    Android系统工程模式启动过程详解
+                <a href="/2017/06/25/2017062502/">
+                    数据结构-链表的基本操作
                 </a>
             </div>
         
@@ -588,7 +538,7 @@ int main(){
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/06/25/2017062502/" title="上一篇: 数据结构-链表的基本操作">
+            <a href="/2017/07/01/20170701/" title="上一篇: Android 系统 overlay 机制重点小结">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -596,13 +546,13 @@ int main(){
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/05/03/20170503/" title="下一篇: Android系统工程模式启动过程详解">
+            <a href="/2017/06/25/2017062502/" title="下一篇: 数据结构-链表的基本操作">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 

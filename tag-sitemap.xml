@@ -2,106 +2,106 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://qiracle.github.io/tags/mysql/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-        <lastmod>2018-11-25T08:40:22.293Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/tags/python/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/tags/C-C/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/tags/Python/</loc>
-        <lastmod>2018-11-25T08:40:22.294Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://qiracle.github.io/tags/%E9%9A%8F%E7%AC%94/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/mysql/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://qiracle.github.io/tags/%E8%BD%AC%E8%BD%BD/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/python/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/C-C/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://qiracle.github.io/tags/git/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/Python/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://qiracle.github.io/tags/HTTPS/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://qiracle.github.io/tags/CSS/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://qiracle.github.io/tags/Hexo/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/tags/Linux/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://qiracle.github.io/tags/markdown/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://qiracle.github.io/tags/%E9%9D%A2%E8%AF%95/</loc>
-        <lastmod>2018-11-25T08:40:22.295Z</lastmod>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/markdown/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/Linux/</loc>
+        <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
