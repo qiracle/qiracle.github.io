@@ -15,7 +15,8 @@
 
 
 
-<meta name="description" content="学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是https://www.douyu.com/directory/game/yz 。直接贴代码：
+<meta name="description" content="学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。
+　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是https://www.douyu.com/directory/game/yz 。直接贴代码：
 import urllib2
 import urllib
 import re
@@ -23,12 +24,13 @@ import time
 
 
 
-def getH">
+def getHt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单的python网络爬虫实现">
 <meta property="og:url" content="http://qiracle.github.io/2017/01/10/20170110/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是https://www.douyu.com/directory/game/yz 。直接贴代码：
+<meta property="og:description" content="学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。
+　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是https://www.douyu.com/directory/game/yz 。直接贴代码：
 import urllib2
 import urllib
 import re
@@ -36,12 +38,13 @@ import time
 
 
 
-def getH">
+def getHt">
 <meta property="og:image" content="http://94.191.72.22/blog/image/20170110/2017-01-10.png">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的python网络爬虫实现">
-<meta name="twitter:description" content="学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是https://www.douyu.com/directory/game/yz 。直接贴代码：
+<meta name="twitter:description" content="学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。
+　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是https://www.douyu.com/directory/game/yz 。直接贴代码：
 import urllib2
 import urllib
 import re
@@ -49,7 +52,7 @@ import time
 
 
 
-def getH">
+def getHt">
 <meta name="twitter:image" content="http://94.191.72.22/blog/image/20170110/2017-01-10.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -342,7 +345,8 @@ def getH">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>　　学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。<br>　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz" target="_blank" rel="external">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
+        <p>学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。
+　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz" target="_blank" rel="external">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
 <pre><code>import urllib2
 import urllib
 import re
@@ -351,28 +355,27 @@ import time
 
 
 def getHtml(url):
-    request = urllib2.Request(url)
-    request.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
-    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36&apos;)
-    response = urllib2.urlopen(request)
-    html=response.read()
-    return html
-</code></pre><a id="more"></a>
-<pre><code>def getImage(html):
-     imglist=re.findall(r&apos;data-original=&quot;(.*?\.(jpg|jpeg))&quot;&apos;,html)
-     print(len(imglist))
-     path =&quot;&quot;
-     x=0
-     for img in imglist:
-         urllib.urlretrieve(img[0],&quot;/home/qiracle/douyu/&quot;+str(x)+&quot;.&quot;+img[1])
-         x+=1
-         time.sleep(1)
-
-
-
-html =getHtml(&quot;https://www.douyu.com/directory/game/yz&quot;)
+	request = urllib2.Request(url)
+	request.add_header('User-Agent','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
+	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36')
+	response = urllib2.urlopen(request)
+	html=response.read()
+	return html
+</code></pre>
+<p>&lt;!--more--&gt;
+	def getImage(html):
+	 	imglist=re.findall(r'data-original=&quot;(.*?.(jpg|jpeg))&quot;',html)
+	 	print(len(imglist))
+	 	path =&quot;&quot;
+	 	x=0
+	 	for img in imglist:
+	 		urllib.urlretrieve(img[0],&quot;/home/qiracle/douyu/&quot;+str(x)+&quot;.&quot;+img[1])
+	 		x+=1
+	 		time.sleep(1)</p>
+<pre><code>html =getHtml(&quot;https://www.douyu.com/directory/game/yz&quot;)
 getImage(html)
-</code></pre><p>最终爬到的结果如下：</p>
+</code></pre>
+<p>最终爬到的结果如下：</p>
 <p><img src="http://94.191.72.22/blog/image/20170110/2017-01-10.png" alt="结果" title="结果"></p>
 
       
@@ -490,7 +493,7 @@ getImage(html)
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 

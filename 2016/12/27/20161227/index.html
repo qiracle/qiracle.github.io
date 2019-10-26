@@ -15,31 +15,43 @@
 
 
 
-<meta name="description" content="字母处理1.string.capitalize()
+<meta name="description" content="字母处理
+1.string.capitalize()
 返回元字符串，且将字符串第一个字母转为大写，其它字母小写
 2.string.title()
 返回元字符串，且将字符串第一个字母转为大写，其它字母小写
 3.string.swapcase()
-用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写">
+用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写
+&amp;lt;!--more--&amp;gt;
+4.string.upper()
+将字符串全部转为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python学习（一）——常用字符串函数">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/27/20161227/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="字母处理1.string.capitalize()
+<meta property="og:description" content="字母处理
+1.string.capitalize()
 返回元字符串，且将字符串第一个字母转为大写，其它字母小写
 2.string.title()
 返回元字符串，且将字符串第一个字母转为大写，其它字母小写
 3.string.swapcase()
-用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写">
+用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写
+&amp;lt;!--more--&amp;gt;
+4.string.upper()
+将字符串全部转为">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python学习（一）——常用字符串函数">
-<meta name="twitter:description" content="字母处理1.string.capitalize()
+<meta name="twitter:description" content="字母处理
+1.string.capitalize()
 返回元字符串，且将字符串第一个字母转为大写，其它字母小写
 2.string.title()
 返回元字符串，且将字符串第一个字母转为大写，其它字母小写
 3.string.swapcase()
-用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写">
+用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写
+&amp;lt;!--more--&amp;gt;
+4.string.upper()
+将字符串全部转为">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -331,24 +343,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="字母处理"><a href="#字母处理" class="headerlink" title="字母处理"></a>字母处理</h3><p>1.string.capitalize()</p>
+        <h3>字母处理</h3>
+<p>1.string.capitalize()</p>
 <p>返回元字符串，且将字符串第一个字母转为大写，其它字母小写</p>
 <p>2.string.title()</p>
 <p>返回元字符串，且将字符串第一个字母转为大写，其它字母小写</p>
 <p>3.string.swapcase()</p>
 <p>用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写</p>
-<a id="more"></a> 
-<p>4.string.upper()</p>
+<p>&lt;!--more--&gt;
+4.string.upper()</p>
 <p>将字符串全部转为大写</p>
 <p>5.string.lower()</p>
 <p>将字符串全部转为小写</p>
-<h3 id="去除空格或者指定字符串"><a href="#去除空格或者指定字符串" class="headerlink" title="去除空格或者指定字符串"></a>去除空格或者指定字符串</h3><p>1.string.strip([string])</p>
+<h3>去除空格或者指定字符串</h3>
+<p>1.string.strip([string])</p>
 <p>去除字符串中首尾的字符串，不带参数默认去除空格</p>
 <p>2.string.lstrip([string])</p>
 <p>去除字符串左边字符串，不带参数默认去除空格</p>
 <p>3.string.rstrip([string])</p>
 <p>去除字符串右边字符串，不带参数默认去除空格</p>
-<h3 id="格式化对齐"><a href="#格式化对齐" class="headerlink" title="格式化对齐"></a>格式化对齐</h3><p>1.string.center(width[, fillchar])</p>
+<h3>格式化对齐</h3>
+<p>1.string.center(width[, fillchar])</p>
 <p>返回一个原字符串居中对齐，width为总长度，两边用一个字符fillchar填充，如果指定的长度小于原字符串的长度则返回原字符串。注意：如果fillchar超过1个长度或为非字符串或为汉字，则会报出异常</p>
 <p>2.string.ljust(width[, fillchar])</p>
 <p>返回原字符串左对齐,并使用空格填充至指定长度的新字符串，如果指定的长度小于原字符串的长度则返回原字符串。注意：如果fillchar超过1个长度或为非字符串或为汉字，则会报出异常</p>
@@ -356,11 +371,13 @@
 <p>返回原字符串右对齐,并使用空格填充至指定长度的新字符串，如果指定的长度小于字符串的长度则返回原字符串。注意：如果fillchar超过1个长度或为非字符串或为汉字，则会报出异常</p>
 <p>4.string.zfill()</p>
 <p>返回指定长度的字符串，原字符串右对齐，前面填充0</p>
-<h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><p>1.string.replace(old, new[, count])</p>
+<h3>替换</h3>
+<p>1.string.replace(old, new[, count])</p>
 <p>用新的字符替换老字符，还可以指定替换的个数，默认全部替换</p>
 <p>2.string.expandtabs([n])</p>
 <p>将字符串中(tab符号)\t转换成n个空格</p>
-<h3 id="字符串搜索"><a href="#字符串搜索" class="headerlink" title="字符串搜索"></a>字符串搜索</h3><p>1.string.find(sub [,start [,end]])</p>
+<h3>字符串搜索</h3>
+<p>1.string.find(sub [,start [,end]])</p>
 <p>返回sub字符串第一次出现的索引位置，可以通过start和stop参数设置搜索范围，如果未找到sub时返回-1</p>
 <p>2.string.rfind(sub [,start [,end]])</p>
 <p>返回sub字符串最后一次出现的索引位置，如果没有匹配项则返回-1，可以通过start和stop参数设置搜索范围</p>
@@ -368,31 +385,34 @@
 <p>类似于string.find()方法。注意：未找到sub时会报出异常</p>
 <p>4.string.rindex(sub [,start [,end]])</p>
 <p>类似于string.rfind()方法。注意：未找到sub时会报出异常</p>
-<h3 id="字符串分割"><a href="#字符串分割" class="headerlink" title="字符串分割"></a>字符串分割</h3><p>1.string.split([sep [,maxsplit]])</p>
+<h3>字符串分割</h3>
+<p>1.string.split([sep [,maxsplit]])</p>
 <p>用来根据指定的分隔符将字符串进行分割，不包含分隔符，结果存为列表，不指定sep时，默认将将空格作为分隔符</p>
 <p>2.string.partition(sep)</p>
 <p>用来根据指定的分隔符将字符串进行分割，分割点为首次出现sep的地方，且包含分隔符，结果存为元组，且固定为3个元素，如果sep不存在字符串中，则后面2个元素为空</p>
 <p>3.string.rpartiton()</p>
 <p>用来根据指定的分隔符将字符串进行分割，分割点为最后一次出现sep的地方，且包含分隔符，结果存为元组，且固定为3个元素，如果sep不存在字符串中，则前面2个元素为空</p>
-<h3 id="字符串判断"><a href="#字符串判断" class="headerlink" title="字符串判断"></a>字符串判断</h3><p>1.string.isupper()</p>
-<p>返回字符串中是否全为大写 –&gt; True/False</p>
+<h3>字符串判断</h3>
+<p>1.string.isupper()</p>
+<p>返回字符串中是否全为大写 --&gt; True/False</p>
 <p>2.string.islower()</p>
-<p>返回字符串中是否全为小写 –&gt; True/False</p>
+<p>返回字符串中是否全为小写 --&gt; True/False</p>
 <p>3.string.isdigit()</p>
-<p>返回字符串中是否只包含数字 –&gt; True/False</p>
+<p>返回字符串中是否只包含数字 --&gt; True/False</p>
 <p>4.string.isalpha()</p>
-<p>返回字符串中是否只包含字母 –&gt; True/False</p>
+<p>返回字符串中是否只包含字母 --&gt; True/False</p>
 <p>5.string.isalnum()</p>
-<p>返回字符串中是否只包含字母或数字 –&gt; True/False</p>
+<p>返回字符串中是否只包含字母或数字 --&gt; True/False</p>
 <p>6.string.isspace()</p>
-<p>返回字符串中是否只包含空格（tab也算空格） –&gt; True/False</p>
+<p>返回字符串中是否只包含空格（tab也算空格） --&gt; True/False</p>
 <p>7.string.istitle()</p>
-<p>返回字符串中首字母是否大写 –&gt; True/False</p>
+<p>返回字符串中首字母是否大写 --&gt; True/False</p>
 <p>8.string.startswith(prefix[, start[, end]])</p>
 <p>返回字符串是否以某字符串开始，可以通过start和stop参数设置搜索范围</p>
 <p>9.string.endswith(suffix[, start[, end]])</p>
 <p>返回字符串是否以某个字符串结束 可以通过start和stop参数设置搜索范围</p>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>1.string.count(sub[, start[, end]])</p>
+<h3>其它</h3>
+<p>1.string.count(sub[, start[, end]])</p>
 <p>计数字符串中某子集的数量，可以通过start和stop参数设置搜索范围</p>
 <p>2.len(string)</p>
 <p>获取字符串的长度</p>
@@ -400,9 +420,9 @@
 <p>字符串转列表</p>
 <p>4.string.join(iterable)</p>
 <p>列表转字符串，用于将序列中的元素以指定的字符string连接生成一个新的字符串。注意：iterable只能是字符串类型，否则会报出异常</p>
-<p>5.string.encode(encoding=’UTF-8’,errors=’strict’)</p>
+<p>5.string.encode(encoding='UTF-8',errors='strict')</p>
 <p>以 encoding 指定的编码格式编码字符串</p>
-<p>6.string.decode(encoding=’UTF-8’,errors=’strict’)</p>
+<p>6.string.decode(encoding='UTF-8',errors='strict')</p>
 <p>解码字符串，出错默认报ValueError,除非errors是ignore或replace</p>
 <p>7.string.translate(table [,deletechars])</p>
 <p>根据参数table给出的表(包含 256 个字符)转换字符串的字符, 要过滤掉的字符放到deletechars参数中</p>
@@ -438,7 +458,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#字母处理"><span class="toc-number">1.</span> <span class="toc-text">字母处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去除空格或者指定字符串"><span class="toc-number">2.</span> <span class="toc-text">去除空格或者指定字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化对齐"><span class="toc-number">3.</span> <span class="toc-text">格式化对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#替换"><span class="toc-number">4.</span> <span class="toc-text">替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串搜索"><span class="toc-number">5.</span> <span class="toc-text">字符串搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串分割"><span class="toc-number">6.</span> <span class="toc-text">字符串分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串判断"><span class="toc-number">7.</span> <span class="toc-text">字符串判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它"><span class="toc-number">8.</span> <span class="toc-text">其它</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">字母处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">去除空格或者指定字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">格式化对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">字符串搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">字符串分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">字符串判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">其它</span></a></li></ol>
         
     </div>
     <style>
@@ -522,7 +542,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 
