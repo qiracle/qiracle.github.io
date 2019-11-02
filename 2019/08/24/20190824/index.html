@@ -25,7 +25,7 @@ NDK：20.0.5">
 <meta property="og:description" content="JNI 是java 语言调用C/C++函数的接口。与JNI相关的开发工具包是NDK。下面记录Android Studio 里用 java代码调用 JNI的基本过程。当前环境：
 Android Studio：3.1.2. 
 NDK：20.0.5">
-<meta property="og:image" content="http://qiracle.cn/img/2019082400.png">
+<meta property="og:image" content="http://qiracle.cn/img/20190824/2019082400.png">
 <meta property="og:image" content="http://qiracle.cn/img/20190824/2019082401.png">
 <meta property="og:image" content="http://qiracle.cn/img/20190824/2019082402.png">
 <meta property="og:image" content="http://qiracle.cn/img/20190824/2019082403.png">
@@ -33,13 +33,13 @@ NDK：20.0.5">
 <meta property="og:image" content="http://qiracle.cn/img/20190824/2019082404.png">
 <meta property="og:image" content="http://qiracle.cn/img/20190824/2019082406.png">
 <meta property="og:image" content="http://qiracle.cn/img/20190824/2019082407.png">
-<meta property="og:updated_time" content="2019-10-26T07:24:17.678Z">
+<meta property="og:updated_time" content="2019-11-02T07:19:46.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Studio 配置 JNI">
 <meta name="twitter:description" content="JNI 是java 语言调用C/C++函数的接口。与JNI相关的开发工具包是NDK。下面记录Android Studio 里用 java代码调用 JNI的基本过程。当前环境：
 Android Studio：3.1.2. 
 NDK：20.0.5">
-<meta name="twitter:image" content="http://qiracle.cn/img/2019082400.png">
+<meta name="twitter:image" content="http://qiracle.cn/img/20190824/2019082400.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -335,7 +335,7 @@ NDK：20.0.5">
 <p>Android Studio：3.1.2. </p>
 <p>NDK：20.0.5<a id="more"></a></p>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>下载NDK:</p>
-<p><img src="http://qiracle.cn/img/2019082400.png" alt=""></p>
+<p><img src="http://qiracle.cn/img/20190824/2019082400.png" alt=""></p>
 <p>###1.创建Java类</p>
 <p>定义一个工具类，里面定义了native方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.qiracle.jnidemo.jni;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JniUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">static</span> &#123;</span><br><span class="line">                System.loadLibrary(<span class="string">"JniLib"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> String <span class="title">getJniString</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
