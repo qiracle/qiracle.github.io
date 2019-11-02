@@ -51,36 +51,6 @@
   </entry>
   
   <entry>
-    <title>Android layout_weight 计算方式</title>
-    <link href="http://qiracle.github.io/2019/09/15/20190915/"/>
-    <id>http://qiracle.github.io/2019/09/15/20190915/</id>
-    <published>2019-09-14T16:00:00.000Z</published>
-    <updated>2019-09-15T01:17:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2</p>
-<p>第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：<a id="more"></a><br>第一个控件的宽度为 0+(1/(1+2+2))<em>X=X/5<br>第二个控件的宽度为 0+(2/(1+2+2))</em>X=2X/5<br>第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
-<p>第二种情况：每个控件的宽度属性都为android:layout_width=”match_parent”，那么额外的空间就是X-X-X-X=-2X<br>第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5<br>第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5<br>第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
-<p>第三种情况：其中第一个控件宽度属性为android:layout_width=”match_parent”，其他两个控件宽度为android:layout_width=”0dp”，额外的空间为X-X-0-0=0<br>第一个控件的宽度为 X+(1/(1+2+2))<em>0=X<br>第二个控件的宽度为 0+(2/(1+2+2))</em>0=0<br>第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
-<p>最终结论：layout_weight的公式<br>控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间<br>额外的空间=手机的宽度/高度-所有控件的宽度/高度 </p>
-<p>注：如果属性为android:layout_width=”wrap_content” 则计算时，总宽/高要减去控件本身占据的宽/高 </p>
-<p>转自：<a href="https://blog.csdn.net/Dazlly/article/details/13767343" target="_blank" rel="external">https://blog.csdn.net/Dazlly/article/details/13767343</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2&lt;/p&gt;
-&lt;p&gt;第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：
-    
-    </summary>
-    
-      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-    
-    
-      <category term="Android" scheme="http://qiracle.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Android屏幕适配 px,dp,dpi及density的关系与深入理解</title>
     <link href="http://qiracle.github.io/2019/09/15/2019091502/"/>
     <id>http://qiracle.github.io/2019/09/15/2019091502/</id>
@@ -127,6 +97,36 @@
 &lt;p&gt;举例来说，我们现在将某个Button的width设为160px，则会出现如下情况：&lt;/p&gt;
 &lt;p&gt;在分辨率为“320宽”的设备里，该按钮显示占屏幕宽度一半；&lt;/p&gt;
 &lt;p&gt;在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一；&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="Android" scheme="http://qiracle.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android layout_weight 计算方式</title>
+    <link href="http://qiracle.github.io/2019/09/15/20190915/"/>
+    <id>http://qiracle.github.io/2019/09/15/20190915/</id>
+    <published>2019-09-14T16:00:00.000Z</published>
+    <updated>2019-09-15T01:17:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2</p>
+<p>第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：<a id="more"></a><br>第一个控件的宽度为 0+(1/(1+2+2))<em>X=X/5<br>第二个控件的宽度为 0+(2/(1+2+2))</em>X=2X/5<br>第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
+<p>第二种情况：每个控件的宽度属性都为android:layout_width=”match_parent”，那么额外的空间就是X-X-X-X=-2X<br>第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5<br>第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5<br>第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
+<p>第三种情况：其中第一个控件宽度属性为android:layout_width=”match_parent”，其他两个控件宽度为android:layout_width=”0dp”，额外的空间为X-X-0-0=0<br>第一个控件的宽度为 X+(1/(1+2+2))<em>0=X<br>第二个控件的宽度为 0+(2/(1+2+2))</em>0=0<br>第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
+<p>最终结论：layout_weight的公式<br>控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间<br>额外的空间=手机的宽度/高度-所有控件的宽度/高度 </p>
+<p>注：如果属性为android:layout_width=”wrap_content” 则计算时，总宽/高要减去控件本身占据的宽/高 </p>
+<p>转自：<a href="https://blog.csdn.net/Dazlly/article/details/13767343" target="_blank" rel="external">https://blog.csdn.net/Dazlly/article/details/13767343</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2&lt;/p&gt;
+&lt;p&gt;第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：
     
     </summary>
     

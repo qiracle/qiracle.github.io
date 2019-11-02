@@ -58,14 +58,14 @@
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/Linux/</loc>
+        <loc>http://qiracle.github.io/tags/%E9%9D%A2%E8%AF%95/</loc>
         <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/%E9%9D%A2%E8%AF%95/</loc>
+        <loc>http://qiracle.github.io/tags/Linux/</loc>
         <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
