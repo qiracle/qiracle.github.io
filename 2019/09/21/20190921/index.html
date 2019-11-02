@@ -15,19 +15,31 @@
 
 
 
-<meta name="description" content="概念新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。老年代：存活对象存留的时间比较久。
-MinorGC：发生在新生代的垃圾回收。很频繁，速度快。FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。">
+<meta name="description" content="概念
+新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。
+老年代：存活对象存留的时间比较久。
+MinorGC：发生在新生代的垃圾回收。很频繁，速度快。
+FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。&amp;lt;!--more--&amp;gt;
+内存分配与">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存>">
 <meta property="og:url" content="http://qiracle.github.io/2019/09/21/20190921/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="概念新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。老年代：存活对象存留的时间比较久。
-MinorGC：发生在新生代的垃圾回收。很频繁，速度快。FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。">
+<meta property="og:description" content="概念
+新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。
+老年代：存活对象存留的时间比较久。
+MinorGC：发生在新生代的垃圾回收。很频繁，速度快。
+FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。&amp;lt;!--more--&amp;gt;
+内存分配与">
 <meta property="og:updated_time" content="2019-09-21T07:42:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存>">
-<meta name="twitter:description" content="概念新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。老年代：存活对象存留的时间比较久。
-MinorGC：发生在新生代的垃圾回收。很频繁，速度快。FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。">
+<meta name="twitter:description" content="概念
+新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。
+老年代：存活对象存留的时间比较久。
+MinorGC：发生在新生代的垃圾回收。很频繁，速度快。
+FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。&amp;lt;!--more--&amp;gt;
+内存分配与">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -319,9 +331,13 @@ MinorGC：发生在新生代的垃圾回收。很频繁，速度快。FullGC：�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。<br>老年代：存活对象存留的时间比较久。</p>
-<p>MinorGC：发生在新生代的垃圾回收。很频繁，速度快。<br>FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。<a id="more"></a></p>
-<h3 id="内存分配与回收策略："><a href="#内存分配与回收策略：" class="headerlink" title="内存分配与回收策略："></a>内存分配与回收策略：</h3><p>1.对象优先在Eden区进行分配</p>
+        <h3>概念</h3>
+<p>新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。
+老年代：存活对象存留的时间比较久。</p>
+<p>MinorGC：发生在新生代的垃圾回收。很频繁，速度快。
+FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。&lt;!--more--&gt;</p>
+<h3>内存分配与回收策略：</h3>
+<p>1.对象优先在Eden区进行分配</p>
 <p>大多数情况下，对象在新生代Eden区中分配。当Eden区没有足够的空间进行分配时，虚拟机将发起一次MinorGC</p>
 <p>2.对象直接进入老年代</p>
 <p>所谓大对象就是指，需要大量连续内存空间的Java对象，最典型的大对象就是那种很长的字符串及数组，经常出现大对象容易导致内存还有不少空间时就提前触发垃圾回收以获取足够的连续空间来安置他们。</p>
@@ -363,7 +379,7 @@ MinorGC：发生在新生代的垃圾回收。很频繁，速度快。FullGC：�
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存分配与回收策略："><span class="toc-number">2.</span> <span class="toc-text">内存分配与回收策略：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">内存分配与回收策略：</span></a></li></ol>
         
     </div>
     <style>

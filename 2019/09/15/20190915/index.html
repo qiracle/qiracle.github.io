@@ -15,19 +15,22 @@
 
 
 
-<meta name="description" content="假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2
-第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：">
+<meta name="description" content="假设：LinearLayout为android:orientation=&amp;quot;horizontal&amp;quot;， layout_weight属性值分别为1、2、2
+第一种情况：每个控件的宽度属性都为android:layout_width=&amp;quot;0dp&amp;quot;，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：&amp;lt;!--more--&amp;gt;
+第一个控">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android layout_weight 计算方式">
 <meta property="og:url" content="http://qiracle.github.io/2019/09/15/20190915/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2
-第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：">
+<meta property="og:description" content="假设：LinearLayout为android:orientation=&amp;quot;horizontal&amp;quot;， layout_weight属性值分别为1、2、2
+第一种情况：每个控件的宽度属性都为android:layout_width=&amp;quot;0dp&amp;quot;，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：&amp;lt;!--more--&amp;gt;
+第一个控">
 <meta property="og:updated_time" content="2019-09-15T01:17:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android layout_weight 计算方式">
-<meta name="twitter:description" content="假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2
-第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：">
+<meta name="twitter:description" content="假设：LinearLayout为android:orientation=&amp;quot;horizontal&amp;quot;， layout_weight属性值分别为1、2、2
+第一种情况：每个控件的宽度属性都为android:layout_width=&amp;quot;0dp&amp;quot;，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：&amp;lt;!--more--&amp;gt;
+第一个控">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -319,13 +322,24 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2</p>
-<p>第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：<a id="more"></a><br>第一个控件的宽度为 0+(1/(1+2+2))<em>X=X/5<br>第二个控件的宽度为 0+(2/(1+2+2))</em>X=2X/5<br>第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
-<p>第二种情况：每个控件的宽度属性都为android:layout_width=”match_parent”，那么额外的空间就是X-X-X-X=-2X<br>第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5<br>第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5<br>第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
-<p>第三种情况：其中第一个控件宽度属性为android:layout_width=”match_parent”，其他两个控件宽度为android:layout_width=”0dp”，额外的空间为X-X-0-0=0<br>第一个控件的宽度为 X+(1/(1+2+2))<em>0=X<br>第二个控件的宽度为 0+(2/(1+2+2))</em>0=0<br>第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
-<p>最终结论：layout_weight的公式<br>控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间<br>额外的空间=手机的宽度/高度-所有控件的宽度/高度 </p>
-<p>注：如果属性为android:layout_width=”wrap_content” 则计算时，总宽/高要减去控件本身占据的宽/高 </p>
-<p>转自：<a href="https://blog.csdn.net/Dazlly/article/details/13767343" target="_blank" rel="external">https://blog.csdn.net/Dazlly/article/details/13767343</a></p>
+        <p>假设：LinearLayout为android:orientation=&quot;horizontal&quot;， layout_weight属性值分别为1、2、2</p>
+<p>第一种情况：每个控件的宽度属性都为android:layout_width=&quot;0dp&quot;，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：&lt;!--more--&gt;
+第一个控件的宽度为 0+(1/(1+2+2))*X=X/5
+第二个控件的宽度为 0+(2/(1+2+2))*X=2X/5
+第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
+<p>第二种情况：每个控件的宽度属性都为android:layout_width=&quot;match_parent&quot;，那么额外的空间就是X-X-X-X=-2X
+第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5
+第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5
+第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
+<p>第三种情况：其中第一个控件宽度属性为android:layout_width=&quot;match_parent&quot;，其他两个控件宽度为android:layout_width=&quot;0dp&quot;，额外的空间为X-X-0-0=0
+第一个控件的宽度为 X+(1/(1+2+2))*0=X
+第二个控件的宽度为 0+(2/(1+2+2))*0=0
+第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
+<p>最终结论：layout_weight的公式
+控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间
+额外的空间=手机的宽度/高度-所有控件的宽度/高度</p>
+<p>注：如果属性为android:layout_width=&quot;wrap_content&quot; 则计算时，总宽/高要减去控件本身占据的宽/高</p>
+<p>转自：https://blog.csdn.net/Dazlly/article/details/13767343</p>
 
       
     </div>

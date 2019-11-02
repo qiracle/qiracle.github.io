@@ -15,17 +15,20 @@
 
 
 
-<meta name="description" content="主内存与工作内存java内存模型规定了所有变量都存储在主内存中。此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方">
+<meta name="description" content="主内存与工作内存
+java内存模型规定了所有变量都存储在主内存中。此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读《深入理解Java虚拟机》总结<二.java内存模型与线程>">
 <meta property="og:url" content="http://qiracle.github.io/2019/02/17/20190217/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="主内存与工作内存java内存模型规定了所有变量都存储在主内存中。此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方">
+<meta property="og:description" content="主内存与工作内存
+java内存模型规定了所有变量都存储在主内存中。此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对">
 <meta property="og:image" content="http://qiracle.cn/img/20190217/1.png">
 <meta property="og:updated_time" content="2019-10-26T07:23:24.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读《深入理解Java虚拟机》总结<二.java内存模型与线程>">
-<meta name="twitter:description" content="主内存与工作内存java内存模型规定了所有变量都存储在主内存中。此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方">
+<meta name="twitter:description" content="主内存与工作内存
+java内存模型规定了所有变量都存储在主内存中。此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对">
 <meta name="twitter:image" content="http://qiracle.cn/img/20190217/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -318,7 +321,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="主内存与工作内存"><a href="#主内存与工作内存" class="headerlink" title="主内存与工作内存"></a>主内存与工作内存</h3><p>java内存模型规定了所有变量都存储在主内存中。<strong>此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数</strong>。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方工作内存中的变量。线程间变量值得传递均需要通过主内存来完成。 <a id="more"></a></p>
+        <h3>主内存与工作内存</h3>
+<p>java内存模型规定了所有变量都存储在主内存中。<strong>此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数</strong>。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方工作内存中的变量。线程间变量值得传递均需要通过主内存来完成。 &lt;!--more--&gt;</p>
 <p>一个变量如何从主内存拷贝到工作内存，如何从工作内存同步回主内存之类的实现细节，java内存模型定义了以下八种操作来完成:</p>
 <ul>
 <li>lock(锁定)：作用于主内存的变量，把一个变量标记为一条线程独占状态</li>
@@ -331,7 +335,8 @@
 <li>write(写入)：作用于工作内存的变量，它把store操作从工作内存中的一个变量的值传送到主内存的变量中</li>
 </ul>
 <p><img src="http://qiracle.cn/img/20190217/1.png" alt="java内存模型" title="java内存模型"></p>
-<h3 id="volatile-关键字"><a href="#volatile-关键字" class="headerlink" title="volatile 关键字"></a>volatile 关键字</h3><p>用于修饰变量。主要作用有两个：</p>
+<h3>volatile 关键字</h3>
+<p>用于修饰变量。主要作用有两个：</p>
 <p>1.保证修改的可见性</p>
 <p>2.禁止指令重排序</p>
 <p>volatile不保证操作的原子性</p>
@@ -367,7 +372,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主内存与工作内存"><span class="toc-number">1.</span> <span class="toc-text">主内存与工作内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile-关键字"><span class="toc-number">2.</span> <span class="toc-text">volatile 关键字</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">主内存与工作内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">volatile 关键字</span></a></li></ol>
         
     </div>
     <style>

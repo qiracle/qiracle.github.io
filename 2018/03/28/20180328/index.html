@@ -15,21 +15,24 @@
 
 
 
-<meta name="description" content="原文来自: 也许，这样理解HTTPS更容易 
-能不能用一句话总结HTTPS？答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:
+<meta name="description" content="原文来自: 也许，这样理解HTTPS更容易
+能不能用一句话总结HTTPS？
+答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:
 HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使用的对称加密算法，但是协商对称加密算法的过程，需要使用非对称加密算法来保证安全，然而直接使用非对称加密的过程本身也不安全，会有中间人篡改公钥的可能性，所以客户端与服务器不直接使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="加密算法与HTTPS">
 <meta property="og:url" content="http://qiracle.github.io/2018/03/28/20180328/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="原文来自: 也许，这样理解HTTPS更容易 
-能不能用一句话总结HTTPS？答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:
+<meta property="og:description" content="原文来自: 也许，这样理解HTTPS更容易
+能不能用一句话总结HTTPS？
+答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:
 HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使用的对称加密算法，但是协商对称加密算法的过程，需要使用非对称加密算法来保证安全，然而直接使用非对称加密的过程本身也不安全，会有中间人篡改公钥的可能性，所以客户端与服务器不直接使用">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密算法与HTTPS">
-<meta name="twitter:description" content="原文来自: 也许，这样理解HTTPS更容易 
-能不能用一句话总结HTTPS？答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:
+<meta name="twitter:description" content="原文来自: 也许，这样理解HTTPS更容易
+能不能用一句话总结HTTPS？
+答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:
 HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使用的对称加密算法，但是协商对称加密算法的过程，需要使用非对称加密算法来保证安全，然而直接使用非对称加密的过程本身也不安全，会有中间人篡改公钥的可能性，所以客户端与服务器不直接使用">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -322,9 +325,10 @@ HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>原文来自: <a href="http://showme.codes/2017-02-20/understand-https/" target="_blank" rel="external">也许，这样理解HTTPS更容易</a> </p>
-<h3 id="能不能用一句话总结HTTPS？"><a href="#能不能用一句话总结HTTPS？" class="headerlink" title="能不能用一句话总结HTTPS？"></a>能不能用一句话总结HTTPS？</h3><p>答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:</p>
-<p>HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使用的对称加密算法，但是协商对称加密算法的过程，需要使用非对称加密算法来保证安全，然而直接使用非对称加密的过程本身也不安全，会有中间人篡改公钥的可能性，所以客户端与服务器不直接使用公钥，而是使用数字证书签发机构颁发的证书来保证非对称加密过程本身的安全。这样通过这些机制协商出一个对称加密算法，就此双方使用该算法进行加密解密。从而解决了客户端与服务器端之间的通信安全问题。<a id="more"></a></p>
+        <p>原文来自: <a href="http://showme.codes/2017-02-20/understand-https/" target="_blank" rel="external">也许，这样理解HTTPS更容易</a></p>
+<h3>能不能用一句话总结HTTPS？</h3>
+<p>答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:</p>
+<p>HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使用的对称加密算法，但是协商对称加密算法的过程，需要使用非对称加密算法来保证安全，然而直接使用非对称加密的过程本身也不安全，会有中间人篡改公钥的可能性，所以客户端与服务器不直接使用公钥，而是使用数字证书签发机构颁发的证书来保证非对称加密过程本身的安全。这样通过这些机制协商出一个对称加密算法，就此双方使用该算法进行加密解密。从而解决了客户端与服务器端之间的通信安全问题。&lt;!--more--&gt;</p>
 
       
     </div>
@@ -357,7 +361,7 @@ HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#能不能用一句话总结HTTPS？"><span class="toc-number">1.</span> <span class="toc-text">能不能用一句话总结HTTPS？</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">能不能用一句话总结HTTPS？</span></a></li></ol>
         
     </div>
     <style>
