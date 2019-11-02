@@ -2,14 +2,14 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://qiracle.github.io/tags/mysql/</loc>
+        <loc>http://qiracle.github.io/tags/%E8%BD%AC%E8%BD%BD/</loc>
         <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/%E8%BD%AC%E8%BD%BD/</loc>
+        <loc>http://qiracle.github.io/tags/mysql/</loc>
         <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -136,7 +136,7 @@
 
     <url>
         <loc>http://qiracle.github.io/tags/Android/</loc>
-        <lastmod>2019-11-02T08:55:03.298Z</lastmod>
+        <lastmod>2019-11-02T08:57:07.590Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

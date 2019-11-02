@@ -307,20 +307,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>DeskClock时钟应用时区的添加，首先我们找到DeskClock该app所在的位置，它位于package/apps/DeskCock下，时区的读取文件位于src/com/android/deskclock/settings/settingsActivity.java中，接下来我们主要分析该文件中的代码。首先找到getAllTimeZones函数，&lt;!--more--&gt;如下图：
-<img src="http://qiracle.cn/img/20170707/clock_1.png" alt="这里写图片描述"></p>
-<p>该方法首先读取了string.xml里的string-array中name=timezone_values和timezone_labels，其中timezone_labels为城市名，timezone_values为城市所在大洲名/城市名。部分截图如下：<img src="http://qiracle.cn/img/20170707/clock_2.png" alt="这里写图片描述"></p>
-<p><img src="http://qiracle.cn/img/20170707/clock_3.png" alt="这里写图片描述"></p>
-<p>需要添加城市时候去的话，可在这两个String-array后面按着它的格式接着添加，但是不是所有的城市都能添加时区，下面会解释。
-	继续分析，接下来获取两个数组的长度，以最短的为准，防止少添加了匹配不到。然后定义了一个timezones的list，通过for循环给list添加数据，for循环里的对象为TimeZoneRow。我们继续看TimeZoneRow里的东西：
-	<img src="http://qiracle.cn/img/20170707/clock_4.png" alt="这里写图片描述">
-	看TimeZoneRow方法有三个参数：id就是原来的timezone_values，name就是原来的timezone_label,currentTimeMillis为当前时间的毫秒值，用来计算城市所处时区的。
-	这里的Time.getTimeZone(id)需要注意,不是所有的城市都能得到对应的TimeZone，关键还要看系统资源中到底有没有该城市的时区资源，不然的话默认显示0时区，如果没有，需要从最新的tzdata（ftp://ftp.iana.org/tz/releases/）中添加（怎么添加，这里可google），如果最新的tzdata中也没有，那就无法添加该时区了。useDaylightTime表示是否使用夏令时，tz.getOffset可得到一个时区偏移量，下面就是根据这个来计算添加的城市所处时区的。下面我们进入buildGmtDisplayName方法看看他是如何计算时区的：
-	<img src="http://qiracle.cn/img/20170707/clock_5.png" alt="这里写图片描述">
-	上述过程主要是字符串的拼接以及offset的转换，最终得到了添加城市对应的时区值并返回。存到了图一的List里，然后通过遍历该List将每个城市对应的时区值存到了数组里并返回数组。
-	<img src="http://qiracle.cn/img/20170707/clock_6.png" alt="这里写图片描述">
-	最后在loadTimeZoneList()方法里获得timezones数组，ListPreference获取数组里的值将其显示在界面上，可供用户选择点击。	整个流程大致就是如此了。</p>
-
+              <p>DeskClock时钟应用时区的添加，首先我们找到DeskClock该app所在的位置，它位于package/apps/DeskCock下，时区的读取文件位于src/com/android/deskclock/settings/settingsActivity.java中，接下来我们主要分析该文件中的代码。首先找到getAllTimeZones函数，
+          
       
     </div>
     
@@ -337,6 +325,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/07/07/20170707/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -385,36 +377,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>静态 overlay 和动态 overlay</h3>
-<p>静态 overlay：又称为编译时 overlay，编译时资源就已经覆盖了，一般用在有源码的apk中。
-动态 overlay：又称为运行时 overlay，当 apk 在手机中运行时才发生资源覆盖，一般用在无源码的apk中。&lt;!--more--&gt;</p>
-<h3>overlay资源替换的前提和原则</h3>
-<p>前提：资源所在路径必须与overlay下资源路径完全相同。如要替换 Settings 这个应用的String.xml里的资源，该资源文件所在路径为packages/apps/res/values/,则对应overlay的路径必须为overlay/packages/apps/res/values/。</p>
-<p>原则：overlay替换的是资源，不是文件。举个例子，应用中String.xml里的内容如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;aaa&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;b&quot;&gt;bbb&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;c&quot;&gt;ccc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
-<p>overlay中的String.xml里的内容如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
-<p>则最终，apk调用的资源如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;b&quot;&gt;bbb&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;c&quot;&gt;ccc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
-<p>而不是想象的如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
-<p>注意，关于替换，查询相关英文文档发现有如下描述</p>
-<blockquote>
-<p>For color, bool, string, array, style/theme types, the resource values are identifed by their keys, so for these types, there is no need to put the resources in a file with the same name as in the original base package.</p>
-</blockquote>
-<p>For layout, animation, picture drawables and raw types, the resources are indentifed by their file name, and overlay for these resources should keep the file name same as in the base packages.</p>
-<p>翻译成中文的大概意思就是：
-1.对于color，bool，String，array，style等资源的值是有他们的键确定的，比如</p>
-<p><code>&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</code></p>
-<p>该字符串资源通过键 name = &quot;a&quot; 来唯一确定值 abc 。也就是说，overlay里的这类资源文件的文件名不需要与应用包里的资源文件的文件名保持一致。只需要，资源文件里的键保持一致就行了。</p>
-<p>2.对于布局文件，动画文件，图片资源文件等，这些资源文件是通过文件名来唯一确定，所以overlay里的这类资源文件需要与应用包里的资源文件的文件名保持一致。</p>
-<h3>多个overlay的优先级判定</h3>
-<p>在mk文件中通过定义PRODUCT_PACKAGE_OVERLAYS或DEVICE_PACKAGE_OVERLAYS变量，后面可以加上多个overlay目录路径，以此来实现多个overlay目录。但是这些目录是有优先级顺序的，PRODUCT_PACKAGE_OVERLAYS下的目录优先级高于DEVICE_PACKAGE_OVERLAYS下目录的优先级，写在前面的目录优先级高于写在后面目录的优先级，举个例子:</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PRODUCT_PACKAGE_OVERLAYS = overlay_A overlay_B</span><br><span class="line">DEVICE_PACKAGE_OVERLAYS = overlay_C overlay_D</span><br></pre></td></tr></table></figure></p>
-<p>上述overlay目录优先级顺序:overlay_A &gt;overlay_B&gt; overlay_C &gt;overlay_D</p>
-<h3>overlay用于新增资源</h3>
-<p>默认情况下，overlay目录的资源文件内容只能覆盖原有软件包中的资源，而不能新增资源。不让会造成编译错误。如要允许增加资源，可以将资源放入标签中，或者一种更加简便的方法是给aapt命令增加--auto-add-overlay选项。</p>
-
+              <h3 id="静态-overlay-和动态-overlay"><a href="#静态-overlay-和动态-overlay" class="headerlink" title="静态 overlay 和动态 overlay"></a>静态 overlay 和动态 overlay</h3><p>静态 overlay：又称为编译时 overlay，编译时资源就已经覆盖了，一般用在有源码的apk中。<br>动态 overlay：又称为运行时 overlay，当 apk 在手机中运行时才发生资源覆盖，一般用在无源码的apk中。
+          
       
     </div>
     
@@ -432,192 +396,9 @@
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20170625" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/25/20170625/" class="article-date">
-      <time datetime="2017-06-24T16:00:00.000Z" itemprop="datePublished">2017-06-25</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>1.顺序表的定义
-2.顺序表的初始化
-3.顺序表元素增删改查
-&lt;!--more--&gt;
-	#include&lt;stdio.h&gt;</p>
-<pre><code>#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-	ElemType data[MAXSIZE];
-	int length;
-	
-	
-}SeqList;
-
-SeqList init_list(){//初始化
-	SeqList L;
-	L.length =0;
-
-	return L;
-}
-
-int list_length(SeqList *L){//获取长度
-	return L-&gt;length;
-}
-
-int get_element(SeqList L,int i){//根据序号查找元素
-	if(i&lt;1 || i&gt;L.length){
-		printf(&quot;序号超出范围&quot;);
-		return -1;
-	}
-	return L.data[i-1];
-	
-	
-}
-
-int list_locate(SeqList L,ElemType x){//根据元素查找位置
-	int i;
-	for(i=0; i&lt;L.length;i++)
-		if(L.data[i]==x)
-			return (i+1);
-		
-		
-		return -1;//未找到
-		
-}
-
-void list_insert(SeqList *L, ElemType x,int i){ //插入元素
-	
-	int j;
-	if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
-	else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
-	else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
-		L-&gt;data[j+1] =L-&gt;data[j];
-	L-&gt;data[i-1] =x;
-	L-&gt;length++;
-	
-	
-	}
-	
-}
-
-void list_delete(SeqList *L,int i){//删除元素
-	int j;
-	if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
-	if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
-	else {
-		for(j=i;j&lt;=L-&gt;length-1;j++)
-			L-&gt;data[j-1] =L-&gt;data[j];
-		L-&gt;length--;
-	}
-	
-	
-}
-
-
-SeqList list_scanf(SeqList L){ //创建链表
-int x;
-int i;
-	printf(&quot;请输入顺序表的元素(-1结束)&quot;);
-	for(i=0;;i++){
-		scanf(&quot;%d&quot;,&amp;x);
-		if(x==-1){
-			break;
-		}
- L.data[L.length] = x;
- L.length++; 
-	}
-
-	return L;
-}
-
-void list_print(SeqList L){//打印链表
-	int k;
-	printf(&quot;顺序表的元素有:&quot;);
-	for(k = 0; k&lt;L.length;k++){
-		printf(&quot;%3d &quot;,L.data[k]);
-	}
-	printf(&quot;\n&quot;);
-
-}
-
-
-int main(){
-		int pos;
-		int key;
-	SeqList L = init_list();
-	L = list_scanf(L);
-
-	list_insert(&amp;L, 3, 2);
-
-//	list_delete(&amp;L,1);
-	 //pos= list_locate(L,2);
-//	printf(&quot;查找到该元素位于：%d \n&quot;,pos);
-//key = get_element(L,3);
-//printf(&quot;该元素为：%d \n&quot;,key);
-	list_print(L);
-	printf(&quot;length:%d \n&quot;,list_length(&amp;L));
-	return 0;
-	
-}</code></pre>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
-    </div>
-
+        <p class="article-more-link">
+          <a href="/2017/07/01/20170701/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -666,158 +447,8 @@ int main(){
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1.链表的定义
-2.链表的初始化
-3.链表元素增删改查
-&lt;!--more--&gt;</p>
-<pre><code>#include&lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt;
-typedef int ElemType;
-
-typedef struct Node
-{
-	
-	
-	ElemType data;
-	struct Node* next;
-}Node;
-
-typedef struct Node* LinkList;
-
-
-int getElem(LinkList L,int i){//根据序号查找元素
-	
-	int j;
-	LinkList p;
-	p = L-&gt;next;
-	j = 1;
-	while(p &amp;&amp; j&lt;i)
-	{
-		p = p-&gt;next;
-		++j;
-	}
-	if(!p || j&gt;i)
-		return -1;
-	else
-		return p-&gt;data;
-	
-}
-
-int list_insert(LinkList *L,int i,ElemType e){//插入
-	int j;
-	LinkList p,s;
-	p=*L;
-	j=1;
-	while(p&amp;&amp;j&lt;i)
-	{
-		p=p-&gt;next;
-		++j;
-	}
-	if(!p||j&gt;i)
-		return -1;
-	else{
-		s = (LinkList)malloc(sizeof(Node));
-		s-&gt;data =e;
-		s-&gt;next = p-&gt;next;
-		p-&gt;next =s;
-		return 1;}
-	
-}
-int list_delete(LinkList *L,int i){//删除
-	int j;
-	int key;
-	LinkList p,q;
-	p =*L;
-	j =1;
-	while(p-&gt;next&amp;&amp;j&lt;i)
-	{
-		p = p-&gt;next;
-		++j;
-	}
-	
-	if(!(p-&gt;next)||j&gt;i)
-		return -1;
-	q = p-&gt;next;
-	p-&gt;next =q-&gt;next;
-	key = q-&gt;data;
-	free(q);
-	return key;	
-}
-
-void list_createHead(LinkList *L,int n){//头插法
-	
-	LinkList p;
-	int i;
-	srand(time(0));
-	*L=(LinkList)malloc(sizeof(Node));
-	(*L)-&gt;next =NULL;
-	for(i=0;i&lt;n;i++){
-		
-		p=(LinkList)malloc(sizeof(Node));
-		p-&gt;data =rand()%100+1;
-		p-&gt;next = (*L)-&gt;next;
-		(*L)-&gt;next =p;
-	}
-}
-
-void list_createTail(LinkList *L,int n){//尾插法
-	
-	LinkList p,r;
-	int i;
-	srand(time(0));
-	*L=(LinkList)malloc(sizeof(Node));
-	r=*L;
-	for(i=0;i&lt;n;i++){
-		p =(Node *)malloc(sizeof(Node));
-		p-&gt;data =rand()%100+1;
-		r-&gt;next=p;
-		r=p;
-	}
-	r-&gt;next =NULL;
-	
-}
-
-void list_print(LinkList L){//打印链表
-
-	LinkList p = L-&gt;next;                            //将头节点的指针给予临时节点p
-	
-	
-    while(NULL != p)                                //节点p不为空，循环
-		
-    {
-        printf(&quot;%d &quot;,p-&gt;data); 
-        p = p-&gt;next;
-    }
-	printf(&quot;\n&quot;);
-}
-
-int main(){
-	int x = 0;
-	int y = 0;
-LinkList L;
-list_createTail(&amp;L,10);
-printf(&quot;尾插法：&quot;);
-list_print(L);
-
-y = list_delete(&amp;L,5);
-printf(&quot;删除的元素为:%d \n&quot;,y);
-printf(&quot;删除后：&quot;);
-list_print(L);
-
-list_createHead(&amp;L,10);
-printf(&quot;头插法：&quot;);
-list_print(L);
-x = getElem(L, 3);
-printf(&quot;第三个数是：%d \n&quot;,x);
-
-list_insert(&amp;L,6,100);
-printf(&quot;第六位插入数字100：\n&quot;);
-list_print(L);
-	return 0;
-}
-</code></pre>
-
+              <p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br>
+          
       
     </div>
     
@@ -834,6 +465,80 @@ list_print(L);
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/06/25/2017062502/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20170625" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/25/20170625/" class="article-date">
+      <time datetime="2017-06-24T16:00:00.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/06/25/20170625/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -882,28 +587,8 @@ list_print(L);
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>​	这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个过程。&lt;!--more--&gt;</p>
-<p>首先找到源码目录下  packages/apps/Dialer  这个应用，这是一个拨号应用，我们平常拨打电话用的就是这个 app。找到该 app 里 DialpadFragment.java 这个文件，如下图</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_1.png" alt="img"></p>
-<p>里面有个监听 EditText 获取数字变化后的回调方法 afterTextChange</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_2.png" alt="img"></p>
-<p>在这个方法里又调用了 handleChars，进入到 handleChars 方法里如下：</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_3.png" alt="img"></p>
-<p>该方法定义位于<img src="http://qiracle.cn/img/20170503/emode_4.png" alt="img">，如果相关宏控打开的话，则会执行</p>
-<p>handleCustomCode（）方法。进入该方法：</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_5.png" alt="img"></p>
-<p>在该方法里传入了一个 intent，发送了一条广播。我们继续查找这条广播的接收者，我们在 EmodeReceiver.java 找到了该广播接受者，路径如下：</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_6.png" alt="img"></p>
-<p>在这个文件中，，可以看到这么一段代码：</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_7.png" alt="img"></p>
-<p>在收到这条广播后，调用了 startActivityByCode 方法，从该方法名字就可以看出，是通过不同的 Code 来跳转到不同的 Activity，而该 code 就是用户从拨号盘输入的字符。</p>
-<p>我们进入到 startActivityByCode 方法中，，看看该方法是怎么实现的，该方法同样位于 EmodeReceiver.java 文件中，在该方法中，我们很容易看到这么一段代码：</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_8.png" alt="img"></p>
-<p>switch-case语句，很明显，底层就是通过这种方式来根据用户输入在拨号盘输入不同的字符来进入特定的工程模式界面的。但是仔细一看，，问题来了，我们在键盘输入的都是数字+*#号，这A，B是咋回事？往上一看：</p>
-<p><img src="http://qiracle.cn/img/20170503/emode_9.png" alt="img"></p>
-<p>这样我们就明白了，这里把 * 和 # 号全部替换成了 A 和 B。</p>
-<p>至此，工程模式的启动过程就完成了。我们再来总结一下这个过程，首先用户在拨号盘输入特定的字符串，DialpadFragment 里的回调方法 afterTextChange 监听到拨号盘的EditText里内容变化后，如果变化后后的字符串跟特定某些的字符串一致，则会进行相应的处理并发送一条广播，并将这个字符串一同放进广播中，该广播的接收者受到这条广播后，获取到里面的字符串，然后打开与该字符串对应的 Activity。由拨号盘界面到工程模式界面的启动就此完成！</p>
-
+              <p>​    这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个过程。
+          
       
     </div>
     
@@ -920,6 +605,10 @@ list_print(L);
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/05/03/20170503/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -968,29 +657,15 @@ list_print(L);
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
-<h3>git reset</h3>
-<p>首先，我们要弄清以下三条命令的区别：</p>
+              <p>  初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>  首先，我们要弄清以下三条命令的区别：</p>
 <blockquote>
-<p><strong>git reset --hard</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>git reset --soft</strong></p>
-</blockquote>
-<blockquote>
+<p><strong>git reset –hard</strong></p>
+<p><strong>git reset –soft</strong></p>
 <p><strong>git reset</strong></p>
 </blockquote>
-<p>&lt;!--more--&gt;工作区，暂存区，本地仓库，远程仓库的概念我在这里就不介绍了。这是git最为基础的概念，可自行百度。下面说说这三条 git reset 指令的区别：</p>
-<p><strong>git reset --hard：</strong> 重置工作区，暂存区，本地仓库的所有文件到某一节点。例如 git reset --hard HEAD^ 表示工作区，暂存区，本地仓库的所有文件全部回退到上一个节点，也就是说你从上一个节点到这个节点之间所做的修改全部被撤销了。当然如果要回到特定的一个节点可以用 git reset --hard commitId 。通过指定要回到的节点值来回到对应的节点。</p>
-<p>**git reset --soft：**只重置本地仓库的文件，工作区和暂存区的文件不变。</p>
-<p><strong>git reset</strong> 等同于 git reset --mixed，只重置本地仓库和暂存区文件，工作区文件不变。</p>
-<p>当我们提交完并push代码到远程仓库后，发现代码有问题，想重新提交，首先在gerrit上abandon掉自己刚才上传的代码，接着，用git reset HEAD^或者git reset --soft HEAD^回到上一个节点（git reset HEAD^后，使用git add .就相当于git reset --soft），不要用git reset --hard。因为这会把你本地工作区修改的全部撤销，这样你之前的修改就全没了。虽然也有办法再找回来，只要找到那次提交的commitId就可以了，下面会介绍。</p>
-<p>另外，我们还可以用git reset file 来使一个已经添加到暂存区的file文件重新返回到工作区。</p>
-<h3>git log</h3>
-<p>我们通过git log就可以查看到每次提交的 commitId 了，如果嫌 git log 显示的信息过多，可以使用 git log --pretty=oneline 让每次提交的关键信息在一行显示。但是如果使用了 git reset --hard，那么使用 git log 只能看到你重置点之前的提交 commitId，无法看到重置点之后的提交 commitId，要想找到重置点之后的 commitId 可以用git reflog。</p>
-<h3>git checkout</h3>
-<p>git checkout有两个作用，如果后面接的是文件名的话，如 git checkout file 可以将一个工作区的文件撤销其修改。如果后面接的是分支名的话，如 git checkout b表示的是切换到b分支。对于工作区新建立的文件，用 git clean -df 可将其移除工作区。</p>
-
+<p>
+          
       
     </div>
     
@@ -1007,6 +682,10 @@ list_print(L);
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/04/26/20170426/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1055,27 +734,11 @@ list_print(L);
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>步骤：</p>
-<p>一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
-<p>二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
-<p>三.编写Android.mk文件。下面为我写的例子：
-&lt;!--more--&gt;</p>
-<blockquote>
-<p>LOCAL_PATH:= $(call my-dir) //设置当前模块的编译路径为当前文件夹路径。即当前Android.mk 所在的目录
-include $(CLEAR_VARS)	//清除变量
-LOCAL_MODULE_TAGS := optional //指该模块在所有版本下都编译(user,eng,debug等)
-LOCAL_CERTIFICATE := platform //使用平台签名，PRESIGNED 表示这个apk已经签过名了，不需要再签名
-LOCAL_ASSERT_DIR := packages/apps/Test/asserts //导入assets目录下的文件
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES :=android-support-v4 \ //导入jar包
-LOCAL_DEX_PREOPT :=false //是生成apk程序时只生成apk的包，不再生成odex
-LOCAL_SRC_FILES := <br>
-$(call all-java-files-under,src) \ //把src下的所有java文件包含进来</p>
-<p>src/com/android/internal/telephony/ITelephony.aidl //如果有aidl，还需单独将aidl文件加进来
-LOCAL_PACKAGE_NAME :=Test //应用名称
-LOCAL_MODULE_PATH := $(TARGET_OUT)/vendor/operator/app //应用生成路径
-include $(BUILD_PACKAGE)</p>
-</blockquote>
-
+              <p>步骤：</p>
+<p> 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
+<p> 二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
+<p> 三.编写Android.mk文件。下面为我写的例子：<br>
+          
       
     </div>
     
@@ -1092,6 +755,10 @@ include $(BUILD_PACKAGE)</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/04/25/20170425/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1140,35 +807,16 @@ include $(BUILD_PACKAGE)</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Git鼓励大量使用分支：</p>
+              <p>Git鼓励大量使用分支：</p>
 <blockquote>
 <p>查看分支：git branch</p>
+<p>创建分支：git branch <name></p>
+<p>切换分支：git checkout <name></p>
+<p>创建+切换分支：git checkout -b <name></p>
+<p>合并某分支到当前分支：git merge <name></p>
+<p>删除分支：git branch -d <name></p>
 </blockquote>
-<blockquote>
-<p>创建分支：git branch &lt;name&gt;</p>
-</blockquote>
-<blockquote>
-<p>切换分支：git checkout &lt;name&gt;</p>
-</blockquote>
-<blockquote>
-<p>创建+切换分支：git checkout -b &lt;name&gt;</p>
-</blockquote>
-<blockquote>
-<p>合并某分支到当前分支：git merge &lt;name&gt;</p>
-</blockquote>
-<blockquote>
-<p>删除分支：git branch -d &lt;name&gt;</p>
-</blockquote>
-<p>&lt;!--more--&gt;</p>
-<p><strong>详细过程：</strong>
-http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000</p>
-<p><strong>注意</strong>：
-git checkout --file是把file文件在工作区的修改全部撤销掉，分为两种情况：</p>
-<p>1.一种是file自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-<p>2.一种是file已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
-总之，就是让这个文件回到最近一次git commit或git add时的状态。若工作区的file文件被删除，则可以用git checkout –file还原file文件。</p>
-<p>git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令</p>
-
+          
       
     </div>
     
@@ -1185,6 +833,10 @@ git checkout --file是把file文件在工作区的修改全部撤销掉，分为
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/03/16/20170316/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1233,58 +885,8 @@ git checkout --file是把file文件在工作区的修改全部撤销掉，分为
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>java中的回调简单来说就是A类调了B类里面的C方法，结果是B类调了A类里面的D方法。其中D就是回调方法，它存在于接口中，由A实现。回调分为同步回调和异步回调。他们之间的区别在于返回结果是否需要等待，若有延迟则为异步回调，否则为同步回调。下面为代码示例：&lt;!--more--&gt;</p>
-<pre><code>public interface CSCallBack {//回调接口
-    public void process(String status);//回调方法
-}
-
-public class Client implements CSCallBack {//A类
-
-    private Server server;
-
-    public Client(Server server) {
-        this.server = server;
-    }
-
-    public void sendMsg(final String msg){
-        System.out.println(&quot;客户端：发送的消息为：&quot; + msg);
-		//此处为异步回调，同步回调不需要新开线程进行
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-				Thread.sleep(2000);
-			//相当于A类调了B类里面的C方法
-                server.getClientMsg(Client.this,msg);
-            }
-        }).start();
-        System.out.println(&quot;客户端：异步发送成功&quot;);
-    }
-
-    @Override
-    public void process(String status) {//D方法，回调方法
-        System.out.println(&quot;客户端：服务端回调状态为：&quot; + status);
-    }
-}
-
-
-public class Server {//B类
-
-    public void getClientMsg(CSCallBack csCallBack , String msg) {
-        System.out.println(&quot;服务端：服务端接收到客户端发送的消息为:&quot; + msg);
-
-        // 模拟服务端需要对数据处理
-        try {
-            Thread.sleep(5 * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(&quot;服务端:数据处理成功，返回成功状态 200&quot;);
-        String status = &quot;200&quot;;
-        csCallBack.process(status);//相当于B类调了A类里面的D方法
-    }
-}
-</code></pre>
-
+              <p>　　java中的回调简单来说就是A类调了B类里面的C方法，结果是B类调了A类里面的D方法。其中D就是回调方法，它存在于接口中，由A实现。回调分为同步回调和异步回调。他们之间的区别在于返回结果是否需要等待，若有延迟则为异步回调，否则为同步回调。下面为代码示例：
+          
       
     </div>
     
@@ -1301,6 +903,10 @@ public class Server {//B类
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/01/17/20170117/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1349,8 +955,7 @@ public class Server {//B类
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。
-　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz" target="_blank" rel="external">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
+              <p>　　学了差不多一星期python，目的有两个，第一，作为一名CS的学生需要懂得一门脚本语言。第二，那就是网络爬虫啦。<br>　　此次爬虫很简单，就是爬斗鱼直播平台上的美女主播的图片 网址是<a href="https://www.douyu.com/directory/game/yz">https://www.douyu.com/directory/game/yz</a> 。直接贴代码：</p>
 <pre><code>import urllib2
 import urllib
 import re
@@ -1359,29 +964,14 @@ import time
 
 
 def getHtml(url):
-	request = urllib2.Request(url)
-	request.add_header('User-Agent','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
-	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36')
-	response = urllib2.urlopen(request)
-	html=response.read()
-	return html
+    request = urllib2.Request(url)
+    request.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36&apos;)
+    response = urllib2.urlopen(request)
+    html=response.read()
+    return html
 </code></pre>
-<p>&lt;!--more--&gt;
-	def getImage(html):
-	 	imglist=re.findall(r'data-original=&quot;(.*?.(jpg|jpeg))&quot;',html)
-	 	print(len(imglist))
-	 	path =&quot;&quot;
-	 	x=0
-	 	for img in imglist:
-	 		urllib.urlretrieve(img[0],&quot;/home/qiracle/douyu/&quot;+str(x)+&quot;.&quot;+img[1])
-	 		x+=1
-	 		time.sleep(1)</p>
-<pre><code>html =getHtml(&quot;https://www.douyu.com/directory/game/yz&quot;)
-getImage(html)
-</code></pre>
-<p>最终爬到的结果如下：</p>
-<p><img src="http://qiracle.cn/img/20170110/2017-01-10.png" alt="结果" title="结果"></p>
-
+          
       
     </div>
     
@@ -1398,6 +988,10 @@ getImage(html)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/01/10/20170110/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

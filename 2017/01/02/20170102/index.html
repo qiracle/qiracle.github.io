@@ -15,45 +15,39 @@
 
 
 
-<meta name="description" content="铁律1：指针是一种数据类型
-1）指针也是一种变量，占有内存空间，用来保存内存地址
+<meta name="description" content="铁律1：指针是一种数据类型1）指针也是一种变量，占有内存空间，用来保存内存地址
 测试指针变量占有内存空间大小
 2）*p操作内存
 在指针声明时，*号表示所声明的变量为指针
 在指针使用时，*号表示 操作 指针所指向的内存空间中的值
 *p相当于通过地址(p变量的值)找到一块内存；然后操作内存
 *p放在等号的左边赋值（给内存赋值）
-*p放在等号的右边取值（从内存获取值）
-&amp;lt;!--more--&amp;gt">
+*p放在等号的右边取值（从内存获取值）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="指针的九条铁律">
 <meta property="og:url" content="http://qiracle.github.io/2017/01/02/20170102/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="铁律1：指针是一种数据类型
-1）指针也是一种变量，占有内存空间，用来保存内存地址
+<meta property="og:description" content="铁律1：指针是一种数据类型1）指针也是一种变量，占有内存空间，用来保存内存地址
 测试指针变量占有内存空间大小
 2）*p操作内存
 在指针声明时，*号表示所声明的变量为指针
 在指针使用时，*号表示 操作 指针所指向的内存空间中的值
 *p相当于通过地址(p变量的值)找到一块内存；然后操作内存
 *p放在等号的左边赋值（给内存赋值）
-*p放在等号的右边取值（从内存获取值）
-&amp;lt;!--more--&amp;gt">
+*p放在等号的右边取值（从内存获取值）">
 <meta property="og:image" content="http://qiracle.cn/img/20170102/zhizhen.png">
 <meta property="og:image" content="http://qiracle.cn/img/20170102/zhizhen2.png">
 <meta property="og:updated_time" content="2019-10-26T07:19:25.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指针的九条铁律">
-<meta name="twitter:description" content="铁律1：指针是一种数据类型
-1）指针也是一种变量，占有内存空间，用来保存内存地址
+<meta name="twitter:description" content="铁律1：指针是一种数据类型1）指针也是一种变量，占有内存空间，用来保存内存地址
 测试指针变量占有内存空间大小
 2）*p操作内存
 在指针声明时，*号表示所声明的变量为指针
 在指针使用时，*号表示 操作 指针所指向的内存空间中的值
 *p相当于通过地址(p变量的值)找到一块内存；然后操作内存
 *p放在等号的左边赋值（给内存赋值）
-*p放在等号的右边取值（从内存获取值）
-&amp;lt;!--more--&amp;gt">
+*p放在等号的右边取值（从内存获取值）">
 <meta name="twitter:image" content="http://qiracle.cn/img/20170102/zhizhen.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -346,38 +340,34 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>铁律1：指针是一种数据类型</h3>
-<p>1）指针也是一种变量，占有内存空间，用来保存内存地址</p>
+        <h3 id="铁律1：指针是一种数据类型"><a href="#铁律1：指针是一种数据类型" class="headerlink" title="铁律1：指针是一种数据类型"></a>铁律1：指针是一种数据类型</h3><p>1）指针也是一种变量，占有内存空间，用来保存内存地址</p>
 <p>测试指针变量占有内存空间大小</p>
 <p>2）*p操作内存</p>
 <p>在指针声明时，*号表示所声明的变量为指针</p>
 <p>在指针使用时，*号表示 操作 指针所指向的内存空间中的值</p>
 <p>*p相当于通过地址(p变量的值)找到一块内存；然后操作内存</p>
 <p>*p放在等号的左边赋值（给内存赋值）</p>
-<p>*p放在等号的右边取值（从内存获取值）
-&lt;!--more--&gt;
-3）指针变量和它指向的内存块是两个不同的概念</p>
+<p>*p放在等号的右边取值（从内存获取值）<br><a id="more"></a><br>3）指针变量和它指向的内存块是两个不同的概念</p>
 <p>//含义1 给p赋值p=0x1111; 只会改变指针变量值，不会改变所指的内容；p = p +1; //p++</p>
-<p>//含义2 给<em>p赋值</em>p='a'; 不会改变指针变量的值，只会改变所指的内存块的值</p>
+<p>//含义2 给<em>p赋值</em>p=’a’; 不会改变指针变量的值，只会改变所指的内存块的值</p>
 <p>//含义3 =左边<em>p 表示 给内存赋值， =右边</em>p 表示取值 含义不同切结！</p>
-<p>//含义4 =左边char *p</p>
+<p>//含义4 =左边char *p </p>
 <p>//含义5 保证所指的内存块能修改</p>
-<p>4）指针是一种数据类型，是指它指向的内存空间的数据类型</p>
+<p>4）指针是一种数据类型，是指它指向的内存空间的数据类型  </p>
 <p>含义1：指针步长（p++），根据所致内存空间的数据类型来确定</p>
 <p>p++=(unsigned char )p+sizeof(a);</p>
 <p>结论：指针的步长，根据所指内存空间类型来定。</p>
-<p>注意：	建立指针指向谁，就把把谁的地址赋值给指针。图和代码和二为一。</p>
+<p>注意：    建立指针指向谁，就把把谁的地址赋值给指针。图和代码和二为一。    </p>
 <p>不断的给指针变量赋值，就是不断的改变指针变量（和所指向内存空间没有任何关系）。</p>
-<h3>铁律2：间接赋值（*p）是指针存在的最大意义</h3>
-<p>1）两码事：指针变量和它指向的内存块变量</p>
+<h3 id="铁律2：间接赋值（-p）是指针存在的最大意义"><a href="#铁律2：间接赋值（-p）是指针存在的最大意义" class="headerlink" title="铁律2：间接赋值（*p）是指针存在的最大意义"></a>铁律2：间接赋值（*p）是指针存在的最大意义</h3><p>1）两码事：指针变量和它指向的内存块变量</p>
 <p>2）条件反射：指针指向某个变量，就是把某个变量地址否给指针</p>
-<p>3）*p间接赋值成立条件：3个条件</p>
+<p>3）*p间接赋值成立条件：3个条件 </p>
 <p>a)2个变量（通常一个实参，一个形参）</p>
-<p>b) 建立关系，实参取地址赋给形参指针</p>
-<p>c) *p形参去间接修改实参的值</p>
+<p>b) 建立关系，实参取地址赋给形参指针 </p>
+<p>c) *p形参去间接修改实参的值 </p>
 <p>Int iNum = 0; //实参</p>
 <p>int *p = NULL;</p>
-<p>p = &amp;iNum;</p>
+<p>p = &iNum;</p>
 <p>iNum = 1;</p>
 <p><em>p =2 ; //通过</em>形参 == 间接地改变实参的值</p>
 <p>*p成立的三个条件：</p>
@@ -387,59 +377,51 @@
 <p>//改变2级指针的（eg char **pp1 = 0x1111 ）的值，有2种方式</p>
 <p>//函数调用时，形参传给实参，用实参取地址，传给形参，在被调用函数里面用*p，来改变实参，把运算结果传出来。</p>
 <p>//指针作为函数参数的精髓。</p>
-<h3>铁律3：理解指针必须和内存四区概念相结合</h3>
-<p>1）	主调函数 被调函数</p>
-<p>a)	主调函数可把堆区、栈区、全局数据内存地址传给被调用函数</p>
-<p>b)	被调用函数只能返回堆区、全局数据</p>
-<p>2）	内存分配方式</p>
-<p>a)	指针做函数参数，是有输入和输出特性的。</p>
-<h3>铁律4：应用指针必须和函数调用相结合（指针做函数参数）</h3>
-<p><img src="http://qiracle.cn/img/20170102/zhizhen.png" alt="">
-<img src="http://qiracle.cn/img/20170102/zhizhen2.png" alt=""></p>
+<h3 id="铁律3：理解指针必须和内存四区概念相结合"><a href="#铁律3：理解指针必须和内存四区概念相结合" class="headerlink" title="铁律3：理解指针必须和内存四区概念相结合"></a>铁律3：理解指针必须和内存四区概念相结合</h3><p>1）    主调函数 被调函数 </p>
+<p>a)    主调函数可把堆区、栈区、全局数据内存地址传给被调用函数</p>
+<p>b)    被调用函数只能返回堆区、全局数据</p>
+<p>2）    内存分配方式</p>
+<p>a)    指针做函数参数，是有输入和输出特性的。</p>
+<h3 id="铁律4：应用指针必须和函数调用相结合（指针做函数参数）"><a href="#铁律4：应用指针必须和函数调用相结合（指针做函数参数）" class="headerlink" title="铁律4：应用指针必须和函数调用相结合（指针做函数参数）"></a>铁律4：应用指针必须和函数调用相结合（指针做函数参数）</h3><p><img src="http://qiracle.cn/img/20170102/zhizhen.png" alt=""><br><img src="http://qiracle.cn/img/20170102/zhizhen2.png" alt=""></p>
 <p>指针做函数参数，问题的实质不是指针，而是看内存块，内存块是1维、2维。</p>
-<p>1）	如果基础类int变量，不需要用指针；</p>
-<p>2）	若内存块是1维、2维。</p>
-<h3>铁律5：一级指针典型用法（指针做函数参数）</h3>
-<p>一级指针做输入</p>
+<p>1）    如果基础类int变量，不需要用指针；</p>
+<p>2）    若内存块是1维、2维。</p>
+<h3 id="铁律5：一级指针典型用法（指针做函数参数）"><a href="#铁律5：一级指针典型用法（指针做函数参数）" class="headerlink" title="铁律5：一级指针典型用法（指针做函数参数）"></a>铁律5：一级指针典型用法（指针做函数参数）</h3><p>一级指针做输入</p>
 <p>int showbuf(char *p)</p>
 <p>int showArray(int *array, int iNum)</p>
 <p>一级指针做输出</p>
-<p>int geLen(char *pFileName, int *pfileLen);</p>
+<p>int geLen(char <em>pFileName, int </em>pfileLen);</p>
 <p>理解</p>
 <p>主调函数还是被调用函数分配内存</p>
 <p>被调用函数是在heap/stack上分配内存</p>
-<h3>铁律6：二级指针典型用法（指针做函数参数）</h3>
-<p>二级指针做输入</p>
+<h3 id="铁律6：二级指针典型用法（指针做函数参数）"><a href="#铁律6：二级指针典型用法（指针做函数参数）" class="headerlink" title="铁律6：二级指针典型用法（指针做函数参数）"></a>铁律6：二级指针典型用法（指针做函数参数）</h3><p>二级指针做输入</p>
 <p>int main(int arc ,char *arg[]); 字符串数组</p>
 <p>int shouMatrix(int [3][4], int iLine);</p>
 <p>二级指针做输出</p>
 <p>int Demo64_GetTeacher(Teacher **ppTeacher);</p>
 <p>int Demo65_GetTeacher_Free(Teacher **ppTeacher);</p>
-<p>int getData(char **data, int *dataLen);</p>
+<p>int getData(char <em>*data, int </em>dataLen);</p>
 <p>Int getData_Free(void *data);</p>
 <p>Int getData_Free2(void **data); //避免野指针</p>
 <p>理解</p>
 <p>主调函数还是被调用函数分配内存</p>
 <p>被调用函数是在heap/stack上分配内存</p>
-<h3>铁律7： 三级指针输出典型用法</h3>
-<p>三级指针做输出</p>
-<p>int getFileAllLine(char ***content, int *pLine);</p>
-<p>int getFileAllLine_Free(char ***content, int *pLine);</p>
+<h3 id="铁律7：-三级指针输出典型用法"><a href="#铁律7：-三级指针输出典型用法" class="headerlink" title="铁律7： 三级指针输出典型用法"></a>铁律7： 三级指针输出典型用法</h3><p>三级指针做输出</p>
+<p>int getFileAllLine(char <em>**content, int </em>pLine); </p>
+<p>int getFileAllLine_Free(char <em>**content, int </em>pLine);</p>
 <p>理解</p>
 <p>主调函数还是被调用函数分配内存</p>
 <p>被调用函数是在heap/stack上分配内存</p>
-<h3>铁律8：杂项，指针用法几点扩充</h3>
-<p>1）野指针 2种free形式</p>
-<p>int getData(char **data, int *dataLen);</p>
+<h3 id="铁律8：杂项，指针用法几点扩充"><a href="#铁律8：杂项，指针用法几点扩充" class="headerlink" title="铁律8：杂项，指针用法几点扩充"></a>铁律8：杂项，指针用法几点扩充</h3><p>1）野指针 2种free形式</p>
+<p>int getData(char <em>*data, int </em>dataLen); </p>
 <p>int getData_Free(void *data);</p>
 <p>int getData_Free2(void **data);</p>
 <p>2）2次调用</p>
 <p>主调函数第一次调用被调用函数求长度；根据长度，分配内存，调用被调用函数。</p>
-<p>3）返回值char */int/char **</p>
+<p>3）返回值char <em>/int/char *</em></p>
 <p>4）C程序书写结构</p>
 <p>商业软件，每一个出错的地方都要有日志，日志级别</p>
-<h3>铁律9：一般应用禁用malloc/new</h3>
-
+<h3 id="铁律9：一般应用禁用malloc-new"><a href="#铁律9：一般应用禁用malloc-new" class="headerlink" title="铁律9：一般应用禁用malloc/new"></a>铁律9：一般应用禁用malloc/new</h3>
       
     </div>
     
@@ -471,7 +453,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">铁律1：指针是一种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">铁律2：间接赋值（*p）是指针存在的最大意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">铁律3：理解指针必须和内存四区概念相结合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">铁律4：应用指针必须和函数调用相结合（指针做函数参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">铁律5：一级指针典型用法（指针做函数参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">铁律6：二级指针典型用法（指针做函数参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">铁律7： 三级指针输出典型用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">铁律8：杂项，指针用法几点扩充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">铁律9：一般应用禁用malloc/new</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律1：指针是一种数据类型"><span class="toc-number">1.</span> <span class="toc-text">铁律1：指针是一种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律2：间接赋值（-p）是指针存在的最大意义"><span class="toc-number">2.</span> <span class="toc-text">铁律2：间接赋值（*p）是指针存在的最大意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律3：理解指针必须和内存四区概念相结合"><span class="toc-number">3.</span> <span class="toc-text">铁律3：理解指针必须和内存四区概念相结合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律4：应用指针必须和函数调用相结合（指针做函数参数）"><span class="toc-number">4.</span> <span class="toc-text">铁律4：应用指针必须和函数调用相结合（指针做函数参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律5：一级指针典型用法（指针做函数参数）"><span class="toc-number">5.</span> <span class="toc-text">铁律5：一级指针典型用法（指针做函数参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律6：二级指针典型用法（指针做函数参数）"><span class="toc-number">6.</span> <span class="toc-text">铁律6：二级指针典型用法（指针做函数参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律7：-三级指针输出典型用法"><span class="toc-number">7.</span> <span class="toc-text">铁律7： 三级指针输出典型用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律8：杂项，指针用法几点扩充"><span class="toc-number">8.</span> <span class="toc-text">铁律8：杂项，指针用法几点扩充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铁律9：一般应用禁用malloc-new"><span class="toc-number">9.</span> <span class="toc-text">铁律9：一般应用禁用malloc/new</span></a></li></ol>
         
     </div>
     <style>
@@ -578,7 +560,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/11/02/20191102/">Android 性能优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/11/02/20191102/">Android 性能优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 
