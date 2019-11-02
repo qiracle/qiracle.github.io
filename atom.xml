@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qiracle.github.io/"/>
-  <updated>2019-11-02T08:57:07.590Z</updated>
+  <updated>2019-11-02T09:03:26.104Z</updated>
   <id>http://qiracle.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://qiracle.github.io/2019/11/02/20191102/"/>
     <id>http://qiracle.github.io/2019/11/02/20191102/</id>
     <published>2019-11-01T16:00:00.000Z</published>
-    <updated>2019-11-02T08:57:07.590Z</updated>
+    <updated>2019-11-02T09:03:26.104Z</updated>
     
     <content type="html"><![CDATA[<p>在Android应用开发中，常用的布局方式主要有<strong>LinearLayout、RelativeLayout、FrameLayout</strong>等，通过这些布局可以实现各种各样的界面。我们需要知道如何高效地使用这些布局方式来组织UI控件，布局的好坏影响到绘制的时间，本节将通过减少<strong>Layout层级</strong>，<strong>减少测量</strong>、<strong>绘制时间</strong>，<strong>提高复用性</strong>三个方面来优化布局，优化的目的就是减少层级，让布局扁平化，以提高绘制的时间，提高布局的复用性节省开发和维护成本。<a id="more"></a></p>
 <h3 id="1-减少层级"><a href="#1-减少层级" class="headerlink" title="1.减少层级"></a>1.减少层级</h3><p>层级越少，测试和绘制的时间就越短，通常减少层级有以下两个常用方案：<br>合理使用 RelativeLayout 和 LinearLayout。<br>合理使用Merge。</p>
@@ -94,6 +94,7 @@
 <p>在绘制一个单元之前，首先判断该单元的区域是否在Canvas的剪切域内。若不在，直接返回，避免CPU和GPU的计算和渲染工作。</p>
 <p><strong>避免绘制越界：Canvas.ClipRect：</strong></p>
 <p>每个绘制单元都有自己的绘制区域，绘制前，Canvas.ClipRect(Region.Op.INTERSECT)帮助系统识别那些可见的区域。这个方法可以指定一块矩形区域，只有在这个区域内，才会被绘制，其他的区域被忽视。这个API可以很好地帮助那些有多组重叠组件的自定义View来控制显示的区域。clipRect方法还可以帮助节约CPU与GPU资源，在clipRect区域之外的绘制指令都不会被执行，那些部分内容在矩形区域内的组件，仍然会得到绘制。</p>
+<p>本文参考：罗彧成的《Android应用性能优化最佳实践》一书。强烈推荐此书！</p>
 ]]></content>
     
     <summary type="html">
@@ -105,7 +106,7 @@
       <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="Android" scheme="http://qiracle.github.io/tags/Android/"/>
+      <category term="转载" scheme="http://qiracle.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
     
   </entry>
   

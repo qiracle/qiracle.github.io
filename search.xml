@@ -78,6 +78,7 @@
 <p>在绘制一个单元之前，首先判断该单元的区域是否在Canvas的剪切域内。若不在，直接返回，避免CPU和GPU的计算和渲染工作。</p>
 <p><strong>避免绘制越界：Canvas.ClipRect：</strong></p>
 <p>每个绘制单元都有自己的绘制区域，绘制前，Canvas.ClipRect(Region.Op.INTERSECT)帮助系统识别那些可见的区域。这个方法可以指定一块矩形区域，只有在这个区域内，才会被绘制，其他的区域被忽视。这个API可以很好地帮助那些有多组重叠组件的自定义View来控制显示的区域。clipRect方法还可以帮助节约CPU与GPU资源，在clipRect区域之外的绘制指令都不会被执行，那些部分内容在矩形区域内的组件，仍然会得到绘制。</p>
+<p>本文参考：罗彧成的《Android应用性能优化最佳实践》一书。强烈推荐此书！</p>
 ]]></content>
     </entry>
     
@@ -745,6 +746,132 @@ print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
     </entry>
     
     <entry>
+      <title><![CDATA[数据结构-顺序表的基本操作]]></title>
+      <url>http://qiracle.github.io/2017/06/25/20170625/</url>
+      <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
+<pre><code>#include&lt;stdio.h&gt;
+
+#define MAXSIZE 20
+typedef int ElemType;
+
+typedef struct
+{
+    ElemType data[MAXSIZE];
+    int length;
+
+
+}SeqList;
+
+SeqList init_list(){//初始化
+    SeqList L;
+    L.length =0;
+
+    return L;
+}
+
+int list_length(SeqList *L){//获取长度
+    return L-&gt;length;
+}
+
+int get_element(SeqList L,int i){//根据序号查找元素
+    if(i&lt;1 || i&gt;L.length){
+        printf(&quot;序号超出范围&quot;);
+        return -1;
+    }
+    return L.data[i-1];
+
+
+}
+
+int list_locate(SeqList L,ElemType x){//根据元素查找位置
+    int i;
+    for(i=0; i&lt;L.length;i++)
+        if(L.data[i]==x)
+            return (i+1);
+
+
+        return -1;//未找到
+
+}
+
+void list_insert(SeqList *L, ElemType x,int i){ //插入元素
+
+    int j;
+    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
+    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
+    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
+        L-&gt;data[j+1] =L-&gt;data[j];
+    L-&gt;data[i-1] =x;
+    L-&gt;length++;
+
+
+    }
+
+}
+
+void list_delete(SeqList *L,int i){//删除元素
+    int j;
+    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
+    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
+    else {
+        for(j=i;j&lt;=L-&gt;length-1;j++)
+            L-&gt;data[j-1] =L-&gt;data[j];
+        L-&gt;length--;
+    }
+
+
+}
+
+
+SeqList list_scanf(SeqList L){ //创建链表
+int x;
+int i;
+    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
+    for(i=0;;i++){
+        scanf(&quot;%d&quot;,&amp;x);
+        if(x==-1){
+            break;
+        }
+ L.data[L.length] = x;
+ L.length++; 
+    }
+
+    return L;
+}
+
+void list_print(SeqList L){//打印链表
+    int k;
+    printf(&quot;顺序表的元素有:&quot;);
+    for(k = 0; k&lt;L.length;k++){
+        printf(&quot;%3d &quot;,L.data[k]);
+    }
+    printf(&quot;\n&quot;);
+
+}
+
+
+int main(){
+        int pos;
+        int key;
+    SeqList L = init_list();
+    L = list_scanf(L);
+
+    list_insert(&amp;L, 3, 2);
+
+//    list_delete(&amp;L,1);
+     //pos= list_locate(L,2);
+//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
+//key = get_element(L,3);
+//printf(&quot;该元素为：%d \n&quot;,key);
+    list_print(L);
+    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
+    return 0;
+
+}
+</code></pre>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[数据结构-链表的基本操作]]></title>
       <url>http://qiracle.github.io/2017/06/25/2017062502/</url>
       <content type="html"><![CDATA[<p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br><a id="more"></a></p>
@@ -893,132 +1020,6 @@ list_insert(&amp;L,6,100);
 printf(&quot;第六位插入数字100：\n&quot;);
 list_print(L);
     return 0;
-}
-</code></pre>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[数据结构-顺序表的基本操作]]></title>
-      <url>http://qiracle.github.io/2017/06/25/20170625/</url>
-      <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
-<pre><code>#include&lt;stdio.h&gt;
-
-#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-    ElemType data[MAXSIZE];
-    int length;
-
-
-}SeqList;
-
-SeqList init_list(){//初始化
-    SeqList L;
-    L.length =0;
-
-    return L;
-}
-
-int list_length(SeqList *L){//获取长度
-    return L-&gt;length;
-}
-
-int get_element(SeqList L,int i){//根据序号查找元素
-    if(i&lt;1 || i&gt;L.length){
-        printf(&quot;序号超出范围&quot;);
-        return -1;
-    }
-    return L.data[i-1];
-
-
-}
-
-int list_locate(SeqList L,ElemType x){//根据元素查找位置
-    int i;
-    for(i=0; i&lt;L.length;i++)
-        if(L.data[i]==x)
-            return (i+1);
-
-
-        return -1;//未找到
-
-}
-
-void list_insert(SeqList *L, ElemType x,int i){ //插入元素
-
-    int j;
-    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
-    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
-    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
-        L-&gt;data[j+1] =L-&gt;data[j];
-    L-&gt;data[i-1] =x;
-    L-&gt;length++;
-
-
-    }
-
-}
-
-void list_delete(SeqList *L,int i){//删除元素
-    int j;
-    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
-    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
-    else {
-        for(j=i;j&lt;=L-&gt;length-1;j++)
-            L-&gt;data[j-1] =L-&gt;data[j];
-        L-&gt;length--;
-    }
-
-
-}
-
-
-SeqList list_scanf(SeqList L){ //创建链表
-int x;
-int i;
-    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
-    for(i=0;;i++){
-        scanf(&quot;%d&quot;,&amp;x);
-        if(x==-1){
-            break;
-        }
- L.data[L.length] = x;
- L.length++; 
-    }
-
-    return L;
-}
-
-void list_print(SeqList L){//打印链表
-    int k;
-    printf(&quot;顺序表的元素有:&quot;);
-    for(k = 0; k&lt;L.length;k++){
-        printf(&quot;%3d &quot;,L.data[k]);
-    }
-    printf(&quot;\n&quot;);
-
-}
-
-
-int main(){
-        int pos;
-        int key;
-    SeqList L = init_list();
-    L = list_scanf(L);
-
-    list_insert(&amp;L, 3, 2);
-
-//    list_delete(&amp;L,1);
-     //pos= list_locate(L,2);
-//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
-//key = get_element(L,3);
-//printf(&quot;该元素为：%d \n&quot;,key);
-    list_print(L);
-    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
-    return 0;
-
 }
 </code></pre>]]></content>
     </entry>
