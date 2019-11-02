@@ -278,6 +278,154 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20190106" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/01/06/20190106/" class="article-date">
+      <time datetime="2019-01-05T16:00:00.000Z" itemprop="datePublished">2019-01-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3>系统及软件版本准备</h3>
+<p>CentOS-6.7-64bit</p>
+<p>Hadoop-2.8.3-src</p>
+<p>java-1.8.0_141</p>
+<p>apache-maven-3.3.9</p>
+<p>protobuf-2.5.0</p>
+<p>findbugs-1.3.9 &lt;!-- more --&gt;</p>
+<p>相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
+提取码：l84n</p>
+<h3>软件安装</h3>
+<h3>1.java-1.8.0_141</h3>
+<p>下载 jdk-8u141-linux-x64.tar.gz， 解压到 /root/apps/jdk1.8.0_141。解压命令:</p>
+<p><code>tar -xf jdk-8u141-linux-x64.tar.gz</code></p>
+<p>配置环境变量：</p>
+<p><code>vi /etc/profile</code></p>
+<p>在文件最下面加上:</p>
+<p><code>export JAVA_HOME=/root/apps/jdk1.8.0_141</code>
+<code>export PATH=$PATH:$JAVA_HOME/bin</code>
+<code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
+<p>添加完记得用下面的命令让其立即生效:</p>
+<p><code>source /etc/profile</code></p>
+<p><strong>注意：下面每次配置完环境变量都需要使用这个命令</strong></p>
+<p>检查是否安装成功:</p>
+<p><code>java -version</code></p>
+<p>如果输出下面信息，则表示安装成功：</p>
+<blockquote>
+<p>java version &quot;1.8.0_141&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_141-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</p>
+</blockquote>
+<h3>2.apache-maven-3.3.9</h3>
+<p>下载apache-maven-3.3.9-bin.zip，并使用 下面命令解压：</p>
+<p><code>unzip apache-maven-3.3.9-bin.zip</code></p>
+<p>我将其解压到了 /opt/software/a:pache-maven-3.3.9. 同样，配置环境变量，在/etc/profile中添加下面信息：</p>
+<p><code>export MAVEN_HOME=/opt/software/apache-maven-3.3.9</code>
+<code>export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot;</code>
+<code>export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p>验证是否安装成功:</p>
+<p><code>mvn -version</code></p>
+<p>出现下列信息表明安装成功：</p>
+<blockquote>
+<p>Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)
+Maven home: /opt/software/apache-maven-3.3.9
+Java version: 1.8.0_141, vendor: Oracle Corporation
+Java home: /root/apps/jdk1.8.0_141/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</p>
+</blockquote>
+<h3>3.protobuf-2.5.0</h3>
+<p>下载 protobuf-2.5.0.tar.gz ，解压到/opt/software/protobuf-2.5.0，接下来:</p>
+<p><code>cd protobuf-2.5.0</code></p>
+<p><code>yum install -y gcc gcc-c++ make cmake</code></p>
+<p>./configure --prefix=/usr/local/protobuf</p>
+<p>make &amp;&amp; make install</p>
+<p>同样导入环境变量：</p>
+<p><code>export PROTOC_HOME=/usr/local/protobuf</code>
+<code>export PATH=$PROTOC_HOME/bin:$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p>验证是否安装成功：</p>
+<p><code>protoc --version</code></p>
+<p>出现下面信息表明安装成功：</p>
+<blockquote>
+<p>libprotoc 2.5.0</p>
+</blockquote>
+<h3>4. findbugs-1.3.9</h3>
+<p>下载findbugs-1.3.9.zip ，通过unzip findbugs-1.3.9.zip 解压到/opt/software/findbugs-1.3.9。</p>
+<p>同样需要配置环境变量</p>
+<p><code>export FINDBUGS_HOME=/opt/software/findbugs-1.3.9</code>
+<code>export PATH=$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p>验证是否安装成功：</p>
+<p><code>findbugs -version</code></p>
+<p>出现下面信息表示安装成功：</p>
+<blockquote>
+<p>1.3.9</p>
+</blockquote>
+<h3>5.其他依赖的安装</h3>
+<p><code>yum install -y openssl openssl-devel svn ncurses-devel zlib-devel libtool</code>
+<code>yum install -y snappy snappy-devel bzip2 bzip2-devel lzo lzo-devel lzop autoconf automake</code></p>
+<h3>6.编译</h3>
+<p>下载hadoop-2.8.3-src.tar.gz并解压 tar -xf hadoop-2.8.3-src.tar.gz 到 /root/hadoop-2.8.3-src。运行下面命令：</p>
+<p><code>cd hadoop-2.8.3-src</code></p>
+<p><code>mvn clean package -Pdist,native -DskipTests -Dtar</code></p>
+<p>编译过程中需要下载很多东西，需要很长时间，同时因为网络原因可能会一直卡在某个地方，这时可以ctrl+c中止然后重新运行上面命令。最后如果出现 BUILD SUCCESS 字样则表明编译成功.</p>
+<p>编译好的tar包在 /root/hadoop-2.8.3-src/hadoop-dist/target/hadoop-2.8.1.tar.gz下</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/教程/">教程</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20181128" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1187,84 +1335,6 @@ print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20170707" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/07/07/20170707/" class="article-date">
-      <time datetime="2017-07-06T16:00:00.000Z" itemprop="datePublished">2017-07-07</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>DeskClock时钟应用时区的添加，首先我们找到DeskClock该app所在的位置，它位于package/apps/DeskCock下，时区的读取文件位于src/com/android/deskclock/settings/settingsActivity.java中，接下来我们主要分析该文件中的代码。首先找到getAllTimeZones函数，&lt;!--more--&gt;如下图：
-<img src="http://qiracle.cn/img/20170707/clock_1.png" alt="这里写图片描述"></p>
-<p>该方法首先读取了string.xml里的string-array中name=timezone_values和timezone_labels，其中timezone_labels为城市名，timezone_values为城市所在大洲名/城市名。部分截图如下：<img src="http://qiracle.cn/img/20170707/clock_2.png" alt="这里写图片描述"></p>
-<p><img src="http://qiracle.cn/img/20170707/clock_3.png" alt="这里写图片描述"></p>
-<p>需要添加城市时候去的话，可在这两个String-array后面按着它的格式接着添加，但是不是所有的城市都能添加时区，下面会解释。
-	继续分析，接下来获取两个数组的长度，以最短的为准，防止少添加了匹配不到。然后定义了一个timezones的list，通过for循环给list添加数据，for循环里的对象为TimeZoneRow。我们继续看TimeZoneRow里的东西：
-	<img src="http://qiracle.cn/img/20170707/clock_4.png" alt="这里写图片描述">
-	看TimeZoneRow方法有三个参数：id就是原来的timezone_values，name就是原来的timezone_label,currentTimeMillis为当前时间的毫秒值，用来计算城市所处时区的。
-	这里的Time.getTimeZone(id)需要注意,不是所有的城市都能得到对应的TimeZone，关键还要看系统资源中到底有没有该城市的时区资源，不然的话默认显示0时区，如果没有，需要从最新的tzdata（ftp://ftp.iana.org/tz/releases/）中添加（怎么添加，这里可google），如果最新的tzdata中也没有，那就无法添加该时区了。useDaylightTime表示是否使用夏令时，tz.getOffset可得到一个时区偏移量，下面就是根据这个来计算添加的城市所处时区的。下面我们进入buildGmtDisplayName方法看看他是如何计算时区的：
-	<img src="http://qiracle.cn/img/20170707/clock_5.png" alt="这里写图片描述">
-	上述过程主要是字符串的拼接以及offset的转换，最终得到了添加城市对应的时区值并返回。存到了图一的List里，然后通过遍历该List将每个城市对应的时区值存到了数组里并返回数组。
-	<img src="http://qiracle.cn/img/20170707/clock_6.png" alt="这里写图片描述">
-	最后在loadTimeZoneList()方法里获得timezones数组，ListPreference获取数组里的值将其显示在界面上，可供用户选择点击。	整个流程大致就是如此了。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
       

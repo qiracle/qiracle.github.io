@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2019/11/02/20191102/</loc>
+    <lastmod>2019-11-02T08:55:03.298Z</lastmod>
+    <data>
+        <display>
+        <title>Android 性能优化之布局优化</title>
+        <pubTime>2019-11-01T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2019/08/24/20190824/</loc>
     <lastmod>2019-11-02T07:19:46.862Z</lastmod>
     <data>
@@ -488,26 +508,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/17/20161217/</loc>
-    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>差距是怎么产生的？</title>
-        <pubTime>2016-12-16T16:00:00.000Z</pubTime>
-        
-        <tag>随笔</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2016/12/18/20161218_mysql/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
@@ -528,12 +528,12 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2016/12/21/20161221/</loc>
+    <loc>http://qiracle.github.io/2016/12/17/20161217/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
         <display>
-        <title>小记（二）</title>
-        <pubTime>2016-12-20T16:00:00.000Z</pubTime>
+        <title>差距是怎么产生的？</title>
+        <pubTime>2016-12-16T16:00:00.000Z</pubTime>
         
         <tag>随笔</tag>
          
@@ -608,6 +608,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2016/12/21/20161221/</loc>
+    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>小记（二）</title>
+        <pubTime>2016-12-20T16:00:00.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2016/12/25/20161225/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
@@ -616,26 +636,6 @@
         <pubTime>2016-12-24T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/27/20161227/</loc>
-    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>python学习（一）——常用字符串函数</title>
-        <pubTime>2016-12-26T16:00:00.000Z</pubTime>
-        
-        <tag>python</tag>
          
          
            
@@ -708,14 +708,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/01/01/20170101/</loc>
+    <loc>http://qiracle.github.io/2016/12/27/20161227/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
         <display>
-        <title>C语言中三种拷贝函数的区别</title>
-        <pubTime>2016-12-31T16:00:00.000Z</pubTime>
+        <title>python学习（一）——常用字符串函数</title>
+        <pubTime>2016-12-26T16:00:00.000Z</pubTime>
         
-        <tag>C/C++</tag>
+        <tag>python</tag>
          
          
            
@@ -748,34 +748,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/01/03/20170103/</loc>
+    <loc>http://qiracle.github.io/2017/01/01/20170101/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
         <display>
-        <title>Android开源项目推荐之「网络请求哪家强」(转)</title>
-        <pubTime>2017-01-02T16:00:00.000Z</pubTime>
+        <title>C语言中三种拷贝函数的区别</title>
+        <pubTime>2016-12-31T16:00:00.000Z</pubTime>
         
-        <tag>转载</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2017/01/05/20170105/</loc>
-    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>java中类的方法初始化顺序</title>
-        <pubTime>2017-01-04T16:00:00.000Z</pubTime>
-        
-        <tag>java</tag>
+        <tag>C/C++</tag>
          
          
            
@@ -808,6 +788,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2017/01/03/20170103/</loc>
+    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开源项目推荐之「网络请求哪家强」(转)</title>
+        <pubTime>2017-01-02T16:00:00.000Z</pubTime>
+        
+        <tag>转载</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2017/01/04/20170104/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
@@ -816,6 +816,26 @@
         <pubTime>2017-01-03T16:00:00.000Z</pubTime>
         
         <tag>转载</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2017/01/05/20170105/</loc>
+    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>java中类的方法初始化顺序</title>
+        <pubTime>2017-01-04T16:00:00.000Z</pubTime>
+        
+        <tag>java</tag>
          
          
            
@@ -868,14 +888,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/01/17/20170117/</loc>
+    <loc>http://qiracle.github.io/2017/04/25/20170425/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
         <display>
-        <title>java中的回调机制</title>
-        <pubTime>2017-01-16T16:00:00.000Z</pubTime>
+        <title>在Android系统源码下编译apk</title>
+        <pubTime>2017-04-24T16:00:00.000Z</pubTime>
         
-        <tag>java</tag>
+        <tag>Android</tag>
          
          
            
@@ -908,34 +928,14 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2017/04/26/20170426/</loc>
+    <loc>http://qiracle.github.io/2017/01/17/20170117/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
         <display>
-        <title>浅谈git撤销回退相关用法</title>
-        <pubTime>2017-04-25T16:00:00.000Z</pubTime>
+        <title>java中的回调机制</title>
+        <pubTime>2017-01-16T16:00:00.000Z</pubTime>
         
-        <tag>git</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2017/04/25/20170425/</loc>
-    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>在Android系统源码下编译apk</title>
-        <pubTime>2017-04-24T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
+        <tag>java</tag>
          
          
            
@@ -956,6 +956,26 @@
         <pubTime>2017-06-24T16:00:00.000Z</pubTime>
         
         <tag>数据结构</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2017/04/26/20170426/</loc>
+    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>浅谈git撤销回退相关用法</title>
+        <pubTime>2017-04-25T16:00:00.000Z</pubTime>
+        
+        <tag>git</tag>
          
          
            
@@ -1048,26 +1068,6 @@
 
     
   <url>
-    <loc>http://qiracle.github.io/2018/10/14/20181014/</loc>
-    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android 混淆机制</title>
-        <pubTime>2018-10-13T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://qiracle.github.io/2018/10/28/20181028/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
@@ -1081,6 +1081,26 @@
            
              
               <breadCrumb title="教程" url="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://qiracle.github.io/2018/10/14/20181014/</loc>
+    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 混淆机制</title>
+        <pubTime>2018-10-13T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -1168,6 +1188,26 @@
 
     
   <url>
+    <loc>http://qiracle.github.io/2016/12/16/linuxSum/</loc>
+    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux命令小结</title>
+        <pubTime>2016-12-15T16:00:00.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://qiracle.github.io/2016/12/10/mianshi/</loc>
     <lastmod>2018-11-25T08:40:22.000Z</lastmod>
     <data>
@@ -1185,26 +1225,6 @@
            
              
               <breadCrumb title="生活感悟" url="http://qiracle.github.io/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://qiracle.github.io/2016/12/16/linuxSum/</loc>
-    <lastmod>2018-11-25T08:40:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>Linux命令小结</title>
-        <pubTime>2016-12-15T16:00:00.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="知识总结" url="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>

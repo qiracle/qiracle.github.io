@@ -278,6 +278,122 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20170109" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/09/20170109/" class="article-date">
+      <time datetime="2017-01-08T16:00:00.000Z" itemprop="datePublished">2017-01-09</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>1.新建setup.py文件，并将下面代码修改后复制到文件中</p>
+<pre><code>from distutils.core import setup
+
+setup(name=&quot;qiracle&quot;,version=&quot;1.0&quot;,description=&quot;qiracle's module&quot;,author=&quot;qiracle&quot;,py_modules=[&quot;test1&quot;,&quot;test2&quot;])
+</code></pre>
+<p>这里py_modules列表里填的是模块的名字&lt;!--more--&gt;</p>
+<p>2.python3 setup.py build</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+copying test1.py -&gt; build/lib.linux-x86_64-2.7
+copying test2.py -&gt; build/lib.linux-x86_64-2.7</p>
+</blockquote>
+<p>3.python3 setup.py sdist</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running sdist
+running check
+warning: check: missing required meta-data: url
+warning: check: missing meta-data: if 'author' supplied, 'author_email' must be supplied too
+warning: sdist: manifest template 'MANIFEST.in' does not exist (using default file list)
+warning: sdist: standard file not found: should have one of README, README.txt
+writing manifest file 'MANIFEST'
+creating qiracle-1.0
+making hard links in qiracle-1.0...
+hard linking setup.py -&gt; qiracle-1.0
+hard linking test1.py -&gt; qiracle-1.0
+hard linking test2.py -&gt; qiracle-1.0
+creating dist
+Creating tar archive
+removing 'qiracle-1.0' (and everything under it)</p>
+</blockquote>
+<p>4.找到模块的压缩包，解压，进入setup.py所在文件夹后执行命令:</p>
+<p>python3 setup.py install（需要管理员权限）</p>
+<p>执行完后出现：</p>
+<blockquote>
+<p>running install
+running build
+running build_py
+running install_lib
+copying build/lib/test2.py -&gt; /usr/local/lib/python3.4/dist-packages
+copying build/lib/test1.py -&gt; /usr/local/lib/python3.4/dist-packages
+byte-compiling /usr/local/lib/python3.4/dist-packages/test2.py to test2.cpython-34.pyc
+byte-compiling /usr/local/lib/python3.4/dist-packages/test1.py to test1.cpython-34.pyc
+running install_egg_info
+Writing /usr/local/lib/python3.4/dist-packages/qiracle-1.0.egg-info</p>
+</blockquote>
+<p>此时表明安装成功,在之后的python程序中任意路径下都可直接import包名使用</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/教程/">教程</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20170108" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1224,113 +1340,6 @@ printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20161230" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/30/20161230/" class="article-date">
-      <time datetime="2016-12-29T16:00:00.000Z" itemprop="datePublished">2016-12-30</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/30/20161230/">内存泄露与野指针</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h3>内存泄露</h3>
-<p>也称作“存储渗漏”　,用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。即所谓内存泄漏。</p>
-<h4>内存泄漏概念</h4>
-<p><strong>简单的说就是申请了一块内存空间，使用完毕后没有释放掉</strong>。它的一般表现方式是程序运行时间越长，占用内存越多，最终用尽全部内存，整个系统崩溃。由程序申请的一块内存，且没有任何一个指针指向它&lt;!--more--&gt;，那么这块内存就泄露了。</p>
-<h4>泄漏的分类</h4>
-<p>以发生的方式来分类，内存泄漏可以分为4类：</p>
-<p>1.<strong>常发性内存泄漏</strong>。发生内存泄漏的代码会被多次执行到，每次被执行的时候都会导致一块内存泄漏。</p>
-<p>2.<strong>偶发性内存泄漏</strong>。发生内存泄漏的代码只有在某些特定环境或操作过程下才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性的也许就变成了常发性的。所以测试环境和测试方法对检测内存泄漏至关重要。</p>
-<p>3.<strong>一次性内存泄漏</strong>。发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块仅且一块内存发生泄漏。比如，在类的构造函数中分配内存，在析构函数中却没有释放该内存，所以内存泄漏只会发生一次。</p>
-<p>4.<strong>隐式内存泄漏</strong>。程序在运行过程中不停的分配内存，但是直到结束的时候才释放内存。严格的说这里并没有发生内存泄漏，因为最终程序释放了所有申请的内存。但是对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致最终耗尽系统的所有内存。所以，我们称这类内存泄漏为隐式内存泄漏。</p>
-<p>从用户使用程序的角度来看，内存泄漏本身不会产生什么危害，作为一般的用户，根本感觉不到内存泄漏的存在。真正有危害的是内存泄漏的堆积，这会最终消耗尽系统所有的内存。从这个角度来说，一次性内存泄漏并没有什么危害，因为它不会堆积，而隐式内存泄漏危害性则非常大，因为较之于常发性和偶发性内存泄漏它更难被检测到。</p>
-<h4>内存泄漏的表现</h4>
-<p>内存泄漏或者是说，资源耗尽后，系统会表现出什么现象呢？</p>
-<p>1.cpu资源耗尽：估计是机器没有反应了，键盘，鼠标，以及网络等等。这个在windows上经常看见，特别是中了毒。
-2.进程id耗尽：没法创建新的进程了，串口或者telnet都没法创建了。</p>
-<p>3.硬盘耗尽：机器要死了，交换内存没法用，日志也没法用了，死是很正常的。</p>
-<p>内存泄漏或者内存耗尽：新的连接无法创建，free的内存比较少。发生内存泄漏的程序很多，但是要想产生一定的后果，就需要这个进程是无限循环的，是个服务进程。当然，内核也是无限循环的，所以，如果内核发生了内存泄漏，情况就更加不妙。内存泄漏是一种很难定位和跟踪的错误，目前还没看到有什么好用的工具（当然，用户空间有一些工具，有静态分析的，也会动态分析的，但是找内核的内存泄漏，没有好的开源工具）</p>
-<p>内存泄漏和对象的引用计数有很大的关系，再加上c/c++都没有自动的垃圾回收机制，如果没有手动释放内存，问题就会出现。如果要避免这个问题，还是要从代码上入手，良好的编码习惯和规范，是避免错误的不二法门。</p>
-<p><strong>一般我们常说的内存泄漏是指堆内存的泄漏</strong>。　堆内存是指程序从堆中分配的，大小任意的（内存块的大小可以在程序运行期决定），使用完后必须显示释放的内存。　应用程序一般使用malloc，new等函数从堆中分配到一块内存，使用完后，程序必须负责相应的调用free或delete释放该内存块，否则，这块内存就不能被再次使用，我们就说这块内存泄漏了。</p>
-<h3>野指针</h3>
-<p><strong>“野指针”不是NULL指针，是指向“垃圾”内存的指针</strong>。人们一般不会错用NULL指针，因为用if语句很容易判断。但是“野指针”是很危险的，if语句对它不起作用。野指针的成因主要有两种：</p>
-<p>1.<strong>指针变量没有被初始化</strong>。任何指针变量刚被创建时不会自动成为NULL指针，它的缺省值是随机的，它会乱指一气。所以，指针变量在创建的同时应当被初始化，要么将指针设置为NULL，要么让它指向合法的内存。</p>
-<p>2.<strong>指针p被free或者delete之后，没有置为NULL，让人误以为p是个合法的指针</strong>。别看free和delete的名字恶狠狠的（尤其是delete），它们只是把指针所指的内存给释放掉，但并没有把指针本身干掉。通常会用语句if (p != NULL)进行防错处理。很遗憾，此时if语句起不到防错作用，因为即便p不是NULL指针，它也不指向合法的内存块。</p>
-<p>例：</p>
-<pre><code>char *p = (char *) malloc(100);
-
-strcpy(p, “hello”);
-
-printf(“%s ”,p);
-
-free(p); // p 所指的内存被释放，但是p所指的地址仍然不变
-
-if(p != NULL) // 没有起到防错作用
-
-strcpy(p, “world”); // 出错
-
-printf(“%s \n”,p);
-</code></pre>
-<p>以上代码的输出结果是helloworld。</p>
-<p>free()释放的是指针指向的内存！注意！释放的是内存，不是指针！这点非常非常重要！指针是一个变量，只有程序结束时才被销毁。释放了内存空间后，原来指向这块空间的指针还是存在！只不过现在指针指向的内容的垃圾，是未定义的，所以说是垃圾。因此，前面我已经说过了，释放内存后把指针指向NULL，防止指针在后面不小心又被解引用了。非常重要啊这一点！
-通俗点说，free的作用就是把你合法居住的房子，取消你的居住资格，而没有拆房子，你还可以去那个房子住，但是警察(system)可以在任何时候把你赶走。</p>
-<p>另外一个要注意的问题：<strong>不要返回指向栈内存的指针或引用，因为栈内存在函数结束时会被释放。</strong></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
       
