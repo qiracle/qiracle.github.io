@@ -7,39 +7,26 @@
       <title><![CDATA[Android Studio 导入classes.jar包]]></title>
       <url>http://qiracle.github.io/2020/01/01/20191229/</url>
       <content type="html"><![CDATA[<p>Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar。这里我重点介绍Android Studio如何导入classes.jar.<a id="more"></a></p>
-<ol>
-<li><p>考虑到 libs 目录下可能会有其他 jar 包，我们在app目录下建立 syslibs 文件夹，并将 classes.jar 包放入该路径，因为这里的 classes.jar 包只用于编译，无须打包进 apk 中。</p>
-</li>
-<li><p>右键工程–&gt;【Open Module Settings】，点击左侧【Dependencies】，选择app，点击【+】选择【2 Jar Dependency】，添加jar包，如下图。</p>
+<p>1.考虑到 libs 目录下可能会有其他 jar 包，我们在app目录下建立 syslibs 文件夹，并将 classes.jar 包放入该路径，因为这里的 classes.jar 包只用于编译，无须打包进 apk 中。</p>
+<p>2.右键工程–&gt;【Open Module Settings】，点击左侧【Dependencies】，选择app，点击【+】选择【2 Jar Dependency】，添加jar包，如下图。</p>
 <p><img src="http://qiracle.cn/img/20200101/0101.png" alt=""></p>
-</li>
-<li><p>经过步骤2之后，Module的build.gradle中，dependencies自动增加依赖配置 如下：</p>
+<p>3.经过步骤2之后，Module的build.gradle中，dependencies自动增加依赖配置 如下：</p>
 <p><code>implementation files(&#39;syslibs\\classes.jar&#39;)</code></p>
 <p>修改为:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compileOnly files(&apos;syslibs\\classes.jar&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
 <p>这么做是因为我们使用该jar包只用于编译，不打包进apk中，该包里包含的是Android SDK，当apk运行到手机里时，手机里有运行所需的sdk环境。</p>
-<ol>
-<li>project 的 build.gradle添加如下代码:</li>
-</ol>
+<p>4.project 的 build.gradle添加如下代码:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gradle.projectsEvaluated &#123;</span><br><span class="line">    tasks.withType(JavaCompile) &#123;</span><br><span class="line">        options.compilerArgs.add(&apos;-Xbootclasspath/p:app\\syslibs\\classes.jar&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>添加位置如下:</p>
 <p><img src="http://qiracle.cn/img/20200101/0102.png" alt=""></p>
-<ol>
-<li><p>修改jar包优先级，在Moduels的app.iml文件中找到我们的classes.jar包所在行</p>
+<p>5.修改jar包优先级，在Moduels的app.iml文件中找到我们的classes.jar包所在行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;library&quot; name=&quot;Gradle: __local_aars__:D.\AndroidStudioProjects\Blue\app\syslibs\classes.jar:unspecified@jar&quot; level=&quot;project&quot; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
 <p>将其移动到</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;jdk&quot; jdkName=&quot;Android API 28 Platform&quot; jdkType=&quot;Android SDK&quot; /&gt;</span><br></pre></td></tr></table></figure>
 <p>之上。</p>
 <p>这么做是为了让项目编译时优先用我们提供的jar包里的SDK，而不是原有Android SDK。</p>
-<ol>
-<li><p>经过第5步之后，就能正常使用我们jar里的SDK了，但是，每次编译之后，app.iml 中的</p>
+<p>6.经过第5步之后，就能正常使用我们jar里的SDK了，但是，每次编译之后，app.iml 中的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;jdk&quot; jdkName=&quot;Android API 28 Platform&quot; jdkType=&quot;Android SDK&quot; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
 <p>又会被移动到最上面。下次编译时我们又得将他移动到</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;library&quot; name=&quot;Gradle: __local_aars__:D.\AndroidStudioProjects\Blue\app\syslibs\classes.jar:unspecified@jar&quot; level=&quot;project&quot; /&gt;</span><br></pre></td></tr></table></figure>
 <p>的后面，这样比较麻烦。网上提供了一种一劳永逸的方法，将下面的代码加入到Moudle的build.gradle里：</p>
@@ -837,6 +824,132 @@ print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
     </entry>
     
     <entry>
+      <title><![CDATA[数据结构-顺序表的基本操作]]></title>
+      <url>http://qiracle.github.io/2017/06/25/20170625/</url>
+      <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
+<pre><code>#include&lt;stdio.h&gt;
+
+#define MAXSIZE 20
+typedef int ElemType;
+
+typedef struct
+{
+    ElemType data[MAXSIZE];
+    int length;
+
+
+}SeqList;
+
+SeqList init_list(){//初始化
+    SeqList L;
+    L.length =0;
+
+    return L;
+}
+
+int list_length(SeqList *L){//获取长度
+    return L-&gt;length;
+}
+
+int get_element(SeqList L,int i){//根据序号查找元素
+    if(i&lt;1 || i&gt;L.length){
+        printf(&quot;序号超出范围&quot;);
+        return -1;
+    }
+    return L.data[i-1];
+
+
+}
+
+int list_locate(SeqList L,ElemType x){//根据元素查找位置
+    int i;
+    for(i=0; i&lt;L.length;i++)
+        if(L.data[i]==x)
+            return (i+1);
+
+
+        return -1;//未找到
+
+}
+
+void list_insert(SeqList *L, ElemType x,int i){ //插入元素
+
+    int j;
+    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
+    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
+    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
+        L-&gt;data[j+1] =L-&gt;data[j];
+    L-&gt;data[i-1] =x;
+    L-&gt;length++;
+
+
+    }
+
+}
+
+void list_delete(SeqList *L,int i){//删除元素
+    int j;
+    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
+    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
+    else {
+        for(j=i;j&lt;=L-&gt;length-1;j++)
+            L-&gt;data[j-1] =L-&gt;data[j];
+        L-&gt;length--;
+    }
+
+
+}
+
+
+SeqList list_scanf(SeqList L){ //创建链表
+int x;
+int i;
+    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
+    for(i=0;;i++){
+        scanf(&quot;%d&quot;,&amp;x);
+        if(x==-1){
+            break;
+        }
+ L.data[L.length] = x;
+ L.length++; 
+    }
+
+    return L;
+}
+
+void list_print(SeqList L){//打印链表
+    int k;
+    printf(&quot;顺序表的元素有:&quot;);
+    for(k = 0; k&lt;L.length;k++){
+        printf(&quot;%3d &quot;,L.data[k]);
+    }
+    printf(&quot;\n&quot;);
+
+}
+
+
+int main(){
+        int pos;
+        int key;
+    SeqList L = init_list();
+    L = list_scanf(L);
+
+    list_insert(&amp;L, 3, 2);
+
+//    list_delete(&amp;L,1);
+     //pos= list_locate(L,2);
+//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
+//key = get_element(L,3);
+//printf(&quot;该元素为：%d \n&quot;,key);
+    list_print(L);
+    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
+    return 0;
+
+}
+</code></pre>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[数据结构-链表的基本操作]]></title>
       <url>http://qiracle.github.io/2017/06/25/2017062502/</url>
       <content type="html"><![CDATA[<p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br><a id="more"></a></p>
@@ -985,132 +1098,6 @@ list_insert(&amp;L,6,100);
 printf(&quot;第六位插入数字100：\n&quot;);
 list_print(L);
     return 0;
-}
-</code></pre>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[数据结构-顺序表的基本操作]]></title>
-      <url>http://qiracle.github.io/2017/06/25/20170625/</url>
-      <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
-<pre><code>#include&lt;stdio.h&gt;
-
-#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-    ElemType data[MAXSIZE];
-    int length;
-
-
-}SeqList;
-
-SeqList init_list(){//初始化
-    SeqList L;
-    L.length =0;
-
-    return L;
-}
-
-int list_length(SeqList *L){//获取长度
-    return L-&gt;length;
-}
-
-int get_element(SeqList L,int i){//根据序号查找元素
-    if(i&lt;1 || i&gt;L.length){
-        printf(&quot;序号超出范围&quot;);
-        return -1;
-    }
-    return L.data[i-1];
-
-
-}
-
-int list_locate(SeqList L,ElemType x){//根据元素查找位置
-    int i;
-    for(i=0; i&lt;L.length;i++)
-        if(L.data[i]==x)
-            return (i+1);
-
-
-        return -1;//未找到
-
-}
-
-void list_insert(SeqList *L, ElemType x,int i){ //插入元素
-
-    int j;
-    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
-    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
-    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
-        L-&gt;data[j+1] =L-&gt;data[j];
-    L-&gt;data[i-1] =x;
-    L-&gt;length++;
-
-
-    }
-
-}
-
-void list_delete(SeqList *L,int i){//删除元素
-    int j;
-    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
-    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
-    else {
-        for(j=i;j&lt;=L-&gt;length-1;j++)
-            L-&gt;data[j-1] =L-&gt;data[j];
-        L-&gt;length--;
-    }
-
-
-}
-
-
-SeqList list_scanf(SeqList L){ //创建链表
-int x;
-int i;
-    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
-    for(i=0;;i++){
-        scanf(&quot;%d&quot;,&amp;x);
-        if(x==-1){
-            break;
-        }
- L.data[L.length] = x;
- L.length++; 
-    }
-
-    return L;
-}
-
-void list_print(SeqList L){//打印链表
-    int k;
-    printf(&quot;顺序表的元素有:&quot;);
-    for(k = 0; k&lt;L.length;k++){
-        printf(&quot;%3d &quot;,L.data[k]);
-    }
-    printf(&quot;\n&quot;);
-
-}
-
-
-int main(){
-        int pos;
-        int key;
-    SeqList L = init_list();
-    L = list_scanf(L);
-
-    list_insert(&amp;L, 3, 2);
-
-//    list_delete(&amp;L,1);
-     //pos= list_locate(L,2);
-//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
-//key = get_element(L,3);
-//printf(&quot;该元素为：%d \n&quot;,key);
-    list_print(L);
-    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
-    return 0;
-
 }
 </code></pre>]]></content>
     </entry>
