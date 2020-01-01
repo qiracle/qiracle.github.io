@@ -278,6 +278,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20170117" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/17/20170117/" class="article-date">
+      <time datetime="2017-01-16T16:00:00.000Z" itemprop="datePublished">2017-01-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/17/20170117/">java中的回调机制</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>　　java中的回调简单来说就是A类调了B类里面的C方法，结果是B类调了A类里面的D方法。其中D就是回调方法，它存在于接口中，由A实现。回调分为同步回调和异步回调。他们之间的区别在于返回结果是否需要等待，若有延迟则为异步回调，否则为同步回调。下面为代码示例：
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/01/17/20170117/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20170110" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -951,79 +1021,6 @@ test.A()
 
 
   
-    <article id="post-20170101" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/01/20170101/" class="article-date">
-      <time datetime="2016-12-31T16:00:00.000Z" itemprop="datePublished">2017-01-01</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p><strong>strcpy</strong>： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：</p>
-<pre><code>char *a = &quot;0123456789&quot;, *b = &quot;abcdefghijk&quot;;
-char c[5];
-</code></pre><p>输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是经过strcpy后a的剩余字符也拷贝过去了，如果c后面是系统程序空间，那就要出问题了。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/01/01/20170101/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1035,7 +1032,7 @@ char c[5];
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2019 qiracle
+                2016-2020 qiracle
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>

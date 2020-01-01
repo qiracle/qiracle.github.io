@@ -278,6 +278,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20191229" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/01/01/20191229/" class="article-date">
+      <time datetime="2019-12-31T16:00:00.000Z" itemprop="datePublished">2020-01-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/01/20191229/">Android Studio 导入classes.jar包</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar。这里我重点介绍Android Studio如何导入classes.jar.
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2020/01/01/20191229/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20191201" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -924,76 +994,6 @@
 
 
   
-    <article id="post-20190217" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/02/17/20190217/" class="article-date">
-      <time datetime="2019-02-16T16:00:00.000Z" itemprop="datePublished">2019-02-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结&lt;二.java内存模型与线程&gt;</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="主内存与工作内存"><a href="#主内存与工作内存" class="headerlink" title="主内存与工作内存"></a>主内存与工作内存</h3><p>java内存模型规定了所有变量都存储在主内存中。<strong>此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数</strong>。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方工作内存中的变量。线程间变量值得传递均需要通过主内存来完成。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/总结/">总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/02/17/20190217/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1005,7 +1005,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2019 qiracle
+                2016-2020 qiracle
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
