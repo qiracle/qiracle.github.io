@@ -15,19 +15,20 @@
 
 
 
-<meta name="description" content="AIDL 是 Android 中实现跨进程通信的一种方式。下面是一个简单的实现案例，通过 AIDL 实现客户端调用服务端的接口， 实现跨进程通信。">
+<meta name="description" content="Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android AIDL的基本用法">
-<meta property="og:url" content="http://qiracle.github.io/2019/08/10/20190810/index.html">
+<meta property="og:title" content="Android Studio 导入classes.jar包">
+<meta property="og:url" content="http://qiracle.github.io/2020/01/01/20200101/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="AIDL 是 Android 中实现跨进程通信的一种方式。下面是一个简单的实现案例，通过 AIDL 实现客户端调用服务端的接口， 实现跨进程通信。">
-<meta property="og:image" content="http://qiracle.cn/img/20190810/2019081001.png">
-<meta property="og:image" content="http://qiracle.cn/img/20190810/2019081002.png">
-<meta property="og:updated_time" content="2019-10-26T07:23:58.201Z">
+<meta property="og:description" content="Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediat">
+<meta property="og:image" content="http://qiracle.cn/img/20200101/0101.png">
+<meta property="og:image" content="http://qiracle.cn/img/20200101/0102.png">
+<meta property="og:image" content="http://qiracle.cn/img/20200101/0103.png">
+<meta property="og:updated_time" content="2020-01-01T07:45:53.285Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android AIDL的基本用法">
-<meta name="twitter:description" content="AIDL 是 Android 中实现跨进程通信的一种方式。下面是一个简单的实现案例，通过 AIDL 实现客户端调用服务端的接口， 实现跨进程通信。">
-<meta name="twitter:image" content="http://qiracle.cn/img/20190810/2019081001.png">
+<meta name="twitter:title" content="Android Studio 导入classes.jar包">
+<meta name="twitter:description" content="Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediat">
+<meta name="twitter:image" content="http://qiracle.cn/img/20200101/0101.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Android AIDL的基本用法 | Qiracle&#39;s Blog</title>
+<title>Android Studio 导入classes.jar包 | Qiracle&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -275,11 +276,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-20190810" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20200101" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/08/10/20190810/" class="article-date">
-      <time datetime="2019-08-09T16:00:00.000Z" itemprop="datePublished">2019-08-10</time>
+      <a href="/2020/01/01/20200101/" class="article-date">
+      <time datetime="2019-12-31T16:00:00.000Z" itemprop="datePublished">2020-01-01</time>
 </a>
 
 
@@ -294,7 +295,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android AIDL的基本用法
+      Android Studio 导入classes.jar包
     </h1>
   
 
@@ -309,7 +310,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AIDL/">AIDL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -319,30 +320,62 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>AIDL 是 Android 中实现跨进程通信的一种方式。下面是一个简单的实现案例，通过 AIDL 实现客户端调用服务端的接口， 实现跨进程通信。<a id="more"></a></p>
-<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><p>首先，创建一个服务端工程 AIDLServer。main下面创建aidl文件夹，然后在aidl文件夹下创建包和aidl文件，如下：</p>
-<p><img src="http://qiracle.cn/img/20190810/2019081001.png" alt=""></p>
-<p>IMyAidlInterface.aidl 文件内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// IMyAidlInterface.aidl</span><br><span class="line">package cn.qiracle.aidlserver;</span><br><span class="line"></span><br><span class="line">// Declare any non-default types here with import statements</span><br><span class="line"></span><br><span class="line">interface IMyAidlInterface &#123;</span><br><span class="line">     void print();</span><br><span class="line">     int add(int a, int b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里定义了AIDL接口IMyAidlInterface，接口里定义了两个待实现的方法。然后 重新构建下工程，这样在build目录下就会生成IMyAidlInterface.java 文件。</p>
-<p>接着定义一个Service，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.qiracle.aidlserver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Service;</span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.IBinder;</span><br><span class="line"><span class="keyword">import</span> android.os.RemoteException;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyBinder</span> <span class="keyword">extends</span> <span class="title">IMyAidlInterface</span>.<span class="title">Stub</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            Log.i(<span class="string">"qiracle"</span>, <span class="string">"my aidl test"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            Log.i(<span class="string">"qiracle"</span>, <span class="string">"a + b:"</span> + (a + b));</span><br><span class="line">            <span class="keyword">return</span> a + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个Service里 ，内部类MyBinder继承IMyAidlInterface.Stub ，然后实现接口里待实现的方法。这两个方法就是提供给客户端进行调用的。</p>
-<p>最后，清单文件里记得注册下服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;service</span><br><span class="line">    android:name=&quot;.MyService&quot;</span><br><span class="line">    android:enabled=&quot;true&quot;</span><br><span class="line">    android:exported=&quot;true&quot;&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">        &lt;action android:name=&quot;cn.qiracle.aidlservice&quot; /&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/service&gt;</span><br></pre></td></tr></table></figure>
-<p>然后启动服务</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setAction(<span class="string">"cn.qiracle.aidlservice"</span>);</span><br><span class="line">intent.setPackage(<span class="string">"cn.qiracle.aidlserver"</span>);</span><br><span class="line">startService(intent);</span><br></pre></td></tr></table></figure>
-<p>以上就是AIDL的服务端简单实现。主要就是定义一个AIDL接口，然后在服务里实现这个接口，提供给客户端调用。下面介绍客户端部分。</p>
-<h3 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h3><p>先建立一个客户端的工程，跟服务端工程一样，需要在main下建立aidl目录，然后在aidl目录下新建包和aidl文件，这里的包名和aidl文件名必须和服务端保持一致。如下：</p>
-<p><img src="http://qiracle.cn/img/20190810/2019081002.png" alt=""></p>
-<p>IMyAidlInterface.aidl 的内容也和 服务端的 IMyAidlInterface.aidl 保持一致</p>
-<p>然后，在Activity里绑定服务，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setAction(<span class="string">"cn.qiracle.aidlservice"</span>);</span><br><span class="line">intent.setPackage(<span class="string">"cn.qiracle.aidlserver"</span>);</span><br><span class="line"></span><br><span class="line">bindService(intent, <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">        iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,BIND_AUTO_CREATE);</span><br></pre></td></tr></table></figure>
-<p>可以通过按钮的点击事件，调用服务端的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">click</span><span class="params">(View view)</span></span>&#123;</span><br><span class="line">    Toast.makeText(getApplicationContext(),<span class="string">"click"</span>,Toast.LENGTH_SHORT).show();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        iMyAidlInterface.print();</span><br><span class="line">        iMyAidlInterface.add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上就是客户端实现。</p>
-<p>开始运行，注意需要先运行服务端，开启Service，然后运行客户端，绑定服务，通过点击按钮，可以看到服务端控制台有日志打印。</p>
-<p>以上，我们就通过AIDL实现了跨进程的调用，方法的实现在服务端，方法的调用在客户端。</p>
+        <p>Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar。这里我重点介绍Android Studio如何导入classes.jar.<a id="more"></a></p>
+<p>1.考虑到 libs 目录下可能会有其他 jar 包，我们在app目录下建立 syslibs 文件夹，并将 classes.jar 包放入该路径，因为这里的 classes.jar 包只用于编译，无须打包进 apk 中。</p>
+<p>2.右键工程–&gt;【Open Module Settings】，点击左侧【Dependencies】，选择app，点击【+】选择【2 Jar Dependency】，添加jar包，如下图。</p>
+<p><img src="http://qiracle.cn/img/20200101/0101.png" alt=""></p>
+<p>3.经过步骤2之后，Module的build.gradle中，dependencies自动增加依赖配置 如下：</p>
+<p><code>implementation files(&#39;syslibs\\classes.jar&#39;)</code></p>
+<p>修改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compileOnly files(&apos;syslibs\\classes.jar&apos;)</span><br></pre></td></tr></table></figure>
+<p>这么做是因为我们使用该jar包只用于编译，不打包进apk中，该包里包含的是Android SDK，当apk运行到手机里时，手机里有运行所需的sdk环境。</p>
+<p>4.project 的 build.gradle添加如下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gradle.projectsEvaluated &#123;</span><br><span class="line">    tasks.withType(JavaCompile) &#123;</span><br><span class="line">        options.compilerArgs.add(&apos;-Xbootclasspath/p:app\\syslibs\\classes.jar&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加位置如下:</p>
+<p><img src="http://qiracle.cn/img/20200101/0102.png" alt=""></p>
+<p>5.修改jar包优先级，在Moduels的app.iml文件中找到我们的classes.jar包所在行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;library&quot; name=&quot;Gradle: __local_aars__:D.\AndroidStudioProjects\Blue\app\syslibs\classes.jar:unspecified@jar&quot; level=&quot;project&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>将其移动到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;jdk&quot; jdkName=&quot;Android API 28 Platform&quot; jdkType=&quot;Android SDK&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>之上。</p>
+<p>这么做是为了让项目编译时优先用我们提供的jar包里的SDK，而不是原有Android SDK。</p>
+<p>6.经过第5步之后，就能正常使用我们jar里的SDK了，但是，每次编译之后，app.iml 中的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;jdk&quot; jdkName=&quot;Android API 28 Platform&quot; jdkType=&quot;Android SDK&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>又会被移动到最上面。下次编译时我们又得将他移动到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;library&quot; name=&quot;Gradle: __local_aars__:D.\AndroidStudioProjects\Blue\app\syslibs\classes.jar:unspecified@jar&quot; level=&quot;project&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>的后面，这样比较麻烦。网上提供了一种一劳永逸的方法，将下面的代码加入到Moudle的build.gradle里：</p>
+<pre><code>preBuild {
+    doLast {
+
+    def imlFile = file(project.name + &quot;.iml&quot;)
+
+    println &apos;Change &apos; + project.name + &apos;.iml order&apos;
+
+    try {
+
+        def parsedXml = (new XmlParser()).parse(imlFile)
+
+        def jdkNode = parsedXml.component[1].orderEntry.find { it.&apos;@type&apos; == &apos;jdk&apos; }
+
+        parsedXml.component[1].remove(jdkNode)
+
+        def sdkString = &quot;Android API &quot; + android.compileSdkVersion.substring(&quot;android-&quot;.length()) + &quot; Platform&quot;
+
+        new Node(parsedXml.component[1], &apos;orderEntry&apos;, [&apos;type&apos;: &apos;jdk&apos;, &apos;jdkName&apos;: sdkString, &apos;jdkType&apos;: &apos;Android SDK&apos;])
+
+        groovy.xml.XmlUtil.serialize(parsedXml, new FileOutputStream(imlFile))
+
+    } catch (FileNotFoundException e) {
+
+        // nop, iml not found
+
+    }
+
+   }
+}
+</code></pre><p>加入位置如下：</p>
+<p><img src="http://qiracle.cn/img/20200101/0103.png" alt=""></p>
+<p>至此，classes.jar导入完成，我们可以在Android Studio里可以直接调用系统隐藏的api里，如果遇到某些系统隐藏的api在使用时报红，一般为ide为bug，可以尝试clean project，然后rebuild project恢复正常了</p>
 
       
     </div>
@@ -354,16 +387,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/08/24/20190824/">
-                    Android Studio 配置 JNI
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/08/03/20190803/">
-                    Android 知识点总结（一）
+                <a href="/2019/12/01/20191201/">
+                    Android 自定义属性
                 </a>
             </div>
         
@@ -375,7 +402,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Server"><span class="toc-number">1.</span> <span class="toc-text">Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Client"><span class="toc-number">2.</span> <span class="toc-text">Client</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -411,7 +438,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Android AIDL的基本用法　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Android Studio 导入classes.jar包　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -468,15 +495,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/08/24/20190824/" title="上一篇: Android Studio 配置 JNI">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/08/03/20190803/" title="下一篇: Android 知识点总结（一）">
+            <a href="/2019/12/01/20191201/" title="下一篇: Android 自定义属性">
                 <i class="fa fa-angle-right"></i>
             </a>
         

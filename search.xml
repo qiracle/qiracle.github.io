@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[Android Studio 导入classes.jar包]]></title>
-      <url>http://qiracle.github.io/2020/01/01/20191229/</url>
+      <url>http://qiracle.github.io/2020/01/01/20200101/</url>
       <content type="html"><![CDATA[<p>Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar。这里我重点介绍Android Studio如何导入classes.jar.<a id="more"></a></p>
 <p>1.考虑到 libs 目录下可能会有其他 jar 包，我们在app目录下建立 syslibs 文件夹，并将 classes.jar 包放入该路径，因为这里的 classes.jar 包只用于编译，无须打包进 apk 中。</p>
 <p>2.右键工程–&gt;【Open Module Settings】，点击左侧【Dependencies】，选择app，点击【+】选择【2 Jar Dependency】，添加jar包，如下图。</p>
