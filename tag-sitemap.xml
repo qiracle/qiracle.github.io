@@ -37,14 +37,14 @@
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/CSS/</loc>
+        <loc>http://qiracle.github.io/tags/Hexo/</loc>
         <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/Hexo/</loc>
+        <loc>http://qiracle.github.io/tags/CSS/</loc>
         <lastmod>2018-11-25T08:40:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -107,13 +107,6 @@
     </url>
 
     <url>
-        <loc>http://qiracle.github.io/tags/java/</loc>
-        <lastmod>2019-10-26T07:23:24.173Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://qiracle.github.io/tags/AIDL/</loc>
         <lastmod>2019-10-26T07:23:58.201Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -137,6 +130,13 @@
     <url>
         <loc>http://qiracle.github.io/tags/Android/</loc>
         <lastmod>2020-01-01T07:45:53.285Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://qiracle.github.io/tags/java/</loc>
+        <lastmod>2020-03-21T06:59:29.435Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

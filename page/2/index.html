@@ -276,6 +276,79 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20190512" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/12/20190512/" class="article-date">
+      <time datetime="2019-05-11T16:00:00.000Z" itemprop="datePublished">2019-05-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="1-广播的接收权限"><a href="#1-广播的接收权限" class="headerlink" title="1. 广播的接收权限"></a>1. 广播的接收权限</h3><p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
+<p>首先发送方的应用在清单文件里自定义一个权限：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/05/12/20190512/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20190217" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -898,76 +971,6 @@
       
         <p class="article-more-link">
           <a href="/2017/08/10/20170810/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20170809" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/08/09/20170809/" class="article-date">
-      <time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished">2017-08-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><p>我们在做公司的项目的时候，代码都是大家共同编写的，通过git仓库进行管理。然而有的时候，我们写的代码会被别人修改了，而别人又没有加注释说明是某某人什么时候修改的什么功能。这时候你又想对曾经自己写的这块代码进行修改，但是你对他的代码不是很明白或者对需求不是很理解。这时最好的解决方法就是找到这个人问明白，最常见的方法是，通过git log查看提交记录，查出这笔提交的owner，但是如果是很久之前的提交，要找出来未免有些太慢了。有没有什么好的方法呢？
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/08/09/20170809/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
