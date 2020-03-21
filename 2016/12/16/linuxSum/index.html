@@ -15,31 +15,64 @@
 
 
 
-<meta name="description" content="cdcd 进入某个目录
+<meta name="description" content="cd
+cd 进入某个目录
 cd ~ 返回最初目录
 cd - 返回上次目录
 
-文件touch 1.txt 创建1.txt文件
-cp 复制文件，格式：cp 源文件 目标文件">
+文件
+touch 1.txt 创建1.txt文件
+cp 复制文件，格式：cp 源文件 目标文件
+&amp;lt;!--more--&amp;gt;
+mv 移动文件 格式如上
+rm 删除文件 （rm 文件夹 -r 递归删除文件夹内所有内容，并删除文件夹）
+
+文件夹
+mkdir 创建文件夹
+rmdir 删除文件夹 文件夹有内容时不可删
+
+ls">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux命令小结">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/16/linuxSum/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="cdcd 进入某个目录
+<meta property="og:description" content="cd
+cd 进入某个目录
 cd ~ 返回最初目录
 cd - 返回上次目录
 
-文件touch 1.txt 创建1.txt文件
-cp 复制文件，格式：cp 源文件 目标文件">
+文件
+touch 1.txt 创建1.txt文件
+cp 复制文件，格式：cp 源文件 目标文件
+&amp;lt;!--more--&amp;gt;
+mv 移动文件 格式如上
+rm 删除文件 （rm 文件夹 -r 递归删除文件夹内所有内容，并删除文件夹）
+
+文件夹
+mkdir 创建文件夹
+rmdir 删除文件夹 文件夹有内容时不可删
+
+ls">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux命令小结">
-<meta name="twitter:description" content="cdcd 进入某个目录
+<meta name="twitter:description" content="cd
+cd 进入某个目录
 cd ~ 返回最初目录
 cd - 返回上次目录
 
-文件touch 1.txt 创建1.txt文件
-cp 复制文件，格式：cp 源文件 目标文件">
+文件
+touch 1.txt 创建1.txt文件
+cp 复制文件，格式：cp 源文件 目标文件
+&amp;lt;!--more--&amp;gt;
+mv 移动文件 格式如上
+rm 删除文件 （rm 文件夹 -r 递归删除文件夹内所有内容，并删除文件夹）
+
+文件夹
+mkdir 创建文件夹
+rmdir 删除文件夹 文件夹有内容时不可删
+
+ls">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -329,51 +362,65 @@ cp 复制文件，格式：cp 源文件 目标文件">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>cd 进入某个目录</p>
+        <h4>cd</h4>
+<p>cd 进入某个目录</p>
 <p>cd ~ 返回最初目录</p>
 <p>cd - 返回上次目录</p>
 <hr>
-<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>touch 1.txt 创建1.txt文件</p>
-<p>cp 复制文件，格式：cp 源文件 目标文件<br><a id="more"></a><br>mv 移动文件 格式如上</p>
+<h4>文件</h4>
+<p>touch 1.txt 创建1.txt文件</p>
+<p>cp 复制文件，格式：cp 源文件 目标文件
+&lt;!--more--&gt;
+mv 移动文件 格式如上</p>
 <p>rm 删除文件 （rm 文件夹 -r 递归删除文件夹内所有内容，并删除文件夹）</p>
 <hr>
-<h4 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h4><p>mkdir 创建文件夹</p>
+<h4>文件夹</h4>
+<p>mkdir 创建文件夹</p>
 <p>rmdir 删除文件夹 文件夹有内容时不可删</p>
 <hr>
-<h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h4><p>ls -alh 显示当前目录下所有文件并显示文件大小</p>
+<h4>ls</h4>
+<p>ls -alh 显示当前目录下所有文件并显示文件大小</p>
 <p>ls 1* 显示所有文件名以1开头的文件</p>
 <p>ls 1? 显示文件名只有两个字母且第一个字符为1的文件</p>
 <p>ls &gt;1.txt 重定向 将ls的内容显示在1.txt中</p>
 <p>ls &gt;&gt;1.txt 将ls的内容追加在1.txt中</p>
 <hr>
-<h4 id="查看cat、more"><a href="#查看cat、more" class="headerlink" title="查看cat、more"></a>查看cat、more</h4><p>cat 1.txt 查看1.txt里的内容</p>
+<h4>查看cat、more</h4>
+<p>cat 1.txt 查看1.txt里的内容</p>
 <p>more 1.txt 1.txt内容过多时，分页显示</p>
 <hr>
-<h4 id="查找grep、find"><a href="#查找grep、find" class="headerlink" title="查找grep、find"></a>查找grep、find</h4><p>grep -n  ‘123’ ./1.txt 显示当前目录下1.txt里含有字符123所在的行，并显示其行号 （可用正则表达式表示）</p>
-<p>find ./ -name ‘qq*’ 显示当前目录下文件名以qq的开头的文件</p>
+<h4>查找grep、find</h4>
+<p>grep -n  '123' ./1.txt 显示当前目录下1.txt里含有字符123所在的行，并显示其行号 （可用正则表达式表示）</p>
+<p>find ./ -name 'qq*' 显示当前目录下文件名以qq的开头的文件</p>
 <hr>
-<h4 id="软、硬链接ln"><a href="#软、硬链接ln" class="headerlink" title="软、硬链接ln"></a>软、硬链接ln</h4><p>ln 1.txt link1.txt 给1.txt建立一个硬链接link1.txt </p>
+<h4>软、硬链接ln</h4>
+<p>ln 1.txt link1.txt 给1.txt建立一个硬链接link1.txt</p>
 <p>ln -s 1.txt link1.txt 给1.txt建立一个软链接link1.txt</p>
 <hr>
-<h4 id="系统集成ps、top、kill"><a href="#系统集成ps、top、kill" class="headerlink" title="系统集成ps、top、kill"></a>系统集成ps、top、kill</h4><p>ps 显示当前进程信息</p>
+<h4>系统集成ps、top、kill</h4>
+<p>ps 显示当前进程信息</p>
 <p>top 动态显示显示当前系统进程信息</p>
 <p>kill 根据进程id杀死进程</p>
 <p>kill -9 强制杀死某进程</p>
 <hr>
-<h4 id="解压打包"><a href="#解压打包" class="headerlink" title="解压打包"></a>解压打包</h4><p>tar -zxvf FileName.tar 解压</p>
+<h4>解压打包</h4>
+<p>tar -zxvf FileName.tar 解压</p>
 <p>tar -zcvf FileName.tar DirName 打包并压缩</p>
 <hr>
-<h4 id="用户操作"><a href="#用户操作" class="headerlink" title="用户操作"></a>用户操作</h4><p>useradd 用户名 -m</p>
+<h4>用户操作</h4>
+<p>useradd 用户名 -m</p>
 <p>passwd</p>
 <p>ssh user@ip地址</p>
 <p>su 用户名 切到其他用户</p>
 <p>cat /etc/group</p>
 <p>groupmod tab*3</p>
 <p>groupadd</p>
-<p>groupdel<br>groups 用户名 查看所在组</p>
+<p>groupdel
+groups 用户名 查看所在组</p>
 <p>usermod -a -G 组名 用户名 修改用户所在组。。必须在adm和sudo组的用户才能拥有root权限</p>
 <hr>
-<h4 id="权限修改chmod"><a href="#权限修改chmod" class="headerlink" title="权限修改chmod"></a>权限修改chmod</h4><p>a 所有的</p>
+<h4>权限修改chmod</h4>
+<p>a 所有的</p>
 <p>u 当前用户</p>
 <p>g 当前用户组</p>
 <p>o 其他用户</p>
@@ -394,7 +441,8 @@ cp 复制文件，格式：cp 源文件 目标文件">
 <p>chown 用户 文件名 表示修改文件所有者</p>
 <p>chgrp 用户组 文件名 表示修改用户所在用户组</p>
 <hr>
-<h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><p>vim</p>
+<h4>vim</h4>
+<p>vim</p>
 <p>i 命令模式进入编辑模式</p>
 <p>shift+；进入末行模式</p>
 <p>esc  返回上个模式</p>
@@ -431,7 +479,7 @@ cp 复制文件，格式：cp 源文件 目标文件">
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#cd"><span class="toc-number">1.</span> <span class="toc-text">cd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件"><span class="toc-number">2.</span> <span class="toc-text">文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件夹"><span class="toc-number">3.</span> <span class="toc-text">文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ls"><span class="toc-number">4.</span> <span class="toc-text">ls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看cat、more"><span class="toc-number">5.</span> <span class="toc-text">查看cat、more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查找grep、find"><span class="toc-number">6.</span> <span class="toc-text">查找grep、find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#软、硬链接ln"><span class="toc-number">7.</span> <span class="toc-text">软、硬链接ln</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统集成ps、top、kill"><span class="toc-number">8.</span> <span class="toc-text">系统集成ps、top、kill</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解压打包"><span class="toc-number">9.</span> <span class="toc-text">解压打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用户操作"><span class="toc-number">10.</span> <span class="toc-text">用户操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#权限修改chmod"><span class="toc-number">11.</span> <span class="toc-text">权限修改chmod</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim"><span class="toc-number">12.</span> <span class="toc-text">vim</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">cd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">ls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">查看cat、more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">查找grep、find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">软、硬链接ln</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">系统集成ps、top、kill</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">解压打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text">用户操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text">权限修改chmod</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">12.</span> <span class="toc-text">vim</span></a></li></ol>
         
     </div>
     <style>

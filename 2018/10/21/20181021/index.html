@@ -15,12 +15,24 @@
 
 
 
-<meta name="description" content="在当前工程里，点击 File-&amp;gt;New-&amp;gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .">
+<meta name="description" content="在当前工程里，点击 File-&amp;gt;New-&amp;gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .
+&amp;lt;!--more--&amp;gt;
+
+
+这一步之后会在主工程的build.gradle生成如下代码：
+
+这里原本是 compile project(path: &apos;:mylib&apos;)。 但是我这里的gradle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Studio 导入 module">
 <meta property="og:url" content="http://qiracle.github.io/2018/10/21/20181021/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="在当前工程里，点击 File-&amp;gt;New-&amp;gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .">
+<meta property="og:description" content="在当前工程里，点击 File-&amp;gt;New-&amp;gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .
+&amp;lt;!--more--&amp;gt;
+
+
+这一步之后会在主工程的build.gradle生成如下代码：
+
+这里原本是 compile project(path: &apos;:mylib&apos;)。 但是我这里的gradle">
 <meta property="og:image" content="http://qiracle.cn/img/20181021/module_1.png">
 <meta property="og:image" content="http://qiracle.cn/img/20181021/module_4.png">
 <meta property="og:image" content="http://qiracle.cn/img/20181021/module_2.png">
@@ -28,7 +40,13 @@
 <meta property="og:updated_time" content="2019-10-26T07:22:14.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Studio 导入 module">
-<meta name="twitter:description" content="在当前工程里，点击 File-&amp;gt;New-&amp;gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .">
+<meta name="twitter:description" content="在当前工程里，点击 File-&amp;gt;New-&amp;gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .
+&amp;lt;!--more--&amp;gt;
+
+
+这一步之后会在主工程的build.gradle生成如下代码：
+
+这里原本是 compile project(path: &apos;:mylib&apos;)。 但是我这里的gradle">
 <meta name="twitter:image" content="http://qiracle.cn/img/20181021/module_1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -320,17 +338,19 @@
       
           
         <ol>
-<li>在当前工程里，点击 File-&gt;New-&gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib . <a id="more"></a>
+<li>在当前工程里，点击 File-&gt;New-&gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .
+&lt;!--more--&gt;
 <img src="http://qiracle.cn/img/20181021/module_1.png" alt=""></li>
 </ol>
 <p>这一步之后会在主工程的build.gradle生成如下代码：</p>
 <p><img src="http://qiracle.cn/img/20181021/module_4.png" alt=""></p>
-<p>这里原本是 compile project(path: ‘:mylib’)。 但是我这里的gradle是3之后的版本，所以需要将compile替换成implementation。</p>
+<p>这里原本是 compile project(path: ':mylib')。 但是我这里的gradle是3之后的版本，所以需要将compile替换成implementation。</p>
 <p>2.如果导入的 mylib 之前是一个工程应用，则需要更改 mylib 里的 build.gradle。具体修改如下：</p>
-<p>   <img src="http://qiracle.cn/img/20181021/module_2.png" alt=""><br>   需要将图中的 com.android.application 改成 com.android.library 以及删除applicationId这一行。</p>
-<p>   改完后记得sync一下。</p>
-<p>   3.修改主工程下的 setting.gradle. 添加如下：</p>
-<p>   <img src="http://qiracle.cn/img/20181021/module_3.png" alt=""></p>
+<p><img src="http://qiracle.cn/img/20181021/module_2.png" alt="">
+需要将图中的 com.android.application 改成 com.android.library 以及删除applicationId这一行。</p>
+<p>改完后记得sync一下。</p>
+<p>3.修改主工程下的 setting.gradle. 添加如下：</p>
+<p><img src="http://qiracle.cn/img/20181021/module_3.png" alt=""></p>
 <p>同样改完之后sync一下。</p>
 <p>这样，module的导入就完成了，我们可以试试调用module里的方法。</p>
 

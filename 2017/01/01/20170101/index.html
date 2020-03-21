@@ -18,7 +18,8 @@
 <meta name="description" content="strcpy： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：
 char *a = &amp;quot;0123456789&amp;quot;, *b = &amp;quot;abcdefghijk&amp;quot;;
 char c[5];
-输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是">
+
+输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言中三种拷贝函数的区别">
 <meta property="og:url" content="http://qiracle.github.io/2017/01/01/20170101/index.html">
@@ -26,14 +27,16 @@ char c[5];
 <meta property="og:description" content="strcpy： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：
 char *a = &amp;quot;0123456789&amp;quot;, *b = &amp;quot;abcdefghijk&amp;quot;;
 char c[5];
-输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是">
+
+输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言中三种拷贝函数的区别">
 <meta name="twitter:description" content="strcpy： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：
 char *a = &amp;quot;0123456789&amp;quot;, *b = &amp;quot;abcdefghijk&amp;quot;;
 char c[5];
-输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是">
+
+输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -326,22 +329,27 @@ char c[5];
         <p><strong>strcpy</strong>： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：</p>
 <pre><code>char *a = &quot;0123456789&quot;, *b = &quot;abcdefghijk&quot;;
 char c[5];
-</code></pre><p>输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是经过strcpy后a的剩余字符也拷贝过去了，如果c后面是系统程序空间，那就要出问题了。<a id="more"></a></p>
-<p><strong>strncpy</strong>：strcpy的改进版本，多了一个拷贝长度的参数。需要注意的是长度参数应该为目的空间的大小，并且这个函数不会自己附加字符串结束符’\0’，要自己加。看下面的例子：</p>
+</code></pre>
+<p>输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是经过strcpy后a的剩余字符也拷贝过去了，如果c后面是系统程序空间，那就要出问题了。&lt;!--more--&gt;</p>
+<p><strong>strncpy</strong>：strcpy的改进版本，多了一个拷贝长度的参数。需要注意的是长度参数应该为目的空间的大小，并且这个函数不会自己附加字符串结束符'\0'，要自己加。看下面的例子：</p>
 <pre><code>strncpy(c,b,strlen(b))=abcdefghijkw //拷贝长度不对，还是越界
-strncpy(c,a,sizeof(c))=01234fghijkw //拷贝长度正确，但是因为拷贝长度内不包括&apos;\0&apos;，所以输出的时候还是会把原本的空间内容输出，知道遇到一个结束符&apos;\0&apos;。
-</code></pre><p>所以正确的做法应该是： strncpy(c, a, sizeof(c)-1); c[5] = ‘\0’;</p>
+strncpy(c,a,sizeof(c))=01234fghijkw //拷贝长度正确，但是因为拷贝长度内不包括'\0'，所以输出的时候还是会把原本的空间内容输出，知道遇到一个结束符'\0'。
+</code></pre>
+<p>所以正确的做法应该是： strncpy(c, a, sizeof(c)-1); c[5] = '\0';</p>
 <p><strong>memcpy</strong>： 最后说一下这个函数，这个函数是个很强大的工具，因为它可以简单的根据字节数拷贝内存空间内容，所以经常被用于结构体的拷贝。需要注意两点：1、memcpy拷贝的时候源空间的长度和目标空间的长度都需要程序员自己考虑，如果按照源空间的长度拷贝，要注意是否会写溢出，如果按照目标空间的长度拷贝，则要考虑是否造成读溢出（把不该拷贝的内容也拷贝过去了），而读溢出在某些系统环境下（比如AIX），可能会造成coredump（当读到不该读的地址）；2、源空间和目标空间不能重叠。如下例：</p>
 <pre><code>char src1[] = &quot;src1&quot;, src2[]=&quot;source2, this is a long src&quot;;
 char dest[] = &quot;destination&quot;;
-</code></pre><p>输出：<br>   memcpy(dest, src1, strlen(dest)） = src1 //读越界</p>
-<p>   memcpy(dest, src2, strlen(src2)） = source2, this is a long srcis is a long src //写越界</p>
-<p>   memcpy(dest, dest+2, strlen(dest2) = stination // 重叠，结果是混乱</p>
+</code></pre>
+<p>输出：
+memcpy(dest, src1, strlen(dest)） = src1 //读越界</p>
+<p>memcpy(dest, src2, strlen(src2)） = source2, this is a long srcis is a long src //写越界</p>
+<p>memcpy(dest, dest+2, strlen(dest2) = stination // 重叠，结果是混乱</p>
 <pre><code>char p1[]=&quot;123456789&quot;；
 char p2[]=&quot;******&quot;;
 memcpy(p1,p2,6);
 printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
 </code></pre>
+
       
     </div>
     

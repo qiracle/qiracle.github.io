@@ -15,25 +15,28 @@
 
 
 
-<meta name="description" content="1. 广播的接收权限设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
+<meta name="description" content="1. 广播的接收权限
+设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
 首先发送方的应用在清单文件里自定义一个权限：
 12&amp;lt;permission android:name=&quot;cn.qiracle.RECEIVER&quot;    android:protectionLevel=&quot;signature&quot; /&amp;gt;
-这里 protectio">
+这里 protecti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Boardcast 权限的使用">
 <meta property="og:url" content="http://qiracle.github.io/2019/05/12/20190512/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="1. 广播的接收权限设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
+<meta property="og:description" content="1. 广播的接收权限
+设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
 首先发送方的应用在清单文件里自定义一个权限：
 12&amp;lt;permission android:name=&quot;cn.qiracle.RECEIVER&quot;    android:protectionLevel=&quot;signature&quot; /&amp;gt;
-这里 protectio">
+这里 protecti">
 <meta property="og:updated_time" content="2019-08-03T06:26:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Boardcast 权限的使用">
-<meta name="twitter:description" content="1. 广播的接收权限设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
+<meta name="twitter:description" content="1. 广播的接收权限
+设置广播接收权限的目的在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义谁能接收我的广播，用法如下：
 首先发送方的应用在清单文件里自定义一个权限：
 12&amp;lt;permission android:name=&quot;cn.qiracle.RECEIVER&quot;    android:protectionLevel=&quot;signature&quot; /&amp;gt;
-这里 protectio">
+这里 protecti">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -323,24 +326,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="1-广播的接收权限"><a href="#1-广播的接收权限" class="headerlink" title="1. 广播的接收权限"></a>1. 广播的接收权限</h3><p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
+        <h3>1. 广播的接收权限</h3>
+<p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
 <p>首先发送方的应用在清单文件里自定义一个权限：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。<a id="more"></a></p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。&lt;!--more--&gt;</p>
 <p>然后发送广播时调用如下 sendBoradcast 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static final String PERMISSION_RECEIVER= &quot;cn.qiracle.RECEIVER&quot;;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">sendBroadcast(intent,PERMISSION_RECEIVER);</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static final String PERMISSION_RECEIVER= &quot;cn.qiracle.RECEIVER&quot;;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">sendBroadcast(intent,PERMISSION_RECEIVER);</span><br></pre></td></tr></table></figure></p>
 <p>此时接收方app若是想接收到这个广播，需要在接收方应用的清单文件里添加如下权限：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-广播的发送权限"><a href="#2-广播的发送权限" class="headerlink" title="2.广播的发送权限"></a>2.广播的发送权限</h3><p>设置广播的发送权限<strong>目的</strong>在于避免自己的应用里的 receiver 被其他恶意应用发送的带有同样 action 的广播所骚扰。简单来说就是定义<strong>谁能给我发送广播</strong>。用法如下：</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3>2.广播的发送权限</h3>
+<p>设置广播的发送权限<strong>目的</strong>在于避免自己的应用里的 receiver 被其他恶意应用发送的带有同样 action 的广播所骚扰。简单来说就是定义<strong>谁能给我发送广播</strong>。用法如下：</p>
 <p>首先在接收方应用的清单文件里自定义一个权限：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后注册广播时采用如下regiserReceiver方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PERMISSION_SEND = <span class="string">"cn.qiracle.SEND"</span>;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">registerReceiver(<span class="keyword">new</span> MyReceiver(),intentFilter,PERMISSION_SEND,<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PERMISSION_SEND = <span class="string">"cn.qiracle.SEND"</span>;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">registerReceiver(<span class="keyword">new</span> MyReceiver(),intentFilter,PERMISSION_SEND,<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure></p>
 <p>上面是动态注册，静态注册广播方式如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".receiver.MyReceiver"</span></span><br><span class="line">    <span class="attr">android:permission</span>=<span class="string">"cn.qiracle.SEND"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.MYRECEIVER"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>推荐使用动态注册</strong>的方式，因为笔者尝试发现自定义权限时，静态注册的方式在 <strong>Android8.0 </strong>及以上会不起作用。</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".receiver.MyReceiver"</span></span><br><span class="line">    <span class="attr">android:permission</span>=<span class="string">"cn.qiracle.SEND"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.MYRECEIVER"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>推荐使用动态注册</strong>的方式，因为笔者尝试发现自定义权限时，静态注册的方式在 **Android8.0 **及以上会不起作用。</p>
 <p>此时广播的发送方 app 要想给这个应用发送广播，必须在清单文件里添加如下权限：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -372,7 +378,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-广播的接收权限"><span class="toc-number">1.</span> <span class="toc-text">1. 广播的接收权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-广播的发送权限"><span class="toc-number">2.</span> <span class="toc-text">2.广播的发送权限</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">1. 广播的接收权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">2.广播的发送权限</span></a></li></ol>
         
     </div>
     <style>

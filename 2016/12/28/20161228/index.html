@@ -15,28 +15,64 @@
 
 
 
-<meta name="description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
+<meta name="description" content="列表的创建
+使用 [ ] 把数据包含起来，便可以创建一个列表了。
 
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
 
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+[ ] 可以不包含任何数据，则表示创建一个空列表
+&amp;gt;&amp;gt;&amp;gt; name = []
+
+
+[  ] 也可以包含多种数据类型的数据
+&amp;gt;&amp;gt;&amp;gt; name = [&amp;quot;damao&amp;quot;, 30, &amp;quot;ermao&amp;quot;]
+&amp;lt;!--more--&amp;gt;
+
+
+列表的打印
+
+
+使用内置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python学习（二）——列表">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/28/20161228/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
+<meta property="og:description" content="列表的创建
+使用 [ ] 把数据包含起来，便可以创建一个列表了。
 
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
 
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+[ ] 可以不包含任何数据，则表示创建一个空列表
+&amp;gt;&amp;gt;&amp;gt; name = []
+
+
+[  ] 也可以包含多种数据类型的数据
+&amp;gt;&amp;gt;&amp;gt; name = [&amp;quot;damao&amp;quot;, 30, &amp;quot;ermao&amp;quot;]
+&amp;lt;!--more--&amp;gt;
+
+
+列表的打印
+
+
+使用内置">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python学习（二）——列表">
-<meta name="twitter:description" content="列表的创建使用 [ ] 把数据包含起来，便可以创建一个列表了。
+<meta name="twitter:description" content="列表的创建
+使用 [ ] 把数据包含起来，便可以创建一个列表了。
 
-[ ] 可以不包含任何数据，则表示创建一个空列表&amp;gt;&amp;gt;&amp;gt; name = []
 
-[  ] 也可以包含多种数据类型的数据&amp;gt;&amp;gt;&amp;gt; name = [“damao”, 30, “ermao”]">
+[ ] 可以不包含任何数据，则表示创建一个空列表
+&amp;gt;&amp;gt;&amp;gt; name = []
+
+
+[  ] 也可以包含多种数据类型的数据
+&amp;gt;&amp;gt;&amp;gt; name = [&amp;quot;damao&amp;quot;, 30, &amp;quot;ermao&amp;quot;]
+&amp;lt;!--more--&amp;gt;
+
+
+列表的打印
+
+
+使用内置">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -326,48 +362,122 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="列表的创建"><a href="#列表的创建" class="headerlink" title="列表的创建"></a>列表的创建</h3><p>使用 [ ] 把数据包含起来，便可以创建一个列表了。</p>
+        <h3>列表的创建</h3>
+<p>使用 [ ] 把数据包含起来，便可以创建一个列表了。</p>
 <ol>
-<li><p>[ ] 可以不包含任何数据，则表示创建一个空列表<br>>&gt;&gt; name = []</p>
+<li>
+<p>[ ] 可以不包含任何数据，则表示创建一个空列表
+&gt;&gt;&gt; name = []</p>
 </li>
-<li><p>[  ] 也可以包含多种数据类型的数据<br>>&gt;&gt; name = [“damao”, 30, “ermao”]</p>
-<a id="more"></a>
-</li>
-</ol>
-<h3 id="列表的打印"><a href="#列表的打印" class="headerlink" title="列表的打印"></a>列表的打印</h3><ol>
-<li><p>使用内置函数print() 便可打印整个列表里的数据”<br>>&gt;&gt; print(name)<br>[“damao”, 30, “ermao”]</p>
-</li>
-<li><p>当然也可以打印列表的某个下标的数据：<br>>&gt;&gt; print(name[0])<br>damao</p>
-</li>
-<li><p>也可以分片打印列表的某段下标的数据<br>>&gt;&gt; print(name[0:2])<br>[‘damao’, 30] #注意，没有打印name[2]的数据:)</p>
-</li>
-<li><p>如果想要分别打印列表里的每个数据，只需要一个for就可以搞定：<br>>&gt;&gt; for each in name:<br>print(each)<br>damao<br>30<br>ermao</p>
-</li>
-<li><p>当然也可以直接打印出列表内数据的个数：<br>>&gt;&gt; print(len(name))<br>3</p>
+<li>
+<p>[  ] 也可以包含多种数据类型的数据
+&gt;&gt;&gt; name = [&quot;damao&quot;, 30, &quot;ermao&quot;]
+&lt;!--more--&gt;</p>
 </li>
 </ol>
-<h3 id="列表的扩展"><a href="#列表的扩展" class="headerlink" title="列表的扩展"></a>列表的扩展</h3><ol>
-<li><p>我们可以在列表末尾追加一个任意数据类型数据：<br>>&gt;&gt; name.append([“daoluan”, 666])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, [‘daoluan’, 666]]</p>
-</li>
-<li><p>也可以在列表末尾追加一个列表里的所有数据：<br>>&gt;&gt; name.extend([“sanmao”, 10, “simao”])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, [‘daoluan’, 666], ‘sanmao’, 10, ‘simao’]<br>#注意，append和entend这两个方法看起来有些类似，但实际上是不同的。append只接受一个参数，但是这个参数可以是任意数据类型，比如列表和元组等，而且只是将这个数据追加到原列表后面独立存在。<br>extend也是只接受一个参数，不同的是这个参数必须是一个列表，而且会把这个列表的每个元素拆分出来，依次追加到原列表后面。</p>
-</li>
-<li><p>当然也可以在指定位置增加一个任意数据类型数据(append的既视感)：<br>/# 第一个参数为指定的列表下标，第二个参数为增加的数据<br>>&gt;&gt; name.insert(3, 20)<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], ‘sanmao’, 10, ‘simao’]</p>
-</li>
-</ol>
-<h3 id="列表的删除："><a href="#列表的删除：" class="headerlink" title="列表的删除："></a>列表的删除：</h3><ol>
-<li><p>删除列表末尾的一个数据：<br>>&gt;&gt; name.pop()<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], ‘sanmao’, 10]</p>
-</li>
-<li><p>也可以删除列表指定的某一个数据：<br>>&gt;&gt; name.remove(“sanmao”)<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, [‘daoluan’, 666], 10]</p>
-</li>
-<li><p>或者删除列表的某个下标的数据：<br>>&gt;&gt; del(name[4])<br>>&gt;&gt; print(name)<br>[‘damao’, 30, ‘ermao’, 20, 10]<br>#注意，de()函数支持列表分片删除，同样的，也支持删除整个列表。</p>
-</li>
-</ol>
-<h3 id="列表的合并："><a href="#列表的合并：" class="headerlink" title="列表的合并："></a>列表的合并：</h3><p>只需要像I + I + I = III一样，就可以合并多个列表：<br>>&gt;&gt; mao = name + [20, “ermao”] + [30, “damao”]<br>>&gt;&gt; print(mao)<br>[‘damao’, 30, ‘ermao’, 20, 10, 20, ‘ermao’, 30, ‘damao’]</p>
-<h3 id="列表的排序："><a href="#列表的排序：" class="headerlink" title="列表的排序："></a>列表的排序：</h3><p>首先，列表里的每个元素类型相同才可以进行排序，对此我们可以选择手写排序算法，也可以选择Pythoy提供的更简便且强大的的方法：sort()和sorted()</p>
+<h3>列表的打印</h3>
 <ol>
-<li><p>原地排序：<br>>&gt;&gt; fruit = [“banana”, “pear”, “orange”, “apple”]<br>>&gt;&gt; fruit.sort()<br>>&gt;&gt; print(fruit)<br>[‘apple’, ‘banana’, ‘orange’, ‘pear’]<br># sort() 方法可以在原列表的基础上进行排序，同时改变原列表的顺序。</p>
+<li>
+<p>使用内置函数print() 便可打印整个列表里的数据”
+&gt;&gt;&gt; print(name)
+[&quot;damao&quot;, 30, &quot;ermao&quot;]</p>
 </li>
-<li><p>复制排序：<br>>&gt;&gt; nums = [23, 12, -34, 0, 101, 2]<br>>&gt;&gt;newNums = sorted(nums)<br>>&gt;&gt; print(newNums)<br>[-34, 0, 2, 12, 23, 101]<br>>&gt;&gt; print(nums)<br>[23, 12, -34, 0, 101, 2]<br># sorted() 函数通过复制排序可以对几乎任何数据结构排序，同时返回一个新的排序后的数据结构，而且不会改变原数据结构的序列。<br>#注意，不管使用sort()还是使用sorted()，默认都是升序排序。如果想按照降序排序，只要传入 reverse = True 参数就可以啦，比如 fruit.sort(reverse = True) 或者 newNums = sorted(nums, reverse = True)</p>
+<li>
+<p>当然也可以打印列表的某个下标的数据：
+&gt;&gt;&gt; print(name[0])
+damao</p>
+</li>
+<li>
+<p>也可以分片打印列表的某段下标的数据
+&gt;&gt;&gt; print(name[0:2])
+['damao', 30] #注意，没有打印name[2]的数据:)</p>
+</li>
+<li>
+<p>如果想要分别打印列表里的每个数据，只需要一个for就可以搞定：
+&gt;&gt;&gt; for each in name:
+print(each)
+damao
+30
+ermao</p>
+</li>
+<li>
+<p>当然也可以直接打印出列表内数据的个数：
+&gt;&gt;&gt; print(len(name))
+3</p>
+</li>
+</ol>
+<h3>列表的扩展</h3>
+<ol>
+<li>
+<p>我们可以在列表末尾追加一个任意数据类型数据：
+&gt;&gt;&gt; name.append([&quot;daoluan&quot;, 666])
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', ['daoluan', 666]]</p>
+</li>
+<li>
+<p>也可以在列表末尾追加一个列表里的所有数据：
+&gt;&gt;&gt; name.extend([&quot;sanmao&quot;, 10, &quot;simao&quot;])
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', ['daoluan', 666], 'sanmao', 10, 'simao']
+#注意，append和entend这两个方法看起来有些类似，但实际上是不同的。append只接受一个参数，但是这个参数可以是任意数据类型，比如列表和元组等，而且只是将这个数据追加到原列表后面独立存在。
+extend也是只接受一个参数，不同的是这个参数必须是一个列表，而且会把这个列表的每个元素拆分出来，依次追加到原列表后面。</p>
+</li>
+<li>
+<p>当然也可以在指定位置增加一个任意数据类型数据(append的既视感)：
+/# 第一个参数为指定的列表下标，第二个参数为增加的数据
+&gt;&gt;&gt; name.insert(3, 20)
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, ['daoluan', 666], 'sanmao', 10, 'simao']</p>
+</li>
+</ol>
+<h3>列表的删除：</h3>
+<ol>
+<li>
+<p>删除列表末尾的一个数据：
+&gt;&gt;&gt; name.pop()
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, ['daoluan', 666], 'sanmao', 10]</p>
+</li>
+<li>
+<p>也可以删除列表指定的某一个数据：
+&gt;&gt;&gt; name.remove(&quot;sanmao&quot;)
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, ['daoluan', 666], 10]</p>
+</li>
+<li>
+<p>或者删除列表的某个下标的数据：
+&gt;&gt;&gt; del(name[4])
+&gt;&gt;&gt; print(name)
+['damao', 30, 'ermao', 20, 10]
+#注意，de()函数支持列表分片删除，同样的，也支持删除整个列表。</p>
+</li>
+</ol>
+<h3>列表的合并：</h3>
+<p>只需要像I + I + I = III一样，就可以合并多个列表：
+&gt;&gt;&gt; mao = name + [20, &quot;ermao&quot;] + [30, &quot;damao&quot;]
+&gt;&gt;&gt; print(mao)
+['damao', 30, 'ermao', 20, 10, 20, 'ermao', 30, 'damao']</p>
+<h3>列表的排序：</h3>
+<p>首先，列表里的每个元素类型相同才可以进行排序，对此我们可以选择手写排序算法，也可以选择Pythoy提供的更简便且强大的的方法：sort()和sorted()</p>
+<ol>
+<li>
+<p>原地排序：
+&gt;&gt;&gt; fruit = [&quot;banana&quot;, &quot;pear&quot;, &quot;orange&quot;, &quot;apple&quot;]
+&gt;&gt;&gt; fruit.sort()
+&gt;&gt;&gt; print(fruit)
+['apple', 'banana', 'orange', 'pear']
+# sort() 方法可以在原列表的基础上进行排序，同时改变原列表的顺序。</p>
+</li>
+<li>
+<p>复制排序：
+&gt;&gt;&gt; nums = [23, 12, -34, 0, 101, 2]
+&gt;&gt;&gt;newNums = sorted(nums)
+&gt;&gt;&gt; print(newNums)
+[-34, 0, 2, 12, 23, 101]
+&gt;&gt;&gt; print(nums)
+[23, 12, -34, 0, 101, 2]
+# sorted() 函数通过复制排序可以对几乎任何数据结构排序，同时返回一个新的排序后的数据结构，而且不会改变原数据结构的序列。
+#注意，不管使用sort()还是使用sorted()，默认都是升序排序。如果想按照降序排序，只要传入 reverse = True 参数就可以啦，比如 fruit.sort(reverse = True) 或者 newNums = sorted(nums, reverse = True)</p>
 </li>
 </ol>
 
@@ -402,7 +512,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的创建"><span class="toc-number">1.</span> <span class="toc-text">列表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的打印"><span class="toc-number">2.</span> <span class="toc-text">列表的打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的扩展"><span class="toc-number">3.</span> <span class="toc-text">列表的扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的删除："><span class="toc-number">4.</span> <span class="toc-text">列表的删除：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的合并："><span class="toc-number">5.</span> <span class="toc-text">列表的合并：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的排序："><span class="toc-number">6.</span> <span class="toc-text">列表的排序：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">列表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">列表的打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">列表的扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">列表的删除：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">列表的合并：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">列表的排序：</span></a></li></ol>
         
     </div>
     <style>

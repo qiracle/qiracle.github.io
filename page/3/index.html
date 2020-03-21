@@ -305,8 +305,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><p>我们在做公司的项目的时候，代码都是大家共同编写的，通过git仓库进行管理。然而有的时候，我们写的代码会被别人修改了，而别人又没有加注释说明是某某人什么时候修改的什么功能。这时候你又想对曾经自己写的这块代码进行修改，但是你对他的代码不是很明白或者对需求不是很理解。这时最好的解决方法就是找到这个人问明白，最常见的方法是，通过git log查看提交记录，查出这笔提交的owner，但是如果是很久之前的提交，要找出来未免有些太慢了。有没有什么好的方法呢？
-          
+        <h4><strong>应用场景</strong></h4>
+<p>我们在做公司的项目的时候，代码都是大家共同编写的，通过git仓库进行管理。然而有的时候，我们写的代码会被别人修改了，而别人又没有加注释说明是某某人什么时候修改的什么功能。这时候你又想对曾经自己写的这块代码进行修改，但是你对他的代码不是很明白或者对需求不是很理解。这时最好的解决方法就是找到这个人问明白，最常见的方法是，通过git log查看提交记录，查出这笔提交的owner，但是如果是很久之前的提交，要找出来未免有些太慢了。有没有什么好的方法呢？&lt;!--more--&gt;有，可以用git命令 -----git blame。</p>
+<h4><strong>git blame用法</strong></h4>
+<p>git blame +文件名，就可以显示出这该文件里每行代码的详细提交信息。放张图感受一下：
+<img src="http://qiracle.cn/img/20170809/git_1.png" alt="这里写图片描述"></p>
+<p>从图中可以看到，第一列为commit id，第二列为提交者username，第三列为时间日期，第四列为所在行数，第五列为提交内容。文件中的每一行提交信息一目了然，通过这个命令我们可以很快的找到每行代码的修改提交者。如果文件里行数过多，不想一直往下翻了可以结合grep命令一起用：git blame fileName | grep “line number”。可直接显示你想要看的那一行的提交者信息。--</p>
+
       
     </div>
     
@@ -323,10 +328,6 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/08/09/20170809/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -375,8 +376,81 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="Android-系统-SystemUI-介绍"><a href="#Android-系统-SystemUI-介绍" class="headerlink" title="Android 系统 SystemUI 介绍"></a>Android 系统 SystemUI 介绍</h3><p>  Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版本在 SystemUI 上都有比较大的改动。而对开发者而言，理解 Android SystemUI 对优化Android系统界面，改善用户体验十分重要。
-          
+        <h3>Android 系统 SystemUI 介绍</h3>
+<p>Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版本在 SystemUI 上都有比较大的改动。而对开发者而言，理解 Android SystemUI 对优化Android系统界面，改善用户体验十分重要。&lt;!--more--&gt;</p>
+<h3>SystemUI 在哪</h3>
+<p>在 Andorid 系统源码中，package/apps下放的是系统内置的一些 app，例如 settings，camera，Phone，Message 等等。而在 Framework/base/package 下，它们也是系统的 app，SystemUI 就在此目录下。它控制着整个Android系统的界面，但其实他也是一个 app，不同于一般的 app，它不可卸载也不可以被第三方应用替换。</p>
+<h3>SystemUI 整体结构</h3>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_1.png" alt="这里写图片描述"></p>
+<p>这是 SystemUI 相关类的继承关系图，可以看到 SystemUI 为基类，每个子类实现了不同的系统界面。</p>
+<ul>
+<li>Status Bar 系统上方的状态栏</li>
+<li>Navigator Bar 系统下方的导航栏</li>
+<li>Keyguard 锁屏界面</li>
+<li>PowerUI 电源界面</li>
+<li>Recents Screen 近期任务界面</li>
+<li>VolumeUI 音量调节对话框</li>
+<li>Stack Divider 分屏功能调节器</li>
+<li>PipUI 画中画界面</li>
+<li>Screenshot 截屏界面</li>
+<li>RingtonePlayer 铃声播放器界面</li>
+<li>Settings Activity 系统设置中用到的一些界面，例如：NetworkOverLimitActivity，UsbDebuggingActivity等。</li>
+</ul>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_2.png" alt="这里写图片描述"></p>
+<h3>SystemUI的启动流程</h3>
+<p>先找到 framework/base/service/java/com/android/server/SystemServer.java 文件，里面有个main()方法，main 方法如下：</p>
+<pre><code>public static void main（String[] args）{
+	new SystemServer().run()
+}
+</code></pre>
+<p>main 方法里启动了 run() 方法，而在 run 方法中调用了 startBootstrapServices() 方法和 startOtherServices() 方法，在 startOtherServices() 里 mActivityManagerService.systemReady 创建线程去执行startSystemUi(context），这里将启动 SystemUI。具体方法如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_3.png" alt="这里写图片描述">
+然后我们进入设置启动 systemui 程序的 SystemUIService 文件里，该文件在framework/base/packages/SystemUI/src/com/android/systemui/SystemUIService.java.我们看该文件的onCreate() 方法。方法如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_4.png" alt="这里写图片描述"></p>
+<p>可以看到有一句 ((SystemUIApplication) getApplication()).startServicesIfNeeded()，这句很关键，我们再进入 startServicesIfNeeded()，看看具体是如何启动系统服务的。该方法如下：
+	 <img src="http://qiracle.cn/img/20170728/systemUI_5.png" alt="这里写图片描述"></p>
+<p>其中有一个 for 循环，循环里第一句就是将 service[i] 赋值给 cl，	 那么service里存的是什么呢？找到 service[i] 的赋值如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_6.png" alt="这里写图片描述"></p>
+<p>看到这里我们就明白了，这里是拿到每个和 SystemUI 相关的类的反射，存到了 service[] 里，然后赋值给cl，紧接着将通过反射将其转化为具体类的对象，存到了mService[i]数组里，最后对象调 start() 方法启动相关类的服务，启动完成后，回调 onBootCompleted( ) 方法。
+mService[i] 里的值不同时，调用的 start() 方法也不相同，这里我们以S ystemBars 的 start() 为例，所以mService[i].start() 先认为是 SystemBars.start().
+SystemBars.java 位于framework/base/packages/SystemUI/res/com/android/systemui/statusbar/SystemBars.java ，找到 start() 方法：
+	<img src="http://qiracle.cn/img/20170728/systemUI_7.png" alt="这里写图片描述"></p>
+<p>这里调用了 mServiceMonitor.start()，旁边注释说的很清楚如果服务没有启动的话就调用onNoService()方法，进入 onNoService() 方法，该方法就位于 start() 方法下方，可以看到方法中调用了CreateStatusBarFromConfig() 该方法如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_8.png" alt="这里写图片描述"></p>
+<p>从中可以知道，该方法中先读取 value/config.xml 文件中 config_statusBarComponent 的值,这里为：com.android.systemui.statusbar.phone.PhoneStatusBar，然后通过反射得到了 PhoneStatusBar 对象，最后的 mStartus.start() 也就等于 PhoneStatusBar.start()，进入该方法，会发现，里面调用了super.start()，也就是先执行了父类的 start() ,其父类为 BaseStatusBar，该类的star()方法较多，就不放出来了，我们看重点，找到里面有调用一个 createAndAddWindows()，该方法为抽象方法，则会调用它的子类的方法，这里也就是 PhoneStatusBar 的 createAndAddWindows()方法，如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_9.png" alt="这里写图片描述"></p>
+<p>createAndAddWindows() 里只调用了 addStaBarWindow() 方法，而在该方法里，调用了makeStartusBarView，看名字就知道该方法关键，意为构建statusBar视图。该方法很长，里面有inflateStatusBarWindow()，进入该方法，可以看到，这么一句：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_10.png" alt="这里写图片描述"></p>
+<p>然后，我们通过 super_status_bar.xml 的分析 SystemBars 的大致视图构成了，super_status_bar.xml 代码如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_11.png" alt="这里写图片描述"></p>
+<p><strong>super_status_bar.xml</strong>
+super_status_bar.xml 中 include 了一个名称为 status_bar 的布局文件
+super_status_bar.xml*中 include 了一个名称为 status_bar_expanded 的布局文件
+这里的 status_bar 便是系统状态栏的布局文件，status_bar_expanded 便是下拉的通知窗口的布局文件
+上述 super_status_bar.xml 与如下视图对应：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_12.png" alt="这里写图片描述"></p>
+<p>PhoneStatusBarView 即为手机最上方的状态栏，主要用于显示系统状态，通知等，主要包括 notification icons 和 status bar icons。status_bar.xml 即对应状态栏的视图如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_13.png" alt="这里写图片描述"></p>
+<p><strong>PanelHolder</strong>
+PanelHolder是用户下拉 status bar 后得到的 view。它主要包含 QuickSettings 和 Notification panel 两个部分。
+PanelHolder是一个继承自 FrameLayout的自定义 view,它的内容是通过 include status_bar_expanded.xml进行填充的。
+PanelHolder的布局比较复杂，为了提高 view 的重用性大量的使用了 include 标签。
+status_bar_expanded.xml 对应的视图：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_14.png" alt="这里写图片描述"></p>
+<p><strong>KeyguardBouncer</strong>
+KeyguardBouncer是锁屏解锁界面，根据用户设置的解锁方式不同，展示不同的解锁模式。
+keyguard_bouncer.xml 对应的 KerguardBouncer 视图：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_15.png" alt="这里写图片描述"></p>
+<p><strong>附：</strong>
+<strong>SystemUI启动流程图：</strong>
+<img src="http://qiracle.cn/img/20170728/systemUI_16.png" alt="这里写图片描述"></p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_17.png" alt="这里写图片描述"></p>
+<p><strong>参考文章</strong>：
+http://www.jianshu.com/p/0ab1279465fa
+http://qiangbo.space/2017-05-09/AndroidAnatomy_SystemUI_Intro/
+http://qiangbo.space/2017-06-04/AndroidAnatomy_SystemUI_Bar/
+http://www.open-open.com/lib/view/open1494316049681.html</p>
+
       
     </div>
     
@@ -393,10 +467,6 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/07/28/20170728/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -445,15 +515,95 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="1-python把函数作为参数"><a href="#1-python把函数作为参数" class="headerlink" title="1.python把函数作为参数"></a>1.python把函数作为参数</h3><pre><code>import math
+        <h3>1.python把函数作为参数</h3>
+<pre><code>import math
 def f(x,y)
-    return (x+y)+x*y
+	return (x+y)+x*y
 def add(x, y, f):
     return f(x,y)
 
 print add(4, 9, f)
-</code></pre><p>参数f接收一个函数名，根据f的定义不同，可得到不同的值。
-          
+</code></pre>
+<p>参数f接收一个函数名，根据f的定义不同，可得到不同的值。&lt;!--more--&gt;</p>
+<h3>2.python中map()函数</h3>
+<pre><code>def format_name(s):
+    return s[0].upper() + s[1:].lower()
+
+print map(format_name, ['HELLO', 'anddroid', 'iOS'])
+</code></pre>
+<p>**map()**是 Python 内置的高阶函数，它接收一个函数 f 和一个 list，并通过把函数 f 依次作用在 list 的每个元素上，得到一个新的 list 并返回。这里将列表里的每个元素首字母大写，其余字母小写输出。</p>
+<h3>3.python中reduce()函数</h3>
+<pre><code>def prod(x, y):
+    return x+y
+
+print reduce(prod, [1,2,3,4,5.6])
+</code></pre>
+<p>**reduce()**函数也是Python内置的一个高阶函数。reduce()函数接收的参数和 map()类似，一个函数 f，一个list，但行为和 map()不同，reduce()传入的函数 f 必须接收两个参数，reduce()对list的每个元素反复调用函数f，并返回最终结果值。这里表示计算1+2+3+4+5+6的值。
+reduce()还可以接收第3个可选参数，作为计算的初始值。如果把初始值设为10，计算：</p>
+<pre><code>print reduce(prod, [1,2,3,4,5.6]，10)
+</code></pre>
+<p>表示计算10+1+2+3+4+5+6的值</p>
+<h3>4.python中filter()函数</h3>
+<pre><code>import math
+
+def is_sqr(x):
+    r = int(math.sqrt(x))
+    return r*r==x
+
+print filter(is_sqr, range(1, 101))
+</code></pre>
+<p>**filter()**函数是 Python 内置的另一个有用的高阶函数，filter()函数接收一个函数 f 和一个list，这个函数 f 的作用是对每个元素进行判断，返回 True或 False，filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。这里筛选出了1~100中平方根是整数的数。</p>
+<h3>5.python中自定义排序函数</h3>
+<pre><code>def cmp_ignore_case(s1, s2):
+    u1 = s1.upper()
+    u2 = s2.upper()
+    if u1 &lt; u2:
+        return -1
+    if u1 &gt; u2:
+        return 1
+    return 0
+
+print sorted(['Java', 'Android', 'iOS', 'Python'], cmp_ignore_case )
+</code></pre>
+<p>sorted()也是一个高阶函数，它可以接收一个比较函数来实现自定义排序，比较函数的定义是，传入两个待比较的元素 x, y，如果 x 应该排在 y 的前面，返回 -1，如果 x 应该排在 y 的后面，返回 1。如果 x 和 y 相等，返回 0。这里输出['Android','iOS',, 'Java', 'Python']</p>
+<h3>6.python中返回函数</h3>
+<pre><code>def f():
+    print 'call f()...'
+    # 定义函数g:
+    def g():
+        print 'call g()...'
+    # 返回函数g:
+    return g
+</code></pre>
+<p>仔细观察上面的函数定义，我们在函数 f 内部又定义了一个函数 g。由于函数 g 也是一个对象，函数名 g 就是指向函数 g 的变量，所以，最外层函数 f 可以返回变量 g，也就是函数 g 本身。
+调用函数 f，我们会得到 f 返回的一个函数：</p>
+<pre><code>		x = f()   # 调用f()
+	输出：call f()...
+		 x   # 变量x是f()返回的函数：
+	输出：&lt;function g at 0x1037bf320&gt;
+		x()   # x指向函数，因此可以调用
+	输出：call g()...   # 调用x()就是执行g()函数定义的代码
+</code></pre>
+<h3>7.python中闭包</h3>
+<pre><code>def f():
+    print 'f()...'
+    def g():
+        print 'g()...'
+    return g
+</code></pre>
+<p>像这种内层函数引用了外层函数的变量（参数也算变量），然后返回内层函数的情况，称为<strong>闭包（Closure）</strong>。
+<strong>闭包的特点</strong>是返回的函数还引用了外层函数的局部变量，所以，要正确使用闭包，就要确保引用的局部变量在函数返回后不能变</p>
+<h3>8.python中匿名函数</h3>
+<pre><code>def f(x):
+	return x*x
+
+print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
+<p>采用匿名函数如下：</p>
+<pre><code>print map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
+<p>结果均为：[1, 4, 9, 16, 25, 36, 49, 64, 81]</p>
+
       
     </div>
     
@@ -470,10 +620,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/07/10/20170710/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -522,8 +668,20 @@ print add(4, 9, f)
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>DeskClock时钟应用时区的添加，首先我们找到DeskClock该app所在的位置，它位于package/apps/DeskCock下，时区的读取文件位于src/com/android/deskclock/settings/settingsActivity.java中，接下来我们主要分析该文件中的代码。首先找到getAllTimeZones函数，
-          
+        <p>DeskClock时钟应用时区的添加，首先我们找到DeskClock该app所在的位置，它位于package/apps/DeskCock下，时区的读取文件位于src/com/android/deskclock/settings/settingsActivity.java中，接下来我们主要分析该文件中的代码。首先找到getAllTimeZones函数，&lt;!--more--&gt;如下图：
+<img src="http://qiracle.cn/img/20170707/clock_1.png" alt="这里写图片描述"></p>
+<p>该方法首先读取了string.xml里的string-array中name=timezone_values和timezone_labels，其中timezone_labels为城市名，timezone_values为城市所在大洲名/城市名。部分截图如下：<img src="http://qiracle.cn/img/20170707/clock_2.png" alt="这里写图片描述"></p>
+<p><img src="http://qiracle.cn/img/20170707/clock_3.png" alt="这里写图片描述"></p>
+<p>需要添加城市时候去的话，可在这两个String-array后面按着它的格式接着添加，但是不是所有的城市都能添加时区，下面会解释。
+	继续分析，接下来获取两个数组的长度，以最短的为准，防止少添加了匹配不到。然后定义了一个timezones的list，通过for循环给list添加数据，for循环里的对象为TimeZoneRow。我们继续看TimeZoneRow里的东西：
+	<img src="http://qiracle.cn/img/20170707/clock_4.png" alt="这里写图片描述">
+	看TimeZoneRow方法有三个参数：id就是原来的timezone_values，name就是原来的timezone_label,currentTimeMillis为当前时间的毫秒值，用来计算城市所处时区的。
+	这里的Time.getTimeZone(id)需要注意,不是所有的城市都能得到对应的TimeZone，关键还要看系统资源中到底有没有该城市的时区资源，不然的话默认显示0时区，如果没有，需要从最新的tzdata（ftp://ftp.iana.org/tz/releases/）中添加（怎么添加，这里可google），如果最新的tzdata中也没有，那就无法添加该时区了。useDaylightTime表示是否使用夏令时，tz.getOffset可得到一个时区偏移量，下面就是根据这个来计算添加的城市所处时区的。下面我们进入buildGmtDisplayName方法看看他是如何计算时区的：
+	<img src="http://qiracle.cn/img/20170707/clock_5.png" alt="这里写图片描述">
+	上述过程主要是字符串的拼接以及offset的转换，最终得到了添加城市对应的时区值并返回。存到了图一的List里，然后通过遍历该List将每个城市对应的时区值存到了数组里并返回数组。
+	<img src="http://qiracle.cn/img/20170707/clock_6.png" alt="这里写图片描述">
+	最后在loadTimeZoneList()方法里获得timezones数组，ListPreference获取数组里的值将其显示在界面上，可供用户选择点击。	整个流程大致就是如此了。</p>
+
       
     </div>
     
@@ -540,10 +698,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/07/07/20170707/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -592,8 +746,36 @@ print add(4, 9, f)
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="静态-overlay-和动态-overlay"><a href="#静态-overlay-和动态-overlay" class="headerlink" title="静态 overlay 和动态 overlay"></a>静态 overlay 和动态 overlay</h3><p>静态 overlay：又称为编译时 overlay，编译时资源就已经覆盖了，一般用在有源码的apk中。<br>动态 overlay：又称为运行时 overlay，当 apk 在手机中运行时才发生资源覆盖，一般用在无源码的apk中。
-          
+        <h3>静态 overlay 和动态 overlay</h3>
+<p>静态 overlay：又称为编译时 overlay，编译时资源就已经覆盖了，一般用在有源码的apk中。
+动态 overlay：又称为运行时 overlay，当 apk 在手机中运行时才发生资源覆盖，一般用在无源码的apk中。&lt;!--more--&gt;</p>
+<h3>overlay资源替换的前提和原则</h3>
+<p>前提：资源所在路径必须与overlay下资源路径完全相同。如要替换 Settings 这个应用的String.xml里的资源，该资源文件所在路径为packages/apps/res/values/,则对应overlay的路径必须为overlay/packages/apps/res/values/。</p>
+<p>原则：overlay替换的是资源，不是文件。举个例子，应用中String.xml里的内容如下：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;aaa&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;b&quot;&gt;bbb&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;c&quot;&gt;ccc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
+<p>overlay中的String.xml里的内容如下：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
+<p>则最终，apk调用的资源如下：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;b&quot;&gt;bbb&lt;/String&gt;</span><br><span class="line">&lt;String name=&quot;c&quot;&gt;ccc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
+<p>而不是想象的如下：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</span><br></pre></td></tr></table></figure></p>
+<p>注意，关于替换，查询相关英文文档发现有如下描述</p>
+<blockquote>
+<p>For color, bool, string, array, style/theme types, the resource values are identifed by their keys, so for these types, there is no need to put the resources in a file with the same name as in the original base package.</p>
+</blockquote>
+<p>For layout, animation, picture drawables and raw types, the resources are indentifed by their file name, and overlay for these resources should keep the file name same as in the base packages.</p>
+<p>翻译成中文的大概意思就是：
+1.对于color，bool，String，array，style等资源的值是有他们的键确定的，比如</p>
+<p><code>&lt;String name=&quot;a&quot;&gt;abc&lt;/String&gt;</code></p>
+<p>该字符串资源通过键 name = &quot;a&quot; 来唯一确定值 abc 。也就是说，overlay里的这类资源文件的文件名不需要与应用包里的资源文件的文件名保持一致。只需要，资源文件里的键保持一致就行了。</p>
+<p>2.对于布局文件，动画文件，图片资源文件等，这些资源文件是通过文件名来唯一确定，所以overlay里的这类资源文件需要与应用包里的资源文件的文件名保持一致。</p>
+<h3>多个overlay的优先级判定</h3>
+<p>在mk文件中通过定义PRODUCT_PACKAGE_OVERLAYS或DEVICE_PACKAGE_OVERLAYS变量，后面可以加上多个overlay目录路径，以此来实现多个overlay目录。但是这些目录是有优先级顺序的，PRODUCT_PACKAGE_OVERLAYS下的目录优先级高于DEVICE_PACKAGE_OVERLAYS下目录的优先级，写在前面的目录优先级高于写在后面目录的优先级，举个例子:</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PRODUCT_PACKAGE_OVERLAYS = overlay_A overlay_B</span><br><span class="line">DEVICE_PACKAGE_OVERLAYS = overlay_C overlay_D</span><br></pre></td></tr></table></figure></p>
+<p>上述overlay目录优先级顺序:overlay_A &gt;overlay_B&gt; overlay_C &gt;overlay_D</p>
+<h3>overlay用于新增资源</h3>
+<p>默认情况下，overlay目录的资源文件内容只能覆盖原有软件包中的资源，而不能新增资源。不让会造成编译错误。如要允许增加资源，可以将资源放入标签中，或者一种更加简便的方法是给aapt命令增加--auto-add-overlay选项。</p>
+
       
     </div>
     
@@ -610,10 +792,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/07/01/20170701/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -662,8 +840,129 @@ print add(4, 9, f)
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br>
-          
+        <p>1.顺序表的定义
+2.顺序表的初始化
+3.顺序表元素增删改查
+&lt;!--more--&gt;
+	#include&lt;stdio.h&gt;</p>
+<pre><code>#define MAXSIZE 20
+typedef int ElemType;
+
+typedef struct
+{
+	ElemType data[MAXSIZE];
+	int length;
+	
+	
+}SeqList;
+
+SeqList init_list(){//初始化
+	SeqList L;
+	L.length =0;
+
+	return L;
+}
+
+int list_length(SeqList *L){//获取长度
+	return L-&gt;length;
+}
+
+int get_element(SeqList L,int i){//根据序号查找元素
+	if(i&lt;1 || i&gt;L.length){
+		printf(&quot;序号超出范围&quot;);
+		return -1;
+	}
+	return L.data[i-1];
+	
+	
+}
+
+int list_locate(SeqList L,ElemType x){//根据元素查找位置
+	int i;
+	for(i=0; i&lt;L.length;i++)
+		if(L.data[i]==x)
+			return (i+1);
+		
+		
+		return -1;//未找到
+		
+}
+
+void list_insert(SeqList *L, ElemType x,int i){ //插入元素
+	
+	int j;
+	if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
+	else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
+	else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
+		L-&gt;data[j+1] =L-&gt;data[j];
+	L-&gt;data[i-1] =x;
+	L-&gt;length++;
+	
+	
+	}
+	
+}
+
+void list_delete(SeqList *L,int i){//删除元素
+	int j;
+	if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
+	if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
+	else {
+		for(j=i;j&lt;=L-&gt;length-1;j++)
+			L-&gt;data[j-1] =L-&gt;data[j];
+		L-&gt;length--;
+	}
+	
+	
+}
+
+
+SeqList list_scanf(SeqList L){ //创建链表
+int x;
+int i;
+	printf(&quot;请输入顺序表的元素(-1结束)&quot;);
+	for(i=0;;i++){
+		scanf(&quot;%d&quot;,&amp;x);
+		if(x==-1){
+			break;
+		}
+ L.data[L.length] = x;
+ L.length++; 
+	}
+
+	return L;
+}
+
+void list_print(SeqList L){//打印链表
+	int k;
+	printf(&quot;顺序表的元素有:&quot;);
+	for(k = 0; k&lt;L.length;k++){
+		printf(&quot;%3d &quot;,L.data[k]);
+	}
+	printf(&quot;\n&quot;);
+
+}
+
+
+int main(){
+		int pos;
+		int key;
+	SeqList L = init_list();
+	L = list_scanf(L);
+
+	list_insert(&amp;L, 3, 2);
+
+//	list_delete(&amp;L,1);
+	 //pos= list_locate(L,2);
+//	printf(&quot;查找到该元素位于：%d \n&quot;,pos);
+//key = get_element(L,3);
+//printf(&quot;该元素为：%d \n&quot;,key);
+	list_print(L);
+	printf(&quot;length:%d \n&quot;,list_length(&amp;L));
+	return 0;
+	
+}</code></pre>
+
       
     </div>
     
@@ -680,10 +979,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/06/25/20170625/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -732,8 +1027,158 @@ print add(4, 9, f)
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br>
-          
+        <p>1.链表的定义
+2.链表的初始化
+3.链表元素增删改查
+&lt;!--more--&gt;</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+typedef int ElemType;
+
+typedef struct Node
+{
+	
+	
+	ElemType data;
+	struct Node* next;
+}Node;
+
+typedef struct Node* LinkList;
+
+
+int getElem(LinkList L,int i){//根据序号查找元素
+	
+	int j;
+	LinkList p;
+	p = L-&gt;next;
+	j = 1;
+	while(p &amp;&amp; j&lt;i)
+	{
+		p = p-&gt;next;
+		++j;
+	}
+	if(!p || j&gt;i)
+		return -1;
+	else
+		return p-&gt;data;
+	
+}
+
+int list_insert(LinkList *L,int i,ElemType e){//插入
+	int j;
+	LinkList p,s;
+	p=*L;
+	j=1;
+	while(p&amp;&amp;j&lt;i)
+	{
+		p=p-&gt;next;
+		++j;
+	}
+	if(!p||j&gt;i)
+		return -1;
+	else{
+		s = (LinkList)malloc(sizeof(Node));
+		s-&gt;data =e;
+		s-&gt;next = p-&gt;next;
+		p-&gt;next =s;
+		return 1;}
+	
+}
+int list_delete(LinkList *L,int i){//删除
+	int j;
+	int key;
+	LinkList p,q;
+	p =*L;
+	j =1;
+	while(p-&gt;next&amp;&amp;j&lt;i)
+	{
+		p = p-&gt;next;
+		++j;
+	}
+	
+	if(!(p-&gt;next)||j&gt;i)
+		return -1;
+	q = p-&gt;next;
+	p-&gt;next =q-&gt;next;
+	key = q-&gt;data;
+	free(q);
+	return key;	
+}
+
+void list_createHead(LinkList *L,int n){//头插法
+	
+	LinkList p;
+	int i;
+	srand(time(0));
+	*L=(LinkList)malloc(sizeof(Node));
+	(*L)-&gt;next =NULL;
+	for(i=0;i&lt;n;i++){
+		
+		p=(LinkList)malloc(sizeof(Node));
+		p-&gt;data =rand()%100+1;
+		p-&gt;next = (*L)-&gt;next;
+		(*L)-&gt;next =p;
+	}
+}
+
+void list_createTail(LinkList *L,int n){//尾插法
+	
+	LinkList p,r;
+	int i;
+	srand(time(0));
+	*L=(LinkList)malloc(sizeof(Node));
+	r=*L;
+	for(i=0;i&lt;n;i++){
+		p =(Node *)malloc(sizeof(Node));
+		p-&gt;data =rand()%100+1;
+		r-&gt;next=p;
+		r=p;
+	}
+	r-&gt;next =NULL;
+	
+}
+
+void list_print(LinkList L){//打印链表
+
+	LinkList p = L-&gt;next;                            //将头节点的指针给予临时节点p
+	
+	
+    while(NULL != p)                                //节点p不为空，循环
+		
+    {
+        printf(&quot;%d &quot;,p-&gt;data); 
+        p = p-&gt;next;
+    }
+	printf(&quot;\n&quot;);
+}
+
+int main(){
+	int x = 0;
+	int y = 0;
+LinkList L;
+list_createTail(&amp;L,10);
+printf(&quot;尾插法：&quot;);
+list_print(L);
+
+y = list_delete(&amp;L,5);
+printf(&quot;删除的元素为:%d \n&quot;,y);
+printf(&quot;删除后：&quot;);
+list_print(L);
+
+list_createHead(&amp;L,10);
+printf(&quot;头插法：&quot;);
+list_print(L);
+x = getElem(L, 3);
+printf(&quot;第三个数是：%d \n&quot;,x);
+
+list_insert(&amp;L,6,100);
+printf(&quot;第六位插入数字100：\n&quot;);
+list_print(L);
+	return 0;
+}
+</code></pre>
+
       
     </div>
     
@@ -750,10 +1195,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/06/25/2017062502/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -802,8 +1243,28 @@ print add(4, 9, f)
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>​    这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个过程。
-          
+        <p>​	这几天在公司看 Android 系统里的工程模式方面的代码。工程模式就是拿来测试手机的，普通用户会打开工程模式的很少，但作为一名 Android 手机的开发者来说，就必须知道了。其实就是在手机拨号盘输入特定混合数字和 *# 的字符串，进入特殊的界面。如输入*#06# 可以查看手机IMEI号，*#*#4636#*#*  可以查看手机的一些信息等。下面我来通过我所查看的系统源码来说明这是怎样的一个过程。&lt;!--more--&gt;</p>
+<p>首先找到源码目录下  packages/apps/Dialer  这个应用，这是一个拨号应用，我们平常拨打电话用的就是这个 app。找到该 app 里 DialpadFragment.java 这个文件，如下图</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_1.png" alt="img"></p>
+<p>里面有个监听 EditText 获取数字变化后的回调方法 afterTextChange</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_2.png" alt="img"></p>
+<p>在这个方法里又调用了 handleChars，进入到 handleChars 方法里如下：</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_3.png" alt="img"></p>
+<p>该方法定义位于<img src="http://qiracle.cn/img/20170503/emode_4.png" alt="img">，如果相关宏控打开的话，则会执行</p>
+<p>handleCustomCode（）方法。进入该方法：</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_5.png" alt="img"></p>
+<p>在该方法里传入了一个 intent，发送了一条广播。我们继续查找这条广播的接收者，我们在 EmodeReceiver.java 找到了该广播接受者，路径如下：</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_6.png" alt="img"></p>
+<p>在这个文件中，，可以看到这么一段代码：</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_7.png" alt="img"></p>
+<p>在收到这条广播后，调用了 startActivityByCode 方法，从该方法名字就可以看出，是通过不同的 Code 来跳转到不同的 Activity，而该 code 就是用户从拨号盘输入的字符。</p>
+<p>我们进入到 startActivityByCode 方法中，，看看该方法是怎么实现的，该方法同样位于 EmodeReceiver.java 文件中，在该方法中，我们很容易看到这么一段代码：</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_8.png" alt="img"></p>
+<p>switch-case语句，很明显，底层就是通过这种方式来根据用户输入在拨号盘输入不同的字符来进入特定的工程模式界面的。但是仔细一看，，问题来了，我们在键盘输入的都是数字+*#号，这A，B是咋回事？往上一看：</p>
+<p><img src="http://qiracle.cn/img/20170503/emode_9.png" alt="img"></p>
+<p>这样我们就明白了，这里把 * 和 # 号全部替换成了 A 和 B。</p>
+<p>至此，工程模式的启动过程就完成了。我们再来总结一下这个过程，首先用户在拨号盘输入特定的字符串，DialpadFragment 里的回调方法 afterTextChange 监听到拨号盘的EditText里内容变化后，如果变化后后的字符串跟特定某些的字符串一致，则会进行相应的处理并发送一条广播，并将这个字符串一同放进广播中，该广播的接收者受到这条广播后，获取到里面的字符串，然后打开与该字符串对应的 Activity。由拨号盘界面到工程模式界面的启动就此完成！</p>
+
       
     </div>
     
@@ -820,10 +1281,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/05/03/20170503/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -872,15 +1329,29 @@ print add(4, 9, f)
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>  初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>  首先，我们要弄清以下三条命令的区别：</p>
+        <p>初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
+<h3>git reset</h3>
+<p>首先，我们要弄清以下三条命令的区别：</p>
 <blockquote>
-<p><strong>git reset –hard</strong></p>
-<p><strong>git reset –soft</strong></p>
+<p><strong>git reset --hard</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>git reset --soft</strong></p>
+</blockquote>
+<blockquote>
 <p><strong>git reset</strong></p>
 </blockquote>
-<p>
-          
+<p>&lt;!--more--&gt;工作区，暂存区，本地仓库，远程仓库的概念我在这里就不介绍了。这是git最为基础的概念，可自行百度。下面说说这三条 git reset 指令的区别：</p>
+<p><strong>git reset --hard：</strong> 重置工作区，暂存区，本地仓库的所有文件到某一节点。例如 git reset --hard HEAD^ 表示工作区，暂存区，本地仓库的所有文件全部回退到上一个节点，也就是说你从上一个节点到这个节点之间所做的修改全部被撤销了。当然如果要回到特定的一个节点可以用 git reset --hard commitId 。通过指定要回到的节点值来回到对应的节点。</p>
+<p>**git reset --soft：**只重置本地仓库的文件，工作区和暂存区的文件不变。</p>
+<p><strong>git reset</strong> 等同于 git reset --mixed，只重置本地仓库和暂存区文件，工作区文件不变。</p>
+<p>当我们提交完并push代码到远程仓库后，发现代码有问题，想重新提交，首先在gerrit上abandon掉自己刚才上传的代码，接着，用git reset HEAD^或者git reset --soft HEAD^回到上一个节点（git reset HEAD^后，使用git add .就相当于git reset --soft），不要用git reset --hard。因为这会把你本地工作区修改的全部撤销，这样你之前的修改就全没了。虽然也有办法再找回来，只要找到那次提交的commitId就可以了，下面会介绍。</p>
+<p>另外，我们还可以用git reset file 来使一个已经添加到暂存区的file文件重新返回到工作区。</p>
+<h3>git log</h3>
+<p>我们通过git log就可以查看到每次提交的 commitId 了，如果嫌 git log 显示的信息过多，可以使用 git log --pretty=oneline 让每次提交的关键信息在一行显示。但是如果使用了 git reset --hard，那么使用 git log 只能看到你重置点之前的提交 commitId，无法看到重置点之后的提交 commitId，要想找到重置点之后的 commitId 可以用git reflog。</p>
+<h3>git checkout</h3>
+<p>git checkout有两个作用，如果后面接的是文件名的话，如 git checkout file 可以将一个工作区的文件撤销其修改。如果后面接的是分支名的话，如 git checkout b表示的是切换到b分支。对于工作区新建立的文件，用 git clean -df 可将其移除工作区。</p>
+
       
     </div>
     
@@ -897,10 +1368,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/04/26/20170426/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -949,11 +1416,27 @@ print add(4, 9, f)
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>步骤：</p>
-<p> 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
-<p> 二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
-<p> 三.编写Android.mk文件。下面为我写的例子：<br>
-          
+        <p>步骤：</p>
+<p>一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
+<p>二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
+<p>三.编写Android.mk文件。下面为我写的例子：
+&lt;!--more--&gt;</p>
+<blockquote>
+<p>LOCAL_PATH:= $(call my-dir) //设置当前模块的编译路径为当前文件夹路径。即当前Android.mk 所在的目录
+include $(CLEAR_VARS)	//清除变量
+LOCAL_MODULE_TAGS := optional //指该模块在所有版本下都编译(user,eng,debug等)
+LOCAL_CERTIFICATE := platform //使用平台签名，PRESIGNED 表示这个apk已经签过名了，不需要再签名
+LOCAL_ASSERT_DIR := packages/apps/Test/asserts //导入assets目录下的文件
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES :=android-support-v4 \ //导入jar包
+LOCAL_DEX_PREOPT :=false //是生成apk程序时只生成apk的包，不再生成odex
+LOCAL_SRC_FILES := <br>
+$(call all-java-files-under,src) \ //把src下的所有java文件包含进来</p>
+<p>src/com/android/internal/telephony/ITelephony.aidl //如果有aidl，还需单独将aidl文件加进来
+LOCAL_PACKAGE_NAME :=Test //应用名称
+LOCAL_MODULE_PATH := $(TARGET_OUT)/vendor/operator/app //应用生成路径
+include $(BUILD_PACKAGE)</p>
+</blockquote>
+
       
     </div>
     
@@ -970,10 +1453,6 @@ print add(4, 9, f)
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2017/04/25/20170425/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
