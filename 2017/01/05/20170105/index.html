@@ -16,48 +16,27 @@
 
 
 <meta name="description" content="类初始化时构造函数调用顺序：
-（1）初始化对象的存储空间为零或null值；
-（2）调用父类构造函数；
-（3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；
-（4）调用本身构造函数。&amp;lt;!--more--&amp;gt;
-例子:
-public class Dog extends Animal{
- Cat c=new Cat();
-
- public Dog(){
-  
-  System.out.p">
+ （1）初始化对象的存储空间为零或null值；
+  （2）调用父类构造函数；
+  （3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；
+  （4）调用本身构造函数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中类的方法初始化顺序">
 <meta property="og:url" content="http://qiracle.github.io/2017/01/05/20170105/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
 <meta property="og:description" content="类初始化时构造函数调用顺序：
-（1）初始化对象的存储空间为零或null值；
-（2）调用父类构造函数；
-（3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；
-（4）调用本身构造函数。&amp;lt;!--more--&amp;gt;
-例子:
-public class Dog extends Animal{
- Cat c=new Cat();
-
- public Dog(){
-  
-  System.out.p">
+ （1）初始化对象的存储空间为零或null值；
+  （2）调用父类构造函数；
+  （3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；
+  （4）调用本身构造函数。">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java中类的方法初始化顺序">
 <meta name="twitter:description" content="类初始化时构造函数调用顺序：
-（1）初始化对象的存储空间为零或null值；
-（2）调用父类构造函数；
-（3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；
-（4）调用本身构造函数。&amp;lt;!--more--&amp;gt;
-例子:
-public class Dog extends Animal{
- Cat c=new Cat();
-
- public Dog(){
-  
-  System.out.p">
+ （1）初始化对象的存储空间为零或null值；
+  （2）调用父类构造函数；
+  （3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；
+  （4）调用本身构造函数。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -348,23 +327,23 @@ public class Dog extends Animal{
       
           
         <p>类初始化时构造函数调用顺序：</p>
-<p>（1）初始化对象的存储空间为零或null值；</p>
-<p>（2）调用父类构造函数；</p>
-<p>（3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；</p>
-<p>（4）调用本身构造函数。&lt;!--more--&gt;</p>
+<p> （1）初始化对象的存储空间为零或null值；</p>
+<p>  （2）调用父类构造函数；</p>
+<p>  （3）按顺序分别调用类成员变量和实例成员变量的初始化表达式；</p>
+<p>  （4）调用本身构造函数。<a id="more"></a></p>
 <p>例子:</p>
 <pre><code>public class Dog extends Animal{
  Cat c=new Cat();
 
  public Dog(){
-  
+
   System.out.println(&quot;Dog 构造方法!&quot;);
 
  }
  public static void main(String[] args){
-  
+
   new Dog();
-  
+
  }
 }
 class Animal{
@@ -377,16 +356,15 @@ class Cat{
   System.out.println(&quot;Cat 构造方法&quot;);
  }
 }
-</code></pre>
-<p>输出结果:</p>
+</code></pre><p>输出结果:</p>
 <p>Animal构造方法</p>
 <p>Cat 构造方法</p>
 <p>Dog 构造方法</p>
 <p>在我们的程序中，实例化一个类对象的时候，运行顺序为：</p>
-<p>静态块</p>
-<p>父类构造器</p>
-<p>本类中的块</p>
-<p>本类的构造器</p>
+<p>  静态块</p>
+<p>  父类构造器</p>
+<p>  本类中的块</p>
+<p>  本类的构造器 </p>
 <pre><code>public class Dog {   
    public Dog() {   
  System.out.println(&quot;Dog&quot;);   
@@ -412,22 +390,21 @@ public static void  main(String[] args){
   Mastiff mastiff=new Mastiff();         //实例化一个对象
 }   
 }   
-</code></pre>
-<p>输出结果：</p>
+</code></pre><p>输出结果：</p>
 <p>super static block</p>
 <p>static block</p>
 <p>super block</p>
 <p>Dog</p>
 <p>block</p>
 <p>Mastiff</p>
-<p>也就是说此时的运行顺序为：</p>
+<p> 也就是说此时的运行顺序为：</p>
 <ol>
 <li>父类静态块</li>
 <li>自身静态块</li>
 <li>父类块</li>
 <li>父类构造器</li>
 <li>自身块</li>
-<li>自身构造器</li>
+<li>自身构造器 </li>
 </ol>
 
       

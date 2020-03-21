@@ -305,27 +305,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>1. 广播的接收权限</h3>
-<p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
+              <h3 id="1-广播的接收权限"><a href="#1-广播的接收权限" class="headerlink" title="1. 广播的接收权限"></a>1. 广播的接收权限</h3><p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
 <p>首先发送方的应用在清单文件里自定义一个权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。&lt;!--more--&gt;</p>
-<p>然后发送广播时调用如下 sendBoradcast 方法：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static final String PERMISSION_RECEIVER= &quot;cn.qiracle.RECEIVER&quot;;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">sendBroadcast(intent,PERMISSION_RECEIVER);</span><br></pre></td></tr></table></figure></p>
-<p>此时接收方app若是想接收到这个广播，需要在接收方应用的清单文件里添加如下权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3>2.广播的发送权限</h3>
-<p>设置广播的发送权限<strong>目的</strong>在于避免自己的应用里的 receiver 被其他恶意应用发送的带有同样 action 的广播所骚扰。简单来说就是定义<strong>谁能给我发送广播</strong>。用法如下：</p>
-<p>首先在接收方应用的清单文件里自定义一个权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后注册广播时采用如下regiserReceiver方法：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PERMISSION_SEND = <span class="string">"cn.qiracle.SEND"</span>;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">registerReceiver(<span class="keyword">new</span> MyReceiver(),intentFilter,PERMISSION_SEND,<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure></p>
-<p>上面是动态注册，静态注册广播方式如下：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".receiver.MyReceiver"</span></span><br><span class="line">    <span class="attr">android:permission</span>=<span class="string">"cn.qiracle.SEND"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.MYRECEIVER"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>推荐使用动态注册</strong>的方式，因为笔者尝试发现自定义权限时，静态注册的方式在 **Android8.0 **及以上会不起作用。</p>
-<p>此时广播的发送方 app 要想给这个应用发送广播，必须在清单文件里添加如下权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。
+          
       
     </div>
     
@@ -342,6 +326,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/05/12/20190512/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -390,26 +378,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>主内存与工作内存</h3>
-<p>java内存模型规定了所有变量都存储在主内存中。<strong>此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数</strong>。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方工作内存中的变量。线程间变量值得传递均需要通过主内存来完成。 &lt;!--more--&gt;</p>
-<p>一个变量如何从主内存拷贝到工作内存，如何从工作内存同步回主内存之类的实现细节，java内存模型定义了以下八种操作来完成:</p>
-<ul>
-<li>lock(锁定)：作用于主内存的变量，把一个变量标记为一条线程独占状态</li>
-<li>unlock(解锁)：作用于主内存的变量，把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定</li>
-<li>read(读取)：作用于主内存的变量，把一个变量值从主内存传输到线程的工作内存中，以便随后的load动作使用</li>
-<li>load(载入)：作用于工作内存的变量，它把read操作从主内存中得到的变量值放入工作内存的变量副本中</li>
-<li>use(使用)：作用于工作内存的变量，把工作内存中的一个变量值传递给执行<a href="https://www.baidu.com/s?wd=%E5%BC%95%E6%93%8E&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd" target="_blank" rel="external">引擎</a></li>
-<li>assign(赋值)：作用于工作内存的变量，它把一个从执行引擎接收到的值赋给工作内存的变量</li>
-<li>store(存储)：作用于工作内存的变量，把工作内存中的一个变量的值传送到主内存中，以便随后的write的操作</li>
-<li>write(写入)：作用于工作内存的变量，它把store操作从工作内存中的一个变量的值传送到主内存的变量中</li>
-</ul>
-<p><img src="http://qiracle.cn/img/20190217/1.png" alt="java内存模型" title="java内存模型"></p>
-<h3>volatile 关键字</h3>
-<p>用于修饰变量。主要作用有两个：</p>
-<p>1.保证修改的可见性</p>
-<p>2.禁止指令重排序</p>
-<p>volatile不保证操作的原子性</p>
-
+              <h3 id="主内存与工作内存"><a href="#主内存与工作内存" class="headerlink" title="主内存与工作内存"></a>主内存与工作内存</h3><p>java内存模型规定了所有变量都存储在主内存中。<strong>此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数</strong>。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方工作内存中的变量。线程间变量值得传递均需要通过主内存来完成。
+          
       
     </div>
     
@@ -426,6 +396,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/02/17/20190217/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -474,69 +448,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>这一周来比较空闲，读了《深入理解java虚拟机一书》以提高自己对java底层的认知，还没看完，只是挑选了书中自己比较感兴趣的两个章节来看，写下此篇博客一是为了总结，二是为了方便今后回顾。下面是第一部分<strong>自动内存管理机制</strong> &lt;!--more--&gt;</p>
-<h3>运行时数据区域</h3>
-<p><img src="http://qiracle.cn/img/20190216/1.png" alt="java内存" title="java内存"></p>
-<h4>程序计数器</h4>
-<p>程序计数器时一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。为了线程切换后能够恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程直接的计数器互不影响，独立存储，我们称这类内存区域为“线程私有”的内存。</p>
-<h4>java虚拟机栈</h4>
-<p>与程序计数器一样，java虚拟机栈也是线程私有的，它的生命周期与线程相同。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
-<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackoverflowError异常；如果虚拟机栈可以动态扩展，当扩展时无法申请到足够的内存时会抛出OutOfMemoryError异常。</p>
-<h4>本地方法栈</h4>
-<p>本地方法栈与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行java方法服务，而本地方法栈则是为虚拟机使用到的Native方法服务。。本地方法栈也会抛出StackoverflowError和OutOfMemoryError异常。</p>
-<h4>java堆</h4>
-<p>对于大多数应用来说，java堆是java虚拟机所管理的内存中最大的一块。java堆是所以线程共享的一块内存区域，在虚拟机启动时创建。java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可。如果在堆中没有内存完成实例分配，并且堆无法再扩展时，将会抛出OutOfMemoryError异常。</p>
-<h4>方法区</h4>
-<p>方法区与java堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息，常量，静态变量，即时编译器编译后的代码等数据。垃圾回收行为在这个区域是比较少出现的，这个区域内存回收目标主要是针对常量池的回收和对类型的卸载。。当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</p>
-<h4>运行时常量池</h4>
-<p>运行时常量池时方法区的一部分。Class文件除了有类的版本，字段，方法，接口等描述信息外，还有一项信息就是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区运行时常量池中。运行期间也可能将新的常量放入池中，如String类的intern()方法。</p>
-<h3>确定对象是否存活的算法</h3>
-<p>垃圾回收器在对堆进行回收前，第一件事情就是要确定这些对象有哪些还存活着，哪些已经死去。</p>
-<h4>引用计数算法</h4>
-<p>给对象中添加一个引用计算器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器都为0的对象就是不可能再被使用的。。</p>
-<p>java语言没有选用引用计数法来管理内存，其中最主要的原因是它很难解决对象之间的相互循环引用的问题。如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReferenceCountGC objA = new ReferenceCountGC();</span><br><span class="line">ReferenceCountGC objB = new ReferenceCountGC();</span><br><span class="line">objA.instance = objB;</span><br><span class="line">objB.instance = objA;</span><br><span class="line">objA = null;</span><br><span class="line">objB = null;</span><br></pre></td></tr></table></figure></p>
-<h4>根搜索算法</h4>
-<p>在主流的商用程序语言中，都是使用根搜索算法判断对象是否存活的。基本思路是通过一系列的名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索走过的路径称为引用链，当一个对象待GC Roots没有任何引用链相连，则证明此对象是不可用的。</p>
-<p>Java语言里，可作为GC Roots对象包括下面几种：</p>
-<ul>
-<li>虚拟机栈中引用的对象</li>
-<li>方法区中的类静态属性引用的对象</li>
-<li>方法区中常量引用的对象</li>
-<li>本地方法栈中JNI的引用对象</li>
-</ul>
-<h3>java中的四种引用</h3>
-<p>**强引用：**代码至中普遍存在。类似 Object obj  = new Object()。主要强引用还在，垃圾回收器永远不会回收掉被引用的对象。</p>
-<p>**软引用：**当内存不够时，即系统将要发生内存溢出异常之前，将会把这些对象列进回收范围并进行二次回收。java中提供SoftReference类实现软引用。</p>
-<p>**弱引用：**被弱引用关联的对象只能生存到下次垃圾收集发生之前，当垃圾收集器工作时，无论当前内存是否足够，都会回收掉被弱引用关联的对象。java中提供WeakReference类实现软引用。</p>
-<p><strong>虚引用</strong>：一个对象是否有虚引用的存在，完全不会对其生存时间构成影响，也无法通过虚引用来取得一个对象实例。为一个对象设置虚引用关联的唯一目的就是希望这个对象在被收集器回收时收到一个系统通知。java中提供PhantomReference类实现软引用。</p>
-<h3>对象死亡过程</h3>
-<p>在跟搜索算法中不可达的对象也并非是非死不可的。这些不可达的对象先会被判断是否有必要执行finalize()方法，<strong>当对象没有覆盖finalize()方法，或者finalize()方法已经被虚拟机调用过</strong>，虚拟机会将这两种情况都视为“没有必要执行”。</p>
-<p>finalize()方法是对象逃脱死亡命运的最后一次机会，如果对象想要在finalize()方法中成功拯救自己，只要重新与引用链上的任何一个对象建立关联即可。譬如把自己(this)赋值给某个类变量或者某个对象的成员变量。如下：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalizeEscapeGc</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FinalizeEscapeGc Save_HooK = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalized</span><span class="params">()</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.finalized();</span><br><span class="line">    FinalizeEscapeGc.Save_HooK = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>如何一个对象的finalize()方法都只会被系统自动调用一次，如果对象面临下一次回收，它的finalize()方法不会再次被执行。</strong></p>
-<h3>垃圾回收算法</h3>
-<h4><strong>标记-清除算法</strong></h4>
-<p>首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。它的主要缺点有两个:</p>
-<p>一是效率问题，标记和清楚过程效率都不高</p>
-<p>二是空间问题，标记清除后会产生大量不连续的内存碎片。</p>
-<p><img src="http://qiracle.cn/img/20190216/2.png" alt="标记-清除" title="标记-清除"></p>
-<h4><strong>复制算法</strong></h4>
-<p>它将可用内存按容量划分为大小相同的两块，每次只使用其中的一块，当一块内存用完了，就将还存活的对象复制到另一块上面，然后再把已使用过的内存空间一次清理掉。这种算法的代价是将内存缩小为原来的一半未免太高了一些。</p>
-<p><img src="http://qiracle.cn/img/20190216/3.png" alt="复制" title="复制"></p>
-<p>现在的商用虚拟机都采用这种收集算法来回收新生代，IBM的专门研究表明，新生代中的对象98%是朝生夕死的，所以并不需要按照1:1的比例来划分空间。而是将内存分为一块较大的Eden空间和两块较小的Survivor空间，每次使用Eden和其中一块Survivor。当回收时，将Eden和Survivor中还存活的对象一次性拷贝到另一块Survivor空间上，最后清理掉Eden和刚才用过的Survivor空间。HotSpot虚拟机默认Eden和Survivor的大小比例为8:1。当Survivor空间不够时，需要依赖其他内存（老年代）进行分配担保。</p>
-<h4><strong>标记-整理算法</strong></h4>
-<p>复制算法在对象存活率较高时需要执行较多的复制操作，更关键是如果不想浪费50%空间，就需要额外的空间进行担保，以应对内存中所有对象都100%存活的极端情况，所以老年代一般不能直接选用这种算法。</p>
-<p>标记-整理算法的标记过程仍然与标记-清除算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存活对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
-<p><img src="http://qiracle.cn/img/20190216/4.png" alt="标记-整理" title="标记-整理"></p>
-<h4><strong>分代收集算法</strong></h4>
-<p>根据对象的存活周期不同将内存划分为几块，一般是把Java堆分为新生代和老年代。在新生代中，每次垃圾收集时发现大批对象死去，只有少量存活，那就选用复制算法。老年代中因为对象存活率高，没有额外空间对它进行分配担保，就必须使用“标记-清理”，“标记-整理”算法来进行回收。</p>
-<h3>垃圾收集器</h3>
-<p><img src="http://qiracle.cn/img/20190216/5.png" alt="垃圾收集器" title="垃圾收集器"></p>
-<p>如果两个收集器之间存在连线，就说明他们可以搭配使用。下面就只说下Serial收集器：</p>
-<h5>Serial收集器</h5>
-<p>Serial收集器是最基本，历史最悠久的收集器，这是一个单线程的收集器。它在进行垃圾收集时，必须暂停其他所有工作线程指到它收集结束。</p>
-
+              <p>这一周来比较空闲，读了《深入理解java虚拟机一书》以提高自己对java底层的认知，还没看完，只是挑选了书中自己比较感兴趣的两个章节来看，写下此篇博客一是为了总结，二是为了方便今后回顾。下面是第一部分<strong>自动内存管理机制</strong>
+          
       
     </div>
     
@@ -553,6 +466,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/02/16/20190216/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -601,90 +518,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>系统及软件版本准备</h3>
-<p>CentOS-6.7-64bit</p>
+              <h3 id="系统及软件版本准备"><a href="#系统及软件版本准备" class="headerlink" title="系统及软件版本准备"></a>系统及软件版本准备</h3><p>CentOS-6.7-64bit</p>
 <p>Hadoop-2.8.3-src</p>
 <p>java-1.8.0_141</p>
 <p>apache-maven-3.3.9</p>
 <p>protobuf-2.5.0</p>
-<p>findbugs-1.3.9 &lt;!-- more --&gt;</p>
-<p>相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n</p>
-<h3>软件安装</h3>
-<h3>1.java-1.8.0_141</h3>
-<p>下载 jdk-8u141-linux-x64.tar.gz， 解压到 /root/apps/jdk1.8.0_141。解压命令:</p>
-<p><code>tar -xf jdk-8u141-linux-x64.tar.gz</code></p>
-<p>配置环境变量：</p>
-<p><code>vi /etc/profile</code></p>
-<p>在文件最下面加上:</p>
-<p><code>export JAVA_HOME=/root/apps/jdk1.8.0_141</code>
-<code>export PATH=$PATH:$JAVA_HOME/bin</code>
-<code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
-<p>添加完记得用下面的命令让其立即生效:</p>
-<p><code>source /etc/profile</code></p>
-<p><strong>注意：下面每次配置完环境变量都需要使用这个命令</strong></p>
-<p>检查是否安装成功:</p>
-<p><code>java -version</code></p>
-<p>如果输出下面信息，则表示安装成功：</p>
-<blockquote>
-<p>java version &quot;1.8.0_141&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_141-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</p>
-</blockquote>
-<h3>2.apache-maven-3.3.9</h3>
-<p>下载apache-maven-3.3.9-bin.zip，并使用 下面命令解压：</p>
-<p><code>unzip apache-maven-3.3.9-bin.zip</code></p>
-<p>我将其解压到了 /opt/software/a:pache-maven-3.3.9. 同样，配置环境变量，在/etc/profile中添加下面信息：</p>
-<p><code>export MAVEN_HOME=/opt/software/apache-maven-3.3.9</code>
-<code>export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot;</code>
-<code>export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
-<p>验证是否安装成功:</p>
-<p><code>mvn -version</code></p>
-<p>出现下列信息表明安装成功：</p>
-<blockquote>
-<p>Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)
-Maven home: /opt/software/apache-maven-3.3.9
-Java version: 1.8.0_141, vendor: Oracle Corporation
-Java home: /root/apps/jdk1.8.0_141/jre
-Default locale: en_US, platform encoding: UTF-8
-OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</p>
-</blockquote>
-<h3>3.protobuf-2.5.0</h3>
-<p>下载 protobuf-2.5.0.tar.gz ，解压到/opt/software/protobuf-2.5.0，接下来:</p>
-<p><code>cd protobuf-2.5.0</code></p>
-<p><code>yum install -y gcc gcc-c++ make cmake</code></p>
-<p>./configure --prefix=/usr/local/protobuf</p>
-<p>make &amp;&amp; make install</p>
-<p>同样导入环境变量：</p>
-<p><code>export PROTOC_HOME=/usr/local/protobuf</code>
-<code>export PATH=$PROTOC_HOME/bin:$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
-<p>验证是否安装成功：</p>
-<p><code>protoc --version</code></p>
-<p>出现下面信息表明安装成功：</p>
-<blockquote>
-<p>libprotoc 2.5.0</p>
-</blockquote>
-<h3>4. findbugs-1.3.9</h3>
-<p>下载findbugs-1.3.9.zip ，通过unzip findbugs-1.3.9.zip 解压到/opt/software/findbugs-1.3.9。</p>
-<p>同样需要配置环境变量</p>
-<p><code>export FINDBUGS_HOME=/opt/software/findbugs-1.3.9</code>
-<code>export PATH=$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
-<p>验证是否安装成功：</p>
-<p><code>findbugs -version</code></p>
-<p>出现下面信息表示安装成功：</p>
-<blockquote>
-<p>1.3.9</p>
-</blockquote>
-<h3>5.其他依赖的安装</h3>
-<p><code>yum install -y openssl openssl-devel svn ncurses-devel zlib-devel libtool</code>
-<code>yum install -y snappy snappy-devel bzip2 bzip2-devel lzo lzo-devel lzop autoconf automake</code></p>
-<h3>6.编译</h3>
-<p>下载hadoop-2.8.3-src.tar.gz并解压 tar -xf hadoop-2.8.3-src.tar.gz 到 /root/hadoop-2.8.3-src。运行下面命令：</p>
-<p><code>cd hadoop-2.8.3-src</code></p>
-<p><code>mvn clean package -Pdist,native -DskipTests -Dtar</code></p>
-<p>编译过程中需要下载很多东西，需要很长时间，同时因为网络原因可能会一直卡在某个地方，这时可以ctrl+c中止然后重新运行上面命令。最后如果出现 BUILD SUCCESS 字样则表明编译成功.</p>
-<p>编译好的tar包在 /root/hadoop-2.8.3-src/hadoop-dist/target/hadoop-2.8.1.tar.gz下</p>
-
+<p>findbugs-1.3.9
+          
       
     </div>
     
@@ -701,6 +541,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/01/06/20190106/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -749,27 +593,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>java IO流简介</h3>
-<p>java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。</p>
+              <h3 id="java-IO流简介"><a href="#java-IO流简介" class="headerlink" title="java IO流简介"></a>java IO流简介</h3><p>java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。</p>
 <p>输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。</p>
 <p>输出流又可分为字节输出流和字符输出流。字节输出流的基类为OutputStream，我们常用到它的子类FileOutputStream, 字符输出流的基类为Writer，我们常用到它的子类FileWriter。</p>
-<p>&lt;!--more--&gt;</p>
-<p><strong>那什么时候该用字节流，什么时候该用字符流呢？</strong></p>
-<p>一般来说，在输入输出一些二进制对象的时候比如图片，音乐，视频文件，我们用字节流。 在输入输出一些文本文件的时候比如文字，我们用字符流。字符其实可以理解为是字节+对应的编码表（utf-8,gbk等）构成的，相同的一段字节，用不同的编码格式，最后得到的字符是不一样的（生活常见的乱码就是这样产生的）</p>
-<p>另外，java在字节流和字符流中间提供了一层吧转换流，，可以将字节流转化为字符流。输入的转换流为InputStreamReader（InputStream is），输出的转换流为OutputStreamReader（OutputStream os ）。</p>
-<p>解释了这么多，不如用一图来总结一下：</p>
-<p>&lt;img src=&quot;http://qiracle.cn/img/20181128/io.bmp&quot; alt=&quot;IO流&quot;  /&gt;</p>
-<p></p>
-<h3>IO 流在代码中的实际应用</h3>
-<p>java提供了操作IO流的API，在代码中如何使用呢？ 接下来，直接附上几个比较实用的demo，可参考运用到自己的代码里</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">public class CopyMp3Demo &#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		long start = System.currentTimeMillis();</span><br><span class="line">		method1(&quot;e:\\music.mp3&quot;, &quot;copy1.mp3&quot;);</span><br><span class="line">		method2(&quot;e:\\music.mp3&quot;, &quot;copy2.mp3&quot;);</span><br><span class="line">		method3(&quot;e:\\music.mp3&quot;, &quot;copy3.mp3&quot;);</span><br><span class="line">		method4(&quot;e:\\music.mp3&quot;, &quot;copy4.mp3&quot;);</span><br><span class="line"></span><br><span class="line">		long end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(&quot; 总共耗时：&quot; + (end - start) + &quot;毫秒&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节</span><br><span class="line">	public static void method1(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = fis.read()) != -1) &#123;</span><br><span class="line">			fos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节数组</span><br><span class="line">	public static void method2(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = fis.read(bys)) != -1) &#123;</span><br><span class="line">			fos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节：</span><br><span class="line"></span><br><span class="line">	public static void method3(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = bis.read()) != -1) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节数组：</span><br><span class="line"></span><br><span class="line">	public static void method4(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = bis.read(bys)) != -1) &#123;</span><br><span class="line">			bos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里我们的目的是利用IO流将E盘根目录下的music.mp3文件拷贝到项目工程目录下，前面说了，拷贝音乐文件用字节流，这里提供了四种拷贝方式，可以比较拷贝所需时间，其中第一种方式(基本字节流一次读写一个字节 )最慢，第四种（高效字节流一次读写一个字节数组）最快，中间两种差不多。</p>
-<p>说一下这里的BufferedInputStream是输入流（对应的输出流BufferedOutputStream）的缓冲流，又称装饰流，一般我们建议在基本流外面包上装饰流，因为这样可极大提升效率。</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">//字符流读写数据的五种方式</span><br><span class="line">public class CopyTxtDemo &#123;</span><br><span class="line">	public static void main(String[] args) throws IOException &#123;</span><br><span class="line">		String SrcString = &quot;a.txt&quot;;</span><br><span class="line">		String DestString = &quot;b.txt&quot;;</span><br><span class="line">		// method1(SrcString,DestString);</span><br><span class="line">		// method3(SrcString,DestString);</span><br><span class="line">		// method4(SrcString,DestString);</span><br><span class="line">		method5(SrcString, DestString);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符</span><br><span class="line">	private static void method1(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read()) != -1) &#123;</span><br><span class="line">			fw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符数组</span><br><span class="line">	private static void method2(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read(chs)) != -1) &#123;</span><br><span class="line">			fw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字符流一次读写一个字符</span><br><span class="line">	private static void method3(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read()) != -1) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一个字符数组</span><br><span class="line">	private static void method4(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read(chs)) != -1) &#123;</span><br><span class="line">			bw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一行</span><br><span class="line">	private static void method5(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		String len = null;</span><br><span class="line">		while ((len = br.readLine()) != null) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">			bw.newLine();</span><br><span class="line">			bw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上面代码的目的是将项目工程下的“a.txt”文件拷贝到b.txt里。前面说了拷贝文本文件用字符流。前四种拷贝方式就不说了，跟字节流差不多，第五种比较特殊，一次读写一行。</p>
-<p><strong>注意：上述代码最好加上try--catch，并在finally里关闭流。如下：</strong></p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">(String src, String dest)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	BufferedInputStream bis =<span class="keyword">null</span>;</span><br><span class="line">	BufferedOutputStream bos = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">		bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> by = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((by = bis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		bos.close();</span><br><span class="line">		bis.close();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+          
       
     </div>
     
@@ -786,6 +613,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/11/28/20181128/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -834,35 +665,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.</p>
+              <p>Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.</p>
 <p>1.jar包的导入</p>
-<p>第一种：
-一般用于比较流行的第三方库上，直接将你在GitHub上看到的jar包compile放入build.gradle的dependencies里面，然后sync同步一下就可以了。例如：导入v7包。
-&lt;!--more--&gt;
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line">......</span><br><span class="line">compile ‘com.android.support:appcompat-v7:24.2.1’</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>第二种：
-我们已经从网上下好了（或者别人给你的）jar，需要将他导入到AS工程里，首先将jar包放到libs里面，然后还是在build.gradle的dependencies里面添加compile路径，最后sync一下。例如：导入volley。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line">.....</span><br><span class="line">compile files(‘libs/volley.jar’)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.aar包导入
-aar包是Android特有的一种引用包，Android Archive，它跟jar包的区别在于：
-jar包：只包含class文件和清单文件，不包含资源文件，比如图片等所有的 res下的资源文件；
-aar包：class以及res下的所有的资源文件全部包含。
-aar包的引用也很简单，以上是一个正常的module（工程应用，而非作为第三方library使用的）引用aar文件为例，首先也是将拿到的aar包放进libs下。然后按如下配置，最后sync一下就可以了，列如，导入一个叫abc.aar的包：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;  </span><br><span class="line">    flatDir &#123;  </span><br><span class="line">        dirs &apos;libs&apos;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;    // 此在android标签下添加</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">.....</span><br><span class="line">   compile(name: &apos;abc.aar, ext: &apos;aar&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意，以上是一个正常的module（工程应用，而非作为第三方library使用的）引用aar文件需要配置的步骤。</p>
-<p>下面说一下当一个library类型的module需要引用aar文件时：
-a.在该library中按照上面的代码，在library的module下的bulid.gradle中配置。</p>
-<p>b.任何依赖此library的module必须声明在它的build.gradle声明此 aar 的 lib 所在的位置，这个位置根据文件路径所确定</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">android&#123;    //android节点下配置</span><br><span class="line">    repositories &#123;</span><br><span class="line">          flatDir &#123;</span><br><span class="line">            dirs &apos;libs&apos;, &apos;../../../../library_module/libs&apos;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>c. 配置完b步骤后，还要在project的build.gradle文件中配置，如下:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">        flatDir &#123;</span><br><span class="line">            dirs &apos;../../../library_module/libs&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>梳理一下这里的依赖关系：
-aar-&gt;library module-&gt;依赖此library的module-&gt;project</p>
-<p>3.module的导入
-module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/20181021/" target="_blank" rel="external">Android Studio中module的导入</a> 已经讲过。这里主要说一下module是可以打包成aar包的，通过gradle的assembeRelease或assembleDebug可以将module打包成aar包（分别对应release版本和debug版本）。
-另外，笔者曾经遇到一个大坑，那就是当aar包引用第三方module的时候，编译不会报错，但是运行时会一直报类找不到的错误，因为在打包aar包时不会将第三方module打包进aar包里面。这里如果将第三方module先打包成aar包，给工程调用就不会出现这样的问题了。</p>
-
+<p>第一种：<br>一般用于比较流行的第三方库上，直接将你在GitHub上看到的jar包compile放入build.gradle的dependencies里面，然后sync同步一下就可以了。例如：导入v7包。<br>
+          
       
     </div>
     
@@ -879,6 +685,10 @@ module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/201810
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/10/28/20181028/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -927,23 +737,9 @@ module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/201810
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ol>
+              <ol>
 <li>在当前工程里，点击 File-&gt;New-&gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .
-&lt;!--more--&gt;
-<img src="http://qiracle.cn/img/20181021/module_1.png" alt=""></li>
-</ol>
-<p>这一步之后会在主工程的build.gradle生成如下代码：</p>
-<p><img src="http://qiracle.cn/img/20181021/module_4.png" alt=""></p>
-<p>这里原本是 compile project(path: ':mylib')。 但是我这里的gradle是3之后的版本，所以需要将compile替换成implementation。</p>
-<p>2.如果导入的 mylib 之前是一个工程应用，则需要更改 mylib 里的 build.gradle。具体修改如下：</p>
-<p><img src="http://qiracle.cn/img/20181021/module_2.png" alt="">
-需要将图中的 com.android.application 改成 com.android.library 以及删除applicationId这一行。</p>
-<p>改完后记得sync一下。</p>
-<p>3.修改主工程下的 setting.gradle. 添加如下：</p>
-<p><img src="http://qiracle.cn/img/20181021/module_3.png" alt=""></p>
-<p>同样改完之后sync一下。</p>
-<p>这样，module的导入就完成了，我们可以试试调用module里的方法。</p>
-
+          
       
     </div>
     
@@ -960,6 +756,10 @@ module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/201810
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/10/21/20181021/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1008,51 +808,8 @@ module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/201810
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>什么是混淆</h3>
-<p>按照我的个人理解，混淆就是将代码里的包名，类名，方法名，变量名等用无意义的a，b，c等字母代替。这样做的目的是为了防止他人获取你的apk后可以轻松的反编译并读取你的源码，而加入混淆之后，反编译出的源码是很难被读懂的。详细解释可参考<a href="https://blog.csdn.net/sinat_36176987/article/details/79119876" target="_blank" rel="external">Android混淆是什么</a> 。&lt;!--more--&gt;</p>
-<h3>如何打开混淆</h3>
-<p>在Android Studio工程下，找到app目录下的build.gradle. 然后将minifyEnabled设置为true即可。如下：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">release&#123;</span><br><span class="line">            minifyEnabled true//是否启动混淆 ture:打开   false:关闭</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里的proguard-android.txt是混淆规则，里面定义的是哪些东西不能被混淆。proguard-android.txt存在于app目录下。在做混淆时我们只需把我们定义的混淆规则写在里面即可。</p>
-<h3>混淆模板</h3>
-<p>下面是一个混淆模板，网上类似的模板有很多：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">#-------------------------------------------基本不用动区域----------------------------------------------</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line"># -----------------------------基本 -----------------------------</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line"># 指定代码的压缩级别 0 - 7(指定代码进行迭代优化的次数，在Android里面默认是5，这条指令也只有在可以优化时起作用。)</span><br><span class="line">-optimizationpasses 5</span><br><span class="line"># 混淆时不会产生形形色色的类名(混淆时不使用大小写混合类名)</span><br><span class="line">-dontusemixedcaseclassnames</span><br><span class="line"># 指定不去忽略非公共的库类(不跳过library中的非public的类)</span><br><span class="line">-dontskipnonpubliclibraryclasses</span><br><span class="line"># 指定不去忽略包可见的库类的成员</span><br><span class="line">-dontskipnonpubliclibraryclassmembers</span><br><span class="line">#不进行优化，建议使用此选项，</span><br><span class="line">-dontoptimize</span><br><span class="line"> # 不进行预校验,Android不需要,可加快混淆速度。</span><br><span class="line">-dontpreverify</span><br><span class="line"># 屏蔽警告</span><br><span class="line">-ignorewarnings</span><br><span class="line"># 指定混淆是采用的算法，后面的参数是一个过滤器</span><br><span class="line"># 这个过滤器是谷歌推荐的算法，一般不做更改</span><br><span class="line">-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*</span><br><span class="line"># 保护代码中的Annotation不被混淆</span><br><span class="line">-keepattributes *Annotation*</span><br><span class="line"># 避免混淆泛型, 这在JSON实体映射时非常重要</span><br><span class="line">-keepattributes Signature</span><br><span class="line"># 抛出异常时保留代码行号</span><br><span class="line">-keepattributes SourceFile,LineNumberTable</span><br><span class="line"> #优化时允许访问并修改有修饰符的类和类的成员，这可以提高优化步骤的结果。</span><br><span class="line"># 比如，当内联一个公共的getter方法时，这也可能需要外地公共访问。</span><br><span class="line"># 虽然java二进制规范不需要这个，要不然有的虚拟机处理这些代码会有问题。当有优化和使用-repackageclasses时才适用。</span><br><span class="line">#指示语：不能用这个指令处理库中的代码，因为有的类和类成员没有设计成public ,而在api中可能变成public</span><br><span class="line">-allowaccessmodification</span><br><span class="line">#当有优化和使用-repackageclasses时才适用。</span><br><span class="line">-repackageclasses &apos;&apos;</span><br><span class="line"> # 混淆时记录日志(打印混淆的详细信息)</span><br><span class="line"> # 这句话能够使我们的项目混淆后产生映射文件</span><br><span class="line"> # 包含有类名-&gt;混淆后类名的映射关系</span><br><span class="line">-verbose</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># ----------------------------- 默认保留 -----------------------------</span><br><span class="line">#</span><br><span class="line">#----------------------------------------------------</span><br><span class="line"># 保持哪些类不被混淆</span><br><span class="line">#继承activity,application,service,broadcastReceiver,contentprovider....不进行混淆</span><br><span class="line">-keep public class * extends android.app.Activity</span><br><span class="line">-keep public class * extends android.app.Application</span><br><span class="line">-keep public class * extends android.support.multidex.MultiDexApplication</span><br><span class="line">-keep public class * extends android.app.Service</span><br><span class="line">-keep public class * extends android.content.BroadcastReceiver</span><br><span class="line">-keep public class * extends android.content.ContentProvider</span><br><span class="line">-keep public class * extends android.app.backup.BackupAgentHelper</span><br><span class="line">-keep public class * extends android.preference.Preference</span><br><span class="line">-keep public class * extends android.view.View</span><br><span class="line">-keep class android.support.** &#123;*;&#125;## 保留support下的所有类及其内部类</span><br><span class="line"></span><br><span class="line">-keep public class com.google.vending.licensing.ILicensingService</span><br><span class="line">-keep public class com.android.vending.licensing.ILicensingService</span><br><span class="line">#表示不混淆上面声明的类，最后这两个类我们基本也用不上，是接入Google原生的一些服务时使用的。</span><br><span class="line">#----------------------------------------------------</span><br><span class="line"></span><br><span class="line"># 保留继承的</span><br><span class="line">-keep public class * extends android.support.v4.**</span><br><span class="line">-keep public class * extends android.support.v7.**</span><br><span class="line">-keep public class * extends android.support.annotation.**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#表示不混淆任何包含native方法的类的类名以及native方法名，这个和我们刚才验证的结果是一致</span><br><span class="line">-keepclasseswithmembernames class * &#123;</span><br><span class="line">    native &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#这个主要是在layout 中写的onclick方法android:onclick=&quot;onClick&quot;，不进行混淆</span><br><span class="line">#表示不混淆Activity中参数是View的方法，因为有这样一种用法，在XML中配置android:onClick=”buttonClick”属性，</span><br><span class="line">#当用户点击该按钮时就会调用Activity中的buttonClick(View view)方法，如果这个方法被混淆的话就找不到了</span><br><span class="line">-keepclassmembers class * extends android.app.Activity&#123;</span><br><span class="line">    public void *(android.view.View);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#表示不混淆枚举中的values()和valueOf()方法，枚举我用的非常少，这个就不评论了</span><br><span class="line">-keepclassmembers enum * &#123;</span><br><span class="line">    public static **[] values();</span><br><span class="line">    public static ** valueOf(java.lang.String);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#表示不混淆任何一个View中的setXxx()和getXxx()方法，</span><br><span class="line">#因为属性动画需要有相应的setter和getter的方法实现，混淆了就无法工作了。</span><br><span class="line">-keep public class * extends android.view.View&#123;</span><br><span class="line">    *** get*();</span><br><span class="line">    void set*(***);</span><br><span class="line">    public &lt;init&gt;(android.content.Context);</span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet);</span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);</span><br><span class="line">&#125;</span><br><span class="line">-keepclasseswithmembers class * &#123;</span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet);</span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#表示不混淆Parcelable实现类中的CREATOR字段，</span><br><span class="line">#毫无疑问，CREATOR字段是绝对不能改变的，包括大小写都不能变，不然整个Parcelable工作机制都会失败。</span><br><span class="line">-keep class * implements android.os.Parcelable &#123;</span><br><span class="line">  public static final android.os.Parcelable$Creator *;</span><br><span class="line">&#125;</span><br><span class="line"># 这指定了继承Serizalizable的类的如下成员不被移除混淆</span><br><span class="line">-keepclassmembers class * implements java.io.Serializable &#123;</span><br><span class="line">    static final long serialVersionUID;</span><br><span class="line">    private static final java.io.ObjectStreamField[] serialPersistentFields;</span><br><span class="line">    private void writeObject(java.io.ObjectOutputStream);</span><br><span class="line">    private void readObject(java.io.ObjectInputStream);</span><br><span class="line">    java.lang.Object writeReplace();</span><br><span class="line">    java.lang.Object readResolve();</span><br><span class="line">&#125;</span><br><span class="line"># 保留R下面的资源</span><br><span class="line">#-keep class **.R$* &#123;</span><br><span class="line"># *;</span><br><span class="line">#&#125;</span><br><span class="line">#不混淆资源类下static的</span><br><span class="line">-keepclassmembers class **.R$* &#123;</span><br><span class="line">    public static &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 对于带有回调函数的onXXEvent、**On*Listener的，不能被混淆</span><br><span class="line">-keepclassmembers class * &#123;</span><br><span class="line">    void *(**On*Event);</span><br><span class="line">    void *(**On*Listener);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 保留我们自定义控件（继承自View）不被混淆</span><br><span class="line">-keep public class * extends android.view.View&#123;</span><br><span class="line">    *** get*();</span><br><span class="line">    void set*(***);</span><br><span class="line">    public &lt;init&gt;(android.content.Context);</span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet);</span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line">#----------------------------- WebView(项目中没有可以忽略) -----------------------------</span><br><span class="line">#</span><br><span class="line">#webView需要进行特殊处理</span><br><span class="line">-keepclassmembers class fqcn.of.javascript.interface.for.Webview &#123;</span><br><span class="line">   public *;</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers class * extends android.webkit.WebViewClient &#123;</span><br><span class="line">    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);</span><br><span class="line">    public boolean *(android.webkit.WebView, java.lang.String);</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers class * extends android.webkit.WebViewClient &#123;</span><br><span class="line">    public void *(android.webkit.WebView, jav.lang.String);</span><br><span class="line">&#125;</span><br><span class="line">#在app中与HTML5的JavaScript的交互进行特殊处理</span><br><span class="line">#我们需要确保这些js要调用的原生方法不能够被混淆，于是我们需要做如下处理：</span><br><span class="line">-keepclassmembers class com.ljd.example.JSInterface &#123;</span><br><span class="line">    &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line">#---------------------------------实体类---------------------------------</span><br><span class="line">#--------(实体Model不能混淆，否则找不到对应的属性获取不到值)-----</span><br><span class="line">#</span><br><span class="line">-dontwarn com.suchengkeji.android.confusiondemo.md.**</span><br><span class="line">#对含有反射类的处理</span><br><span class="line">-keep class com.suchengkeji.android.confusiondemo.md.** &#123; *; &#125;</span><br><span class="line">#</span><br><span class="line"># ----------------------------- 其他的 -----------------------------</span><br><span class="line">#</span><br><span class="line"># 删除代码中Log相关的代码</span><br><span class="line">-assumenosideeffects class android.util.Log &#123;</span><br><span class="line">    public static boolean isLoggable(java.lang.String, int);</span><br><span class="line">    public static int v(...);</span><br><span class="line">    public static int i(...);</span><br><span class="line">    public static int w(...);</span><br><span class="line">    public static int d(...);</span><br><span class="line">    public static int e(...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 保持测试相关的代码</span><br><span class="line">-dontnote junit.framework.**</span><br><span class="line">-dontnote junit.runner.**</span><br><span class="line">-dontwarn android.test.**</span><br><span class="line">-dontwarn android.support.test.**</span><br><span class="line">-dontwarn org.junit.**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># ----------------------------- 第三方 -----------------------------</span><br><span class="line">#</span><br><span class="line">-dontwarn com.orhanobut.logger.**</span><br><span class="line">-keep class com.orhanobut.logger.**&#123;*;&#125;</span><br><span class="line">-keep interface com.orhanobut.logger.**&#123;*;&#125;</span><br><span class="line"></span><br><span class="line">-dontwarn com.google.gson.**</span><br><span class="line">-keep class com.google.gson.**&#123;*;&#125;</span><br><span class="line">-keep interface com.google.gson.**&#123;*;&#125;</span><br></pre></td></tr></table></figure></p>
-<h3>Proguard关键字及作用</h3>
-<p><strong>dontwarn</strong>	dontwarn是一个和keep可以说是形影不离,尤其是处理引入的library时.
-<strong>keep</strong>	保留类和类中的成员，防止被混淆或移除
-<strong>keepnames</strong>	保留类和类中的成员，防止被混淆，成员没有被引用会被移除
-<strong>keepclassmembers</strong>	只保留类中的成员，防止被混淆或移除
-<strong>keepclassmembernames</strong>	只保留类中的成员，防止被混淆，成员没有引用会被移除
-<strong>keepclasseswithmembers</strong>	保留类和类中的成员，防止被混淆或移除，保留指明的成员
-<strong>keepclasseswithmembernames</strong>	保留类和类中的成员，防止被混淆，保留指明的成员，成员没有引用会被移除</p>
-<h3>常见用法</h3>
-<p>(1)保留某个包下面的类以及子包下面的类.
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-keep public class cn.qiracle.**</span><br></pre></td></tr></table></figure></p>
-<p>注意两个<em>号表示当前包下及该包的所有子包下的类都不被混淆。一个</em>只表示当前包下的类不被混淆。</p>
-<p>(2)保留所有类中使用otto的public方法
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Otto</span><br><span class="line">-keepclassmembers class ** &#123;</span><br><span class="line">    @com.squareup.otto.Subscribe public *;</span><br><span class="line">    @com.squareup.otto.Produce public *;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>(3)保留Contants类的BOOK_NAME属性
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-keepclassmembers class com.example.admin.proguardsample.Constants &#123;</span><br><span class="line">     public static java.lang.String BOOK_NAME;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>(4)dontwarn：
-引入的library可能存在一些无法找到的引用和其他问题,在build时可能会发出警告,如果我们不进行处理,通常会导致build中止.因此为了保证build继续,我们需要使用dontwarn处理这些我们无法解决的library的警告.
-比如关闭Twitter sdk的警告,我们可以这样做
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-dontwarn com.twitter.sdk.**</span><br></pre></td></tr></table></figure></p>
-<p>(5)保留一个类及其子类不被混淆
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-keep public class * extends android.app.Activity</span><br></pre></td></tr></table></figure></p>
-<h3>哪些类不能被混淆</h3>
-<p>使用了自定义控件那么要保证它们不参与混淆
-使用了枚举要保证枚举不被混淆
-对第三方库中的类不进行混淆
-运用了反射的类也不进行混淆
-使用了 Gson 之类的工具要使 JavaBean 类即实体类不被混淆
-在引用第三方库的时候，一般会标明库的混淆规则的，建议在使用的时候就把混淆规则添加上去，免得到最后才去找
-有用到 WebView 的 JS 调用也需要保证写的接口方法不混淆，原因和第一条一样
-Parcelable 的子类和 Creator 静态成员变量不混淆，否则会产生 Android.os.BadParcelableException 异常
-使用的四大组件，自定义的Application* 实体类
-JNI中调用的类
-Layout布局使用的View构造函数（自定义控件）、android:onClick等。</p>
-<p>参考文章： https://www.jianshu.com/p/b5b2a5dfaaf4</p>
-
+              <h3 id="什么是混淆"><a href="#什么是混淆" class="headerlink" title="什么是混淆"></a>什么是混淆</h3><p>　　按照我的个人理解，混淆就是将代码里的包名，类名，方法名，变量名等用无意义的a，b，c等字母代替。这样做的目的是为了防止他人获取你的apk后可以轻松的反编译并读取你的源码，而加入混淆之后，反编译出的源码是很难被读懂的。详细解释可参考<a href="https://blog.csdn.net/sinat_36176987/article/details/79119876">Android混淆是什么</a> 。
+          
       
     </div>
     
@@ -1069,6 +826,10 @@ Layout布局使用的View构造函数（自定义控件）、android:onClick等�
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/10/14/20181014/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1117,11 +878,10 @@ Layout布局使用的View构造函数（自定义控件）、android:onClick等�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>原文来自: <a href="http://showme.codes/2017-02-20/understand-https/" target="_blank" rel="external">也许，这样理解HTTPS更容易</a></p>
-<h3>能不能用一句话总结HTTPS？</h3>
-<p>答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:</p>
-<p>HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使用的对称加密算法，但是协商对称加密算法的过程，需要使用非对称加密算法来保证安全，然而直接使用非对称加密的过程本身也不安全，会有中间人篡改公钥的可能性，所以客户端与服务器不直接使用公钥，而是使用数字证书签发机构颁发的证书来保证非对称加密过程本身的安全。这样通过这些机制协商出一个对称加密算法，就此双方使用该算法进行加密解密。从而解决了客户端与服务器端之间的通信安全问题。&lt;!--more--&gt;</p>
-
+              <p>原文来自: <a href="http://showme.codes/2017-02-20/understand-https/">也许，这样理解HTTPS更容易</a> </p>
+<h3 id="能不能用一句话总结HTTPS？"><a href="#能不能用一句话总结HTTPS？" class="headerlink" title="能不能用一句话总结HTTPS？"></a>能不能用一句话总结HTTPS？</h3><p>答案是不能，因为HTTPS本身实在太复杂。但是我还是尝试使用一段话来总结HTTPS:</p>
+<p>HTTPS要使客户端与服务器端的通信过程得到安全保证，必须使用的对称加密算法，但是协商对称加密算法的过程，需要使用非对称加密算法来保证安全，然而直接使用非对称加密的过程本身也不安全，会有中间人篡改公钥的可能性，所以客户端与服务器不直接使用公钥，而是使用数字证书签发机构颁发的证书来保证非对称加密过程本身的安全。这样通过这些机制协商出一个对称加密算法，就此双方使用该算法进行加密解密。从而解决了客户端与服务器端之间的通信安全问题。
+          
       
     </div>
     
@@ -1138,6 +898,10 @@ Layout布局使用的View构造函数（自定义控件）、android:onClick等�
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTPS/">HTTPS</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/03/28/20180328/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1186,72 +950,8 @@ Layout布局使用的View构造函数（自定义控件）、android:onClick等�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>Settings简介</h3>
-<p>Settings 是 Android 系统自带的一个很重要的应用，给用户提供了操作 Android 系统功能的界面。它里面包含了 Wireless &amp; network，device，personal 以及 system 等几大块的功能设置。在 Android 源码中，该应用位于 packages/apps/Settings 下。该应用的源码是相当复杂的，设计思想很是先进，很难完全讲清楚，笔者也是读了好几遍源码再综合了几篇博客才勉强懂了Settings其启动流程的大体思路。通过博客记录下来以加深理解和印象，同时分享给大家。&lt;!--more--&gt;</p>
-<h3>Settings 启动流程详解</h3>
-<h3>1.直接跳转子界面</h3>
-<p>首先找到 Settings 目录，其目录结构如下，文件太多，无法完展开。
-　　<img src="http://qiracle.cn/img/20170810/setting_1.png" alt="这里写图片描述">
-　　
-这里通过每个文件夹的命名可以大概知道，每个包的大体作用是什么。由于本文主要讲解启动流程，所以先不管这些。我们先找到 Settings 的启动类，通常我们可以从清单文件中得知该应用的启动类，如下图：
-		<img src="http://qiracle.cn/img/20170810/setting_2.png" alt="这里写图片描述"></p>
-<p>从图中可以清楚的看到，Settings 的启动类为 Settings。从 Settings 源码中我们找到了Settings.java文件。但是，打开这个文件后，会感到了一脸懵逼。如下图：
-<img src="http://qiracle.cn/img/20170810/setting_3.png" alt="这里写图片描述"></p>
-<p>该类中都是些空实现的静态内部类，没有任何与界面加载相关的内容。这是为什么呢？看上面有句英文注释就明白了，意思是这些子类是为了启动特定独立的 Settings 选项而创建的，例如在某个应用里需要设置无线那么只需要启动无线对应的类就可以了，而没必要打开settings应用再点击wifi设置项进行设置。再看此类继承于 SettinggsActivity，这时我们就应该可以想到，初始化界面应该在它父类 SettinggsActivity 里完成的。为了方便讲解，我们先以wifi设置页面WifiSettingsActivity 的直接跳转为例，详细讲解这个启动流程。懂了这个之后，其他子页面的启动自然就明白了。</p>
-<p>接下来我们在清单文件中找到 WifiSettingsActivity 的定义如下：
-　　<img src="http://qiracle.cn/img/20170810/setting_4.png" alt="这里写图片描述">
-　　
-其中有 meta-data 的标签使用，从这个标签的 key-value 来看，很明显可以认为WifiSettings的具体实现应该是由 WifiSettings 这个 Fragment 来布局渲染的。然后我们回到 SettingsActivity 中，找到 onCreate() 方法如下：
-<img src="http://qiracle.cn/img/20170810/setting_5.png" alt="这里写图片描述"></p>
-<p>可以看到，一进入 oncreate 里有个 getMetaData(), 这和我们之前看到的清单文件里的meta似乎有某种联系，点进去看，代码如下：
-	 <img src="http://qiracle.cn/img/20170810/setting_6.png" alt="这里写图片描述"></p>
-<p>可以看到，这个函数的主要作用就是从 Activity 标签中获取 meta-data 标签中key为 com.android.settings.FRAGMENT_CLASS 的值，并将其赋值给 mFragmentClass 这个私有变量。
-以 WifiSettingsActivity为 例，从这个 Activity 中 meta-data 标签中获取的信息为 com.android.settings.wifi.WifiSettings，即mFragmentClass=”com.android.settings.wifi.WifiSettings”。
-getMetaData() 执行完后紧接着执行了 getIntent()，getMetaData() 上面有句注释 should happen before any call to getIntent。意思是 getIntent() 必须在 getMetaData() 之后执行，其实这也有原因的，点进 getIntent() 方法看看就知道了。代码具体如下：
-<img src="http://qiracle.cn/img/20170810/setting_7.png" alt="这里写图片描述"></p>
-<p>继续看 getStartingFragmentClass()：
-<img src="http://qiracle.cn/img/20170810/setting_8.png" alt="这里写图片描述"></p>
-<p>从源码看以看出，getIntent 的作用就是构造了一个 Intent，并且给它增加了一个特殊的键值对，key为”:settings:show_fragment”，value为 mFragmentClass 指定的 Fragment 类名。
-之所以要先执行getMetaData，是因为 mFragmentClass 赋值是在 getMeatData 中进行的。</p>
-<p>明白之后我们继续分析onCreate()方法：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">final ComponentName cn = intent.getComponent();</span><br><span class="line">   final String className = cn.getClassName();// 本例中，className为WifiSettingsActivity</span><br><span class="line">mIsShowingDashboard = className.equals(Settings.class.getName()); //因此这里为false</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">        setContentView(mIsShowingDashboard ?</span><br><span class="line">       R.layout.settings_main_dashboard : R.layout.settings_main_prefs);//本例中这里选择了后者</span><br><span class="line">      ...</span><br><span class="line">      ...</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if (!mIsShowingDashboard) &#123;//因为mIsShowingDashboard为false，所以会到这里</span><br><span class="line">                ....</span><br><span class="line">//initialArguments通过赋值保存了meta-data中指定的com.android.settings.wifi.WifiSettings</span><br><span class="line">  Bundle initialArguments = intent.getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);</span><br><span class="line">               switchToFragment(initialFragmentName, initialArguments, true, false,</span><br><span class="line">                        mInitialTitleResId, mInitialTitle, false);//走到这里进行fragment替换</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">                // No UP affordance if we are displaying the main Dashboard</span><br><span class="line">                mDisplayHomeAsUpEnabled = false;</span><br><span class="line">                // Show Search affordance</span><br><span class="line">                mDisplaySearch = true;</span><br><span class="line">                mInitialTitleResId = R.string.dashboard_title;</span><br><span class="line">               switchToFragment(DashboardSummary.class.getName(), null, false, false,</span><br><span class="line">                        mInitialTitleResId, mInitialTitle, false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>我们来具体看一下 switchToFragment() 方法：
-<img src="http://qiracle.cn/img/20170810/setting_9.png" alt="这里写图片描述"></p>
-<p>通过 FragmentTransaction 的 replace 方法，将Fragment的布局在 R.id.main_content 指定的位置进行渲染。</p>
-<h3>2.主界面启动流程</h3>
-<p>上面讲的是没有通过点击 Settings 主界面的选项而直接打开子界面的启动过程，下面我们介绍通过点击setting主界面的选项进入子界面的过程。
-　　通过前面的讲解我们知道，mIsShowingDashboard 的值( true/false )是确实加载主界面还是子界面的唯一条件。我们回到相关代码：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">final ComponentName cn = intent.getComponent();</span><br><span class="line">   final String className = cn.getClassName();// 因为从主界面启动，所以这里className为Settings</span><br><span class="line">mIsShowingDashboard = className.equals(Settings.class.getName()); //因此这里变成了true</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">        setContentView(mIsShowingDashboard ?</span><br><span class="line">       R.layout.settings_main_dashboard : R.layout.settings_main_prefs);//选择了前者</span><br><span class="line">      ...</span><br><span class="line">      ...</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">            if (!mIsShowingDashboard) &#123;//因为mIsShowingDashboard为true，不走这里了</span><br><span class="line">                ....</span><br><span class="line"></span><br><span class="line">               Bundle initialArguments = intent.getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);</span><br><span class="line">               switchToFragment(initialFragmentName, initialArguments, true, false,</span><br><span class="line">                        mInitialTitleResId, mInitialTitle, false);//</span><br><span class="line">           &#125; else &#123;//从主界面进入，走这里</span><br><span class="line">                // No UP affordance if we are displaying the main Dashboard</span><br><span class="line">                mDisplayHomeAsUpEnabled = false;</span><br><span class="line">                // Show Search affordance</span><br><span class="line">                mDisplaySearch = true;</span><br><span class="line">                mInitialTitleResId = R.string.dashboard_title;</span><br><span class="line">               switchToFragment(DashboardSummary.class.getName(), null, false, false, mInitialTitleResId, mInitialTitle, false);//接下来重点分析这里</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>从上面分析可以知道如果从主界面进入的话 switchToFragment 会将当前页面替换成 DashboardSummary，我们看一下 DashboardSummary.java 的代码：
-	<img src="http://qiracle.cn/img/20170810/setting_10.png" alt="这里写图片描述"></p>
-<p>这是一个 fragment,在 onCreateView 里,填充了 dashboard.xml. 来看一下这个布局：
-	<img src="http://qiracle.cn/img/20170810/setting_12.png" alt="这里写图片描述"></p>
-<p>这是一个垂直可滚动的线性结构，很容易联想到我们手机里的设置主页面，的确如此。再继续看DashboardSummary 代码，在 onResume() 里：
-	<img src="http://qiracle.cn/img/20170810/setting_13.png" alt="这里写图片描述"></p>
-<p>有 SendReBuildUI(),点进去查看：
-	<img src="http://qiracle.cn/img/20170810/setting_14.png" alt="这里写图片描述"></p>
-<p>原来里面是在发消息，找到消息的接收者：
-<img src="http://qiracle.cn/img/20170810/setting_15.png" alt="这里写图片描述"></p>
-<p>终于发现了里面的 reBuildUI 的方法：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">private void rebuildUI(Context context) &#123;</span><br><span class="line">      if (!isAdded()) &#123;</span><br><span class="line">          Log.w(LOG_TAG, &quot;Cannot build the DashboardSummary UI yet as the Fragment is not added&quot;);</span><br><span class="line">          return;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      long start = System.currentTimeMillis();</span><br><span class="line">      final Resources res = getResources();</span><br><span class="line"></span><br><span class="line">      mDashboard.removeAllViews();</span><br><span class="line">	//(1)这里调用SettingActivity的getDashboardCategories,也就是加载整个Setting的内容</span><br><span class="line">      List&lt;DashboardCategory&gt; categories =</span><br><span class="line">              ((SettingsActivity) context).getDashboardCategories(true);//注意该方法</span><br><span class="line"></span><br><span class="line">      final int count = categories.size();</span><br><span class="line"></span><br><span class="line">      for (int n = 0; n &lt; count; n++) &#123;</span><br><span class="line">          DashboardCategory category = categories.get(n);</span><br><span class="line"></span><br><span class="line">          View categoryView = mLayoutInflater.inflate(R.layout.dashboard_category, mDashboard,</span><br><span class="line">                  false);</span><br><span class="line"></span><br><span class="line">          TextView categoryLabel = (TextView) categoryView.findViewById(R.id.category_title);</span><br><span class="line">          categoryLabel.setText(category.getTitle(res));</span><br><span class="line"></span><br><span class="line">          ViewGroup categoryContent =</span><br><span class="line">                  (ViewGroup) categoryView.findViewById(R.id.category_content);</span><br><span class="line"></span><br><span class="line">          final int tilesCount = category.getTilesCount();</span><br><span class="line">          for (int i = 0; i &lt; tilesCount; i++) &#123;</span><br><span class="line">              DashboardTile tile = category.getTile(i);</span><br><span class="line">//（2）创建DashboardTileView，也就是每个Setting的内容</span><br><span class="line">              DashboardTileView tileView = new DashboardTileView(context);</span><br><span class="line">              updateTileView(context, res, tile, tileView.getImageView(),</span><br><span class="line">                      tileView.getTitleTextView(), tileView.getStatusTextView());</span><br><span class="line"></span><br><span class="line">              tileView.setTile(tile);</span><br><span class="line"></span><br><span class="line">              categoryContent.addView(tileView);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          // Add the category</span><br><span class="line">          mDashboard.addView(categoryView);</span><br><span class="line">      &#125;</span><br><span class="line">      long delta = System.currentTimeMillis() - start;</span><br><span class="line">      Log.d(LOG_TAG, &quot;rebuildUI took: &quot; + delta + &quot; ms&quot;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>接下来对上面两处注释进行说明：
-(1)处 rebuildUI 里调用 getDashboardCategories() 方法，该方法如下：</p>
-<p><img src="http://qiracle.cn/img/20170810/setting_16.png" alt="这里写图片描述"></p>
-<p>这个方法里又调用了 buildDashboardCategories() 方法：
-<img src="http://qiracle.cn/img/20170810/setting_17.png" alt="这里写图片描述"></p>
-<p>看到这里终于明白了，里面有个对 dashboard_categories.xml 的处理, loadCategoriesFromResource() 方法就不看了，它的作用是解析 dashboard_categories.xml 这个 xml 文件。我们看一下dashboard_categories.xml 吧：
-<img src="http://qiracle.cn/img/20170810/setting_18.png" alt="这里写图片描述"></p>
-<p>部分截图，没有截图，因为内容太多了。不过从这局部就可以看出这对应的就是我们设置主页面的各个选项。
-<img src="http://qiracle.cn/img/20170810/setting_19.png" alt="这里写图片描述"></p>
-<p>（2）处将通过 for 循环遍历而来的数据通过创建 DashboardTileView 最终全部存入到 mDashboard 这个布局中，至此整个 Setting 模块的界面布局已经完成了。</p>
-<p>在 DashboardTileView.java 里，有个 onclick 方法，这就是 settings 主页面每个子选项的点击事件了，通过点击进入不同的子设置选项，如 wifi，蓝牙等。
-<img src="http://qiracle.cn/img/20170810/setting_20.png" alt="这里写图片描述"></p>
-<p>至此，Settings 的启动方式讲解完了，下面附一张自己手画的一张 Settings 启动流程的草图，画的比较丑，凑合的看....:
-<img src="http://qiracle.cn/img/20170810/setting_21.png" alt="这里写图片描述"></p>
-<p>参考文章：
-http://www.itdadao.com/articles/c15a227784p0.html
-http://blog.csdn.net/wzy_1988/article/details/50556113</p>
-
+              <h3 id="Settings简介"><a href="#Settings简介" class="headerlink" title="Settings简介"></a>Settings简介</h3><p>　　Settings 是 Android 系统自带的一个很重要的应用，给用户提供了操作 Android 系统功能的界面。它里面包含了 Wireless &amp; network，device，personal 以及 system 等几大块的功能设置。在 Android 源码中，该应用位于 packages/apps/Settings 下。该应用的源码是相当复杂的，设计思想很是先进，很难完全讲清楚，笔者也是读了好几遍源码再综合了几篇博客才勉强懂了Settings其启动流程的大体思路。通过博客记录下来以加深理解和印象，同时分享给大家。
+          
       
     </div>
     
@@ -1268,6 +968,10 @@ http://blog.csdn.net/wzy_1988/article/details/50556113</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/08/10/20170810/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
