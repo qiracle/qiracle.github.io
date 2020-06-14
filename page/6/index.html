@@ -276,6 +276,92 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20161225" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/25/20161225/" class="article-date">
+      <time datetime="2016-12-24T16:00:00.000Z" itemprop="datePublished">2016-12-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <pre><code>private void initHeaderView(){  //初始化headerView
+
+mHeaderView = View.inflate(getContext(), R.layout.refresh_header, null);//获得headerView
+this.addHeaderView(mHeaderView);//将headerView加在listView的上面
+
+tvTitle = (TextView) mHeaderView.findViewById(R.id.tv_title);//刷新的提示文字
+tvTime = (TextView) mHeaderView.findViewById(R.id.tv_time);//刷新的时间显示
+ivArrow = (ImageView) mHeaderView.findViewById(R.id.iv_arr);//下拉箭头
+pbProgress = (ProgressBar) mHeaderView.findViewById(R.id.pb_progress);//旋转的进度条
+mHeaderView.measure(0, 0);
+mHeaderViewHeight = mHeaderView.getMeasuredHeight();//测得headerView的高度
+
+mHeaderView.setPadding(0, -mHeaderViewHeight, 0, 0);// 隐藏头布局
+initArrowAnim();// 初始化箭头动画
+
+}
+</code></pre>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/12/25/20161225/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20161224" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -305,14 +391,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1.右击项目，选择Android Tools---&gt;Export Signed Application Package</p>
-<p>2.没有签名文件的话则选择第二个Create new keystore，选择签名文件保存的路径，记住自己所填的密码&lt;!--more--&gt;</p>
-<p><img src="http://qiracle.cn/img/20161224/1.png" alt=""></p>
-<p>3.填写相应信息</p>
-<p><img src="http://qiracle.cn/img/20161224/2.png" alt=""></p>
-<p>4.选择apk文件生成的路径，点击finish完成即可
-<img src="http://qiracle.cn/img/20161224/3.png" alt=""></p>
-
+              <p>1.右击项目，选择Android Tools—&gt;Export Signed Application Package</p>
+<p>2.没有签名文件的话则选择第二个Create new keystore，选择签名文件保存的路径，记住自己所填的密码
+          
       
     </div>
     
@@ -329,6 +410,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/24/20161224/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -377,68 +462,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>2016年对我来说是充满收获与回忆的一年，更是不寻常的一年，经历了太多之前从未经历过的事情。我想这一年可以大致可以分为三个阶段。</p>
-<h3>迪拜-德黑兰之旅</h3>
-<p>从去年年底开始，老师就一直提醒我寒假回家记得办护照，明年出国比赛，去的是伊朗首都德黑兰和德国的莱比锡（这个后来没去成）。当时我知道我们学校RoboCup团队每年都会有学生出国比赛，而且成绩还不错，所以我当时我就觉得这是个难得的机会但对我来说更是个挑战。因为学校花了那么多钱让你出国，成绩难看的话，也不好交代。所以寒假在家一方面在不停的改代码，调试球队，另一方面则在准备比赛报名审核的材料，由于报名网站全英文再加上与那边互通邮件也用的英文，所以当时觉得英语水平好真的是太重要了！开学那天，伊朗那边比赛的审核认证通过了，这就代表我们伊朗那边肯定能去了。然后是等德国那边的审核结果，过了俩星期，结果出来了，出事了，由于代码不恰当的引用，涉及侵权，然后被拒绝参赛。好吧确实有些伤感。。&lt;!--more--&gt;</p>
-<p>到了去的前几天，就一直在办签证，由于伊朗对中国是落地签，相对比较方便。老师跟我们介绍了那边的一些风俗习惯，特产，还有一些景点。最后说了句，比赛的时候代码交完后，就多出去逛逛，多玩玩。。。哈哈，这说的，，我们都懂，，比赛嘛重在参与哈哈。到了4月3号这天，我们从合肥南站出发，整个行程是坐高铁到上海浦东国际机场，晚上12点的飞机飞去迪拜，在迪拜待几个小时然后转机到德黑兰。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/1.jpg&quot; width = &quot;400&quot; alt=&quot;迪拜机场免税店&quot;  /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/2.jpg&quot; width = &quot;400&quot;  alt=&quot;迪拜机场免税店&quot;  /&gt;</p>
-<p>凌晨的飞机飞了斤十个小时终于到了迪拜，飞机上又累又困，睡不好，一下飞机瞬间精神抖擞，因为很想逛一下这世界上最大的机场免税店迪拜机场免税店，里面确实很大！来来回回竟然都要坐地铁，里面的东西的价格相对国内确实便宜了很多，还有各种奢侈品，我看到的有Hermes（爱马仕），Chanel(香奈儿)还有Dior（迪奥），，这些东西确实也就只能看看啊哈哈，由于我们回国还会经过迪拜停留，所以准备先四处逛逛，选好自己想要的回来再买。凌晨5点的迪拜（时差关系，国内应该9点左右了）依然熙熙攘攘，人来人往，有各式各样的人，黑种人，白种人，黄种人还有棕色人种。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/3.jpg&quot; width = &quot;300&quot;  alt=&quot;迪拜&quot;  /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/4.jpg&quot; width = &quot;300&quot;   alt=&quot;迪拜&quot; /&gt;	
-　　免税店的销售人员也会各种语言，英语是必须会的。其中有不少中国人，语言不通时会给你分配跟你同一语言的销售人员，所以在这干销售是很赚钱的，折合人民币月薪能过万。在这的统一货币是阿联酋的迪拉姆，当然美元也通用，如果用人民币的话似乎汇率上不是很划算。在迪拜逛了几个小时，我们转机飞了两个多小时就到了德黑兰。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/5.jpg&quot; width = &quot;300&quot;  alt=&quot;迪拜&quot;  /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/6.jpg&quot; width = &quot;300&quot;  alt=&quot;迪拜&quot;  /&gt;
-　　到了德黑兰，出机场前首先办落地签证，竟然每人100欧！，当初不知谁告诉我们是15刀的，这价格落差有点大，不过还好后来钱学校都给报销了。出了机场，那边派了两个小哥来接我们，也没举牌子，他们一眼就认出我们了，因为这边很少有中国人。问了我们一句RoboCup2D?确认之后跟我们每个人热情的拥抱握手，然后带我们换了当地货币和手机卡，100刀能换300多万当地货币里亚尔，花了30万买了张手机卡，感觉好土豪。。紧接着就带我们上车去酒店和比赛场地，，话说我们一行四个人，他们竟然叫了辆中巴来接我们，，太夸张了。。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/11.jpg&quot; width = &quot;300&quot;  alt=&quot;从德黑兰机场出来&quot;  /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/12.jpg&quot; width = &quot;300&quot;  alt=&quot;去比赛场馆和酒店登记&quot;  /&gt;
-　　在这里抬头就能看见雪山，主餐是吃的是一种叫Kebab的烤肉饭（如下图），在这里我们吃饭住宿都是免费的，当地居民真的是很热情，一天到晚都有志愿者跟着你，为你服务，带你吃饭，带你参观旅游，给你翻译，确实很贴心。在这第一天由于时差关系，显得一天特别长，特别累。登记完后，跟他们闲聊一会，晚饭都没吃直接睡了，因为第二天没比赛，准备养足精力再出去逛。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/13.jpg&quot; width = &quot;300&quot; alt=&quot;当地货币里亚尔&quot;  /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/14.jpg&quot; width = &quot;300&quot;  alt=&quot;Kebab&quot;  /&gt;
-　　到了第二天，自然很早的就醒了，打电话联系了志愿者带我们出去玩，包了辆出租车，当地的出租车司机大都是年龄较大的老头，跟国内不同，他们收费不是按路程收费的，而是按时间收费，因为伊朗靠近波斯湾，石油资源丰富，油价特别便宜。我们加志愿者5个人超载了一个人也没关系，最后来回收了折合人民币100多块吧，算是很便宜了吧。然后我们逛了当地的古列斯坦皇宫还有当地的巴扎（集市的意思），一路上不停有人主动跟我们打招呼‘你好’，真是特别热情，似乎当地很多人都会说中国的‘你好’。</p>
-<p>下图是皇宫
-&lt;img src=&quot;http://qiracle.cn/img/20161223/21.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/22.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/23.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/24.jpg&quot; width = &quot;300&quot;   /&gt;
-此处应有自拍。。(<em>^__^</em>) 嘻嘻……
-&lt;img src=&quot;http://qiracle.cn/img/20161223/25.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/26.jpg&quot; width = &quot;300&quot;   /&gt;
-下图为当地巴扎
-&lt;img src=&quot;http://qiracle.cn/img/20161223/27.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/28.jpg&quot; width = &quot;300&quot;   /&gt;</p>
-<p>接下来第三天到了比赛日，比赛一直都一如既往的顺利。保持不败战绩到了最后一轮，在赛场上，感觉自己简直就是明星，，走到哪都有人过来想要跟你搭讪，跟你合影。他们的热情和友好让我深深爱上了这里。还有不得不值得一提的是这里的妹纸都长的相当的漂亮，不仅是漂亮，可以用妖艳来形容吧，还有一些小孩子长得特别可爱，她们好像很小就学会化妆了，虽然由于当地风俗她们都必须戴黑色头巾，但是也无法遮住她们的美貌。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/31.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/32.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/33.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/34.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/35.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/36.jpg&quot; width = &quot;300&quot;   /&gt;
-　　到了临走的前一天下午，一位似乎很喜欢中国文化的志愿者，再次带我们出去逛逛，买点当地特产啥的，这个志愿者是位大叔，很喜欢跟我们交流，了解中国文化，同时了解到他似乎是当地的公务员，还有些志愿者是当地的大学生什么的，虽然他们的母语是波斯语，但是他们的英语水平确实比我好太多，这位大叔可厉害了，不仅给我们做导游，还帮我们砍价，看到好多小朋友上来想跟我们交流，就把他们轰走，怕打扰我们。这次他带我们去了当地的一座雪山，名字忘了叫啥，还去了清真寺以及巴扎上买特产，这里的最著名的特产就是波斯地毯吧，，但是十分昂贵，带不回来。还有就是当地藏红花很有名，价格比淘宝上卖的便宜多了。</p>
-<p>&lt;img src=&quot;http://qiracle.cn/img/20161223/41.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/42.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/43.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/44.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/40.jpg&quot; width = &quot;300&quot; height=&quot;350&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/45.jpg&quot; width = &quot;300&quot;   height=&quot;350&quot;/&gt;</p>
-<p>比赛最后一天，本以为我们拿冠军了，结果意外的在最后一场比赛以一分之差输了，变成了亚军。当时那个失落啊，现在想想感觉没啥了，亚军也已经很好了，当初的目标可是8强啊，已经超额完成目标了，回学校也能算是凯旋了。。</p>
-<p>&lt;img src=&quot;http://qiracle.cn/img/20161223/51.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/52.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/53.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/54.jpg&quot; width = &quot;300&quot;   /&gt;</p>
-<h3>暑假培训的回忆</h3>
-<p>从伊朗回来之后，我也就基本告别了我大学近三年的RoboCup2D生涯，准备着去找工作，当时的我对市场行情并不了解，可能认为现在工作不好找，抱着能找着个工作就不错和求安稳的想法，签了讯飞的某子公司，协议规定要先去那免费培训几个月才能上班，我也感觉自己需要再充充电，完善一下自己。然后就去了，地点在芜湖。也就是在那让我认识了一群让我有着美好回忆但今后可能不会再见面的小伙伴。
-　　先说说在那的室友，张翀，沉迷于Linux系统，整天跟我说Linux下的C，还有TCP/IP协议啥的，可以看出专业方面的书读的确实挺多。章文凯，简直就是我心中的黑客大神啊，擅长易语言，写各种外挂，大学四年通过这方面赚了20w，真心牛逼，把所学瞬间转化为经济效益。再就是李虎，让我印象最深的就是打游戏的时候脏话连篇啊，‘你个骚货，让你骚。。。’等等语句，有时听着觉得真搞笑。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/64.jpg&quot; width = &quot;300&quot;   /&gt;
-　　除了在寝室的日子，最多的时间就是跟自己组的人在一起了，我们学习时六个人分为一组，然后我自荐为了组长，主要感觉自己懂得算挺多的，可以教教他们，，事后证明我的自荐是对的。再说说我们组的几个人。杜慧玲，明明是淑女非要喜欢把自己装成女汉子，让我带她去地里偷西瓜，讲义气，，挺赞的。。我也是在课上课下花了很多时间教她写代码，没事时坐旁边看着她敲。告诉她写代码思路，解决bug的方法，一步一步的调试，真是尽力用最简单的方式让她听懂，，慢慢的感觉她那千奇百怪的bug真的只有我能解了。。。后来听利鹏说她是他们班好多男生心中的女神，，搞得我之后都不太敢大中午跟她一起打伞去吃饭了，，毕竟合肥学院人多势重哈哈。但是后来发现不打伞实在太热了，从机房走到寝室全身湿透，还是甘愿冒着招惹仇恨的风险还是一起打伞吧哈哈，那个夏天谢谢你的伞更谢谢你。。李孟霞,在女生当中写代码的天赋确实算比较高的，让我教的次数相对少一些，并且一点就通。在我感觉是个学霸，对事情有自己的见解，让我最印象深刻的就是喜欢跟人抬扛哈哈，每次在去吃饭的路上见到她和杜慧玲抬杠，，莫名的想笑。。陈文涛，很认真的boy，由于坐我旁边，教他的次数也挺多的，对代码还是有点灵性的，但似乎缺少点debug技巧，不过学习的很认真，肯花时间，应该也弥补过来了。。曹博，很真实很坚持的boy，每天永远最后几个离开机房，然后还去锻炼，，但似乎不怎么喜欢问我，，所以交流不多。。叶玉宝，很开心的一个人，跟我们班人玩的最high了，人缘好，好像经常跟我们组人故意讲一些自己多受女孩子欢迎的话，然后遭到我们无情嘲讽。。至于我，虽说是培训，但感觉每天都是玩一样的感觉，很轻松，因为学的知识，之前在大学里都自学过了，所以有充足的时间去教别人。。但是，，毕竟不能一直这样下去，人生还很长，不能这么贪图安逸，奋斗的青春才更加精彩，以后老了回首往事才不会后悔，于是有一天晚上我就决定要离开这，根据自己的实力找一份更好的工作，但同时也就永远的离开了我在这认识一个多月的小伙伴，天下没有不散的筵席，只愿小伙伴们今后安好。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/61.jpg&quot; width = &quot;300&quot;   /&gt;
-　　在写代码枯燥的日子里，最快乐的时莫过于每周四晚上班级在操场上集体做游戏了，感觉大学里最缺的就是这样的班级的集体活动了，大家一起度过在这可以说是野外的无聊的夜晚。
-&lt;img src=&quot;http://qiracle.cn/img/20161223/62.jpg&quot; width = &quot;300&quot;   /&gt;
-&lt;img src=&quot;http://qiracle.cn/img/20161223/63.jpg&quot; width = &quot;300&quot;   /&gt;</p>
-<h3>校招记忆</h3>
-<p>离开培训之后，刚开学9月份便开始准备校招，刚开始没有经验，投了好多社招的简历，结果收到的面试邀请屈指可数，而且好多培训的骗子机构，当时确实受到了一定的打击，后来在安大和合工大的同学的帮助下，加了他们那边的校招群，然后里面有大量安大，合工大的宣讲会，招聘会信息。于是，我频繁的往安大那边的校招投简历，参加宣讲会。效果出奇的好，收到了好多笔试面试邀请,最终也找到了自己较为满意的工作。所以我的经验告诉我应届生还是尽量走校招容易，机会确实多，工作也没有那么难找。校招的整个过程在之前写的一篇博客<a href="http://qiracle.github.io/2016/12/10/mianshi/" title="迟来的面试总结">迟来的面试总结</a>里写过，可以直接点击查看，这里不再赘述。</p>
-<p>2016年已经过去，到了2017年，我的大学生涯也将结束，转而步入职场，，为自己的梦想坚持奋斗！</p>
-
+              <p>　　2016年对我来说是充满收获与回忆的一年，更是不寻常的一年，经历了太多之前从未经历过的事情。我想这一年可以大致可以分为三个阶段。</p>
+<h3 id="迪拜-德黑兰之旅"><a href="#迪拜-德黑兰之旅" class="headerlink" title="迪拜-德黑兰之旅"></a>迪拜-德黑兰之旅</h3><p>　　从去年年底开始，老师就一直提醒我寒假回家记得办护照，明年出国比赛，去的是伊朗首都德黑兰和德国的莱比锡（这个后来没去成）。当时我知道我们学校RoboCup团队每年都会有学生出国比赛，而且成绩还不错，所以我当时我就觉得这是个难得的机会但对我来说更是个挑战。因为学校花了那么多钱让你出国，成绩难看的话，也不好交代。所以寒假在家一方面在不停的改代码，调试球队，另一方面则在准备比赛报名审核的材料，由于报名网站全英文再加上与那边互通邮件也用的英文，所以当时觉得英语水平好真的是太重要了！开学那天，伊朗那边比赛的审核认证通过了，这就代表我们伊朗那边肯定能去了。然后是等德国那边的审核结果，过了俩星期，结果出来了，出事了，由于代码不恰当的引用，涉及侵权，然后被拒绝参赛。好吧确实有些伤感。。
+          
       
     </div>
     
@@ -455,6 +481,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/23/2016summary/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -503,39 +533,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>ActionBar的引入</h3>
-<ol>
+              <h3 id="ActionBar的引入"><a href="#ActionBar的引入" class="headerlink" title="ActionBar的引入"></a>ActionBar的引入</h3><ol>
 <li>引用v7-appcompat</li>
 <li>Activity继承ActionBarActivity</li>
-<li>android:theme=&quot;@style/Theme.AppCompat.Light&quot; &gt;&lt;!--more--&gt;</li>
-</ol>
-<h3>添加搜索按钮</h3>
-<h5>menu文件中添加yourapp:actionViewClass=&quot;android.support.v7.widget.SearchView&quot;</h5>
-<h5>重写onCreateOptionsMenu方法</h5>
-<pre><code>	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
-				.getActionView();
-		searchView.setOnQueryTextListener(this);//  搜索的监听
-		return true;
-	}
-</code></pre>
-<h5>实现onQueryTextSubmit和onQueryTextChange方法</h5>
-<pre><code>	// 当搜索提交的时候
-	@Override
-	public boolean onQueryTextSubmit(String query) {
-		Toast.makeText(getApplicationContext(), query, 0).show();
-		return true;
-	}
-	// 当搜索的文本发生变化
-	@Override
-	public boolean onQueryTextChange(String newText) {
-		//Toast.makeText(getApplicationContext(), newText, 0).show();
-		return true;
-	}
-</code></pre>
-
+<li>android:theme=”@style/Theme.AppCompat.Light” &gt;
+          
       
     </div>
     
@@ -552,6 +554,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/22/20161222/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -600,9 +606,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>何为成熟？与你在乎的人吵架的最高潮，能让他全盘崩溃的那句话就在你的舌尖上，你却忍住了没有说。
-对局面有掌控，对未来留余地，对他人有宽容，对自己有约束。&lt;!--more--&gt;</p>
-
+              <p>何为成熟？与你在乎的人吵架的最高潮，能让他全盘崩溃的那句话就在你的舌尖上，你却忍住了没有说。<br>对局面有掌控，对未来留余地，对他人有宽容，对自己有约束。
+          
       
     </div>
     
@@ -619,6 +624,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/21/20161221/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -667,19 +676,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4>1.单一职责原则:不要存在多于一个导致类变更的原因。</h4>
-<p>通俗的说:即一个类只负责一项职责。</p>
-<h4>2.里氏替换原则:所有引用基类的地方必须能透明地使用其子类的对象。</h4>
-<p>通俗的说:当使用继承时。类 B 继承类 A 时，除添加新的方法完成新增功能 外，尽量不要重写父类 A的方法， 也尽量不要重载父类 A 的方法。 如果子类对这些非抽象方法任意修改，就会对整个继承体系造成破坏。子类可以扩展父类的功能，但不能改变父类原有的功能。&lt;!--more--&gt;</p>
-<h4>3.依赖倒置原则:高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。</h4>
-<p>通俗的说:在 java 中，抽象指的是接口或者抽象类，细节就是具体的实现类，使用接口或者抽象类的目的是制定好规范和契约，而不去涉及任何具体的操作，把展现细节的任务交给他们的实现类去完成。依赖倒置原则的核心思想是面向接口编程.</p>
-<h4>4.接口隔离原则:客户端不应该依赖它不需要的接口； 一个类对另一个类的依赖应该建立在最小的接口上。</h4>
-<p>通俗的说:建立单一接口，不要建立庞大臃肿的接口，尽量细化接口，接口中的方法尽量少。也就是说，我们要为各个类建立专用的接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。</p>
-<h4>5.迪米特法则:一个对象应该对其他对象保持最少的了解</h4>
-<p>通俗的说:尽量降低类与类之间的耦合。</p>
-<h4>6.开闭原则:一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。</h4>
-<p>通俗的说:用抽象构建框架，用实现扩展细节。因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节，我们用从抽象派生的实现类来进行扩展，当软件需要发生变化时，我们只需要根据需求重新派生一个实现类来扩展就可以了。</p>
-
+              <h4 id="1-单一职责原则-不要存在多于一个导致类变更的原因。"><a href="#1-单一职责原则-不要存在多于一个导致类变更的原因。" class="headerlink" title="1.单一职责原则:不要存在多于一个导致类变更的原因。"></a>1.单一职责原则:不要存在多于一个导致类变更的原因。</h4><p>通俗的说:即一个类只负责一项职责。</p>
+<h4 id="2-里氏替换原则-所有引用基类的地方必须能透明地使用其子类的对象。"><a href="#2-里氏替换原则-所有引用基类的地方必须能透明地使用其子类的对象。" class="headerlink" title="2.里氏替换原则:所有引用基类的地方必须能透明地使用其子类的对象。"></a>2.里氏替换原则:所有引用基类的地方必须能透明地使用其子类的对象。</h4><p>通俗的说:当使用继承时。类 B 继承类 A 时，除添加新的方法完成新增功能 外，尽量不要重写父类 A的方法， 也尽量不要重载父类 A 的方法。 如果子类对这些非抽象方法任意修改，就会对整个继承体系造成破坏。子类可以扩展父类的功能，但不能改变父类原有的功能。
+          
       
     </div>
     
@@ -696,6 +695,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/20/20161220/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -744,42 +747,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ul>
+              <ul>
 <li><strong>getParent().requestDisallowInterceptTouchEvent(true)</strong>;剥夺父view 对touch 事件的处理权，谁用谁知道。</li>
 <li><strong>ArgbEvaluator.evaluate(float fraction, Object startValue, Object endValue)</strong>; 用于根据一个起始颜色值和一个结束颜色值以及一个偏移量生成一个新的颜色，分分钟实现类似于微信底部栏滑动颜色渐变。</li>
 <li><strong>Canvas中clipRect、clipPath和clipRegion</strong> 剪切区域的API。</li>
-<li><strong>Bitmap.extractAlpha ()</strong>;返回一个新的Bitmap，capture原始图片的alpha 值。有的时候我们需要动态的修改一个元素的背景图片又不希望使用多张图片的时候，通过这个方法，&lt;!--more--&gt;结合Canvas 和Paint 可以动态的修改一个纯色Bitmap的颜色。</li>
-<li><strong>HandlerThread</strong>，代替不停new Thread 开子线程的重复体力写法。</li>
-<li><strong>IntentService</strong>,一个可以干完活后自己去死且不需要我们去管理子线程的Service。</li>
-<li><strong>Palette，5.0加入的可以提取一个Bitmap 中突出颜色的类</strong>，结合上面的Bitmap.extractAlpha，你懂的。</li>
-<li><strong>Executors. newSingleThreadExecutor()</strong>;这个是java 的，之前不知道它，自己花很大功夫去研究了单线程顺序执行的任务队列。。</li>
-<li><strong>android:animateLayoutChanges=”true”</strong>，LinearLayout中添加View 的动画的办法，支持通过setLayoutTransition()自定义动画。</li>
-<li><strong>ViewDragHelper</strong>，自定义一个子View可拖拽的ViewGroup 时，处理各种事件很累吧，嗯? what the fuck!!</li>
-<li><strong>GradientDrawable</strong>，之前接手公司的项目，发现有个阴影效果还不错，以为是切的图片，一看代码，什么鬼= =！
--<strong>AsyncQueryHandler</strong>，如果做系统工具类的开发，比如联系人短信辅助工具等，肯定免不了和ContentProvider打交道，如果数据量不是很大的情况下，随便搞，如果数据量大的情况下，了解下这个类是很有必要的，需要注意的是，这玩意儿吃异常..</li>
-<li><strong>ViewFlipper</strong>，实现多个view的切换(循环)，可自定义动画效果，且可针对单个切换指定动画。</li>
-<li><strong>View.setLayerType(View.LAYER_TYPE_SOFTWARE, null)</strong>;有朋友提到了在自定义View时有些方法在开启硬件加速的时候没有效果的问题，在API16之后确实有很多方法不支持硬件加速，通常我们关闭硬件加速都是在清单文件中通过，其实android也提供了针对特定View关闭硬件加速的方法,调用View.setLayerType(View.LAYER_TYPE_SOFTWARE, null)即可。</li>
-<li><strong>android util包中的Pair类</strong>，可以方便的用来存储一”组”数据。注意不是key value。</li>
-<li><strong>PointF，graphics包中的一个类</strong>，我们经常见到在处理Touch事件的时候分别定义一个downX，一个downY用来存储一个坐标，如果坐标少还好，如果要记录的坐标过多那代码就不好看了。用PointF(float x, float y);来描述一个坐标点会清楚很多。</li>
-<li><strong>StateListDrawable</strong>，定义Selector通常的办法都是xml文件，但是有的时候我们的图片资源可能是从服务器动态获取的，比如很多app所谓的皮肤，这种时候就只能通StateListDrawable
-来完成了，各种addState即可。</li>
-<li><strong>android:descendantFocusability</strong>，ListView的item中CheckBox等元素抢焦点导致item点击事件无法响应时，除了给对应的元素设置 focusable,更简单的是在item根布局加上android:descendantFocusability=”blocksDescendants”</li>
-<li><strong>android:duplicateParentState=”true”</strong>，让子View跟随其Parent的状态，如pressed等。常见的使用场景是某些时候一个按钮很小，我们想要扩大其点击区域的时候通常会再给其包裹一层布局，将点击事件写到Parent上，这时候如果希望被包裹按钮的点击效果对应的Selector继续生效的话，这时候duplicateParentState就派上用场了。</li>
-<li><strong>includeFontPadding=”false”</strong>，TextView默认上下是有一定的padding的，有时候我们可能不需要上下这部分留白，加上它即可。</li>
-<li><strong>Messenge</strong>r，面试的时候通常都会被问到进程间通信，一般情况下大家都是开始背书，AIDL巴拉巴拉。。有一天在鸿神的博客看到这个，嗯，如他所说，又可以装一下了。</li>
-<li><strong>TextView.setError()</strong>;用于验证用户输入。</li>
-<li><strong>ViewConfiguration.getScaledTouchSlop()</strong>;触发移动事件的最小距离，自定义View处理touch事件的时候，有的时候需要判断用户是否真的存在movie，系统提供了这样的方法。</li>
-<li><strong>ValueAnimator.reverse()</strong>; 顺畅的取消动画效果。</li>
-<li><strong>ViewStub</strong>，有的时候一块区域需要根据情况显示不同的布局，通常我们都会通过setVisibility的方法来显示和隐藏不同的布局，但是这样默认是全部加载的，用ViewStub可以更好的提升性能。</li>
-<li><strong>onTrimMemory</strong>，在Activity中重写此方法，会在内存紧张的时候回调（支持多个级别），便于我们主动的进行资源释放，避免OOM。</li>
-<li><strong>EditTxt.setImeOptions</strong>， 使用EditText弹出软键盘时，修改回车键的显示内容(一直很讨厌用回车键来交互，所以之前一直不知道这玩意儿)</li>
-<li><strong>TextView.setCompoundDrawablePadding</strong>，代码设置TextView的drawable padding。</li>
-<li><strong>ImageSwitcher</strong>，可以用来做图片切换的一个类，类似于幻灯片。</li>
-<li><strong>WeakHashMap</strong>，直接使用HashMap有时候会带来内存溢出的风险，使用WaekHashMap实例化Map。当使用者不再有对象引用的时候，WeakHashMap将自动被移除对应Key值的对象</li>
-</ul>
-<p><strong>注：</strong>
-本文转自：http://liukun.engineer/2016/04/11/Android开发中，那些让你相见恨晚的方法、类或接口/</p>
-
+<li><strong>Bitmap.extractAlpha ()</strong>;返回一个新的Bitmap，capture原始图片的alpha 值。有的时候我们需要动态的修改一个元素的背景图片又不希望使用多张图片的时候，通过这个方法，
+          
       
     </div>
     
@@ -796,6 +769,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/19/20161219/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -844,33 +821,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>设置环境变量</h3>
-<p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量
-选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
-<h3>配置default.ini文件</h3>
-<p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：&lt;!--more--&gt;
-[mysqld]
-basedir=C:\Program Files\MySQL\MySQL Server 5.6（mysql所在目录）
-datadir=C:\Program Files\MySQL\MySQL Server 5.6\data （mysql所在目录\data）</p>
-<h3>安装</h3>
-<p>环境变量设置完成后，打开终端输入mysqld -install。</p>
-<h3>登录</h3>
-<p>输入mysql -u root -p（第一次登录没有密码，直接按回车过）,登录成功</p>
-<h3>修改密码</h3>
-<p>在Windows命令行下修改mysql数据库密码步骤如下：</p>
-<ol>
-<li>打开终端</li>
-<li>输入“mysql -u root -p”，回车进入mysql命令状态；</li>
-<li>如果root原来有密码，mysql将提示输入原密码，再进入mysql命令状态；</li>
-<li>这里假设将root用户密码修改为mysql56，则在mysql命令状态下输入：
-update mysql.user set password=PASSWORD('mysql56') where user='root';
-提示Query OK，说明已更新。</li>
-<li>输入FLUSH PRIVILEGES;来保存修改内容，在mysql命令状态下输入：
-FLUSH PRIVILEGES;回车，至此，密码修改完成</li>
-</ol>
-<p><strong>附：mysql解压缩版下载地址：</strong>
-http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
-
+              <h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>我的电脑-&gt;属性-&gt;高级-&gt;环境变量<br>选择PATH,在其后面添加: 你的mysql bin文件夹的路径 (如:C:\Program Files\MySQL\MySQL Server 5.6\bin )</p>
+<h3 id="配置default-ini文件"><a href="#配置default-ini文件" class="headerlink" title="配置default.ini文件"></a>配置default.ini文件</h3><p>mysql-5.6.1X默认的配置文件是在C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini，或者自己建立一个my.ini文件，找到[mysqld] 位置，配置如下：
+          
       
     </div>
     
@@ -887,6 +840,10 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/18/20161218_mysql/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -935,12 +892,8 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>当你在想玩什么，有人在想学什么——<strong>时间</strong>；
-当你在做计划，有人已出发——<strong>执行</strong>；
-当你为上次失败沮丧，有人已开始下次尝试——<strong>心态</strong>；
-当你想放弃，有人却坚信前进就有希望。
-所以，道理真的很简单，那些比你走得远的人，并不比你聪慧，只是每天多走了一点。&lt;!--more--&gt;</p>
-
+              <p>当你在想玩什么，有人在想学什么——<strong>时间</strong>；<br>当你在做计划，有人已出发——<strong>执行</strong>；<br>当你为上次失败沮丧，有人已开始下次尝试——<strong>心态</strong>；<br>当你想放弃，有人却坚信前进就有希望。<br>所以，道理真的很简单，那些比你走得远的人，并不比你聪慧，只是每天多走了一点。
+          
       
     </div>
     
@@ -957,6 +910,10 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/17/20161217/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1005,92 +962,13 @@ http://dev.mysql.com/downloads/mysql/5.6.html#downloads</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4>cd</h4>
-<p>cd 进入某个目录</p>
+              <h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>cd 进入某个目录</p>
 <p>cd ~ 返回最初目录</p>
 <p>cd - 返回上次目录</p>
 <hr>
-<h4>文件</h4>
-<p>touch 1.txt 创建1.txt文件</p>
-<p>cp 复制文件，格式：cp 源文件 目标文件
-&lt;!--more--&gt;
-mv 移动文件 格式如上</p>
-<p>rm 删除文件 （rm 文件夹 -r 递归删除文件夹内所有内容，并删除文件夹）</p>
-<hr>
-<h4>文件夹</h4>
-<p>mkdir 创建文件夹</p>
-<p>rmdir 删除文件夹 文件夹有内容时不可删</p>
-<hr>
-<h4>ls</h4>
-<p>ls -alh 显示当前目录下所有文件并显示文件大小</p>
-<p>ls 1* 显示所有文件名以1开头的文件</p>
-<p>ls 1? 显示文件名只有两个字母且第一个字符为1的文件</p>
-<p>ls &gt;1.txt 重定向 将ls的内容显示在1.txt中</p>
-<p>ls &gt;&gt;1.txt 将ls的内容追加在1.txt中</p>
-<hr>
-<h4>查看cat、more</h4>
-<p>cat 1.txt 查看1.txt里的内容</p>
-<p>more 1.txt 1.txt内容过多时，分页显示</p>
-<hr>
-<h4>查找grep、find</h4>
-<p>grep -n  '123' ./1.txt 显示当前目录下1.txt里含有字符123所在的行，并显示其行号 （可用正则表达式表示）</p>
-<p>find ./ -name 'qq*' 显示当前目录下文件名以qq的开头的文件</p>
-<hr>
-<h4>软、硬链接ln</h4>
-<p>ln 1.txt link1.txt 给1.txt建立一个硬链接link1.txt</p>
-<p>ln -s 1.txt link1.txt 给1.txt建立一个软链接link1.txt</p>
-<hr>
-<h4>系统集成ps、top、kill</h4>
-<p>ps 显示当前进程信息</p>
-<p>top 动态显示显示当前系统进程信息</p>
-<p>kill 根据进程id杀死进程</p>
-<p>kill -9 强制杀死某进程</p>
-<hr>
-<h4>解压打包</h4>
-<p>tar -zxvf FileName.tar 解压</p>
-<p>tar -zcvf FileName.tar DirName 打包并压缩</p>
-<hr>
-<h4>用户操作</h4>
-<p>useradd 用户名 -m</p>
-<p>passwd</p>
-<p>ssh user@ip地址</p>
-<p>su 用户名 切到其他用户</p>
-<p>cat /etc/group</p>
-<p>groupmod tab*3</p>
-<p>groupadd</p>
-<p>groupdel
-groups 用户名 查看所在组</p>
-<p>usermod -a -G 组名 用户名 修改用户所在组。。必须在adm和sudo组的用户才能拥有root权限</p>
-<hr>
-<h4>权限修改chmod</h4>
-<p>a 所有的</p>
-<p>u 当前用户</p>
-<p>g 当前用户组</p>
-<p>o 其他用户</p>
-<p>r 读 w写 x执行</p>
-<p>a+r 表示给所有用户增加读权限</p>
-<p>a-r 表示给所有用户删除读权限</p>
-<p>u+r 表示给当前用户增加读权限</p>
-<p>u-r 表示给当前用户删除读权限</p>
-<p>a=rw 给所有用户增加读写权限</p>
-<p>其他以此类推</p>
-<p>例子：chmod u+r,g+r,o+r 文件名 表示被所有用户增加读写可执行权限  与 chmod a+r 用户名 作用相同</p>
-<p>权限表示：</p>
-<p>1 执行</p>
-<p>2 写</p>
-<p>4 读</p>
-<p>7=1+2+4表示可读可写可执行，类似的6=4+2可读可写，，以此类推</p>
-<p>chmod 776 文件名 则表示当前用户和当前用户组拥有可读可写可执行权限，其他用户拥有可读可写权限</p>
-<p>chown 用户 文件名 表示修改文件所有者</p>
-<p>chgrp 用户组 文件名 表示修改用户所在用户组</p>
-<hr>
-<h4>vim</h4>
-<p>vim</p>
-<p>i 命令模式进入编辑模式</p>
-<p>shift+；进入末行模式</p>
-<p>esc  返回上个模式</p>
-<p>wq等价于x 保存并退出</p>
-
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>touch 1.txt 创建1.txt文件</p>
+<p>cp 复制文件，格式：cp 源文件 目标文件<br>
+          
       
     </div>
     
@@ -1108,133 +986,9 @@ groups 用户名 查看所在组</p>
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-stornzhangTalk" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/15/stornzhangTalk/" class="article-date">
-      <time datetime="2016-12-14T16:00:00.000Z" itemprop="datePublished">2016-12-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h4>基本</h4>
-<ul>
-<li>简历不要太花哨, 你是应聘的技术, 不是设计师</li>
-<li>简历把一些基本信息要说清楚（无关的不要写, 比如头像之类的）</li>
-<li>有个人博客, 跟GitHub的写上, 若没有内容那就算了</li>
-<li>应届毕业生需写上相关证书之类, 有经验的可不写</li>
-<li>简历控制在两页 A4 纸</li>
-</ul>
-<p>&lt;!--more--&gt;</p>
-<h4>项目经验</h4>
-<ul>
-<li>一般写 2, 3个代表性的项目就好, 优先写本职工作相关的</li>
-<li>时间为倒序</li>
-<li>说明你在项目当中的职责作用</li>
-<li>项目模块需要了解大概逻辑与思路, 以及一些关键的技术点, 以防面试官问到</li>
-<li>没有项目经验的也要模仿一两个小 Demo</li>
-</ul>
-<h4>闲聊</h4>
-<ul>
-<li>自己亲自做的东西一定要明白, 如果不是自己亲自做的, 请慎重骗面试官</li>
-<li>问的时候会问一些知识点相关的话题, 比如你的数据是需要api交互的, 那可能会问http相关, json数据解析相关, 缓存相关, 图片加载相关等</li>
-<li>对用到的知识点虽用不着一定要看源码的地步, 但是最好要懂原理, 比如图片加载一定要知道二级缓存, 一些常见的缓存算法</li>
-</ul>
-<h4>注意事项</h4>
-<ul>
-<li>去面试前一定要花点时间了解下你面试的这家公司(本身有自己产品的下载体验一下, 以防面试过程中问到, 或者可以给产品提点意见)</li>
-<li>面试的时候态度要谦虚点</li>
-<li>学习能力很重要(一定要让面试官感受到你是一个好学的人)</li>
-<li>个人兴趣(不要提什么打游戏, 唱歌之类的, 可以说一下业余时间提下自己经常上一些技术社区,看一些技术博客之类的)</li>
-<li>除了基本的知识点, 面试官通常都会问一些比较深的领域(可能你没有接触过,但不要气馁, 面试官在考察下你的技术的深度, 这些领域一般包括设计模式, 虚拟机, 插件化, React Native之类的)</li>
-</ul>
-<h4>常问的知识点</h4>
-<ul>
-<li>初级
-<ul>
-<li>那基本的 Activity/Fragment的生命周期</li>
-<li>四大组件的具体作用以及用法</li>
-<li>Activity四种启动模式的区别</li>
-<li>ListView的优化</li>
-<li>一些动画的使用</li>
-<li>Java一些基础知识(如最基本的 String, StringBuilder, StringBuffer的区别; 如ArrayList, LinkedList的区别; Java线程的几种用法)</li>
-</ul>
-</li>
-<li>中级
-<ul>
-<li>屏幕适配经验，性能优化的经验</li>
-<li>中级的还有Java线程几种用法等</li>
-</ul>
-</li>
-<li>高级
-<ul>
-<li>如插件化, 如网络的优化, 如缓存的处理, 如插件化, 如Service保活</li>
-<li>对产品的一些看法, 对代码质量的要求, 对团队合作的理解等</li>
-</ul>
-</li>
-</ul>
-<h4>工资(一线城市, 不同的公司水平也有高低, 只能是大概)</h4>
-<ul>
-<li>一年以下一般8k以下吧(能力优秀的可以达到1w左右)</li>
-<li>中级的大概在10k—15k左右</li>
-<li>高级的在15-25k范围</li>
-</ul>
-<p><strong>注</strong>:本文转自stormZhang，微信公众号：AndroidDeveloper</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活感悟/">生活感悟</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
-    </div>
-
+        <p class="article-more-link">
+          <a href="/2016/12/16/linuxSum/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

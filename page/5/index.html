@@ -276,6 +276,77 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20170104" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/04/20170104/" class="article-date">
+      <time datetime="2017-01-03T16:00:00.000Z" itemprop="datePublished">2017-01-04</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>图片加载几乎是任何 Android 项目中必备的需求，而图片加载的开源库也越来越多，我们姑且在 GitHub 上搜索下 android image 关键字，出来的前五个按照 Star 数排序的项目如下：</p>
+<p>可以看到前四个是大家比较熟知的图片加载库，有 UniversalImageLoader、Picasso、Fresco、Glide，至于第五个 ion 其实是一个网络库，只不过也提供了图片加载的功能，跟 Volley 类似，也提供图片加载的功能，但是如果图片加载是一个强需求的话，我更喜欢专注的库，所以本文只讨论单纯的图片加载库。
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/01/04/20170104/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20170103" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -305,41 +376,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>1. 原则</h3>
-<p>本篇说的网络请求专指 http 请求，在选择一个框架之前，我个人有个习惯，就是我喜欢选择专注的库，其实在软件设计领域有一个原则叫做 「单一职责原则」，跟我所说的「专注」不谋而合，一个库能把一件事做好就很不错了。现如今有很多大而全的库，比如这个库可以网络请求，同时又可以图片加载，又可以数据存储，又可以 View 注解等等，我们使用这种库当然方便了，但是你有没有想过？这样会使得你整个项目对它依赖性太强，万一以后这个库不维护了，或者中间某个模块出问题了，这个影响非常大，而且我一直认为大而全的框架可能某一块都做的不够好，所以我在选择的时候更喜欢专注某一领域的框架。&lt;!--more--&gt;</p>
-<p>在上面原则的基础上，所以目前来说单纯的网络请求库就锁定在了 Volley、OkHttp、Retrofit 三个，android-async-http 的作者已经不维护，所以这里就不多说了，下面我们分别来说说这三个库的区别。</p>
-<h3>2. OkHttp</h3>
-<p>我们知道在 Android 开发中是可以直接使用现成的 api 进行网络请求的，就是使用 HttpClient、HttpUrlConnection 进行操作，目前 HttpClient 已经被废弃，而 android-async-http 是基于 HttpClient 的，我想可能也是因为这个原因作者放弃维护。</p>
-<p>而 OkHttp 是 Square 公司开源的针对 Java 和 Android 程序，封装的一个高性能 http 请求库，所以它的职责跟 HttpUrlConnection 是一样的，支持 spdy、http 2.0、websocket ，支持同步、异步，而且 OkHttp 又封装了线程池，封装了数据转换，封装了参数使用、错误处理等，api 使用起来更加方便。可以把它理解成是一个封装之后的类似 HttpUrlConnection 的一个东西，但是你在使用的时候仍然需要自己再做一层封装，这样才能像使用一个框架一样更加顺手。</p>
-<p>OkHttp 的具体使用方法这里就不赘述，地址在这里：</p>
-<p>http://square.github.io/okhttp/</p>
-<h3>3. Volley</h3>
-<p>Volley 是 Google 官方出的一套小而巧的异步请求库，该框架封装的扩展性很强，支持 HttpClient、HttpUrlConnection，甚至支持 OkHttp，具体方法可以看 Jake 大神的这个 Gist 文件：</p>
-<p>https://gist.github.com/JakeWharton/5616899</p>
-<p>而且 Volley 里面也封装了 ImageLoader ，所以如果你愿意你甚至不需要使用图片加载框架，不过这块功能没有一些专门的图片加载框架强大，对于简单的需求可以使用，对于稍复杂点的需求还是需要用到专门的图片加载框架。</p>
-<p>Volley 也有缺陷，比如不支持 post 大数据，所以不适合上传文件。不过 Volley 设计的初衷本身也就是为频繁的、数据量小的网络请求而生！</p>
-<p>关于 Volley 的具体用法可以见我很早在 GitHub 的一个 demo ：</p>
-<p>https://github.com/stormzhang/AndroidVolley</p>
-<h3>4. Retrofit</h3>
-<p>Retrofit 是 Square 公司出品的默认基于 OkHttp 封装的一套 RESTful 网络请求框架，不了解 RESTful 概念的不妨去搜索学习下，RESTful 可以说是目前流行的一套 api 设计的风格，并不是标准。Retrofit 的封装可以说是很强大，里面涉及到一堆的设计模式，你可以通过注解直接配置请求，你可以使用不同的 http 客户端，虽然默认是用 http ，可以使用不同 Json Converter 来序列化数据，同时提供对 RxJava 的支持，使用 Retrofit + OkHttp + RxJava + Dagger2 可以说是目前比较潮的一套框架，但是需要有比较高的门槛。</p>
-<p>Retrofit 的具体使用方法与地址在这里：</p>
-<p>http://square.github.io/retrofit/</p>
-<h3>5. Volley VS OkHttp</h3>
-<p>毫无疑问 Volley 的优势在于封装的更好，而使用 OkHttp 你需要有足够的能力再进行一次封装。而 OkHttp 的优势在于性能更高，因为 OkHttp 基于 NIO 和 Okio ，所以性能上要比 Volley更快。</p>
-<p>估计有些读者不理解 IO 和 NIO 的概念，这里姑且简单提下，这两个都是 Java 中的概念，如果我从硬盘读取数据，第一种方式就是程序一直等，数据读完后才能继续操作，这种是最简单的也叫阻塞式 IO，还有一种就是你读你的，我程序接着往下执行，等数据处理完你再来通知我，然后再处理回调。而第二种就是 NIO 的方式，非阻塞式。</p>
-<p>所以 NIO 当然要比 IO 的性能要好了， 而 Okio 是 Square 公司基于 IO 和 NIO 基础上做的一个更简单、高效处理数据流的一个库。</p>
-<p>理论上如果 Volley 和 OkHttp 对比的话，我更倾向于使用 Volley，因为 Volley 内部同样支持使用 OkHttp ，这点 OkHttp 的性能优势就没了，而且 Volley 本身封装的也更易用，扩展性更好些。</p>
-<h3>6. OkHttp VS Retrofit</h3>
-<p>毫无疑问，Retrofit 默认是基于 OkHttp 而做的封装，这点来说没有可比性，肯定首选 Retrofit。</p>
-<h3>7. Volley VS Retrofit</h3>
-<p>这两个库都做了非常不错的封装，但是 Retrofit 解耦的更彻底，尤其 Retrofit 2.0 出来，Jake 对之前 1.0 设计不合理的地方做了大量重构，职责更细分，而且 Retrofit 默认使用 OkHttp ，性能上也要比 Volley 占优势，再有如果你的项目如果采用了 RxJava ，那更该使用 Retrofit 。</p>
-<p>所以说这两个库相比，Retrofit 毫无疑问更有优势，你在能掌握两个框架的前提下该优先使用 Retrofit。但是个人认为 Retrofit 门槛要比 Volley 稍高些，你要理解他的原理，各种用法，想彻底搞明白还是需要花些功夫的，如果你对它一知半解，那还是建议在商业项目使用 Volley 吧。</p>
-<h3>8. 总结</h3>
-<p>所以综上，如果以上三种网络库你都能熟练掌握，那么优先推荐使用 Retrofit ，前提是最好你们的后台 api 也能遵循 RESTful 的风格，其次如果你不想使用或者没能力掌握 Retrofit ，那么推荐使用 Volley ，毕竟 Volley 你不需要做过多的封装，当然如果你们需要上传大数据，那么不建议使用 Volley，否则你该采用 OkHttp 。</p>
-<p>最后，我知道可能有些人会纠结 Volley 与 OkHttp 的选择，那是因为我认为 OkHttp 还是需要一定的能力做一层封装的，如果你有能力封装的话那不如直接用 Retrofit 了，如果没能力封装还是乖乖的用 Volley 吧，如果你能有一些不错的基于 OkHttp 封装好的开源库，那么另说了，Volley 与 OkHttp 怎么选择随你便呗。</p>
-<p>最最后，以上只是我一家之言，如有误导，概不负责！欢迎讨论与交流</p>
-<p>**注：**本文转自stormzhang，原文链接：https://zhuanlan.zhihu.com/p/21879931</p>
-
+              <h3 id="1-原则"><a href="#1-原则" class="headerlink" title="1. 原则"></a>1. 原则</h3><p>本篇说的网络请求专指 http 请求，在选择一个框架之前，我个人有个习惯，就是我喜欢选择专注的库，其实在软件设计领域有一个原则叫做 「单一职责原则」，跟我所说的「专注」不谋而合，一个库能把一件事做好就很不错了。现如今有很多大而全的库，比如这个库可以网络请求，同时又可以图片加载，又可以数据存储，又可以 View 注解等等，我们使用这种库当然方便了，但是你有没有想过？这样会使得你整个项目对它依赖性太强，万一以后这个库不维护了，或者中间某个模块出问题了，这个影响非常大，而且我一直认为大而全的框架可能某一块都做的不够好，所以我在选择的时候更喜欢专注某一领域的框架。
+          
       
     </div>
     
@@ -356,6 +394,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/01/03/20170103/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -404,100 +446,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>铁律1：指针是一种数据类型</h3>
-<p>1）指针也是一种变量，占有内存空间，用来保存内存地址</p>
+              <h3 id="铁律1：指针是一种数据类型"><a href="#铁律1：指针是一种数据类型" class="headerlink" title="铁律1：指针是一种数据类型"></a>铁律1：指针是一种数据类型</h3><p>1）指针也是一种变量，占有内存空间，用来保存内存地址</p>
 <p>测试指针变量占有内存空间大小</p>
 <p>2）*p操作内存</p>
 <p>在指针声明时，*号表示所声明的变量为指针</p>
 <p>在指针使用时，*号表示 操作 指针所指向的内存空间中的值</p>
 <p>*p相当于通过地址(p变量的值)找到一块内存；然后操作内存</p>
 <p>*p放在等号的左边赋值（给内存赋值）</p>
-<p>*p放在等号的右边取值（从内存获取值）
-&lt;!--more--&gt;
-3）指针变量和它指向的内存块是两个不同的概念</p>
-<p>//含义1 给p赋值p=0x1111; 只会改变指针变量值，不会改变所指的内容；p = p +1; //p++</p>
-<p>//含义2 给<em>p赋值</em>p='a'; 不会改变指针变量的值，只会改变所指的内存块的值</p>
-<p>//含义3 =左边<em>p 表示 给内存赋值， =右边</em>p 表示取值 含义不同切结！</p>
-<p>//含义4 =左边char *p</p>
-<p>//含义5 保证所指的内存块能修改</p>
-<p>4）指针是一种数据类型，是指它指向的内存空间的数据类型</p>
-<p>含义1：指针步长（p++），根据所致内存空间的数据类型来确定</p>
-<p>p++=(unsigned char )p+sizeof(a);</p>
-<p>结论：指针的步长，根据所指内存空间类型来定。</p>
-<p>注意：	建立指针指向谁，就把把谁的地址赋值给指针。图和代码和二为一。</p>
-<p>不断的给指针变量赋值，就是不断的改变指针变量（和所指向内存空间没有任何关系）。</p>
-<h3>铁律2：间接赋值（*p）是指针存在的最大意义</h3>
-<p>1）两码事：指针变量和它指向的内存块变量</p>
-<p>2）条件反射：指针指向某个变量，就是把某个变量地址否给指针</p>
-<p>3）*p间接赋值成立条件：3个条件</p>
-<p>a)2个变量（通常一个实参，一个形参）</p>
-<p>b) 建立关系，实参取地址赋给形参指针</p>
-<p>c) *p形参去间接修改实参的值</p>
-<p>Int iNum = 0; //实参</p>
-<p>int *p = NULL;</p>
-<p>p = &amp;iNum;</p>
-<p>iNum = 1;</p>
-<p><em>p =2 ; //通过</em>形参 == 间接地改变实参的值</p>
-<p>*p成立的三个条件：</p>
-<p>4）引申： 函数调用时,用n指针（形参）改变n-1指针（实参）的值。</p>
-<p>//改变0级指针（int iNum = 1）的值有2种方式</p>
-<p>//改变1级指针（eg char *p = 0x1111 ）的值，有2种方式</p>
-<p>//改变2级指针的（eg char **pp1 = 0x1111 ）的值，有2种方式</p>
-<p>//函数调用时，形参传给实参，用实参取地址，传给形参，在被调用函数里面用*p，来改变实参，把运算结果传出来。</p>
-<p>//指针作为函数参数的精髓。</p>
-<h3>铁律3：理解指针必须和内存四区概念相结合</h3>
-<p>1）	主调函数 被调函数</p>
-<p>a)	主调函数可把堆区、栈区、全局数据内存地址传给被调用函数</p>
-<p>b)	被调用函数只能返回堆区、全局数据</p>
-<p>2）	内存分配方式</p>
-<p>a)	指针做函数参数，是有输入和输出特性的。</p>
-<h3>铁律4：应用指针必须和函数调用相结合（指针做函数参数）</h3>
-<p><img src="http://qiracle.cn/img/20170102/zhizhen.png" alt="">
-<img src="http://qiracle.cn/img/20170102/zhizhen2.png" alt=""></p>
-<p>指针做函数参数，问题的实质不是指针，而是看内存块，内存块是1维、2维。</p>
-<p>1）	如果基础类int变量，不需要用指针；</p>
-<p>2）	若内存块是1维、2维。</p>
-<h3>铁律5：一级指针典型用法（指针做函数参数）</h3>
-<p>一级指针做输入</p>
-<p>int showbuf(char *p)</p>
-<p>int showArray(int *array, int iNum)</p>
-<p>一级指针做输出</p>
-<p>int geLen(char *pFileName, int *pfileLen);</p>
-<p>理解</p>
-<p>主调函数还是被调用函数分配内存</p>
-<p>被调用函数是在heap/stack上分配内存</p>
-<h3>铁律6：二级指针典型用法（指针做函数参数）</h3>
-<p>二级指针做输入</p>
-<p>int main(int arc ,char *arg[]); 字符串数组</p>
-<p>int shouMatrix(int [3][4], int iLine);</p>
-<p>二级指针做输出</p>
-<p>int Demo64_GetTeacher(Teacher **ppTeacher);</p>
-<p>int Demo65_GetTeacher_Free(Teacher **ppTeacher);</p>
-<p>int getData(char **data, int *dataLen);</p>
-<p>Int getData_Free(void *data);</p>
-<p>Int getData_Free2(void **data); //避免野指针</p>
-<p>理解</p>
-<p>主调函数还是被调用函数分配内存</p>
-<p>被调用函数是在heap/stack上分配内存</p>
-<h3>铁律7： 三级指针输出典型用法</h3>
-<p>三级指针做输出</p>
-<p>int getFileAllLine(char ***content, int *pLine);</p>
-<p>int getFileAllLine_Free(char ***content, int *pLine);</p>
-<p>理解</p>
-<p>主调函数还是被调用函数分配内存</p>
-<p>被调用函数是在heap/stack上分配内存</p>
-<h3>铁律8：杂项，指针用法几点扩充</h3>
-<p>1）野指针 2种free形式</p>
-<p>int getData(char **data, int *dataLen);</p>
-<p>int getData_Free(void *data);</p>
-<p>int getData_Free2(void **data);</p>
-<p>2）2次调用</p>
-<p>主调函数第一次调用被调用函数求长度；根据长度，分配内存，调用被调用函数。</p>
-<p>3）返回值char */int/char **</p>
-<p>4）C程序书写结构</p>
-<p>商业软件，每一个出错的地方都要有日志，日志级别</p>
-<h3>铁律9：一般应用禁用malloc/new</h3>
-
+<p>*p放在等号的右边取值（从内存获取值）<br>
+          
       
     </div>
     
@@ -514,6 +471,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/01/02/20170102/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -562,30 +523,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>strcpy</strong>： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：</p>
+              <p><strong>strcpy</strong>： 最常用的字符串拷贝函数，但是要注意这个函数不会自己判断源字符串是否比目标空间大，必须要程序员自己检查，否则很容易造成拷贝越界，下面是几个例子：</p>
 <pre><code>char *a = &quot;0123456789&quot;, *b = &quot;abcdefghijk&quot;;
 char c[5];
-</code></pre>
-<p>输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是经过strcpy后a的剩余字符也拷贝过去了，如果c后面是系统程序空间，那就要出问题了。&lt;!--more--&gt;</p>
-<p><strong>strncpy</strong>：strcpy的改进版本，多了一个拷贝长度的参数。需要注意的是长度参数应该为目的空间的大小，并且这个函数不会自己附加字符串结束符'\0'，要自己加。看下面的例子：</p>
-<pre><code>strncpy(c,b,strlen(b))=abcdefghijkw //拷贝长度不对，还是越界
-strncpy(c,a,sizeof(c))=01234fghijkw //拷贝长度正确，但是因为拷贝长度内不包括'\0'，所以输出的时候还是会把原本的空间内容输出，知道遇到一个结束符'\0'。
-</code></pre>
-<p>所以正确的做法应该是： strncpy(c, a, sizeof(c)-1); c[5] = '\0';</p>
-<p><strong>memcpy</strong>： 最后说一下这个函数，这个函数是个很强大的工具，因为它可以简单的根据字节数拷贝内存空间内容，所以经常被用于结构体的拷贝。需要注意两点：1、memcpy拷贝的时候源空间的长度和目标空间的长度都需要程序员自己考虑，如果按照源空间的长度拷贝，要注意是否会写溢出，如果按照目标空间的长度拷贝，则要考虑是否造成读溢出（把不该拷贝的内容也拷贝过去了），而读溢出在某些系统环境下（比如AIX），可能会造成coredump（当读到不该读的地址）；2、源空间和目标空间不能重叠。如下例：</p>
-<pre><code>char src1[] = &quot;src1&quot;, src2[]=&quot;source2, this is a long src&quot;;
-char dest[] = &quot;destination&quot;;
-</code></pre>
-<p>输出：
-memcpy(dest, src1, strlen(dest)） = src1 //读越界</p>
-<p>memcpy(dest, src2, strlen(src2)） = source2, this is a long srcis is a long src //写越界</p>
-<p>memcpy(dest, dest+2, strlen(dest2) = stination // 重叠，结果是混乱</p>
-<pre><code>char p1[]=&quot;123456789&quot;；
-char p2[]=&quot;******&quot;;
-memcpy(p1,p2,6);
-printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
-</code></pre>
-
+</code></pre><p>输出： strcpy(c,a)=0123456789  //数组c只有5个字节的空间，但是经过strcpy后a的剩余字符也拷贝过去了，如果c后面是系统程序空间，那就要出问题了。
+          
       
     </div>
     
@@ -602,6 +544,10 @@ printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/01/01/20170101/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -650,59 +596,9 @@ printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>摆脱技术性思维</h3>
-<p>技术人最大的优势就在于思维缜密，考虑事情比较全面，逻辑性较强。产品经理提出一些天马行空的想法时，总能第一时间评估可行性，给出实现方案，让看似缥缈的想法变成现实。</p>
-<p>然而这种技术性思维很容易形成一种思维定式，直接导致的结果就是不管任何事，总是 if...else，总是从技术的角度出发去考虑事情。这反而会成为技术人的一个限制，造成思维局限，要知道这世界上的事情并不一定非是即否的，很多时候从技术的角度去思考问题反而会大打折扣。&lt;!--more--&gt;</p>
-<p>举个例子，产品经理有一个很棒的创意，然后技术部门去评估，觉得实现起来太复杂，于是给出建议，把需求做了大幅简化，这就是典型的技术性思维。而摆脱技术性思维是什么样子的？是先不管它的技术复杂度，应该先仔细评估下这个创意是不是真的很棒，是不是真的对用户很有价值，如果是，那么不管多么复杂，技术都应该想办法去克服，而不应该先觉得实现起来很复杂，而去简化需求。</p>
-<p>技术人有转做产品经理的，技术是他的优势，这个优势很明显，然而如果摆脱不了技术性思维，那么将会极大的制约产品的发展。</p>
-<p>技术性思维不止影响着工作中，在生活中同样有很大影响，同学聚会，你跟人聊天，大谈特谈你的技术方向，自认为自己写的代码很炫酷、很牛逼，然而在别人眼里，那只不过就是你的职业而已，跟世界上的其他职业没有任何区别，他对你的职业不感任何兴趣。</p>
-<p>技术人如果无法摆脱技术性思维，那么可能会极大的影响你职业发展的宽度。</p>
-<h3>你可能还有别的潜力</h3>
-<p>试想有这么一个场景，你是公司技术部的一名高级工程师，由于工作表现出色，公司觉得你还有其他潜力，想让你转产品、业务或者管理，这个时候你会怎么抉择？</p>
-<p>这个问题不是空穴来风，我身边就有这样的例子，很多工作了 4、5 年甚至更长时间的技术人，遇到过这个情况，很困惑，不知道该怎么选择。</p>
-<p>至于困惑的原因主要是以下几点：</p>
-<ol>
-<li>
-<p>技术是所有公司通用的，而业务不是，也就是说技术人跳槽要比其他跟业务相关的岗位容易的多；</p>
-</li>
-<li>
-<p>业务、管理方面的能力自己比较缺乏，担心做不好；</p>
-</li>
-<li>
-<p>人的精力是有限的，重心转移也就意味着技术方面会有所牺牲，而自己又不知道公司未来的发展怎么样，万一发展不好，自己跳槽，但是下份工作肯定优先还是找技术岗位，转岗对自己来说其实是一种风险；</p>
-</li>
-</ol>
-<p>我想以上几点是大部分人会考虑的，也是犹豫的主要原因。</p>
-<p>这是人的本性，绝大部分人在做职业选择的时候，都会以自己最擅长的技能为第一选择，你擅长设计，不可能去投一个开发岗位，你擅长开发，也不可能去寻求一份产品工作。但是我要告诉你们这是错误的，我一直认为选择职业要以提升自身能力为第一优先，不管是你所擅长的方向还是你从没接触的领域。至于你擅长开发，而不会去投递产品岗，本质上是因为你知道肯定不会被录取。</p>
-<p>但是公司内部，技术转业务、转管理，这是一次免费的学习机会，而且薪资、级别很可能还会提升，我想这世上再也没有给你免费学习提升自己能力，又给你发比较高的薪水的机会了吧？</p>
-<p>从这个角度出发，我想你应该不会再犹豫了。而我很早就明白这个道理，所以，在公司需要我转岗管理的时候毫不犹豫的转岗，这大半年的时间投入在技术的精力确实牺牲了不少，但是同样我也学习了很多，比如如何管理团队，参与业务、产品，到后面更深的理解商业，参与公司最高层次的决策等。</p>
-<p>这些可能如果单纯的做个技术人是我很难接触到的，而且我也从不知道自己在别的领域同样也有潜力。</p>
-<p>所以，请一定多接触下技术之外的世界，技术固然重要，但是你不试着接触下别的领域，你永远不知道你自己还有别的潜力没有发挥。</p>
-<h3>多向身边各行各业的人学习</h3>
-<p>上面说了，请尽量多接触别的领域，很多时候在你没接触过之前就贸然说自己不感兴趣、来不了之类的话，只是你在为你的懒惰找借口而已。只有接触过，亲自尝试过才有资格说不感兴趣。而怎么接触别的领域呢？</p>
-<p>就是多向身边的人学习，你身边有大量的专业人才，设计师、产品经理、运营总监、销售经理等等，这些最宝贵的资源你却从没有好好利用，他们每一个人在他们的领域都是专业的，而你却只顾低头搞技术，从没有跟他们交流过，殊不知他们的身上可能有各种技能、思想、素养值得你学习，交流的多了，你可能会突然发现，除了技术之外，还有很好玩的东西可以学习尝试，不奢望成为职业，培养一门兴趣，增加一项技能也是极好的。</p>
-<h3>提高你的沟通表达能力</h3>
-<p>职场中有没有遇到过这种现象，跟部分人讨论事情总觉得不是在一个频道，这其实本质上就是沟通能力与表达能力的问题。工程师中尤其缺乏这种能力，因为长期跟机器打交道，很少跟人接触，自然沟通表达能力较弱，但是这不是借口，为什么有的工程师交流起来很顺畅，而有的就很难交流？</p>
-<p>说白了，沟通表达能力其实是情商的体现，程序员相信智商都挺高，然而情商相对较缺乏。</p>
-<p>举个例子，听说产品经理又要改需求了:</p>
-<p>情商低的程序员通常内心 OS 是：「傻逼，又他妈改需求，真是废物！」，但是倒不敢直接说出来，顶多说：「卧槽，怎么又改了？改了多少次了？老子没法做下去了...」</p>
-<p>情商高的程序员内心 OS 是：「傻逼，又他妈改需求，真是废物！」，嘴里说的是：「这改的有点稍频繁吧？这次为什么要这么改？对用户来说有什么区别？体验更好些么？」，如果改的不合理，还会跟产品说明不合理的地方在哪里。</p>
-<p>第一种程序员通常是心里不爽，即使觉得需求不合理，但是也不得不做所谓的傻逼产品经理的需求改动，而第二种程序员如果觉得需求不合理，很可能通过一番交流之后，让产品经理乖乖的不改需求了。</p>
-<p>不止工作中，我认为沟通能力与表达能力是各行各业，不管工作、生活都非常重要的一个能力。那么沟通表达能力有没有一些技巧呢？</p>
-<p>当然有，答案就是**「换位思考」**。试想如果你能从对方的角度去思考问题，那就会避免很多情绪，比如程序员可能会想：产品经理改需求那肯定不是平白无故的故意改需求，一定是从用户角度出发，且听听原因吧。而如果你懂得换位思考，在跟非业内人交流的时候，你肯定会考虑到对方的专业、方向，不再用你自己领域的术语跟他们交流了，而会想方设法从对方的角度重新组织语言，沟通交流起来会更顺畅，也能极大的提高沟通效率。</p>
-<p>那么，有没有一些办法能够锻炼自己的沟通与表达能力呢？我自己的实践是，多参与团队讨论，多与人交流，甚至多写都可以有帮助。</p>
-<p>等你真的能心平气和，说服产品经理心甘情愿把改的需求撤回的时候，那么，你的沟通表达能力就有了质的进步。</p>
-<h3>努力赚钱</h3>
-<p>说到底，我们认真搞技术就是为了赚钱，不用为钱困扰，这样我们就可以安心做自己喜欢的事，过自己想要的生活。但是你的技术真的发挥了最大的价值么？可能你空有一身好武艺，但是却没有好好利用。在公司工作，只是你技术发挥价值的一部分，但是你不应该只满足于这点回报。你得相信，公司付给你的薪酬要远少于你实际能创造的价值，工作之外，你还有大把的业余时间可以利用，让你的技术得到更多额外的回报。</p>
-<p>可能你是接私活、录制收费课程、写书、做技术顾问、做个 App 或者网站等，赚钱的同时，你还可以培养其他方面的能力，或者提升名气，这都是用技术，在为你的未来投资。这种赚钱方式丢人么？简直可笑，技术是自己的能力，利用自己能力，付出了宝贵的时间，不偷不抢，这种赚钱何来丢人一说？我反而认为这是受人尊敬的行为，因为所有为梦想而努力的人，都应该受到尊敬！</p>
-<p>当然，如果你的技术能力还不过关，那么请先以提升技术能力为第一导向，之后再考虑如何利用你的技术，帮你创造更多的财富。</p>
-<p>别觉得赚钱很俗，<strong>我们努力赚钱的意义，都只是为了拥有掌控命运的权利而已！</strong></p>
-<h3>积累人脉</h3>
-<p>之前有一个话题争论很火，就是「CTO 要不要写代码？」，我个人认为这个问题有什么过多争论的，CTO 不一定需要写代码，只需要他能搞定事情就行，不管是自己出马，还是让别人来搞定，总之能搞定各种事情就是一个优秀的 CTO。</p>
-<p>其中让别人来搞定就需要很广的人脉，而人脉是需要积累的，不管在任何地方，人脉的重要性不言而喻，我就不过多解释了。至于如何积累人脉呢？我想有各种方式与渠道，你以为有些人宁愿花几千块甚至上万块门票去参加一些技术交流会真的是去学习技术的么？那就太天真的，很大的可能只是为了去认识一些行业牛人，积累一些人脉而已。不过想积累人脉，请记住最重要的一点，你不能只奢望那些人脉给你提供什么，你得先想清楚你能给他们带来什么，所有人的时间都是宝贵的，任何人都没有责任一直给你提供无偿帮助。</p>
-<p>最后，以上是我自己的看法与人生经验，不期望每个人都认同，仅做参考，不喜勿喷。无论如何，这些人生经验在别处可是没人愿意分享出来的，希望对你们有点用。</p>
-<p>**注：**本文转自stormZhang,微信公众号AndroidDeveloper</p>
-
+              <h3 id="摆脱技术性思维"><a href="#摆脱技术性思维" class="headerlink" title="摆脱技术性思维"></a>摆脱技术性思维</h3><p>技术人最大的优势就在于思维缜密，考虑事情比较全面，逻辑性较强。产品经理提出一些天马行空的想法时，总能第一时间评估可行性，给出实现方案，让看似缥缈的想法变成现实。</p>
+<p>然而这种技术性思维很容易形成一种思维定式，直接导致的结果就是不管任何事，总是 if…else，总是从技术的角度出发去考虑事情。这反而会成为技术人的一个限制，造成思维局限，要知道这世界上的事情并不一定非是即否的，很多时候从技术的角度去思考问题反而会大打折扣。
+          
       
     </div>
     
@@ -719,6 +615,10 @@ printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/31/20161231/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -767,49 +667,9 @@ printf(&quot;%s\n&quot;,p1);//  结果：******789 部分覆盖
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>内存泄露</h3>
-<p>也称作“存储渗漏”　,用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。即所谓内存泄漏。</p>
-<h4>内存泄漏概念</h4>
-<p><strong>简单的说就是申请了一块内存空间，使用完毕后没有释放掉</strong>。它的一般表现方式是程序运行时间越长，占用内存越多，最终用尽全部内存，整个系统崩溃。由程序申请的一块内存，且没有任何一个指针指向它&lt;!--more--&gt;，那么这块内存就泄露了。</p>
-<h4>泄漏的分类</h4>
-<p>以发生的方式来分类，内存泄漏可以分为4类：</p>
-<p>1.<strong>常发性内存泄漏</strong>。发生内存泄漏的代码会被多次执行到，每次被执行的时候都会导致一块内存泄漏。</p>
-<p>2.<strong>偶发性内存泄漏</strong>。发生内存泄漏的代码只有在某些特定环境或操作过程下才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性的也许就变成了常发性的。所以测试环境和测试方法对检测内存泄漏至关重要。</p>
-<p>3.<strong>一次性内存泄漏</strong>。发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块仅且一块内存发生泄漏。比如，在类的构造函数中分配内存，在析构函数中却没有释放该内存，所以内存泄漏只会发生一次。</p>
-<p>4.<strong>隐式内存泄漏</strong>。程序在运行过程中不停的分配内存，但是直到结束的时候才释放内存。严格的说这里并没有发生内存泄漏，因为最终程序释放了所有申请的内存。但是对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致最终耗尽系统的所有内存。所以，我们称这类内存泄漏为隐式内存泄漏。</p>
-<p>从用户使用程序的角度来看，内存泄漏本身不会产生什么危害，作为一般的用户，根本感觉不到内存泄漏的存在。真正有危害的是内存泄漏的堆积，这会最终消耗尽系统所有的内存。从这个角度来说，一次性内存泄漏并没有什么危害，因为它不会堆积，而隐式内存泄漏危害性则非常大，因为较之于常发性和偶发性内存泄漏它更难被检测到。</p>
-<h4>内存泄漏的表现</h4>
-<p>内存泄漏或者是说，资源耗尽后，系统会表现出什么现象呢？</p>
-<p>1.cpu资源耗尽：估计是机器没有反应了，键盘，鼠标，以及网络等等。这个在windows上经常看见，特别是中了毒。
-2.进程id耗尽：没法创建新的进程了，串口或者telnet都没法创建了。</p>
-<p>3.硬盘耗尽：机器要死了，交换内存没法用，日志也没法用了，死是很正常的。</p>
-<p>内存泄漏或者内存耗尽：新的连接无法创建，free的内存比较少。发生内存泄漏的程序很多，但是要想产生一定的后果，就需要这个进程是无限循环的，是个服务进程。当然，内核也是无限循环的，所以，如果内核发生了内存泄漏，情况就更加不妙。内存泄漏是一种很难定位和跟踪的错误，目前还没看到有什么好用的工具（当然，用户空间有一些工具，有静态分析的，也会动态分析的，但是找内核的内存泄漏，没有好的开源工具）</p>
-<p>内存泄漏和对象的引用计数有很大的关系，再加上c/c++都没有自动的垃圾回收机制，如果没有手动释放内存，问题就会出现。如果要避免这个问题，还是要从代码上入手，良好的编码习惯和规范，是避免错误的不二法门。</p>
-<p><strong>一般我们常说的内存泄漏是指堆内存的泄漏</strong>。　堆内存是指程序从堆中分配的，大小任意的（内存块的大小可以在程序运行期决定），使用完后必须显示释放的内存。　应用程序一般使用malloc，new等函数从堆中分配到一块内存，使用完后，程序必须负责相应的调用free或delete释放该内存块，否则，这块内存就不能被再次使用，我们就说这块内存泄漏了。</p>
-<h3>野指针</h3>
-<p><strong>“野指针”不是NULL指针，是指向“垃圾”内存的指针</strong>。人们一般不会错用NULL指针，因为用if语句很容易判断。但是“野指针”是很危险的，if语句对它不起作用。野指针的成因主要有两种：</p>
-<p>1.<strong>指针变量没有被初始化</strong>。任何指针变量刚被创建时不会自动成为NULL指针，它的缺省值是随机的，它会乱指一气。所以，指针变量在创建的同时应当被初始化，要么将指针设置为NULL，要么让它指向合法的内存。</p>
-<p>2.<strong>指针p被free或者delete之后，没有置为NULL，让人误以为p是个合法的指针</strong>。别看free和delete的名字恶狠狠的（尤其是delete），它们只是把指针所指的内存给释放掉，但并没有把指针本身干掉。通常会用语句if (p != NULL)进行防错处理。很遗憾，此时if语句起不到防错作用，因为即便p不是NULL指针，它也不指向合法的内存块。</p>
-<p>例：</p>
-<pre><code>char *p = (char *) malloc(100);
-
-strcpy(p, “hello”);
-
-printf(“%s ”,p);
-
-free(p); // p 所指的内存被释放，但是p所指的地址仍然不变
-
-if(p != NULL) // 没有起到防错作用
-
-strcpy(p, “world”); // 出错
-
-printf(“%s \n”,p);
-</code></pre>
-<p>以上代码的输出结果是helloworld。</p>
-<p>free()释放的是指针指向的内存！注意！释放的是内存，不是指针！这点非常非常重要！指针是一个变量，只有程序结束时才被销毁。释放了内存空间后，原来指向这块空间的指针还是存在！只不过现在指针指向的内容的垃圾，是未定义的，所以说是垃圾。因此，前面我已经说过了，释放内存后把指针指向NULL，防止指针在后面不小心又被解引用了。非常重要啊这一点！
-通俗点说，free的作用就是把你合法居住的房子，取消你的居住资格，而没有拆房子，你还可以去那个房子住，但是警察(system)可以在任何时候把你赶走。</p>
-<p>另外一个要注意的问题：<strong>不要返回指向栈内存的指针或引用，因为栈内存在函数结束时会被释放。</strong></p>
-
+              <h3 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h3><p>也称作“存储渗漏”　,用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。即所谓内存泄漏。</p>
+<h4 id="内存泄漏概念"><a href="#内存泄漏概念" class="headerlink" title="内存泄漏概念"></a>内存泄漏概念</h4><p>　　<strong>简单的说就是申请了一块内存空间，使用完毕后没有释放掉</strong>。它的一般表现方式是程序运行时间越长，占用内存越多，最终用尽全部内存，整个系统崩溃。由程序申请的一块内存，且没有任何一个指针指向它
+          
       
     </div>
     
@@ -826,6 +686,10 @@ printf(“%s \n”,p);
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/30/20161230/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -874,124 +738,13 @@ printf(“%s \n”,p);
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>创建字典</h3>
-<p>&gt;&gt;&gt; d1 = {}</p>
-<p>&gt;&gt;&gt; d2 = {'player':'QVOD','game':'kw'}</p>
-<p>&gt;&gt;&gt; d1,d2</p>
-<p>({}, {'player': 'QVOD', 'game': 'kw'})</p>
-<p>&gt;&gt;&gt; d3 = dict((['name','alex'],['sex','man']))</p>
-<p>&gt;&gt;&gt; d3
-&lt;!--more--&gt;
-{'name': 'alex', 'sex': 'man'}</p>
-<p>&gt;&gt;&gt; d33 = d3.copy()</p>
-<p>&gt;&gt;&gt; d33</p>
-<p>{'name': 'alex', 'sex': 'man'}</p>
-<p>&gt;&gt;&gt; d4 = {}.fromkeys(('alex','zhou'),1)</p>
-<p>&gt;&gt;&gt; d4</p>
-<p>{'alex': 1, 'zhou': 1}</p>
-<p>&gt;&gt;&gt; d5 = {}.fromkeys(('alex','zhou'))</p>
-<p>&gt;&gt;&gt; d5</p>
-<p>{'alex': None, 'zhou': None}</p>
-<h3>遍历字典</h3>
-<p>ps：访问一个不存在的key时，会发生KeyError异常，访问前可使用in或not in判断一下。</p>
-<p>d={&quot;name&quot;:&quot;python&quot;,&quot;english&quot;:33,&quot;math&quot;:35}</p>
-<p>print &quot;##for in &quot;</p>
-<p>for key in d:</p>
-<p>print '%s,%s' %(key,d[key])</p>
-<p>for i in d:</p>
-<p>print &quot;d[%s]=&quot; % i,dict[i]</p>
-<p>print &quot;##items&quot;</p>
-<p>for (k,v) in  d.items():</p>
-<p>print &quot;d[%s]=&quot; % k,v</p>
-<p>print &quot;##iteritems&quot;</p>
-<p>for k,v in d.iteritems():</p>
-<p>print &quot;d[%s]=&quot; % k,v</p>
-<p>&gt;&gt;&gt; d['name']</p>
-<p>'python'</p>
-<p>&gt;&gt;&gt; d2 = {'name':'alexzhou','age':100}</p>
-<p>&gt;&gt;&gt; print 'name: %s,age: %d' %(d2['name'],d2['age'])</p>
-<p>name: alexzhou,age: 100</p>
-<p>&gt;&gt;&gt; d2['sex']</p>
-<p>Traceback (most recent call last):</p>
-<p>File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</p>
-<p>KeyError: 'sex'</p>
-<p>&gt;&gt;&gt; 'sex' in d2</p>
-<p>False</p>
-<p>&gt;&gt;&gt; 'name' in d2</p>
-<p>True</p>
-<h3>更新字典</h3>
-<p>&gt;&gt;&gt; d = {'name':'alexzhou','age':100}</p>
-<p>&gt;&gt;&gt; d['age'] = 88</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'age': 88, 'name': 'alexzhou'}</p>
-<p>&gt;&gt;&gt; d.pop('age')</p>
-<p>88</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'name': 'alexzhou'}</p>
-<p>&gt;&gt;&gt; d.clear()</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{}</p>
-<h3>常用内建函数</h3>
-<h4>cmp()</h4>
-<p>字典的比较：首先是字典的大小，然后是键，最后是值</p>
-<p>&gt;&gt;&gt; d1 = {'abc':1,'efg':2}</p>
-<p>&gt;&gt;&gt; d2 = {'abc':1,'efg':2,'h':3}</p>
-<p>&gt;&gt;&gt; cmp(d1,d2)</p>
-<p>-1</p>
-<p>&gt;&gt;&gt; d3 = {'ab':1,'efg':2}</p>
-<p>&gt;&gt;&gt; cmp(d1,d3)</p>
-<p>1</p>
-<p>&gt;&gt;&gt; d4 = {'abc':1,'efg':3}</p>
-<p>&gt;&gt;&gt; cmp(d1,d4)
--1</p>
-<p>&gt;&gt;&gt; d5 = {'abc':1,'efg':2}</p>
-<p>&gt;&gt;&gt; cmp(d1,d5)</p>
-<p>0</p>
-<h4>len()</h4>
-<p>返回键值对的数目</p>
-<p>&gt;&gt;&gt; d = {'abc':1,'efg':2}
-&gt;&gt;&gt; len(d)
-2</p>
-<h4>keys()、values() 、items()</h4>
-<p>keys()返回一个包含字典所有键的列表</p>
-<p>values()返回一个包含字典所有值的列表</p>
-<p>items()返回一个包含键值元组的列表</p>
-<p>&gt;&gt;&gt; d = {'name':'alex','sex':'man'}</p>
-<p>&gt;&gt;&gt; d.keys()</p>
-<p>['name', 'sex']</p>
-<p>&gt;&gt;&gt; d.values()</p>
-<p>['alex', 'man']</p>
-<p>&gt;&gt;&gt; d.items()</p>
-<p>[('name', 'alex'), ('sex', 'man')]</p>
-<h4>dict.get(key,default=None)</h4>
-<p>返回字典中key对应的value，若key不存在则返回default</p>
-<p>&gt;&gt;&gt; d = {'name':'alex','sex':'man'}</p>
-<p>&gt;&gt;&gt; d.get('name','not exists')
-'alex'
-&gt;&gt;&gt; d.get('alex','not exists')
-'not exists'</p>
-<h4>dict.setdefault(key,default=None)</h4>
-<p>若key存在，则覆盖之前的值，若key不存在，则给字典添加key-value对</p>
-<p>&gt;&gt;&gt; d.setdefault('name','zhou')</p>
-<p>'alex'</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'name': 'alex', 'sex': 'man'}</p>
-<p>&gt;&gt;&gt; d.setdefault('haha','xixi')</p>
-<p>'xixi'</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'haha': 'xixi', 'name': 'alex', 'sex': 'man'}</p>
-<h4>dict.update(dict2)</h4>
-<p>将字典dict2的键值对添加到dict</p>
-<p>&gt;&gt;&gt; d = {'name':'alex','sex':'man'}</p>
-<p>&gt;&gt;&gt; d1 = {'age':100,'address':'shenzhen'}</p>
-<p>&gt;&gt;&gt; d.update(d1)</p>
-<p>&gt;&gt;&gt; d</p>
-<p>{'age': 100, 'address': 'shenzhen', 'name': 'alex', 'sex': 'man'}</p>
-<h4>sorted(dict)</h4>
-<p>返回一个有序的包含字典所有key的列表</p>
-<p>&gt;&gt;&gt; sorted(d)</p>
-<p>['address', 'age', 'name', 'sex']</p>
-
+              <h3 id="创建字典"><a href="#创建字典" class="headerlink" title="创建字典"></a>创建字典</h3><p>>&gt;&gt; d1 = {}</p>
+<p>>&gt;&gt; d2 = {‘player’:’QVOD’,’game’:’kw’}</p>
+<p>>&gt;&gt; d1,d2</p>
+<p>({}, {‘player’: ‘QVOD’, ‘game’: ‘kw’})</p>
+<p>>&gt;&gt; d3 = dict(([‘name’,’alex’],[‘sex’,’man’]))</p>
+<p>>&gt;&gt; d3<br>
+          
       
     </div>
     
@@ -1008,6 +761,10 @@ printf(“%s \n”,p);
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/29/20161229/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1056,125 +813,12 @@ printf(“%s \n”,p);
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>列表的创建</h3>
-<p>使用 [ ] 把数据包含起来，便可以创建一个列表了。</p>
+              <h3 id="列表的创建"><a href="#列表的创建" class="headerlink" title="列表的创建"></a>列表的创建</h3><p>使用 [ ] 把数据包含起来，便可以创建一个列表了。</p>
 <ol>
-<li>
-<p>[ ] 可以不包含任何数据，则表示创建一个空列表
-&gt;&gt;&gt; name = []</p>
+<li><p>[ ] 可以不包含任何数据，则表示创建一个空列表<br>>&gt;&gt; name = []</p>
 </li>
-<li>
-<p>[  ] 也可以包含多种数据类型的数据
-&gt;&gt;&gt; name = [&quot;damao&quot;, 30, &quot;ermao&quot;]
-&lt;!--more--&gt;</p>
-</li>
-</ol>
-<h3>列表的打印</h3>
-<ol>
-<li>
-<p>使用内置函数print() 便可打印整个列表里的数据”
-&gt;&gt;&gt; print(name)
-[&quot;damao&quot;, 30, &quot;ermao&quot;]</p>
-</li>
-<li>
-<p>当然也可以打印列表的某个下标的数据：
-&gt;&gt;&gt; print(name[0])
-damao</p>
-</li>
-<li>
-<p>也可以分片打印列表的某段下标的数据
-&gt;&gt;&gt; print(name[0:2])
-['damao', 30] #注意，没有打印name[2]的数据:)</p>
-</li>
-<li>
-<p>如果想要分别打印列表里的每个数据，只需要一个for就可以搞定：
-&gt;&gt;&gt; for each in name:
-print(each)
-damao
-30
-ermao</p>
-</li>
-<li>
-<p>当然也可以直接打印出列表内数据的个数：
-&gt;&gt;&gt; print(len(name))
-3</p>
-</li>
-</ol>
-<h3>列表的扩展</h3>
-<ol>
-<li>
-<p>我们可以在列表末尾追加一个任意数据类型数据：
-&gt;&gt;&gt; name.append([&quot;daoluan&quot;, 666])
-&gt;&gt;&gt; print(name)
-['damao', 30, 'ermao', ['daoluan', 666]]</p>
-</li>
-<li>
-<p>也可以在列表末尾追加一个列表里的所有数据：
-&gt;&gt;&gt; name.extend([&quot;sanmao&quot;, 10, &quot;simao&quot;])
-&gt;&gt;&gt; print(name)
-['damao', 30, 'ermao', ['daoluan', 666], 'sanmao', 10, 'simao']
-#注意，append和entend这两个方法看起来有些类似，但实际上是不同的。append只接受一个参数，但是这个参数可以是任意数据类型，比如列表和元组等，而且只是将这个数据追加到原列表后面独立存在。
-extend也是只接受一个参数，不同的是这个参数必须是一个列表，而且会把这个列表的每个元素拆分出来，依次追加到原列表后面。</p>
-</li>
-<li>
-<p>当然也可以在指定位置增加一个任意数据类型数据(append的既视感)：
-/# 第一个参数为指定的列表下标，第二个参数为增加的数据
-&gt;&gt;&gt; name.insert(3, 20)
-&gt;&gt;&gt; print(name)
-['damao', 30, 'ermao', 20, ['daoluan', 666], 'sanmao', 10, 'simao']</p>
-</li>
-</ol>
-<h3>列表的删除：</h3>
-<ol>
-<li>
-<p>删除列表末尾的一个数据：
-&gt;&gt;&gt; name.pop()
-&gt;&gt;&gt; print(name)
-['damao', 30, 'ermao', 20, ['daoluan', 666], 'sanmao', 10]</p>
-</li>
-<li>
-<p>也可以删除列表指定的某一个数据：
-&gt;&gt;&gt; name.remove(&quot;sanmao&quot;)
-&gt;&gt;&gt; print(name)
-['damao', 30, 'ermao', 20, ['daoluan', 666], 10]</p>
-</li>
-<li>
-<p>或者删除列表的某个下标的数据：
-&gt;&gt;&gt; del(name[4])
-&gt;&gt;&gt; print(name)
-['damao', 30, 'ermao', 20, 10]
-#注意，de()函数支持列表分片删除，同样的，也支持删除整个列表。</p>
-</li>
-</ol>
-<h3>列表的合并：</h3>
-<p>只需要像I + I + I = III一样，就可以合并多个列表：
-&gt;&gt;&gt; mao = name + [20, &quot;ermao&quot;] + [30, &quot;damao&quot;]
-&gt;&gt;&gt; print(mao)
-['damao', 30, 'ermao', 20, 10, 20, 'ermao', 30, 'damao']</p>
-<h3>列表的排序：</h3>
-<p>首先，列表里的每个元素类型相同才可以进行排序，对此我们可以选择手写排序算法，也可以选择Pythoy提供的更简便且强大的的方法：sort()和sorted()</p>
-<ol>
-<li>
-<p>原地排序：
-&gt;&gt;&gt; fruit = [&quot;banana&quot;, &quot;pear&quot;, &quot;orange&quot;, &quot;apple&quot;]
-&gt;&gt;&gt; fruit.sort()
-&gt;&gt;&gt; print(fruit)
-['apple', 'banana', 'orange', 'pear']
-# sort() 方法可以在原列表的基础上进行排序，同时改变原列表的顺序。</p>
-</li>
-<li>
-<p>复制排序：
-&gt;&gt;&gt; nums = [23, 12, -34, 0, 101, 2]
-&gt;&gt;&gt;newNums = sorted(nums)
-&gt;&gt;&gt; print(newNums)
-[-34, 0, 2, 12, 23, 101]
-&gt;&gt;&gt; print(nums)
-[23, 12, -34, 0, 101, 2]
-# sorted() 函数通过复制排序可以对几乎任何数据结构排序，同时返回一个新的排序后的数据结构，而且不会改变原数据结构的序列。
-#注意，不管使用sort()还是使用sorted()，默认都是升序排序。如果想按照降序排序，只要传入 reverse = True 参数就可以啦，比如 fruit.sort(reverse = True) 或者 newNums = sorted(nums, reverse = True)</p>
-</li>
-</ol>
-
+<li><p>[  ] 也可以包含多种数据类型的数据<br>>&gt;&gt; name = [“damao”, 30, “ermao”]</p>
+          
       
     </div>
     
@@ -1191,6 +835,10 @@ extend也是只接受一个参数，不同的是这个参数必须是一个列�
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/28/20161228/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1239,90 +887,13 @@ extend也是只接受一个参数，不同的是这个参数必须是一个列�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>字母处理</h3>
-<p>1.string.capitalize()</p>
+              <h3 id="字母处理"><a href="#字母处理" class="headerlink" title="字母处理"></a>字母处理</h3><p>1.string.capitalize()</p>
 <p>返回元字符串，且将字符串第一个字母转为大写，其它字母小写</p>
 <p>2.string.title()</p>
 <p>返回元字符串，且将字符串第一个字母转为大写，其它字母小写</p>
 <p>3.string.swapcase()</p>
 <p>用于对字符串的大小写字母进行转换，小写字符转为大写，大写字母转为小写</p>
-<p>&lt;!--more--&gt;
-4.string.upper()</p>
-<p>将字符串全部转为大写</p>
-<p>5.string.lower()</p>
-<p>将字符串全部转为小写</p>
-<h3>去除空格或者指定字符串</h3>
-<p>1.string.strip([string])</p>
-<p>去除字符串中首尾的字符串，不带参数默认去除空格</p>
-<p>2.string.lstrip([string])</p>
-<p>去除字符串左边字符串，不带参数默认去除空格</p>
-<p>3.string.rstrip([string])</p>
-<p>去除字符串右边字符串，不带参数默认去除空格</p>
-<h3>格式化对齐</h3>
-<p>1.string.center(width[, fillchar])</p>
-<p>返回一个原字符串居中对齐，width为总长度，两边用一个字符fillchar填充，如果指定的长度小于原字符串的长度则返回原字符串。注意：如果fillchar超过1个长度或为非字符串或为汉字，则会报出异常</p>
-<p>2.string.ljust(width[, fillchar])</p>
-<p>返回原字符串左对齐,并使用空格填充至指定长度的新字符串，如果指定的长度小于原字符串的长度则返回原字符串。注意：如果fillchar超过1个长度或为非字符串或为汉字，则会报出异常</p>
-<p>3.string.rjust(width[, fillchar])</p>
-<p>返回原字符串右对齐,并使用空格填充至指定长度的新字符串，如果指定的长度小于字符串的长度则返回原字符串。注意：如果fillchar超过1个长度或为非字符串或为汉字，则会报出异常</p>
-<p>4.string.zfill()</p>
-<p>返回指定长度的字符串，原字符串右对齐，前面填充0</p>
-<h3>替换</h3>
-<p>1.string.replace(old, new[, count])</p>
-<p>用新的字符替换老字符，还可以指定替换的个数，默认全部替换</p>
-<p>2.string.expandtabs([n])</p>
-<p>将字符串中(tab符号)\t转换成n个空格</p>
-<h3>字符串搜索</h3>
-<p>1.string.find(sub [,start [,end]])</p>
-<p>返回sub字符串第一次出现的索引位置，可以通过start和stop参数设置搜索范围，如果未找到sub时返回-1</p>
-<p>2.string.rfind(sub [,start [,end]])</p>
-<p>返回sub字符串最后一次出现的索引位置，如果没有匹配项则返回-1，可以通过start和stop参数设置搜索范围</p>
-<p>3.string.index(sub [,start [,end]])</p>
-<p>类似于string.find()方法。注意：未找到sub时会报出异常</p>
-<p>4.string.rindex(sub [,start [,end]])</p>
-<p>类似于string.rfind()方法。注意：未找到sub时会报出异常</p>
-<h3>字符串分割</h3>
-<p>1.string.split([sep [,maxsplit]])</p>
-<p>用来根据指定的分隔符将字符串进行分割，不包含分隔符，结果存为列表，不指定sep时，默认将将空格作为分隔符</p>
-<p>2.string.partition(sep)</p>
-<p>用来根据指定的分隔符将字符串进行分割，分割点为首次出现sep的地方，且包含分隔符，结果存为元组，且固定为3个元素，如果sep不存在字符串中，则后面2个元素为空</p>
-<p>3.string.rpartiton()</p>
-<p>用来根据指定的分隔符将字符串进行分割，分割点为最后一次出现sep的地方，且包含分隔符，结果存为元组，且固定为3个元素，如果sep不存在字符串中，则前面2个元素为空</p>
-<h3>字符串判断</h3>
-<p>1.string.isupper()</p>
-<p>返回字符串中是否全为大写 --&gt; True/False</p>
-<p>2.string.islower()</p>
-<p>返回字符串中是否全为小写 --&gt; True/False</p>
-<p>3.string.isdigit()</p>
-<p>返回字符串中是否只包含数字 --&gt; True/False</p>
-<p>4.string.isalpha()</p>
-<p>返回字符串中是否只包含字母 --&gt; True/False</p>
-<p>5.string.isalnum()</p>
-<p>返回字符串中是否只包含字母或数字 --&gt; True/False</p>
-<p>6.string.isspace()</p>
-<p>返回字符串中是否只包含空格（tab也算空格） --&gt; True/False</p>
-<p>7.string.istitle()</p>
-<p>返回字符串中首字母是否大写 --&gt; True/False</p>
-<p>8.string.startswith(prefix[, start[, end]])</p>
-<p>返回字符串是否以某字符串开始，可以通过start和stop参数设置搜索范围</p>
-<p>9.string.endswith(suffix[, start[, end]])</p>
-<p>返回字符串是否以某个字符串结束 可以通过start和stop参数设置搜索范围</p>
-<h3>其它</h3>
-<p>1.string.count(sub[, start[, end]])</p>
-<p>计数字符串中某子集的数量，可以通过start和stop参数设置搜索范围</p>
-<p>2.len(string)</p>
-<p>获取字符串的长度</p>
-<p>3.list(string)</p>
-<p>字符串转列表</p>
-<p>4.string.join(iterable)</p>
-<p>列表转字符串，用于将序列中的元素以指定的字符string连接生成一个新的字符串。注意：iterable只能是字符串类型，否则会报出异常</p>
-<p>5.string.encode(encoding='UTF-8',errors='strict')</p>
-<p>以 encoding 指定的编码格式编码字符串</p>
-<p>6.string.decode(encoding='UTF-8',errors='strict')</p>
-<p>解码字符串，出错默认报ValueError,除非errors是ignore或replace</p>
-<p>7.string.translate(table [,deletechars])</p>
-<p>根据参数table给出的表(包含 256 个字符)转换字符串的字符, 要过滤掉的字符放到deletechars参数中</p>
-
+          
       
     </div>
     
@@ -1339,6 +910,10 @@ extend也是只接受一个参数，不同的是这个参数必须是一个列�
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/12/27/20161227/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1387,34 +962,14 @@ extend也是只接受一个参数，不同的是这个参数必须是一个列�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>throws</p>
+              <p>throws</p>
 <blockquote>
 <p>用在方法声明后面，跟的是异常类名</p>
-</blockquote>
-<blockquote>
 <p>可以跟多个异常类名，用逗号隔开</p>
-</blockquote>
-<blockquote>
 <p>表示抛出异常，由该方法的调用者来处理</p>
-</blockquote>
-<blockquote>
 <p>throws表示出现异常的一种可能性，并不一定会发生这些异常</p>
 </blockquote>
-<p>&lt;!--more--&gt;
-throw</p>
-<blockquote>
-<p>用在方法体内，跟的是异常对象名</p>
-</blockquote>
-<blockquote>
-<p>只能抛出一个异常对象名</p>
-</blockquote>
-<blockquote>
-<p>表示抛出异常，由方法体内的语句处理</p>
-</blockquote>
-<blockquote>
-<p>throw则是抛出了异常，执行throw则一定抛出了某种异常</p>
-</blockquote>
-
+          
       
     </div>
     
@@ -1432,202 +987,9 @@ throw</p>
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20161225" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/25/20161225/" class="article-date">
-      <time datetime="2016-12-24T16:00:00.000Z" itemprop="datePublished">2016-12-25</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <pre><code>	private void initHeaderView(){  //初始化headerView
-	
-	mHeaderView = View.inflate(getContext(), R.layout.refresh_header, null);//获得headerView
-	this.addHeaderView(mHeaderView);//将headerView加在listView的上面
-
-	tvTitle = (TextView) mHeaderView.findViewById(R.id.tv_title);//刷新的提示文字
-	tvTime = (TextView) mHeaderView.findViewById(R.id.tv_time);//刷新的时间显示
-	ivArrow = (ImageView) mHeaderView.findViewById(R.id.iv_arr);//下拉箭头
-	pbProgress = (ProgressBar) mHeaderView.findViewById(R.id.pb_progress);//旋转的进度条
-	mHeaderView.measure(0, 0);
-	mHeaderViewHeight = mHeaderView.getMeasuredHeight();//测得headerView的高度
-
-	mHeaderView.setPadding(0, -mHeaderViewHeight, 0, 0);// 隐藏头布局
-	initArrowAnim();// 初始化箭头动画
-
-	}
-</code></pre>
-<p>&lt;!--more--&gt;</p>
-<pre><code>@Override
-public boolean onTouchEvent(MotionEvent ev) {
-	switch (ev.getAction()) {
-	case MotionEvent.ACTION_DOWN://手指按在屏幕上时
-		startY = (int) ev.getRawY();//获取手指所按的Y坐标
-		break;
-	case MotionEvent.ACTION_MOVE://手指在屏幕上滑动
-		if (startY == -1) {// 确保startY有效
-			startY = (int) ev.getRawY();
-		}
-
-		if (mCurrrentState == STATE_REFRESHING) {// 正在刷新时不做处理
-			break;
-		}
-
-		int endY = (int) ev.getRawY();//时刻获取手指滑动时的坐标
-		int dy = endY - startY;// 移动偏移量
-
-		if (dy &gt; 0 &amp;&amp; getFirstVisiblePosition() == 0) {// 只有下拉并且当前是第一个item,才允许下拉
-	/* 计算padding，最开始时padding为负的mHeaderViewHeight，
-	此时HeaderView隐藏在Listview上方,随着手指下滑，移动偏移量dy增大，HeaderView一点点被拖出来显示在屏幕上，
-	当dy正好等于mHeaderViewHeight时，padding为0，也就说此时HeaderView正好完全在屏幕上方显示出来*/
-			int padding = dy - mHeaderViewHeight;
-			mHeaderView.setPadding(0, padding, 0, 0);// 设置当前padding
-
-			if (padding &gt; 0 &amp;&amp; mCurrrentState != STATE_RELEASE_REFRESH) {
-			/* 当padding大于0时，说明此时HeaderView已经完全展示出来,可以松开手指进行刷新了，
-			如果此时状态不为松开刷新状态则将状态改为松开刷新，提示用户。*/
-				mCurrrentState = STATE_RELEASE_REFRESH;
-				refreshState();
-			} else if (padding &lt; 0 &amp;&amp; mCurrrentState != STATE_PULL_REFRESH) {
-	/* 如果padding小于0，这说明HeaderView并没有完全展示出来，
-	用户可以继续下拉，此时如果状态不为下拉刷新则将状态改为下拉刷新提示用户。*/
-				mCurrrentState = STATE_PULL_REFRESH;
-				refreshState();
-			}
-
-			return true;
-		}
-
-		break;
-	case MotionEvent.ACTION_UP://手指抬起
-		startY = -1;// 重置
-
-		if (mCurrrentState == STATE_RELEASE_REFRESH){//如果此时状态为松开刷新
-			mCurrrentState = STATE_REFRESHING;//将状态改为正在刷新 正在刷新
-			mHeaderView.setPadding(0, 0, 0, 0);// 显示HeaderView
-			refreshState();
-		} else if (mCurrrentState == STATE_PULL_REFRESH) {//如果此时状态为下拉刷新,说明HeaderView没有
-		被完全显示出来，按照实际,只有完全拖拽显示出来才进行刷新
-			mHeaderView.setPadding(0, -mHeaderViewHeight, 0, 0);// 将HeaderView收缩回去隐藏起来，
-		}
-
-		break;
-
-	default:
-		break;
-	}
-	return super.onTouchEvent(ev);
-	}
-
-
-
-	 /*
-	  * 刷新下拉控件的布局
-	 */
-	private void refreshState() {
-	switch (mCurrrentState) {
-	case STATE_PULL_REFRESH:
-		tvTitle.setText(&quot;下拉刷新&quot;);//更改状态显示文字
-		ivArrow.setVisibility(View.VISIBLE);//设置下拉箭头可见
-		pbProgress.setVisibility(View.INVISIBLE);//进度条不可见
-		ivArrow.startAnimation(animDown);开启动画
-		break;
-	case STATE_RELEASE_REFRESH:
-		tvTitle.setText(&quot;松开刷新&quot;);
-		ivArrow.setVisibility(View.VISIBLE);
-		pbProgress.setVisibility(View.INVISIBLE);
-		ivArrow.startAnimation(animUp);
-		break;
-	case STATE_REFRESHING:
-		tvTitle.setText(&quot;正在刷新...&quot;);
-		ivArrow.clearAnimation();// 必须先清除动画,才能隐藏
-		ivArrow.setVisibility(View.INVISIBLE);
-		pbProgress.setVisibility(View.VISIBLE);
-
-		if (mListener != null) {
-			mListener.onRefresh();
-		}
-		break;
-
-	default:
-		break;
-	}
-}
-
-
-
-	/**
-	 * 初始化箭头动画
-	 */
-	private void initArrowAnim() {
-	// 箭头向上动画
-	animUp = new RotateAnimation(0, -180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-	animUp.setDuration(200);
-	animUp.setFillAfter(true);
-
-	// 箭头向下动画
-	animDown = new RotateAnimation(-180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-	animDown.setDuration(200);
-	animDown.setFillAfter(true);
-
-}
-</code></pre>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-    </div>
-
+        <p class="article-more-link">
+          <a href="/2016/12/26/20161226/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

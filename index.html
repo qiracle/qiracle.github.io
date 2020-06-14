@@ -305,9 +305,76 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.ParameterizedType;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Student st=<span class="keyword">new</span> Student();</span><br><span class="line">Class clazz=st.getClass();</span><br><span class="line"><span class="comment">//getSuperclass()获得该类的父类</span></span><br><span class="line">System.out.println(clazz.getSuperclass());</span><br><span class="line"><span class="comment">//getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">//Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line">Type type=clazz.getGenericSuperclass();</span><br><span class="line">System.out.println(type);</span><br><span class="line"><span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">ParameterizedType p=(ParameterizedType)type;</span><br><span class="line"><span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">Class c=(Class) p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">System.out.println(c);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.ParameterizedType;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Student st=<span class="keyword">new</span> Student();</span><br><span class="line">Class clazz=st.getClass();</span><br><span class="line"><span class="comment">//getSuperclass()获得该类的父类</span></span><br><span class="line">System.out.println(clazz.getSuperclass());</span><br><span class="line"><span class="comment">//getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">//Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line">Type type=clazz.getGenericSuperclass();</span><br><span class="line">System.out.println(type);</span><br><span class="line"><span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">ParameterizedType p=(ParameterizedType)type;</span><br><span class="line"><span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">Class c=(Class) p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">System.out.println(c);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>打印结果：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class com.test.Person</span><br><span class="line">com.test.Person&lt;com.test.Student&gt;</span><br><span class="line">class com.test.Student</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class com.test.Person</span><br><span class="line">com.test.Person&lt;com.test.Student&gt;</span><br><span class="line">class com.test.Student</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2020061402" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/06/14/2020061402/" class="article-date">
+      <time datetime="2020-06-13T16:00:00.000Z" itemprop="datePublished">2020-06-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/14/2020061402/">java 动态代理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代理的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ManToolsFactory</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaFactory</span> <span class="keyword">implements</span> <span class="title">ManToolsFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"按需求定制了一个size为"</span>+size+<span class="string">"的model"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MarkCompany</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*持有的真实对象*/</span></span><br><span class="line">    <span class="keyword">private</span> Object factory;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFactory</span><span class="params">(Object factory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.factory = factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过Proxy获得动态代理对象*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxyInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(factory.getClass().getClassLoader(),</span><br><span class="line">                factory.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过动态代理对象方法进行增强*/</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span><br><span class="line">            <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">  </span><br><span class="line">        Object result = method.invoke(factory, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*动态代理模式---------------*/</span></span><br><span class="line">        ManToolsFactory aafactory = <span class="keyword">new</span> AaFactory();</span><br><span class="line">        MarkCompany markCompany = <span class="keyword">new</span> MarkCompany();</span><br><span class="line"></span><br><span class="line">        markCompany.setFactory(aafactory);</span><br><span class="line">        ManToolsFactory employee1</span><br><span class="line">                = (ManToolsFactory)markCompany.getProxyInstance();</span><br><span class="line">        employee1.saleManTools(<span class="string">"E"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -373,35 +440,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>为什么要使用线程池</h3>
-<p>1.减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。创建线程关闭线程花销是比较大的。</p>
-<p>2.可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。&lt;!-- more --&gt;</p>
-<p>Java里面线程池的顶级接口是Executor，但是严格意义上讲Executor并不是一个线程池，而只是一个执行线程的工具。真正的线程池接口是ExecutorService。
-(参考  https://www.zhihu.com/question/41134816/answer/1086805195)</p>
-<h3>线程池的使用</h3>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseThreadPool</span> </span>&#123;</span><br><span class="line">   <span class="comment">//工作线程</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String taskName;</span><br><span class="line">        <span class="keyword">private</span> Random r = <span class="keyword">new</span> Random();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Worker</span><span class="params">(String taskName)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.taskName = taskName;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> taskName;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()</span><br><span class="line">                  +<span class="string">" process the task : "</span> + taskName);</span><br><span class="line">            SleepTools.ms(r.nextInt(<span class="number">100</span>)*<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">CallWorker</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt;</span>&#123;</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">private</span> String taskName;</span><br><span class="line">        <span class="keyword">private</span> Random r = <span class="keyword">new</span> Random();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CallWorker</span><span class="params">(String taskName)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.taskName = taskName;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> taskName;</span><br><span class="line">        &#125;      </span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()</span><br><span class="line">                  +<span class="string">" process the task : "</span> + taskName);</span><br><span class="line">            <span class="keyword">return</span> Thread.currentThread().getName()+<span class="string">":"</span>+r.nextInt(<span class="number">100</span>)*<span class="number">5</span>;</span><br><span class="line">      &#125;</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span><br><span class="line">            <span class="keyword">throws</span> InterruptedException, ExecutionException</span><br><span class="line">    </span>&#123;</span><br><span class="line">       ExecutorService pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,TimeUnit.SECONDS,</span><br><span class="line">             <span class="keyword">new</span> ArrayBlockingQueue&lt;Runnable&gt;(<span class="number">10</span>),</span><br><span class="line">             <span class="keyword">new</span> ThreadPoolExecutor.DiscardOldestPolicy());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++) &#123;</span><br><span class="line">            Worker worker = <span class="keyword">new</span> Worker(<span class="string">"worker_"</span>+i);</span><br><span class="line">            pool.execute(worker);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++) &#123;</span><br><span class="line">            CallWorker callWorker = <span class="keyword">new</span> CallWorker(<span class="string">"callWorker_"</span>+i);</span><br><span class="line">            Future&lt;String&gt; result = pool.submit(callWorker);</span><br><span class="line">            System.out.println(result.get());</span><br><span class="line">        &#125;</span><br><span class="line">        pool.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3>线程池中几个参数的含义</h3>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor mExecutor = <span class="keyword">new</span> ThreadPoolExecutor(corePoolSize,<span class="comment">// 核心线程数  </span></span><br><span class="line">                        maximumPoolSize, <span class="comment">// 最大线程数  </span></span><br><span class="line">                        keepAliveTime, <span class="comment">// 闲置线程存活时间  </span></span><br><span class="line">                        TimeUnit.MILLISECONDS,<span class="comment">// 时间单位  </span></span><br><span class="line">                        <span class="keyword">new</span> LinkedBlockingDeque&lt;Runnable&gt;(),<span class="comment">// 线程队列  </span></span><br><span class="line">                        Executors.defaultThreadFactory(),<span class="comment">// 线程工厂  </span></span><br><span class="line">                        <span class="keyword">new</span> AbortPolicy()<span class="comment">// 队列已满,而且当前线程数已经超过最大线程数时的异常处理策略  </span></span><br><span class="line">                );</span><br></pre></td></tr></table></figure></p>
-<h3>四种拒绝策略</h3>
-<p>CallerRunsPolicy : 当线程池和队列都满时，任务将会被任务的调用方线程执行，如果线程池关闭，那么任务将会被抛弃
-AbortPolicy ：当线程池和队列都满时，再有任务进来直接抛出RejectedExecutionException异常
-DiscardPolicy: 当线程池和队列都满时，再有任务进来，默默的将任务抛弃
-DiscardOldestPolicy： 当线程池和队列都满时，再有任务进来，抛弃最老的未处理的任务即当前队列中排在最前面的任务，然后重试该新进来的任务，如果线程池关闭，那么任务将会被抛弃</p>
-<h3>阻塞队列BlockingQueue</h3>
-<p><strong>add(Object):</strong>  把 Object 加到 BlockingQueue 里,即如果 BlockingQueue 可以容纳,则返回 true, 否则招聘异常</p>
-<p>**offer(Object): **表示如果可能的话,将 Object 加到 BlockingQueue 里, 即如果 BlockingQueue 可以容纳,则返回true,否则返回false.</p>
-<p><strong>put(anObject): <strong>把 Object 加到 BlockingQueue 里, 如果 BlockQueue 没有空间,则调用此方法的线程被</strong>阻塞</strong>直到BlockingQueue里面有空间再继续.</p>
-<p><strong>poll(time):</strong> 取走 BlockingQueue 里排在首位的对象,若不能立即取出,则可以等time参数规定的时间,取不到时返回null</p>
-<p>**take(): **取走 BlockingQueue 里排在首位的对象,若 BlockingQueue 为空, <strong>阻塞</strong>进入等待状态直到Blocking有新的对象被加入为止</p>
-<h3>核心线程数的设置</h3>
-<p>任务类型：
-cpu密集型 不要超过cpu并行线程数：Runtime.getRuntime().availableProcessors()+1</p>
-<p>io密集型 Runtime.getRuntime().availableProcessors() x2</p>
-<h3>线程进入顺序</h3>
-<p>corePoolSize ---&gt; BlockingQueue ---&gt; maximumPoolSize</p>
-<p>若最大线程数也满了，再进入的线程按设置的拒绝策略执行。</p>
-<p><img src="http://qiracle.cn/img/20200321/2020032101.png" alt="java内存" title="线程池"></p>
-
+              <h3 id="为什么要使用线程池"><a href="#为什么要使用线程池" class="headerlink" title="为什么要使用线程池"></a>为什么要使用线程池</h3><p>1.减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。创建线程关闭线程花销是比较大的。</p>
+<p>2.可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。
+          
       
     </div>
     
@@ -418,6 +459,10 @@ cpu密集型 不要超过cpu并行线程数：Runtime.getRuntime().availableProc
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2020/03/21/20200321/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -466,64 +511,8 @@ cpu密集型 不要超过cpu并行线程数：Runtime.getRuntime().availableProc
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar。这里我重点介绍Android Studio如何导入classes.jar.&lt;!--more--&gt;</p>
-<p>1.考虑到 libs 目录下可能会有其他 jar 包，我们在app目录下建立 syslibs 文件夹，并将 classes.jar 包放入该路径，因为这里的 classes.jar 包只用于编译，无须打包进 apk 中。</p>
-<p>2.右键工程--&gt;【Open Module Settings】，点击左侧【Dependencies】，选择app，点击【+】选择【2 Jar Dependency】，添加jar包，如下图。</p>
-<p><img src="http://qiracle.cn/img/20200101/0101.png" alt=""></p>
-<p>3.经过步骤2之后，Module的build.gradle中，dependencies自动增加依赖配置 如下：</p>
-<p><code>implementation files('syslibs\\classes.jar')</code></p>
-<p>修改为:</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compileOnly files(&apos;syslibs\\classes.jar&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>这么做是因为我们使用该jar包只用于编译，不打包进apk中，该包里包含的是Android SDK，当apk运行到手机里时，手机里有运行所需的sdk环境。</p>
-<p>4.project 的 build.gradle添加如下代码:</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gradle.projectsEvaluated &#123;</span><br><span class="line">    tasks.withType(JavaCompile) &#123;</span><br><span class="line">        options.compilerArgs.add(&apos;-Xbootclasspath/p:app\\syslibs\\classes.jar&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>添加位置如下:</p>
-<p><img src="http://qiracle.cn/img/20200101/0102.png" alt=""></p>
-<p>5.修改jar包优先级，在Moduels的app.iml文件中找到我们的classes.jar包所在行</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;library&quot; name=&quot;Gradle: __local_aars__:D.\AndroidStudioProjects\Blue\app\syslibs\classes.jar:unspecified@jar&quot; level=&quot;project&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>将其移动到</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;jdk&quot; jdkName=&quot;Android API 28 Platform&quot; jdkType=&quot;Android SDK&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>之上。</p>
-<p>这么做是为了让项目编译时优先用我们提供的jar包里的SDK，而不是原有Android SDK。</p>
-<p>6.经过第5步之后，就能正常使用我们jar里的SDK了，但是，每次编译之后，app.iml 中的</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;jdk&quot; jdkName=&quot;Android API 28 Platform&quot; jdkType=&quot;Android SDK&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>又会被移动到最上面。下次编译时我们又得将他移动到</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;orderEntry type=&quot;library&quot; name=&quot;Gradle: __local_aars__:D.\AndroidStudioProjects\Blue\app\syslibs\classes.jar:unspecified@jar&quot; level=&quot;project&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>的后面，这样比较麻烦。网上提供了一种一劳永逸的方法，将下面的代码加入到Moudle的build.gradle里：</p>
-<pre><code>preBuild {
-    doLast {
- 
-    def imlFile = file(project.name + &quot;.iml&quot;)
- 
-    println 'Change ' + project.name + '.iml order'
- 
-    try {
- 
-        def parsedXml = (new XmlParser()).parse(imlFile)
- 
-        def jdkNode = parsedXml.component[1].orderEntry.find { it.'@type' == 'jdk' }
- 
-        parsedXml.component[1].remove(jdkNode)
- 
-        def sdkString = &quot;Android API &quot; + android.compileSdkVersion.substring(&quot;android-&quot;.length()) + &quot; Platform&quot;
- 
-        new Node(parsedXml.component[1], 'orderEntry', ['type': 'jdk', 'jdkName': sdkString, 'jdkType': 'Android SDK'])
- 
-        groovy.xml.XmlUtil.serialize(parsedXml, new FileOutputStream(imlFile))
- 
-    } catch (FileNotFoundException e) {
- 
-        // nop, iml not found
- 
-    }
- 
-   }
-}
-</code></pre>
-<p>加入位置如下：</p>
-<p><img src="http://qiracle.cn/img/20200101/0103.png" alt=""></p>
-<p>至此，classes.jar导入完成，我们可以在Android Studio里可以直接调用系统隐藏的api里，如果遇到某些系统隐藏的api在使用时报红，一般为ide为bug，可以尝试clean project，然后rebuild project恢复正常了</p>
-
+              <p>Android SDK 中有很多带有 @hide 注解的 api，这些API为系统隐藏的 api，上层应用无法直接调用。我们开发时如果必须使用有两种方式，一是利用java反射机制。二则是在我们项目中导入 Android 系统源码编译出的classes.jar 包，该 jar 包生成在out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar。这里我重点介绍Android Studio如何导入classes.jar.
+          
       
     </div>
     
@@ -540,6 +529,10 @@ cpu密集型 不要超过cpu并行线程数：Runtime.getRuntime().availableProc
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2020/01/01/20200101/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -588,15 +581,8 @@ cpu密集型 不要超过cpu并行线程数：Runtime.getRuntime().availableProc
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>本文以 ToggleButton 为例，介绍 Android 自定义属性的基本流程，代码在：https://github.com/qiracle/ToggleButton 。&lt;!--more--&gt;</p>
-<h3>定义 attrs.xml</h3>
-<p>在values目录下增加 attrs.xml 文件</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 声名属性集的名称 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"MyToggleBtn"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 声名一个属性  name是my_background   类型为 引用类型      引用资源ID --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"my_background"</span> <span class="attr">format</span>=<span class="string">"reference"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 声名一个属性  name是my_slide_btn   类型为 引用类型      引用资源ID --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"my_slide_btn"</span> <span class="attr">format</span>=<span class="string">"reference"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 声名一个属性  name是curr_state   类型为 boolean 类型--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"curr_state"</span> <span class="attr">format</span>=<span class="string">"boolean"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3>在布局文件中引用</h3>
-<p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"</span><br><span class="line">    &lt;!--命名空间 qiracle ，给下面使用--&gt;</span><br><span class="line">    xmlns:qiracle="http://schemas.android.com/apk/res-auto" </span><br><span class="line">    xmlns:tools="http://schemas.android.com/tools"</span><br><span class="line">    android:layout_width="match_parent"</span><br><span class="line">    android:layout_height="match_parent"</span><br><span class="line">    tools:context=".MainActivity"&gt;</span><br><span class="line"></span><br><span class="line">    &lt;cn.qiracle.customattr.MyToggleButton</span><br><span class="line">        android:id="@+id/my_toggle_btn"</span><br><span class="line">        android:layout_width="wrap_content"</span><br><span class="line">        android:layout_height="wrap_content"</span><br><span class="line">        android:layout_centerHorizontal="true"</span><br><span class="line">        android:layout_centerVertical="true"</span><br><span class="line">        qiracle:my_background="@drawable/switch_background"</span><br><span class="line">        qiracle:my_slide_btn="@drawable/slide_button"</span><br><span class="line">        qiracle:curr_state="false"</span><br><span class="line">        testAttrs="hello"</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure></p>
-<h3>在代码里设置属性</h3>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">	 * 在布局文件中声名的view，创建时由系统自动调用。</span><br><span class="line">	 * <span class="doctag">@param</span> context	上下文对象</span><br><span class="line">	 * <span class="doctag">@param</span> attrs		属性集</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyToggleButton</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(context, attrs);</span><br><span class="line">       </span><br><span class="line">		</span><br><span class="line">		<span class="comment">//无命名空间测试</span></span><br><span class="line">		</span><br><span class="line">		String testAttrs = attrs.getAttributeValue(<span class="keyword">null</span>, <span class="string">"testAttrs"</span>);</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"testAttrs===:"</span>+testAttrs);</span><br><span class="line">		</span><br><span class="line">        <span class="comment">/*</span><br><span class="line">		 * AttributeSet  对XML文件解析后的结果，封装为 AttributeSet 对象。</span><br><span class="line">		 * 存储的都是原始数据。仅对数据进行简单加工。</span><br><span class="line">		 */</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> count = attrs.getAttributeCount();</span><br><span class="line">		<span class="comment">// 打印MyToggleButton所有属性 ，也就是上面布局文件里的9个</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">			String name = attrs.getAttributeName(i);</span><br><span class="line">			String value = attrs.getAttributeValue(i);</span><br><span class="line"><span class="comment">//			System.out.println("name : "+name+"  value : "+value);</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//获得自定义的属性</span></span><br><span class="line">		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MyToggleBtn);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> N = ta.getIndexCount();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">			<span class="comment">/*</span><br><span class="line">			 * 获得某个属性的ID值</span><br><span class="line">			 */</span></span><br><span class="line">			<span class="keyword">int</span> itemId = ta.getIndex(i);</span><br><span class="line">			<span class="keyword">switch</span> (itemId) &#123;</span><br><span class="line">			<span class="keyword">case</span> R.styleable.MyToggleBtn_curr_state:</span><br><span class="line">				currState = ta.getBoolean(itemId, <span class="keyword">false</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> R.styleable.MyToggleBtn_my_background:</span><br><span class="line">				backgroundId = ta.getResourceId(itemId, -<span class="number">1</span>);</span><br><span class="line">				<span class="keyword">if</span>(backgroundId == -<span class="number">1</span>)&#123;</span><br><span class="line">					<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"请设置背景图片"</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				backgroundBitmap = BitmapFactory.decodeResource(getResources(), backgroundId);</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> R.styleable.MyToggleBtn_my_slide_btn:</span><br><span class="line">				slideBtnId = ta.getResourceId(itemId, -<span class="number">1</span>);</span><br><span class="line">				slideBtn = BitmapFactory.decodeResource(getResources(), slideBtnId);</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		ta.recycle(); <span class="comment">//回收ta，不回收as会提示</span></span><br><span class="line">		</span><br><span class="line">		initView();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-
+              <p>本文以 ToggleButton 为例，介绍 Android 自定义属性的基本流程，代码在：<a href="https://github.com/qiracle/ToggleButton">https://github.com/qiracle/ToggleButton</a> 。
+          
       
     </div>
     
@@ -613,6 +599,10 @@ cpu密集型 不要超过cpu并行线程数：Runtime.getRuntime().availableProc
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/12/01/20191201/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -661,129 +651,8 @@ cpu密集型 不要超过cpu并行线程数：Runtime.getRuntime().availableProc
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>在Android应用开发中，常用的布局方式主要有<strong>LinearLayout、RelativeLayout、FrameLayout</strong>等，通过这些布局可以实现各种各样的界面。我们需要知道如何高效地使用这些布局方式来组织UI控件，布局的好坏影响到绘制的时间，本节将通过减少<strong>Layout层级</strong>，<strong>减少测量</strong>、<strong>绘制时间</strong>，<strong>提高复用性</strong>三个方面来优化布局，优化的目的就是减少层级，让布局扁平化，以提高绘制的时间，提高布局的复用性节省开发和维护成本。 &lt;!--more--&gt;</p>
-<h3>减少层级</h3>
-<p>层级越少，测试和绘制的时间就越短，通常减少层级有以下两个常用方案：
-合理使用 RelativeLayout 和 LinearLayout。
-合理使用Merge。</p>
-<h4><strong>(1)RelativeLayout与LinearLayout</strong></h4>
-<p>使用 RelativeLayout 减少层级：</p>
-<p>!<img src="http://qiracle.cn/img/20191102/2019110201.png" alt=""></p>
-<p>通过Hierarchy View来查看下层级情况:</p>
-<p>!<img src="http://qiracle.cn/img/20191102/2019110202.png" alt=""></p>
-<p>可以看到一共有7级，使用RelativeLayout进行优化，达到相同的布局效果，并且RelativeLayout允许子元素指定它们相对于其他元素或父元素的位置，有最大自由度的布局属性，而且布局层次最浅，占用内存最少。</p>
-<p>!<img src="http://qiracle.cn/img/20191102/2019110203.png" alt=""></p>
-<p>这样就可以减少两个层级，用一个RelativeLayout就可以达到显示的效果，再使用Hierarchy View来查看层级，可以看到减少到5层。</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110404.png" alt=""></p>
-<p><strong>但ReativeLayout也存在性能低的问题，原因是RelativeLayout会对子View做两次测量</strong>，在RelativeLayout中子View的排列方式是基于彼此的依赖关系，因为这个依赖关系可能和布局中View的顺序并不相同，在确定每个子View的位置时，需要先给所有子View做一次排序。如果在RelativeLayout中允许子View横向和纵向互相依赖，就需要横向、纵向分别进行一次排序测量。<strong>但如果在LinearLayout中有weight属性，也需要进行两次测量，因为没有更多的依赖关系，所以仍然会比RelativeLayout的效率高，在布局上RelativeLayout不如LinearLayout快</strong>。</p>
-<p><strong>但是如果布局本身层次太深，还是推荐用RelativeLayout减少布局本身层次</strong>，相较于测量两次，虽然会增加一些计算时间，但在体验上影响不会特别大，如果优化掉两层仅仅是增加一次测量，还是非常值得的，布局层次深会增加内存消耗，甚至引起栈溢出等问题，即使耗点时间，也不能让应用不可用。</p>
-<p>根据以上分析，可以总结出以下几点布局原则：
-<strong>尽量使用RelativeLayout和LinearLayout。</strong>
-<strong>在布局层级相同的情况下，使用LinearLayout。</strong>
-<strong>用LinearLayout有时会使嵌套层级变多，应该使用RelativeLayout，使界面尽量扁平化。</strong></p>
-<p><strong>注意</strong>
-由于Android的碎片化程度很高，市面上的屏幕尺寸也是各式各样，使用RelativeLayout能使构建的布局适应性更强，构建出来的UI布局对多屏幕的适配效果更好，通过指定UI控件间的相对位置，使不同屏幕上布局的表现基本保持一致。当然，也不是所有情况下都得使用相对布局，根据具体情况选择和搭配使用其他布局方式来实现最优布局。</p>
-<h4>(2)Merge的使用</h4>
-<p>从名字上就可以看出，Merge就是合并的意思。使用它可以有效优化某些符合条件的多余的层级。使用Merge的场合主要有以下两处：</p>
-<p><strong>在自定义View中使用，父元素尽量是FrameLayout或者LinearLayout。</strong>
-<strong>在Activity中整体布局，根元素需要是FrameLayout。</strong></p>
-<p>我们仍以前面的布局为例，在页面增加一个自定义控件TopBar:</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110205.png" alt=""></p>
-<p>其中TopBar的XML布局如下:</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110206.png" alt=""></p>
-<p>显示结果下图所示。这种布局在一些列表的Item中非常常见，而且列表中Item本身的层级比较深，因此优化显得更有意义。</p>
-<p>我们使用HierarchyView查看增加TopBar后的布局层级，如图。可以看到，就是这么简单的一个布局，却把层级增加了两级，从图中很明显地看出TopBar后一层的LinearLayout是多余的，这时可以使用Merge把这一层消除。</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110207.png" alt=""></p>
-<p><img src="http://qiracle.cn/img/20191102/2019110208.png" alt=""></p>
-<p>使用Merge来优化布局，使用Merge标签替换LinearLayout后，原来的LinearLayout属性也没有用了，修改后的代码如下</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110209.png" alt=""></p>
-<p>运行后再使用Hierarchy View查看当前层级</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110210.png" alt=""></p>
-<p>这样就把多余的LinearLayout消除了，原理是在Android布局的源码中，如果是Merge标签，那么直接将其中的子元素添加到Merge标签Parent中，这样就保证了不会引入额外的层级。</p>
-<p><strong>注意</strong>
-如果Merge代替的布局元素为LinearLayout，在自定义布局代码中将LinearLayout的属性添加到引用上，如垂直或水平布局、背景色等。</p>
-<p>但Merge不是所有地方都可以任意使用，有以下几点<strong>要求：</strong></p>
-<p><strong>Merge只能用在布局XML文件的根元素。</strong></p>
-<p><strong>使用merge来加载一个布局时，必须指定一个ViewGroup作为其父元素，并且要设置加载的attachToRoot参数为true(参照inf late(int, ViewGroup, boolean))。</strong></p>
-<p><strong>不能在ViewStub中使用Merge标签。原因就是ViewStub的inf late方法中根本没有attachToRoot的设置。</strong></p>
-<p>这一节讲了如何减少层级，那么在Android系统中，多少层才是合理的呢？当然是越少越好，但从Lint检查的配置上看，超过10层才会报警，实际上在开发时，随着产品设计的丰富和多样性，很容易超过10层，根据实际开发过程中超过15层就要重视并准备做优化，20层就必须修改了。在实在没有办法优化的情况下，需要把复杂的层级用自绘控件来实现，自绘控件中的图层层级再多，在布局上也只是一层，但这样也会带来过度绘制的问题，后面会讲。</p>
-<p><strong>注意</strong>
-在Activiy的总布局中使用Merge，但又想设置整体的属性(布局方式或背景色)，可以不使用setContentView方法加载Layout，而使用(id/content)将FrameLayout取出来，在代码中手动加载布局，但如果层级压力不大(小于10级)，则没有必要，因为这样代码的维护性较差。</p>
-<h3>提高显示速度</h3>
-<p>我们在开发的过程中会碰到这样的场景或者显示逻辑：某个布局当中的子布局非常多，但并不是所有元素都同时显示出来，而是二选一或者N选一，打开这个界面根据不同的场景和属性显示不同的Layout。例如：一个页面对不同的用户(未登录、普通用户、会员)来说，显示的布局不同。或者，有些用户喜欢对不同的元素使用INVISIBLE或者GONE隐藏，通过设计元素的visable属性来控制，这样虽然达到了隐藏的目的，但效率非常低，原因是即使将元素隐藏，它们仍在布局中，仍会测试和解析这些布局。Android提供了ViewStub控件来解决这个场景。</p>
-<p><strong>ViewStub</strong>是一个轻量级的View，它是一个看不见的，并且不占布局位置，占用资源非常小的视图对象。可以为ViewStub指定一个布局，加载布局时，只有ViewStub会被初始化，然后当ViewStub被设置为可见时，或是调用了ViewStub.inf late()时，ViewStub所指向的布局会被加载和实例化，然后ViewStub的布局属性都会传给它指向的布局。这样，就可以使用ViewStub来设置是否显示某个布局。</p>
-<p>下面的代码是两个ViewStub通过不同的初始化来加载两个不同的布局，以满足用户的需求。</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110211.png" alt=""></p>
-<p>在调用时，根据需求切换不同的Layout，这样可以提高页面初始化的速度，使用代码如下：</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110212.png" alt=""></p>
-<p>ViewStub显示有两种方式，上面代码使用的是inf ate方法，也可以直接使用ViewStub.setVisibiltity(View.Visible)方法。
-使用ViewStub时需要<strong>注意</strong>以下几点：</p>
-<ol>
-<li>
-<p>ViewStub只能加载一次，之后ViewStub对象会被置为空。换句话说，某个被ViewStub指定的布局被加载后，就不能再通过ViewStub来控制它了。所以它不适用于需要按需显示隐藏的情况。</p>
-</li>
-<li>
-<p>ViewStub只能用来加载一个布局文件，而不是某个具体的View，当然也可以把View写在某个布局文件中。如果想操作一个具体的View，还是使用visibility属性。</p>
-</li>
-<li>
-<p>VIewStub中不能嵌套Merge标签。</p>
-</li>
-</ol>
-<p>不过这些限制都无伤大雅，我们还是能够用ViewStub来做很多事情，ViewStub的主要使用场景如下：
-在程序运行期间，某个布局在加载后，就不会有变化，除非销毁该页面再重新加载。
-想要控制显示与隐藏的是一个布局文件，而非某个View。</p>
-<p><strong>注意</strong>
-因为ViewStub只能Inf late一次之后会被置空无法继续使用ViewStub来控制布局。所以当需要在运行时不止一次显示和隐藏某个布局时，使用ViewStub是无法实现的。这时只能使用View的可见性来控制。</p>
-<h3>布局复用</h3>
-<p>我们在开发应用时还会碰到另一个常见的场景，就是一个相同的布局在很多页面(Activity或Fragment)会用到，如果给这些页面的布局文件都统一加上相同的布局代码，维护起来就很麻烦，可读性也差，一旦需要修改，很容易有漏掉的地方，Android的布局复用可以通过&lt;include&gt;标签来实现，就像提取代码公用部分一样，在编写Android布局文件时，也可以将相同的部分提取出来，在使用时，用&lt;include&gt;添加进去。</p>
-<p>例如，在大部分应用中，基本上所有的应用都会带有头部栏(TopBar)，主要是显示标题和返回键功能，这样只需要维护一份代码，就可以修改所有的显示效果。</p>
-<p><strong>提示</strong>
-类似于TopBar的这类常用控件，包括菜单，可以把具体实现抽象到页面的基类(BaseActivity)中，这样布局和具体的实现都收归到一个地方，方便维护。
-提高布局效率的方法总体来说就是减少层级，提高绘制速度和布局复用。影响布局效率主要有以下几点：</p>
-<p>布局的层级越少，加载速度越快。
-减少同一层级控件的数量，加载速度会变快。
-一个控件的属性越少，解析越快。</p>
-<p><strong>根据本节的分析，对优化的总结如下：</strong>
-<strong>尽量多使用RelativeLayout或LinearLayout，不要使用绝对布局AbsoluteLayout。</strong>
-<strong>将可复用的组件抽取出来并通过&lt; include /&gt;标签使用。</strong>
-<strong>使用&lt; ViewStub /&gt;标签加载一些不常用的布局。</strong>
-<strong>使用&lt; merge /&gt;标签减少布局的嵌套层次。</strong>
-<strong>尽可能少用wrap_content， wrap_content会增加布局measure时的计算成本，已知宽高为固定值时，不用wrap_content。</strong>
-<strong>删除控件中的无用属性。</strong></p>
-<h3>避免过度绘制</h3>
-<p>过度绘制(Overdraw)是指在屏幕上的某个像素在同一帧的时间内被绘制了多次。在多层次重叠的UI结构(如带背景的TextView)中，如果不可见的UI也在做绘制的操作，就会导致某些像素区域被绘制了多次，从而浪费多余的CPU以及GPU资源。</p>
-<p>当设计上追求更华丽的视觉效果时，我们很容易陷入采用复杂的多层次重叠视图来实现这种视觉效果的怪圈。这很容易导致大量的性能问题，为了获得最佳性能，必须尽量减少Overdraw情况发生。</p>
-<p>我们一般在XML布局和自定义控件中绘制，因此可以看出导致过度绘制的主要原因是：
-XML布局-&gt;控件有重叠且都有设置背景
-View自绘-&gt; View.OnDraw里面同一个区域被绘制多次</p>
-<p>如何查看是否有过度绘制：</p>
-<p>在手机的“设置”→“开发者选项”中打开“显示GPU过度重绘”开关(注：对未默认开启硬件加速的界面需要同时打开“强制进行GPU渲染”开关)。</p>
-<p>打开后可以根据不同的颜色观察UI上的Overdraw情况，蓝色、淡绿、淡红、深红代表4种不同程度的Overdraw情况，不同颜色的含义如下：
-无色：没有过度绘制，每个像素绘制了1次。
-蓝色：每个像素多绘制了1次。大片的蓝色还是可以接受的。如果整个窗口是蓝色的，可以尝试优化减少一次绘制。
-绿色：每个像素多绘制了2次。
-淡红：每个像素多绘制了3次。一般来说，这个区域不超过屏幕的1/4是可以接受的。
-深红：每个像素多绘制了4次或者更多。严重影响性能，需要优化，避免深红色区域。
-我们的目标是尽量减少红色Overdraw，看到更多的蓝色区域。</p>
-<h4>如何避免过度绘制</h4>
-<p><strong>1.布局上的优化</strong></p>
-<p>在XML布局上，如果出现了过度绘制的情况，可以使用Hierarchy View来查看具体的层级情况，可以通过XML布局优化来减少层级。需要注意的是，在使用XML文件布局时，会设置很多背景，如果不是必需的，尽量移除。布局优化总结为以下几点：
-移除XML中非必需的背景，或根据条件设置。</p>
-<p>移除Window默认的背景。</p>
-<p>按需显示占位背景图片。</p>
-<p>使用Android自带的一些主题时，activity往往会被设置一个默认的背景，这个背景由DecorView持有。当自定义布局有一个全屏的背景时，比如设置了这个界面的全屏黑色背景，DecorView的背景此时对我们来说是无用的，但是它会产生一次Overdraw。因此没有必要的话，也可以移除，代码如下：</p>
-<p><img src="http://qiracle.cn/img/20191102/2019110213.png" alt=""></p>
-<p>注意
-针对 ListView 中的 Avatar ImageView 的设置，在 getView 的代码中，判断是否获取对应的 Bitmap，获取 Avatar的图像之后，把 ImageView 的 Background 设置为 Transparent，只有当图像没有获取到时，才设置对应的Background占位图片，这样可以避免因为给Avatar设置背景图而导致的过度渲染。</p>
-<p><strong>2.自定义View优化</strong></p>
-<p>事实上，由于我们的产品设计总是追求更华丽的视觉效果，仅仅通过布局优化很难做到最好，这时可以对复杂的控件使用自定义View来实现，虽然自定义View减少了Layout的层级，但在实际绘制时也是会过度绘制的。原因是有些过于复杂的自定义View(通常重写了onDraw方法)， Android系统无法检测在onDraw中具体会执行什么操作，无法监控并自动优化，也就无法避免Overdraw了。</p>
-<p>但是在自定义View中可以通过**canvas.clipRect()<strong>来帮助系统识别那些可见的区域。这个方法可以指定一块矩形区域，只有在这个区域内才会被绘制，其他的区域会被忽视。canvas.clipRect()可以很好地帮助那些有多组重叠组件的自定义View来控制显示的区域。clipRect方法还可以帮助节约CPU与GPU资源，在clipRect区域之外的绘制指令都不会被执行，那些部分内容在矩形区域内的组件，仍然会得到绘制，并且可以使用</strong>canvas.quickreject()**来判断是否没和某个矩形相交，从而跳过那些非矩形区域内的绘制操作。接下来介绍使用一个自定义View避免OverDraw的案例。</p>
-<p><strong>快速判断Canvas是否需要绘制：Canvas.QuickReject：</strong></p>
-<p>在绘制一个单元之前，首先判断该单元的区域是否在Canvas的剪切域内。若不在，直接返回，避免CPU和GPU的计算和渲染工作。</p>
-<p><strong>避免绘制越界：Canvas.ClipRect：</strong></p>
-<p>每个绘制单元都有自己的绘制区域，绘制前，Canvas.ClipRect(Region.Op.INTERSECT)帮助系统识别那些可见的区域。这个方法可以指定一块矩形区域，只有在这个区域内，才会被绘制，其他的区域被忽视。这个API可以很好地帮助那些有多组重叠组件的自定义View来控制显示的区域。clipRect方法还可以帮助节约CPU与GPU资源，在clipRect区域之外的绘制指令都不会被执行，那些部分内容在矩形区域内的组件，仍然会得到绘制。</p>
-<p>本文参考：罗彧成的《Android应用性能优化最佳实践》一书。强烈推荐此书！</p>
-
+              <p>在Android应用开发中，常用的布局方式主要有<strong>LinearLayout、RelativeLayout、FrameLayout</strong>等，通过这些布局可以实现各种各样的界面。我们需要知道如何高效地使用这些布局方式来组织UI控件，布局的好坏影响到绘制的时间，本节将通过减少<strong>Layout层级</strong>，<strong>减少测量</strong>、<strong>绘制时间</strong>，<strong>提高复用性</strong>三个方面来优化布局，优化的目的就是减少层级，让布局扁平化，以提高绘制的时间，提高布局的复用性节省开发和维护成本。
+          
       
     </div>
     
@@ -800,6 +669,10 @@ View自绘-&gt; View.OnDraw里面同一个区域被绘制多次</p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/11/02/20191102/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -848,23 +721,9 @@ View自绘-&gt; View.OnDraw里面同一个区域被绘制多次</p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>概念</h3>
-<p>新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。
-老年代：存活对象存留的时间比较久。</p>
-<p>MinorGC：发生在新生代的垃圾回收。很频繁，速度快。
-FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。&lt;!--more--&gt;</p>
-<h3>内存分配与回收策略：</h3>
-<p>1.对象优先在Eden区进行分配</p>
-<p>大多数情况下，对象在新生代Eden区中分配。当Eden区没有足够的空间进行分配时，虚拟机将发起一次MinorGC</p>
-<p>2.对象直接进入老年代</p>
-<p>所谓大对象就是指，需要大量连续内存空间的Java对象，最典型的大对象就是那种很长的字符串及数组，经常出现大对象容易导致内存还有不少空间时就提前触发垃圾回收以获取足够的连续空间来安置他们。</p>
-<p>3.长期存活的对象将进入老年代</p>
-<p>虚拟机既然采用了分代收集的思想来管理内存，那内存回收时就必须能识别哪些对象应当放在新生代，哪些对象应放在老年代。为了做到这点，虚拟机给每个对象定义了一个对象年龄计数器。如果对象在Eden出生经过第一次MinorGC后仍然存活，并且能被Survivor容纳的话，将被移动到Survivor空间中，并将对象年龄设为1。对象在Survivor区中每熬过一次Minor GC，年龄就增加1岁，当他的年龄增加到一定程度（默认15）时，就会被晋升到老年代中。对象晋升老年代的年龄阈值，可以通过设置参数-XX:MaxTenuringThreshold。</p>
-<p>4 动态对象年龄判定</p>
-<p>为了更好地适应不同程序的内存状况，虚拟机并不总是要求对象的年龄必须达到MaxTenuringThreshold才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于等于该年龄的对象就可以直接进入老年代，无须等到MaxTenuringThreshold中要求的年龄。</p>
-<p>5 空间分配担保</p>
-<p>在发生MinorGC时，虚拟机会检测之前每次晋升到老年代的平均大小是否大于老年代的剩余空间大小，如果大于，则改为直接进行一次Full GC。如果小于，则查看HandlePromotionFailure设置是否允许担保失败：如果允许，那只会进行MinorGC；如果不允许，则也要改为进行一次FullGC。取平均值进行比较其实仍然是一种动态概率的手段，也就是说如果某次MinorGC存活后的对象突增，远远高于平均值得话，依然会导致担保失败。如果出现了担保失败，那只好在失败后重新发起FullGC。虽然担保失败时绕的圈子是最大的，但大部分情况下还是会将HandlePromotionFailure 开关打开，避免Full GC过于频繁。</p>
-
+              <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>新生代：新生代中98%的对象都是朝生夕死 （1个eden 区（80%） 和 2个survivor区（10%））。<br>老年代：存活对象存留的时间比较久。</p>
+<p>MinorGC：发生在新生代的垃圾回收。很频繁，速度快。<br>FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次MinorGC（并非绝对），FullGC会比MinorGc慢10倍以上。
+          
       
     </div>
     
@@ -881,6 +740,10 @@ FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次Mi
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/09/21/20190921/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -929,25 +792,9 @@ FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次Mi
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>假设：LinearLayout为android:orientation=&quot;horizontal&quot;， layout_weight属性值分别为1、2、2</p>
-<p>第一种情况：每个控件的宽度属性都为android:layout_width=&quot;0dp&quot;，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：&lt;!--more--&gt;
-第一个控件的宽度为 0+(1/(1+2+2))*X=X/5
-第二个控件的宽度为 0+(2/(1+2+2))*X=2X/5
-第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
-<p>第二种情况：每个控件的宽度属性都为android:layout_width=&quot;match_parent&quot;，那么额外的空间就是X-X-X-X=-2X
-第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5
-第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5
-第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
-<p>第三种情况：其中第一个控件宽度属性为android:layout_width=&quot;match_parent&quot;，其他两个控件宽度为android:layout_width=&quot;0dp&quot;，额外的空间为X-X-0-0=0
-第一个控件的宽度为 X+(1/(1+2+2))*0=X
-第二个控件的宽度为 0+(2/(1+2+2))*0=0
-第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
-<p>最终结论：layout_weight的公式
-控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间
-额外的空间=手机的宽度/高度-所有控件的宽度/高度</p>
-<p>注：如果属性为android:layout_width=&quot;wrap_content&quot; 则计算时，总宽/高要减去控件本身占据的宽/高</p>
-<p>转自：https://blog.csdn.net/Dazlly/article/details/13767343</p>
-
+              <p>假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2</p>
+<p>第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：
+          
       
     </div>
     
@@ -964,6 +811,10 @@ FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次Mi
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/09/15/20190915/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1012,60 +863,12 @@ FullGC：发生在老年代的垃圾回收。发生FullGC通常会伴随一次Mi
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4><strong>PX(pixel):</strong></h4>
-<p>即传统计算机语言中描述的像素，在Android则代表绝对像素。</p>
+              <h4 id="PX-pixel"><a href="#PX-pixel" class="headerlink" title="PX(pixel):"></a><strong>PX(pixel):</strong></h4><p>即传统计算机语言中描述的像素，在Android则代表绝对像素。</p>
 <p>之所以Android中不推荐使用这种单位，正是因为不同生产厂商，不同品牌，不同屏幕的设备，其分辨率亦不一。</p>
 <p>举例来说，我们现在将某个Button的width设为160px，则会出现如下情况：</p>
 <p>在分辨率为“320宽”的设备里，该按钮显示占屏幕宽度一半；</p>
 <p>在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一；</p>
-<p>&lt;!--more--&gt;</p>
-<h4><strong>DPI(Dots Per Inch):</strong></h4>
-<p>为了避免上面说到的使用px在屏幕适配中带来的问题，Android引入了一个新的单位：dp/dip。</p>
-<p>而在理解“dp”之前，我们更有必要先了解一下另一个概念。正是：dpi。</p>
-<p>也有人讲<strong>dpi称为“屏幕密度”</strong>。其含义则是：每英寸所打印的点数，<strong>既每一英寸的屏幕所包含的像素数。</strong></p>
-<p>举例来说，假设现在有一台“宽2英寸，长3英寸”的设备，则：</p>
-<p>当该设备分辨率为“320x480”，则dpi值为160。
-当该设备分辨率为“640x960”，则dpi值为320。
-而“dpi”值越高的设备，其屏幕显示画面的效果也就越精细。</p>
-<p>使用场景：</p>
-<p>正是因为dpi值其代表的特性，所以android项目的资源文件下存在以下目录：</p>
-<p>drawable-ldpi    ( 当dpi为120时，使用此目录下的资源)
-drawable-mdpi    ( 当dpi为160时，使用此目录下的资源)
-drawable-hdpi    ( 当dpi为240时，使用此目录下的资源)
-drawable-xhdpi   ( 当dpi为320时，使用此目录下的资源)
-drawable-xxhdpi  ( 当dpi为480时，使用此目录下的资源)
-Android正是根据设备DPI值得不同，选择清晰度不同的资源使用，完成屏幕的适配。</p>
-<h4><strong>DP/DIP(device independent pixels):</strong></h4>
-<p>与我们之前谈到的绝对密度“px”对应，Android中引入的“dp”代表的则是“设备独立像素”。</p>
-<p>该单位是为支持WVGA、HVGA和QVGA而使用的，其不再依赖像素本身，而是和屏幕密度相关。</p>
-<p><strong>在Android当中规定：在屏幕密度为“160dpi”的情况下，则刚好“1dp = 1px”。</strong></p>
-<p>注：当屏幕密度为“320dpi”时，则“1dp = 2px”，以此类推.......</p>
-<p>也正是因此，让我们得以保证了：控件在不同密度的屏幕上显示一致，既完成屏幕适配。</p>
-<p>使用场景：</p>
-<p>让我们回到上面说到的使用px造成的控件显示问题，此时我们将使用新的单位“dp”。于是：</p>
-<p>在分辨率320x480（既dpi为160）的设备下，则160dp等价于160px，按钮占屏幕宽的一半。
-在分辨率640x960（既dpi为320）的设备下，则160dp等价于320px，按钮依然占屏幕宽的一半。</p>
-<h4><strong>Density：</strong></h4>
-<p>就这个单词本身直接翻译的意思而言，其也代表“密度”。但需要注意的是，在Android中，其实并非如此。
-注意我们这里指的是，通过代码“context.getResources().getDisplayMetrics().density”获取的“density”值。
-而<strong>通过该方法获取到的该值，实际上是等价于“dpi / 160”的一个结果值</strong>。也就是说：
-<strong>“getResources().getDisplayMetrics().density” = “getResources().getDisplayMetrics().densityDpi / 160”</strong></p>
-<p>看到这样一个解析，聪明的人大概已经能预见什么了。我们似乎发现了某种关联：
-在Android里：“dpi = 160，则1dp = 1px”、“dpi = 320，则1dp = 2px”。以此类推。
-到此你已经发现，dp，px与160之间存在着某种规律：“1dp = (dpi / 160)px”
-换算一下，最终得到公式: <strong>dp = density * px</strong> 。</p>
-<p>到了这里我们明白了，其实Android提供的该值，也就是为了让我们在dp与px之间做转换。
-归根结底，其目的还是为了帮助我们做屏幕适配。</p>
-<p>使用场景：
-虽然使用dp在xml文件中定义控件尺寸，能够很好的帮助我们完成适配。
-但很多时候，我们也会需要在Java代码中动态的去设定控件的尺寸。</p>
-<p><strong>但由于在代码中的尺寸设定，基本都被默认为了px单位。</strong>
-所以这个时候就可以借助“density”来帮我们完成dp与px的转换，从而完成适配。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dip2px</span><span class="params">(Context context, <span class="keyword">float</span> dipValue)</span></span>&#123; </span><br><span class="line">                <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">int</span>)(dipValue * scale + <span class="number">0.5f</span>); </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>​</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2dip</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span></span>&#123; </span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>)(pxValue / scale + <span class="number">0.5f</span>); </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>原文链接：https://blog.csdn.net/ghost_Programmer/article/details/50042805</p>
-
+          
       
     </div>
     
@@ -1082,6 +885,10 @@ Android正是根据设备DPI值得不同，选择清晰度不同的资源使用�
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/09/15/2019091502/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1130,61 +937,10 @@ Android正是根据设备DPI值得不同，选择清晰度不同的资源使用�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>JNI 是java 语言调用C/C++函数的接口。与JNI相关的开发工具包是NDK。下面记录Android Studio 里用 java代码调用 JNI的基本过程。当前环境：</p>
-<p>Android Studio：3.1.2.</p>
-<p>NDK：20.0.5&lt;!--more--&gt;</p>
-<h3>准备</h3>
-<p>下载NDK:</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082400.png" alt=""></p>
-<p>###1.创建Java类</p>
-<p>定义一个工具类，里面定义了native方法：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.qiracle.jnidemo.jni;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JniUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">static</span> &#123;</span><br><span class="line">                System.loadLibrary(<span class="string">"JniLib"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> String <span class="title">getJniString</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://qiracle.cn/img/20190824/2019082401.png" alt=""></p>
-<h3>2.创建JNI文件夹</h3>
-<p>在main文件夹下创建jni文件夹：</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082402.png" alt=""></p>
-<h3>3.生成头文件</h3>
-<p>两种方式：</p>
-<p>1.通过命令行</p>
-<p>javac JniUtils.java 编译生成 JniUtils.class文件。然后回退到包外目录javah -jni  cn.qiracle.jnidemo.jni.JniUtils。将生成的.h文件移动到main下的jni目录下。</p>
-<p>2.配置外部工具</p>
-<p>点击<code>File - Setting - Tools - External Tools</code> 打开外部工具配置页，点击 <code>+</code> 新建一个工具。</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082403.png" alt=""></p>
-<p>Program: <code>$JDKPath$\bin\javah.exe</code></p>
-<p>Arguments: <code>-classpath . -jni -d $ModuleFileDir$\src\main\jni $FileClass$</code></p>
-<p>Working directory: <code>$ModuleFileDir$\src\main\Java</code></p>
-<p>点击 <code>OK</code> 保存后就新建了一个工具。此时我们右击 <code>JniUtils.java</code>，在菜单中选择 <code>External Tools - javah</code> 就可以快速生成头文件并放到 jni 目录。</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082405.png" alt=""></p>
-<h3>4.编写C代码</h3>
-<p>在jni目录下新建一个cn_qiracle_jnidemo_jni_JniUtils.cpp文件。内容如下：</p>
-<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"cn_qiracle_jnidemo_jni_JniUtils.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jstring JNICALL <span class="title">Java_cn_qiracle_jnidemo_jni_JniUtils_getJniString</span></span><br><span class="line"><span class="params">(JNIEnv *env,jclass jobj)</span> </span>&#123;</span><br><span class="line"><span class="comment">//new 一个字符串，返回Hello World</span></span><br><span class="line"><span class="keyword">return</span> (*env).NewStringUTF(<span class="string">"Hello jni"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里输出 hello jni</p>
-<h3>5.创建mk文件</h3>
-<p>mk 文件用于告诉 ndk-build 该如何编译 c 源码。详情见<a href="https://developer.android.com/ndk/guides/build" target="_blank" rel="external">官方指南</a>。</p>
-<p>在jni目录下创建Android.mk:</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line"></span><br><span class="line">LOCAL_MODULE := JniLib</span><br><span class="line">LOCAL_SRC_FILES =: cn_qiracle_jnidemo_jni_JniUtils.cpp</span><br><span class="line">include $(BUILD_SHARED_LIBRARY)</span><br></pre></td></tr></table></figure></p>
-<p>创建 <code>Application.mk</code>：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">APP_MODULES := JniLib</span><br><span class="line">APP_ABI := all</span><br></pre></td></tr></table></figure></p>
-<h3>6.gradle配置</h3>
-<p>在 module 的 build.gradle 里，<code>amndroid.defaultConfig</code> 下加入下面配置：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ndk &#123;</span><br><span class="line">           moduleName &quot;JniLib&quot;</span><br><span class="line">       &#125;</span><br><span class="line">       sourceSets.main&#123;</span><br><span class="line">           jni.srcDirs = []</span><br><span class="line">           jniLibs.srcDir &quot;src/main/libs&quot;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></p>
-<h3>6.编译</h3>
-<p>这里我们配置使用外部工具：</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082404.png" alt=""></p>
-<ul>
-<li>Program: <code>D:\SDK\ndk-bundle\build\ndk-build.cmd</code> （注意这里是ndk-build路径）</li>
-<li>Working directory: <code>$ProjectFileDir$\app\src\main</code></li>
-</ul>
-<p>任意找个第地方右击，选择 <code>External Tools - ndk-build</code> 即可编译 c 源码。成功后可以看见创建了 <code>libs</code> 目录，里面包含了不同平台下的 so 文件。</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082406.png" alt=""></p>
-<h3>7.验证</h3>
-<p>在MainActivity.java里调用native方法：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Toast.makeText(this,JniUtils.getJniString(),Toast.LENGTH_SHORT).show();</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082407.png" alt=""></p>
-<p>参考：</p>
-<p><a href="https://www.jianshu.com/p/09ff3300f453" target="_blank" rel="external">https://www.jianshu.com/p/09ff3300f453</a></p>
-
+              <p>JNI 是java 语言调用C/C++函数的接口。与JNI相关的开发工具包是NDK。下面记录Android Studio 里用 java代码调用 JNI的基本过程。当前环境：</p>
+<p>Android Studio：3.1.2. </p>
+<p>NDK：20.0.5
+          
       
     </div>
     
@@ -1202,96 +958,9 @@ Android正是根据设备DPI值得不同，选择清晰度不同的资源使用�
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190810" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/08/10/20190810/" class="article-date">
-      <time datetime="2019-08-09T16:00:00.000Z" itemprop="datePublished">2019-08-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/10/20190810/">Android AIDL的基本用法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>AIDL 是 Android 中实现跨进程通信的一种方式。下面是一个简单的实现案例，通过 AIDL 实现客户端调用服务端的接口， 实现跨进程通信。&lt;!--more--&gt;</p>
-<h3>Server</h3>
-<p>首先，创建一个服务端工程 AIDLServer。main下面创建aidl文件夹，然后在aidl文件夹下创建包和aidl文件，如下：</p>
-<p><img src="http://qiracle.cn/img/20190810/2019081001.png" alt=""></p>
-<p>IMyAidlInterface.aidl 文件内容如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// IMyAidlInterface.aidl</span><br><span class="line">package cn.qiracle.aidlserver;</span><br><span class="line"></span><br><span class="line">// Declare any non-default types here with import statements</span><br><span class="line"></span><br><span class="line">interface IMyAidlInterface &#123;</span><br><span class="line">     void print();</span><br><span class="line">     int add(int a, int b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里定义了AIDL接口IMyAidlInterface，接口里定义了两个待实现的方法。然后 重新构建下工程，这样在build目录下就会生成IMyAidlInterface.java 文件。</p>
-<p>接着定义一个Service，如下：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.qiracle.aidlserver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Service;</span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.IBinder;</span><br><span class="line"><span class="keyword">import</span> android.os.RemoteException;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyBinder</span> <span class="keyword">extends</span> <span class="title">IMyAidlInterface</span>.<span class="title">Stub</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            Log.i(<span class="string">"qiracle"</span>, <span class="string">"my aidl test"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            Log.i(<span class="string">"qiracle"</span>, <span class="string">"a + b:"</span> + (a + b));</span><br><span class="line">            <span class="keyword">return</span> a + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在这个Service里 ，内部类MyBinder继承IMyAidlInterface.Stub ，然后实现接口里待实现的方法。这两个方法就是提供给客户端进行调用的。</p>
-<p>最后，清单文件里记得注册下服务</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;service</span><br><span class="line">    android:name=&quot;.MyService&quot;</span><br><span class="line">    android:enabled=&quot;true&quot;</span><br><span class="line">    android:exported=&quot;true&quot;&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">        &lt;action android:name=&quot;cn.qiracle.aidlservice&quot; /&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/service&gt;</span><br></pre></td></tr></table></figure></p>
-<p>然后启动服务</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setAction(<span class="string">"cn.qiracle.aidlservice"</span>);</span><br><span class="line">intent.setPackage(<span class="string">"cn.qiracle.aidlserver"</span>);</span><br><span class="line">startService(intent);</span><br></pre></td></tr></table></figure></p>
-<p>以上就是AIDL的服务端简单实现。主要就是定义一个AIDL接口，然后在服务里实现这个接口，提供给客户端调用。下面介绍客户端部分。</p>
-<h3>Client</h3>
-<p>先建立一个客户端的工程，跟服务端工程一样，需要在main下建立aidl目录，然后在aidl目录下新建包和aidl文件，这里的包名和aidl文件名必须和服务端保持一致。如下：</p>
-<p><img src="http://qiracle.cn/img/20190810/2019081002.png" alt=""></p>
-<p>IMyAidlInterface.aidl 的内容也和 服务端的 IMyAidlInterface.aidl 保持一致</p>
-<p>然后，在Activity里绑定服务，如下：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setAction(<span class="string">"cn.qiracle.aidlservice"</span>);</span><br><span class="line">intent.setPackage(<span class="string">"cn.qiracle.aidlserver"</span>);</span><br><span class="line"></span><br><span class="line">bindService(intent, <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">        iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,BIND_AUTO_CREATE);</span><br></pre></td></tr></table></figure></p>
-<p>可以通过按钮的点击事件，调用服务端的方法。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">click</span><span class="params">(View view)</span></span>&#123;</span><br><span class="line">    Toast.makeText(getApplicationContext(),<span class="string">"click"</span>,Toast.LENGTH_SHORT).show();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        iMyAidlInterface.print();</span><br><span class="line">        iMyAidlInterface.add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上就是客户端实现。</p>
-<p>开始运行，注意需要先运行服务端，开启Service，然后运行客户端，绑定服务，通过点击按钮，可以看到服务端控制台有日志打印。</p>
-<p>以上，我们就通过AIDL实现了跨进程的调用，方法的实现在服务端，方法的调用在客户端。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AIDL/">AIDL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-    </div>
-
+        <p class="article-more-link">
+          <a href="/2019/08/24/20190824/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
