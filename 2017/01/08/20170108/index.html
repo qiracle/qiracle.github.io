@@ -19,13 +19,15 @@
 新建test.py文件，代码如下
 def A():
 
-    print(&amp;quot;hello&amp;quot;)
+	print(&amp;quot;hello&amp;quot;)
+
 再简历main.py文件，代码如下
 import test
 
 test.A()
+
 此时用python main.py执行，打印 hello。
-但如果A()实现的代码很长，我们想要在test">
+但如果A()实现的代码很长，我们想要在test.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python中的__name__">
 <meta property="og:url" content="http://qiracle.github.io/2017/01/08/20170108/index.html">
@@ -34,13 +36,15 @@ test.A()
 新建test.py文件，代码如下
 def A():
 
-    print(&amp;quot;hello&amp;quot;)
+	print(&amp;quot;hello&amp;quot;)
+
 再简历main.py文件，代码如下
 import test
 
 test.A()
+
 此时用python main.py执行，打印 hello。
-但如果A()实现的代码很长，我们想要在test">
+但如果A()实现的代码很长，我们想要在test.">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中的__name__">
@@ -48,13 +52,15 @@ test.A()
 新建test.py文件，代码如下
 def A():
 
-    print(&amp;quot;hello&amp;quot;)
+	print(&amp;quot;hello&amp;quot;)
+
 再简历main.py文件，代码如下
 import test
 
 test.A()
+
 此时用python main.py执行，打印 hello。
-但如果A()实现的代码很长，我们想要在test">
+但如果A()实现的代码很长，我们想要在test.">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -348,43 +354,50 @@ test.A()
 <p>新建test.py文件，代码如下</p>
 <pre><code>def A():
 
-    print(&quot;hello&quot;)
-</code></pre><p>再简历main.py文件，代码如下</p>
+	print(&quot;hello&quot;)
+</code></pre>
+<p>再简历main.py文件，代码如下</p>
 <pre><code>import test
 
 test.A()
-</code></pre><p>此时用python main.py执行，打印 hello。</p>
-<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：<br><a id="more"></a></p>
+</code></pre>
+<p>此时用python main.py执行，打印 hello。</p>
+<p>但如果A()实现的代码很长，我们想要在test.py文件里调用A()进行测试，则需要：
+&lt;!--more--&gt;</p>
 <pre><code>def A():
 
-    print(&quot;hello&quot;)
+	print(&quot;hello&quot;)
 
 A()//测试
-</code></pre><p>用python test.py执行，打印 hello。</p>
-<p>但此时如果测试代码没有删除，调用者用python main.py执行，则会打印 hello hello。<br>因为A()被执行了两次。</p>
+</code></pre>
+<p>用python test.py执行，打印 hello。</p>
+<p>但此时如果测试代码没有删除，调用者用python main.py执行，则会打印 hello hello。
+因为A()被执行了两次。</p>
 <p>为解决这一问题，我们需要这样做，在test.py文件里：</p>
 <pre><code>def A():
 
-    print(&quot;hello&quot;)
+	print(&quot;hello&quot;)
 
 
-if __name__ == &apos;__main__&apos;://加上这句在执行
-    A()
-</code></pre><p>用python main.py执行，则会打印 hello，结果正常</p>
+if __name__ == '__main__'://加上这句在执行
+	A()
+</code></pre>
+<p>用python main.py执行，则会打印 hello，结果正常</p>
 <p><strong>分析</strong></p>
-<p>在test.py中，加入print(__name__),看看__name__的值</p>
+<p>在test.py中，加入print(_<em>name_</em>),看看__name__的值</p>
 <pre><code>def A():
 
-    print(&quot;hello&quot;)
+	print(&quot;hello&quot;)
 
 print(__name__)
 
-if __name__ == &apos;__main__&apos;://加上这句在执行
-    A()
-</code></pre><p>此时如果用python test.py，则会打印__main__ hello,此时__name<strong>的值为\</strong>main__</p>
+if __name__ == '__main__'://加上这句在执行
+	A()
+</code></pre>
+<p>此时如果用python test.py，则会打印_<em>main_</em> hello,此时__name__的值为_<em>main_</em></p>
 <p>如果用python main.py执行，则打印test hello，此时__name__的值为test</p>
 <p><strong>结论</strong></p>
-<p>因此可以看出，在函数所在的文件内调用函数，__name__的值为__main__</p>
+<p>因此可以看出，在函数所在的文件内调用函数，__name__的值为_<em>main_</em></p>
 <p>但是如果通过导入模块调用函数，则函数所在文件的__name__值为函数所在文件的文件名</p>
 
       
