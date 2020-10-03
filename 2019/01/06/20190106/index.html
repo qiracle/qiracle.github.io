@@ -15,43 +15,31 @@
 
 
 
-<meta name="description" content="系统及软件版本准备
-CentOS-6.7-64bit
+<meta name="description" content="系统及软件版本准备CentOS-6.7-64bit
 Hadoop-2.8.3-src
 java-1.8.0_141
 apache-maven-3.3.9
 protobuf-2.5.0
-findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
-相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n
-软件">
+findbugs-1.3.9">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS下编译Hadoop">
 <meta property="og:url" content="http://qiracle.github.io/2019/01/06/20190106/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="系统及软件版本准备
-CentOS-6.7-64bit
+<meta property="og:description" content="系统及软件版本准备CentOS-6.7-64bit
 Hadoop-2.8.3-src
 java-1.8.0_141
 apache-maven-3.3.9
 protobuf-2.5.0
-findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
-相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n
-软件">
+findbugs-1.3.9">
 <meta property="og:updated_time" content="2019-01-20T11:55:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下编译Hadoop">
-<meta name="twitter:description" content="系统及软件版本准备
-CentOS-6.7-64bit
+<meta name="twitter:description" content="系统及软件版本准备CentOS-6.7-64bit
 Hadoop-2.8.3-src
 java-1.8.0_141
 apache-maven-3.3.9
 protobuf-2.5.0
-findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
-相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n
-软件">
+findbugs-1.3.9">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -341,25 +329,19 @@ findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>系统及软件版本准备</h3>
-<p>CentOS-6.7-64bit</p>
+        <h3 id="系统及软件版本准备"><a href="#系统及软件版本准备" class="headerlink" title="系统及软件版本准备"></a>系统及软件版本准备</h3><p>CentOS-6.7-64bit</p>
 <p>Hadoop-2.8.3-src</p>
 <p>java-1.8.0_141</p>
 <p>apache-maven-3.3.9</p>
 <p>protobuf-2.5.0</p>
-<p>findbugs-1.3.9 &lt;!-- more --&gt;</p>
-<p>相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n</p>
-<h3>软件安装</h3>
-<h3>1.java-1.8.0_141</h3>
-<p>下载 jdk-8u141-linux-x64.tar.gz， 解压到 /root/apps/jdk1.8.0_141。解压命令:</p>
+<p>findbugs-1.3.9 <a id="more"></a></p>
+<p>相关软件下载地址： 链接：<a href="https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg" target="_blank" rel="external">https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg</a><br>提取码：l84n </p>
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h3 id="1-java-1-8-0-141"><a href="#1-java-1-8-0-141" class="headerlink" title="1.java-1.8.0_141"></a>1.java-1.8.0_141</h3><p>下载 jdk-8u141-linux-x64.tar.gz， 解压到 /root/apps/jdk1.8.0_141。解压命令:</p>
 <p><code>tar -xf jdk-8u141-linux-x64.tar.gz</code></p>
 <p>配置环境变量：</p>
-<p><code>vi /etc/profile</code></p>
+<p><code>vi  /etc/profile</code></p>
 <p>在文件最下面加上:</p>
-<p><code>export JAVA_HOME=/root/apps/jdk1.8.0_141</code>
-<code>export PATH=$PATH:$JAVA_HOME/bin</code>
-<code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
+<p><code>export JAVA_HOME=/root/apps/jdk1.8.0_141</code><br><code>export PATH=$PATH:$JAVA_HOME/bin</code><br><code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
 <p>添加完记得用下面的命令让其立即生效:</p>
 <p><code>source /etc/profile</code></p>
 <p><strong>注意：下面每次配置完环境变量都需要使用这个命令</strong></p>
@@ -367,59 +349,42 @@ findbugs-1.3.9 &amp;lt;!-- more --&amp;gt;
 <p><code>java -version</code></p>
 <p>如果输出下面信息，则表示安装成功：</p>
 <blockquote>
-<p>java version &quot;1.8.0_141&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_141-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</p>
+<p>java version “1.8.0_141”<br>Java(TM) SE Runtime Environment (build 1.8.0_141-b15)<br>Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</p>
 </blockquote>
-<h3>2.apache-maven-3.3.9</h3>
-<p>下载apache-maven-3.3.9-bin.zip，并使用 下面命令解压：</p>
+<h3 id="2-apache-maven-3-3-9"><a href="#2-apache-maven-3-3-9" class="headerlink" title="2.apache-maven-3.3.9"></a>2.apache-maven-3.3.9</h3><p>下载apache-maven-3.3.9-bin.zip，并使用 下面命令解压：</p>
 <p><code>unzip apache-maven-3.3.9-bin.zip</code></p>
 <p>我将其解压到了 /opt/software/a:pache-maven-3.3.9. 同样，配置环境变量，在/etc/profile中添加下面信息：</p>
-<p><code>export MAVEN_HOME=/opt/software/apache-maven-3.3.9</code>
-<code>export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot;</code>
-<code>export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p><code>export MAVEN_HOME=/opt/software/apache-maven-3.3.9</code><br><code>export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot;</code><br><code>export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
 <p>验证是否安装成功:</p>
 <p><code>mvn -version</code></p>
 <p>出现下列信息表明安装成功：</p>
 <blockquote>
-<p>Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)
-Maven home: /opt/software/apache-maven-3.3.9
-Java version: 1.8.0_141, vendor: Oracle Corporation
-Java home: /root/apps/jdk1.8.0_141/jre
-Default locale: en_US, platform encoding: UTF-8
-OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</p>
+<p>Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)<br>Maven home: /opt/software/apache-maven-3.3.9<br>Java version: 1.8.0_141, vendor: Oracle Corporation<br>Java home: /root/apps/jdk1.8.0_141/jre<br>Default locale: en_US, platform encoding: UTF-8<br>OS name: “linux”, version: “2.6.32-573.el6.x86_64”, arch: “amd64”, family: “unix”</p>
 </blockquote>
-<h3>3.protobuf-2.5.0</h3>
-<p>下载 protobuf-2.5.0.tar.gz ，解压到/opt/software/protobuf-2.5.0，接下来:</p>
-<p><code>cd protobuf-2.5.0</code></p>
+<h3 id="3-protobuf-2-5-0"><a href="#3-protobuf-2-5-0" class="headerlink" title="3.protobuf-2.5.0"></a>3.protobuf-2.5.0</h3><p>下载 protobuf-2.5.0.tar.gz ，解压到/opt/software/protobuf-2.5.0，接下来:</p>
+<p> <code>cd protobuf-2.5.0</code></p>
 <p><code>yum install -y gcc gcc-c++ make cmake</code></p>
-<p>./configure --prefix=/usr/local/protobuf</p>
-<p>make &amp;&amp; make install</p>
+<p> ./configure –prefix=/usr/local/protobuf</p>
+<p> make &amp;&amp; make install</p>
 <p>同样导入环境变量：</p>
-<p><code>export PROTOC_HOME=/usr/local/protobuf</code>
-<code>export PATH=$PROTOC_HOME/bin:$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p><code>export PROTOC_HOME=/usr/local/protobuf</code><br><code>export PATH=$PROTOC_HOME/bin:$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
 <p>验证是否安装成功：</p>
 <p><code>protoc --version</code></p>
 <p>出现下面信息表明安装成功：</p>
 <blockquote>
 <p>libprotoc 2.5.0</p>
 </blockquote>
-<h3>4. findbugs-1.3.9</h3>
-<p>下载findbugs-1.3.9.zip ，通过unzip findbugs-1.3.9.zip 解压到/opt/software/findbugs-1.3.9。</p>
+<h3 id="4-findbugs-1-3-9"><a href="#4-findbugs-1-3-9" class="headerlink" title="4. findbugs-1.3.9"></a>4. findbugs-1.3.9</h3><p>下载findbugs-1.3.9.zip ，通过unzip findbugs-1.3.9.zip 解压到/opt/software/findbugs-1.3.9。</p>
 <p>同样需要配置环境变量</p>
-<p><code>export FINDBUGS_HOME=/opt/software/findbugs-1.3.9</code>
-<code>export PATH=$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
+<p><code>export FINDBUGS_HOME=/opt/software/findbugs-1.3.9</code><br><code>export PATH=$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
 <p>验证是否安装成功：</p>
 <p><code>findbugs -version</code></p>
 <p>出现下面信息表示安装成功：</p>
 <blockquote>
 <p>1.3.9</p>
 </blockquote>
-<h3>5.其他依赖的安装</h3>
-<p><code>yum install -y openssl openssl-devel svn ncurses-devel zlib-devel libtool</code>
-<code>yum install -y snappy snappy-devel bzip2 bzip2-devel lzo lzo-devel lzop autoconf automake</code></p>
-<h3>6.编译</h3>
-<p>下载hadoop-2.8.3-src.tar.gz并解压 tar -xf hadoop-2.8.3-src.tar.gz 到 /root/hadoop-2.8.3-src。运行下面命令：</p>
+<h3 id="5-其他依赖的安装"><a href="#5-其他依赖的安装" class="headerlink" title="5.其他依赖的安装"></a>5.其他依赖的安装</h3><p><code>yum install -y openssl openssl-devel svn ncurses-devel zlib-devel libtool</code><br><code>yum install -y snappy snappy-devel bzip2 bzip2-devel lzo lzo-devel lzop autoconf automake</code></p>
+<h3 id="6-编译"><a href="#6-编译" class="headerlink" title="6.编译"></a>6.编译</h3><p>下载hadoop-2.8.3-src.tar.gz并解压 tar -xf hadoop-2.8.3-src.tar.gz 到 /root/hadoop-2.8.3-src。运行下面命令：</p>
 <p><code>cd hadoop-2.8.3-src</code></p>
 <p><code>mvn clean package -Pdist,native -DskipTests -Dtar</code></p>
 <p>编译过程中需要下载很多东西，需要很长时间，同时因为网络原因可能会一直卡在某个地方，这时可以ctrl+c中止然后重新运行上面命令。最后如果出现 BUILD SUCCESS 字样则表明编译成功.</p>
@@ -456,7 +421,7 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">系统及软件版本准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">软件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">1.java-1.8.0_141</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">2.apache-maven-3.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">3.protobuf-2.5.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">4. findbugs-1.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">5.其他依赖的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">6.编译</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统及软件版本准备"><span class="toc-number">1.</span> <span class="toc-text">系统及软件版本准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件安装"><span class="toc-number">2.</span> <span class="toc-text">软件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-java-1-8-0-141"><span class="toc-number">3.</span> <span class="toc-text">1.java-1.8.0_141</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-apache-maven-3-3-9"><span class="toc-number">4.</span> <span class="toc-text">2.apache-maven-3.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-protobuf-2-5-0"><span class="toc-number">5.</span> <span class="toc-text">3.protobuf-2.5.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-findbugs-1-3-9"><span class="toc-number">6.</span> <span class="toc-text">4. findbugs-1.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-其他依赖的安装"><span class="toc-number">7.</span> <span class="toc-text">5.其他依赖的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-编译"><span class="toc-number">8.</span> <span class="toc-text">6.编译</span></a></li></ol>
         
     </div>
     <style>

@@ -16,27 +16,24 @@
 
 
 <meta name="description" content="步骤：
-一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。
-二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。
-三.编写Android.mk文件。下面为我写的例子：
-&amp;lt;">
+ 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。
+ 二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。
+ 三.编写Android.mk文件。下面为我写的例子：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Android系统源码下编译apk">
 <meta property="og:url" content="http://qiracle.github.io/2017/04/25/20170425/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
 <meta property="og:description" content="步骤：
-一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。
-二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。
-三.编写Android.mk文件。下面为我写的例子：
-&amp;lt;">
+ 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。
+ 二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。
+ 三.编写Android.mk文件。下面为我写的例子：">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Android系统源码下编译apk">
 <meta name="twitter:description" content="步骤：
-一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。
-二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。
-三.编写Android.mk文件。下面为我写的例子：
-&amp;lt;">
+ 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。
+ 二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。
+ 三.编写Android.mk文件。下面为我写的例子：">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -327,24 +324,12 @@
       
           
         <p>步骤：</p>
-<p>一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
-<p>二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
-<p>三.编写Android.mk文件。下面为我写的例子：
-&lt;!--more--&gt;</p>
+<p> 一.找到Android源码目录下packages/apps目录，在此目录下新建一个文件夹，以你的apk名字命名，这里以Test为例。</p>
+<p> 二.将自己写的应用目录下的src和res以及清单文件复制到Test目录下。另外，如果你的项目有用到assert文件或是第三方jar包，还需要将assert文件夹和jar包复制到Test根目录下。</p>
+<p> 三.编写Android.mk文件。下面为我写的例子：<br><a id="more"></a></p>
 <blockquote>
-<p>LOCAL_PATH:= $(call my-dir) //设置当前模块的编译路径为当前文件夹路径。即当前Android.mk 所在的目录
-include $(CLEAR_VARS)	//清除变量
-LOCAL_MODULE_TAGS := optional //指该模块在所有版本下都编译(user,eng,debug等)
-LOCAL_CERTIFICATE := platform //使用平台签名，PRESIGNED 表示这个apk已经签过名了，不需要再签名
-LOCAL_ASSERT_DIR := packages/apps/Test/asserts //导入assets目录下的文件
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES :=android-support-v4 \ //导入jar包
-LOCAL_DEX_PREOPT :=false //是生成apk程序时只生成apk的包，不再生成odex
-LOCAL_SRC_FILES := <br>
-$(call all-java-files-under,src) \ //把src下的所有java文件包含进来</p>
-<p>src/com/android/internal/telephony/ITelephony.aidl //如果有aidl，还需单独将aidl文件加进来
-LOCAL_PACKAGE_NAME :=Test //应用名称
-LOCAL_MODULE_PATH := $(TARGET_OUT)/vendor/operator/app //应用生成路径
-include $(BUILD_PACKAGE)</p>
+<p>LOCAL_PATH:= $(call my-dir) //设置当前模块的编译路径为当前文件夹路径。即当前Android.mk 所在的目录<br>include $(CLEAR_VARS)    //清除变量<br>LOCAL_MODULE_TAGS := optional //指该模块在所有版本下都编译(user,eng,debug等)<br>LOCAL_CERTIFICATE := platform //使用平台签名，PRESIGNED 表示这个apk已经签过名了，不需要再签名<br>LOCAL_ASSERT_DIR := packages/apps/Test/asserts //导入assets目录下的文件<br>LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES :=android-support-v4 \ //导入jar包<br>LOCAL_DEX_PREOPT :=false //是生成apk程序时只生成apk的包，不再生成odex<br>LOCAL_SRC_FILES := \<br>$(call all-java-files-under,src) \ //把src下的所有java文件包含进来</p>
+<p>src/com/android/internal/telephony/ITelephony.aidl //如果有aidl，还需单独将aidl文件加进来<br>LOCAL_PACKAGE_NAME :=Test //应用名称<br>LOCAL_MODULE_PATH := $(TARGET_OUT)/vendor/operator/app //应用生成路径<br>include $(BUILD_PACKAGE)</p>
 </blockquote>
 
       

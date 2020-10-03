@@ -16,36 +16,24 @@
 
 
 <meta name="description" content="ActionBar的引入
-
 引用v7-appcompat
 Activity继承ActionBarActivity
-android:theme=&amp;quot;@style/Theme.AppCompat.Light&amp;quot; &amp;gt;&amp;lt;!--more--&amp;gt;
-
-添加搜索按钮
-menu文件中添加yourapp:actionViewClass=&amp;quot;android.support.v7.">
+android:theme=”@style/Theme.AppCompat.Light” &amp;gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ActionBar的使用">
 <meta property="og:url" content="http://qiracle.github.io/2016/12/22/20161222/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
 <meta property="og:description" content="ActionBar的引入
-
 引用v7-appcompat
 Activity继承ActionBarActivity
-android:theme=&amp;quot;@style/Theme.AppCompat.Light&amp;quot; &amp;gt;&amp;lt;!--more--&amp;gt;
-
-添加搜索按钮
-menu文件中添加yourapp:actionViewClass=&amp;quot;android.support.v7.">
+android:theme=”@style/Theme.AppCompat.Light” &amp;gt;">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ActionBar的使用">
 <meta name="twitter:description" content="ActionBar的引入
-
 引用v7-appcompat
 Activity继承ActionBarActivity
-android:theme=&amp;quot;@style/Theme.AppCompat.Light&amp;quot; &amp;gt;&amp;lt;!--more--&amp;gt;
-
-添加搜索按钮
-menu文件中添加yourapp:actionViewClass=&amp;quot;android.support.v7.">
+android:theme=”@style/Theme.AppCompat.Light” &amp;gt;">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -335,39 +323,32 @@ menu文件中添加yourapp:actionViewClass=&amp;quot;android.support.v7.">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>ActionBar的引入</h3>
-<ol>
+        <h3 id="ActionBar的引入"><a href="#ActionBar的引入" class="headerlink" title="ActionBar的引入"></a>ActionBar的引入</h3><ol>
 <li>引用v7-appcompat</li>
 <li>Activity继承ActionBarActivity</li>
-<li>android:theme=&quot;@style/Theme.AppCompat.Light&quot; &gt;&lt;!--more--&gt;</li>
+<li>android:theme=”@style/Theme.AppCompat.Light” &gt;<a id="more"></a></li>
 </ol>
-<h3>添加搜索按钮</h3>
-<h5>menu文件中添加yourapp:actionViewClass=&quot;android.support.v7.widget.SearchView&quot;</h5>
-<h5>重写onCreateOptionsMenu方法</h5>
-<pre><code>	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
-				.getActionView();
-		searchView.setOnQueryTextListener(this);//  搜索的监听
-		return true;
-	}
+<h3 id="添加搜索按钮"><a href="#添加搜索按钮" class="headerlink" title="添加搜索按钮"></a>添加搜索按钮</h3><h5 id="menu文件中添加yourapp-actionViewClass-”android-support-v7-widget-SearchView”"><a href="#menu文件中添加yourapp-actionViewClass-”android-support-v7-widget-SearchView”" class="headerlink" title="menu文件中添加yourapp:actionViewClass=”android.support.v7.widget.SearchView”"></a>menu文件中添加yourapp:actionViewClass=”android.support.v7.widget.SearchView”</h5><h5 id="重写onCreateOptionsMenu方法"><a href="#重写onCreateOptionsMenu方法" class="headerlink" title="重写onCreateOptionsMenu方法"></a>重写onCreateOptionsMenu方法</h5><pre><code>@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.activity_main, menu);
+    SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
+            .getActionView();
+    searchView.setOnQueryTextListener(this);//  搜索的监听
+    return true;
+}
+</code></pre><h5 id="实现onQueryTextSubmit和onQueryTextChange方法"><a href="#实现onQueryTextSubmit和onQueryTextChange方法" class="headerlink" title="实现onQueryTextSubmit和onQueryTextChange方法"></a>实现onQueryTextSubmit和onQueryTextChange方法</h5><pre><code>// 当搜索提交的时候
+@Override
+public boolean onQueryTextSubmit(String query) {
+    Toast.makeText(getApplicationContext(), query, 0).show();
+    return true;
+}
+// 当搜索的文本发生变化
+@Override
+public boolean onQueryTextChange(String newText) {
+    //Toast.makeText(getApplicationContext(), newText, 0).show();
+    return true;
+}
 </code></pre>
-<h5>实现onQueryTextSubmit和onQueryTextChange方法</h5>
-<pre><code>	// 当搜索提交的时候
-	@Override
-	public boolean onQueryTextSubmit(String query) {
-		Toast.makeText(getApplicationContext(), query, 0).show();
-		return true;
-	}
-	// 当搜索的文本发生变化
-	@Override
-	public boolean onQueryTextChange(String newText) {
-		//Toast.makeText(getApplicationContext(), newText, 0).show();
-		return true;
-	}
-</code></pre>
-
       
     </div>
     
@@ -399,7 +380,7 @@ menu文件中添加yourapp:actionViewClass=&amp;quot;android.support.v7.">
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">ActionBar的引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">添加搜索按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.1.</span> <span class="toc-text">menu文件中添加yourapp:actionViewClass="android.support.v7.widget.SearchView"</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.2.</span> <span class="toc-text">重写onCreateOptionsMenu方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.3.</span> <span class="toc-text">实现onQueryTextSubmit和onQueryTextChange方法</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ActionBar的引入"><span class="toc-number">1.</span> <span class="toc-text">ActionBar的引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加搜索按钮"><span class="toc-number">2.</span> <span class="toc-text">添加搜索按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#menu文件中添加yourapp-actionViewClass-”android-support-v7-widget-SearchView”"><span class="toc-number">2.0.1.</span> <span class="toc-text">menu文件中添加yourapp:actionViewClass=”android.support.v7.widget.SearchView”</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#重写onCreateOptionsMenu方法"><span class="toc-number">2.0.2.</span> <span class="toc-text">重写onCreateOptionsMenu方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实现onQueryTextSubmit和onQueryTextChange方法"><span class="toc-number">2.0.3.</span> <span class="toc-text">实现onQueryTextSubmit和onQueryTextChange方法</span></a></li></ol></li></ol></li></ol>
         
     </div>
     <style>

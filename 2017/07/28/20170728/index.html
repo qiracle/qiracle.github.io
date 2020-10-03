@@ -15,14 +15,12 @@
 
 
 
-<meta name="description" content="Android 系统 SystemUI 介绍
-Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版">
+<meta name="description" content="Android 系统 SystemUI 介绍  Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="史上最详细的Android系统SystemUI 启动过程详细解析">
 <meta property="og:url" content="http://qiracle.github.io/2017/07/28/20170728/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="Android 系统 SystemUI 介绍
-Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版">
+<meta property="og:description" content="Android 系统 SystemUI 介绍  Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android">
 <meta property="og:image" content="http://qiracle.cn/img/20170728/systemUI_1.png">
 <meta property="og:image" content="http://qiracle.cn/img/20170728/systemUI_2.png">
 <meta property="og:image" content="http://qiracle.cn/img/20170728/systemUI_3.png">
@@ -43,8 +41,7 @@ Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面�
 <meta property="og:updated_time" content="2019-10-26T07:21:11.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="史上最详细的Android系统SystemUI 启动过程详细解析">
-<meta name="twitter:description" content="Android 系统 SystemUI 介绍
-Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版">
+<meta name="twitter:description" content="Android 系统 SystemUI 介绍  Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android">
 <meta name="twitter:image" content="http://qiracle.cn/img/20170728/systemUI_1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -335,13 +332,10 @@ Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>Android 系统 SystemUI 介绍</h3>
-<p>Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版本在 SystemUI 上都有比较大的改动。而对开发者而言，理解 Android SystemUI 对优化Android系统界面，改善用户体验十分重要。&lt;!--more--&gt;</p>
-<h3>SystemUI 在哪</h3>
-<p>在 Andorid 系统源码中，package/apps下放的是系统内置的一些 app，例如 settings，camera，Phone，Message 等等。而在 Framework/base/package 下，它们也是系统的 app，SystemUI 就在此目录下。它控制着整个Android系统的界面，但其实他也是一个 app，不同于一般的 app，它不可卸载也不可以被第三方应用替换。</p>
-<h3>SystemUI 整体结构</h3>
-<p><img src="http://qiracle.cn/img/20170728/systemUI_1.png" alt="这里写图片描述"></p>
-<p>这是 SystemUI 相关类的继承关系图，可以看到 SystemUI 为基类，每个子类实现了不同的系统界面。</p>
+        <h3 id="Android-系统-SystemUI-介绍"><a href="#Android-系统-SystemUI-介绍" class="headerlink" title="Android 系统 SystemUI 介绍"></a>Android 系统 SystemUI 介绍</h3><p>  Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面上方的状态栏 status bar，下方的导航栏Navigation Bar，锁屏界面 Keyguard ，电源界面 PowerUI，近期任务界面 Recent Task 等等。对于用户而言，SystemUI 的改动是最能直观感受到的。因此，每个 Android 版本在 SystemUI 上都有比较大的改动。而对开发者而言，理解 Android SystemUI 对优化Android系统界面，改善用户体验十分重要。<a id="more"></a></p>
+<h3 id="SystemUI-在哪"><a href="#SystemUI-在哪" class="headerlink" title="SystemUI 在哪"></a>SystemUI 在哪</h3><p>  在 Andorid 系统源码中，package/apps下放的是系统内置的一些 app，例如 settings，camera，Phone，Message 等等。而在 Framework/base/package 下，它们也是系统的 app，SystemUI 就在此目录下。它控制着整个Android系统的界面，但其实他也是一个 app，不同于一般的 app，它不可卸载也不可以被第三方应用替换。</p>
+<h3 id="SystemUI-整体结构"><a href="#SystemUI-整体结构" class="headerlink" title="SystemUI 整体结构"></a>SystemUI 整体结构</h3><p> <img src="http://qiracle.cn/img/20170728/systemUI_1.png" alt="这里写图片描述"></p>
+<p> 这是 SystemUI 相关类的继承关系图，可以看到 SystemUI 为基类，每个子类实现了不同的系统界面。</p>
 <ul>
 <li>Status Bar 系统上方的状态栏</li>
 <li>Navigator Bar 系统下方的导航栏</li>
@@ -356,24 +350,17 @@ Android 的 SystemUI 其实就是 Android 的系统界面，它包括了界面�
 <li>Settings Activity 系统设置中用到的一些界面，例如：NetworkOverLimitActivity，UsbDebuggingActivity等。</li>
 </ul>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_2.png" alt="这里写图片描述"></p>
-<h3>SystemUI的启动流程</h3>
-<p>先找到 framework/base/service/java/com/android/server/SystemServer.java 文件，里面有个main()方法，main 方法如下：</p>
+<h3 id="SystemUI的启动流程"><a href="#SystemUI的启动流程" class="headerlink" title="SystemUI的启动流程"></a>SystemUI的启动流程</h3><p>先找到 framework/base/service/java/com/android/server/SystemServer.java 文件，里面有个main()方法，main 方法如下：</p>
 <pre><code>public static void main（String[] args）{
-	new SystemServer().run()
+    new SystemServer().run()
 }
-</code></pre>
-<p>main 方法里启动了 run() 方法，而在 run 方法中调用了 startBootstrapServices() 方法和 startOtherServices() 方法，在 startOtherServices() 里 mActivityManagerService.systemReady 创建线程去执行startSystemUi(context），这里将启动 SystemUI。具体方法如下：</p>
-<p><img src="http://qiracle.cn/img/20170728/systemUI_3.png" alt="这里写图片描述">
-然后我们进入设置启动 systemui 程序的 SystemUIService 文件里，该文件在framework/base/packages/SystemUI/src/com/android/systemui/SystemUIService.java.我们看该文件的onCreate() 方法。方法如下：</p>
-<p><img src="http://qiracle.cn/img/20170728/systemUI_4.png" alt="这里写图片描述"></p>
-<p>可以看到有一句 ((SystemUIApplication) getApplication()).startServicesIfNeeded()，这句很关键，我们再进入 startServicesIfNeeded()，看看具体是如何启动系统服务的。该方法如下：
-	 <img src="http://qiracle.cn/img/20170728/systemUI_5.png" alt="这里写图片描述"></p>
-<p>其中有一个 for 循环，循环里第一句就是将 service[i] 赋值给 cl，	 那么service里存的是什么呢？找到 service[i] 的赋值如下：</p>
+</code></pre><p>  main 方法里启动了 run() 方法，而在 run 方法中调用了 startBootstrapServices() 方法和 startOtherServices() 方法，在 startOtherServices() 里 mActivityManagerService.systemReady 创建线程去执行startSystemUi(context），这里将启动 SystemUI。具体方法如下：</p>
+<p><img src="http://qiracle.cn/img/20170728/systemUI_3.png" alt="这里写图片描述"><br>  然后我们进入设置启动 systemui 程序的 SystemUIService 文件里，该文件在framework/base/packages/SystemUI/src/com/android/systemui/SystemUIService.java.我们看该文件的onCreate() 方法。方法如下：</p>
+<p> <img src="http://qiracle.cn/img/20170728/systemUI_4.png" alt="这里写图片描述"></p>
+<p> 可以看到有一句 ((SystemUIApplication) getApplication()).startServicesIfNeeded()，这句很关键，我们再进入 startServicesIfNeeded()，看看具体是如何启动系统服务的。该方法如下：<br>     <img src="http://qiracle.cn/img/20170728/systemUI_5.png" alt="这里写图片描述"></p>
+<p>  其中有一个 for 循环，循环里第一句就是将 service[i] 赋值给 cl，     那么service里存的是什么呢？找到 service[i] 的赋值如下：</p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_6.png" alt="这里写图片描述"></p>
-<p>看到这里我们就明白了，这里是拿到每个和 SystemUI 相关的类的反射，存到了 service[] 里，然后赋值给cl，紧接着将通过反射将其转化为具体类的对象，存到了mService[i]数组里，最后对象调 start() 方法启动相关类的服务，启动完成后，回调 onBootCompleted( ) 方法。
-mService[i] 里的值不同时，调用的 start() 方法也不相同，这里我们以S ystemBars 的 start() 为例，所以mService[i].start() 先认为是 SystemBars.start().
-SystemBars.java 位于framework/base/packages/SystemUI/res/com/android/systemui/statusbar/SystemBars.java ，找到 start() 方法：
-	<img src="http://qiracle.cn/img/20170728/systemUI_7.png" alt="这里写图片描述"></p>
+<p>  看到这里我们就明白了，这里是拿到每个和 SystemUI 相关的类的反射，存到了 service[] 里，然后赋值给cl，紧接着将通过反射将其转化为具体类的对象，存到了mService[i]数组里，最后对象调 start() 方法启动相关类的服务，启动完成后，回调 onBootCompleted( ) 方法。<br>  mService[i] 里的值不同时，调用的 start() 方法也不相同，这里我们以S ystemBars 的 start() 为例，所以mService[i].start() 先认为是 SystemBars.start().<br>  SystemBars.java 位于framework/base/packages/SystemUI/res/com/android/systemui/statusbar/SystemBars.java ，找到 start() 方法：<br>    <img src="http://qiracle.cn/img/20170728/systemUI_7.png" alt="这里写图片描述"></p>
 <p>这里调用了 mServiceMonitor.start()，旁边注释说的很清楚如果服务没有启动的话就调用onNoService()方法，进入 onNoService() 方法，该方法就位于 start() 方法下方，可以看到方法中调用了CreateStatusBarFromConfig() 该方法如下：</p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_8.png" alt="这里写图片描述"></p>
 <p>从中可以知道，该方法中先读取 value/config.xml 文件中 config_statusBarComponent 的值,这里为：com.android.systemui.statusbar.phone.PhoneStatusBar，然后通过反射得到了 PhoneStatusBar 对象，最后的 mStartus.start() 也就等于 PhoneStatusBar.start()，进入该方法，会发现，里面调用了super.start()，也就是先执行了父类的 start() ,其父类为 BaseStatusBar，该类的star()方法较多，就不放出来了，我们看重点，找到里面有调用一个 createAndAddWindows()，该方法为抽象方法，则会调用它的子类的方法，这里也就是 PhoneStatusBar 的 createAndAddWindows()方法，如下：</p>
@@ -382,33 +369,17 @@ SystemBars.java 位于framework/base/packages/SystemUI/res/com/android/systemui/
 <p><img src="http://qiracle.cn/img/20170728/systemUI_10.png" alt="这里写图片描述"></p>
 <p>然后，我们通过 super_status_bar.xml 的分析 SystemBars 的大致视图构成了，super_status_bar.xml 代码如下：</p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_11.png" alt="这里写图片描述"></p>
-<p><strong>super_status_bar.xml</strong>
-super_status_bar.xml 中 include 了一个名称为 status_bar 的布局文件
-super_status_bar.xml*中 include 了一个名称为 status_bar_expanded 的布局文件
-这里的 status_bar 便是系统状态栏的布局文件，status_bar_expanded 便是下拉的通知窗口的布局文件
-上述 super_status_bar.xml 与如下视图对应：</p>
+<p><strong>super_status_bar.xml</strong><br>super_status_bar.xml 中 include 了一个名称为 status_bar 的布局文件<br>super_status_bar.xml*中 include 了一个名称为 status_bar_expanded 的布局文件<br>这里的 status_bar 便是系统状态栏的布局文件，status_bar_expanded 便是下拉的通知窗口的布局文件<br>上述 super_status_bar.xml 与如下视图对应：</p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_12.png" alt="这里写图片描述"></p>
 <p>PhoneStatusBarView 即为手机最上方的状态栏，主要用于显示系统状态，通知等，主要包括 notification icons 和 status bar icons。status_bar.xml 即对应状态栏的视图如下：</p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_13.png" alt="这里写图片描述"></p>
-<p><strong>PanelHolder</strong>
-PanelHolder是用户下拉 status bar 后得到的 view。它主要包含 QuickSettings 和 Notification panel 两个部分。
-PanelHolder是一个继承自 FrameLayout的自定义 view,它的内容是通过 include status_bar_expanded.xml进行填充的。
-PanelHolder的布局比较复杂，为了提高 view 的重用性大量的使用了 include 标签。
-status_bar_expanded.xml 对应的视图：</p>
+<p><strong>PanelHolder</strong><br>PanelHolder是用户下拉 status bar 后得到的 view。它主要包含 QuickSettings 和 Notification panel 两个部分。<br>PanelHolder是一个继承自 FrameLayout的自定义 view,它的内容是通过 include status_bar_expanded.xml进行填充的。<br>PanelHolder的布局比较复杂，为了提高 view 的重用性大量的使用了 include 标签。<br>status_bar_expanded.xml 对应的视图：</p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_14.png" alt="这里写图片描述"></p>
-<p><strong>KeyguardBouncer</strong>
-KeyguardBouncer是锁屏解锁界面，根据用户设置的解锁方式不同，展示不同的解锁模式。
-keyguard_bouncer.xml 对应的 KerguardBouncer 视图：</p>
+<p><strong>KeyguardBouncer</strong><br>KeyguardBouncer是锁屏解锁界面，根据用户设置的解锁方式不同，展示不同的解锁模式。<br>keyguard_bouncer.xml 对应的 KerguardBouncer 视图：</p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_15.png" alt="这里写图片描述"></p>
-<p><strong>附：</strong>
-<strong>SystemUI启动流程图：</strong>
-<img src="http://qiracle.cn/img/20170728/systemUI_16.png" alt="这里写图片描述"></p>
+<p><strong>附：</strong><br><strong>SystemUI启动流程图：</strong><br><img src="http://qiracle.cn/img/20170728/systemUI_16.png" alt="这里写图片描述"></p>
 <p><img src="http://qiracle.cn/img/20170728/systemUI_17.png" alt="这里写图片描述"></p>
-<p><strong>参考文章</strong>：
-http://www.jianshu.com/p/0ab1279465fa
-http://qiangbo.space/2017-05-09/AndroidAnatomy_SystemUI_Intro/
-http://qiangbo.space/2017-06-04/AndroidAnatomy_SystemUI_Bar/
-http://www.open-open.com/lib/view/open1494316049681.html</p>
+<p><strong>参考文章</strong>：<br><a href="http://www.jianshu.com/p/0ab1279465fa" target="_blank" rel="external">http://www.jianshu.com/p/0ab1279465fa</a><br><a href="http://qiangbo.space/2017-05-09/AndroidAnatomy_SystemUI_Intro/" target="_blank" rel="external">http://qiangbo.space/2017-05-09/AndroidAnatomy_SystemUI_Intro/</a><br><a href="http://qiangbo.space/2017-06-04/AndroidAnatomy_SystemUI_Bar/" target="_blank" rel="external">http://qiangbo.space/2017-06-04/AndroidAnatomy_SystemUI_Bar/</a><br><a href="http://www.open-open.com/lib/view/open1494316049681.html" target="_blank" rel="external">http://www.open-open.com/lib/view/open1494316049681.html</a></p>
 
       
     </div>
@@ -441,7 +412,7 @@ http://www.open-open.com/lib/view/open1494316049681.html</p>
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Android 系统 SystemUI 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">SystemUI 在哪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">SystemUI 整体结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">SystemUI的启动流程</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-系统-SystemUI-介绍"><span class="toc-number">1.</span> <span class="toc-text">Android 系统 SystemUI 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SystemUI-在哪"><span class="toc-number">2.</span> <span class="toc-text">SystemUI 在哪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SystemUI-整体结构"><span class="toc-number">3.</span> <span class="toc-text">SystemUI 整体结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SystemUI的启动流程"><span class="toc-number">4.</span> <span class="toc-text">SystemUI的启动流程</span></a></li></ol>
         
     </div>
     <style>

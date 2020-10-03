@@ -15,31 +15,28 @@
 
 
 
-<meta name="description" content="PX(pixel):
-即传统计算机语言中描述的像素，在Android则代表绝对像素。
+<meta name="description" content="PX(pixel):即传统计算机语言中描述的像素，在Android则代表绝对像素。
 之所以Android中不推荐使用这种单位，正是因为不同生产厂商，不同品牌，不同屏幕的设备，其分辨率亦不一。
 举例来说，我们现在将某个Button的width设为160px，则会出现如下情况：
 在分辨率为“320宽”的设备里，该按钮显示占屏幕宽度一半；
-在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一">
+在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android屏幕适配 px,dp,dpi及density的关系与深入理解">
 <meta property="og:url" content="http://qiracle.github.io/2019/09/15/2019091502/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="PX(pixel):
-即传统计算机语言中描述的像素，在Android则代表绝对像素。
+<meta property="og:description" content="PX(pixel):即传统计算机语言中描述的像素，在Android则代表绝对像素。
 之所以Android中不推荐使用这种单位，正是因为不同生产厂商，不同品牌，不同屏幕的设备，其分辨率亦不一。
 举例来说，我们现在将某个Button的width设为160px，则会出现如下情况：
 在分辨率为“320宽”的设备里，该按钮显示占屏幕宽度一半；
-在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一">
+在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一；">
 <meta property="og:updated_time" content="2019-09-15T01:43:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android屏幕适配 px,dp,dpi及density的关系与深入理解">
-<meta name="twitter:description" content="PX(pixel):
-即传统计算机语言中描述的像素，在Android则代表绝对像素。
+<meta name="twitter:description" content="PX(pixel):即传统计算机语言中描述的像素，在Android则代表绝对像素。
 之所以Android中不推荐使用这种单位，正是因为不同生产厂商，不同品牌，不同屏幕的设备，其分辨率亦不一。
 举例来说，我们现在将某个Button的width设为160px，则会出现如下情况：
 在分辨率为“320宽”的设备里，该按钮显示占屏幕宽度一半；
-在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一">
+在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一；">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -329,59 +326,37 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4><strong>PX(pixel):</strong></h4>
-<p>即传统计算机语言中描述的像素，在Android则代表绝对像素。</p>
+        <h4 id="PX-pixel"><a href="#PX-pixel" class="headerlink" title="PX(pixel):"></a><strong>PX(pixel):</strong></h4><p>即传统计算机语言中描述的像素，在Android则代表绝对像素。</p>
 <p>之所以Android中不推荐使用这种单位，正是因为不同生产厂商，不同品牌，不同屏幕的设备，其分辨率亦不一。</p>
 <p>举例来说，我们现在将某个Button的width设为160px，则会出现如下情况：</p>
 <p>在分辨率为“320宽”的设备里，该按钮显示占屏幕宽度一半；</p>
 <p>在分辨率为“640宽”的设备里，该按钮显示占屏幕宽度的四分之一；</p>
-<p>&lt;!--more--&gt;</p>
-<h4><strong>DPI(Dots Per Inch):</strong></h4>
-<p>为了避免上面说到的使用px在屏幕适配中带来的问题，Android引入了一个新的单位：dp/dip。</p>
+<a id="more"></a>
+<h4 id="DPI-Dots-Per-Inch"><a href="#DPI-Dots-Per-Inch" class="headerlink" title="DPI(Dots Per Inch):"></a><strong>DPI(Dots Per Inch):</strong></h4><p>为了避免上面说到的使用px在屏幕适配中带来的问题，Android引入了一个新的单位：dp/dip。</p>
 <p>而在理解“dp”之前，我们更有必要先了解一下另一个概念。正是：dpi。</p>
 <p>也有人讲<strong>dpi称为“屏幕密度”</strong>。其含义则是：每英寸所打印的点数，<strong>既每一英寸的屏幕所包含的像素数。</strong></p>
 <p>举例来说，假设现在有一台“宽2英寸，长3英寸”的设备，则：</p>
-<p>当该设备分辨率为“320x480”，则dpi值为160。
-当该设备分辨率为“640x960”，则dpi值为320。
-而“dpi”值越高的设备，其屏幕显示画面的效果也就越精细。</p>
+<p>当该设备分辨率为“320x480”，则dpi值为160。<br>当该设备分辨率为“640x960”，则dpi值为320。<br>而“dpi”值越高的设备，其屏幕显示画面的效果也就越精细。</p>
 <p>使用场景：</p>
 <p>正是因为dpi值其代表的特性，所以android项目的资源文件下存在以下目录：</p>
-<p>drawable-ldpi    ( 当dpi为120时，使用此目录下的资源)
-drawable-mdpi    ( 当dpi为160时，使用此目录下的资源)
-drawable-hdpi    ( 当dpi为240时，使用此目录下的资源)
-drawable-xhdpi   ( 当dpi为320时，使用此目录下的资源)
-drawable-xxhdpi  ( 当dpi为480时，使用此目录下的资源)
-Android正是根据设备DPI值得不同，选择清晰度不同的资源使用，完成屏幕的适配。</p>
-<h4><strong>DP/DIP(device independent pixels):</strong></h4>
-<p>与我们之前谈到的绝对密度“px”对应，Android中引入的“dp”代表的则是“设备独立像素”。</p>
+<p>drawable-ldpi    ( 当dpi为120时，使用此目录下的资源)<br>drawable-mdpi    ( 当dpi为160时，使用此目录下的资源)<br>drawable-hdpi    ( 当dpi为240时，使用此目录下的资源)<br>drawable-xhdpi   ( 当dpi为320时，使用此目录下的资源)<br>drawable-xxhdpi  ( 当dpi为480时，使用此目录下的资源)<br>Android正是根据设备DPI值得不同，选择清晰度不同的资源使用，完成屏幕的适配。</p>
+<h4 id="DP-DIP-device-independent-pixels"><a href="#DP-DIP-device-independent-pixels" class="headerlink" title="DP/DIP(device independent pixels):"></a><strong>DP/DIP(device independent pixels):</strong></h4><p>与我们之前谈到的绝对密度“px”对应，Android中引入的“dp”代表的则是“设备独立像素”。</p>
 <p>该单位是为支持WVGA、HVGA和QVGA而使用的，其不再依赖像素本身，而是和屏幕密度相关。</p>
 <p><strong>在Android当中规定：在屏幕密度为“160dpi”的情况下，则刚好“1dp = 1px”。</strong></p>
-<p>注：当屏幕密度为“320dpi”时，则“1dp = 2px”，以此类推.......</p>
+<p>注：当屏幕密度为“320dpi”时，则“1dp = 2px”，以此类推…….</p>
 <p>也正是因此，让我们得以保证了：控件在不同密度的屏幕上显示一致，既完成屏幕适配。</p>
 <p>使用场景：</p>
 <p>让我们回到上面说到的使用px造成的控件显示问题，此时我们将使用新的单位“dp”。于是：</p>
-<p>在分辨率320x480（既dpi为160）的设备下，则160dp等价于160px，按钮占屏幕宽的一半。
-在分辨率640x960（既dpi为320）的设备下，则160dp等价于320px，按钮依然占屏幕宽的一半。</p>
-<h4><strong>Density：</strong></h4>
-<p>就这个单词本身直接翻译的意思而言，其也代表“密度”。但需要注意的是，在Android中，其实并非如此。
-注意我们这里指的是，通过代码“context.getResources().getDisplayMetrics().density”获取的“density”值。
-而<strong>通过该方法获取到的该值，实际上是等价于“dpi / 160”的一个结果值</strong>。也就是说：
-<strong>“getResources().getDisplayMetrics().density” = “getResources().getDisplayMetrics().densityDpi / 160”</strong></p>
-<p>看到这样一个解析，聪明的人大概已经能预见什么了。我们似乎发现了某种关联：
-在Android里：“dpi = 160，则1dp = 1px”、“dpi = 320，则1dp = 2px”。以此类推。
-到此你已经发现，dp，px与160之间存在着某种规律：“1dp = (dpi / 160)px”
-换算一下，最终得到公式: <strong>dp = density * px</strong> 。</p>
-<p>到了这里我们明白了，其实Android提供的该值，也就是为了让我们在dp与px之间做转换。
-归根结底，其目的还是为了帮助我们做屏幕适配。</p>
-<p>使用场景：
-虽然使用dp在xml文件中定义控件尺寸，能够很好的帮助我们完成适配。
-但很多时候，我们也会需要在Java代码中动态的去设定控件的尺寸。</p>
-<p><strong>但由于在代码中的尺寸设定，基本都被默认为了px单位。</strong>
-所以这个时候就可以借助“density”来帮我们完成dp与px的转换，从而完成适配。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dip2px</span><span class="params">(Context context, <span class="keyword">float</span> dipValue)</span></span>&#123; </span><br><span class="line">                <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">int</span>)(dipValue * scale + <span class="number">0.5f</span>); </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>​</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2dip</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span></span>&#123; </span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>)(pxValue / scale + <span class="number">0.5f</span>); </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>原文链接：https://blog.csdn.net/ghost_Programmer/article/details/50042805</p>
+<p>在分辨率320x480（既dpi为160）的设备下，则160dp等价于160px，按钮占屏幕宽的一半。<br>在分辨率640x960（既dpi为320）的设备下，则160dp等价于320px，按钮依然占屏幕宽的一半。</p>
+<h4 id="Density："><a href="#Density：" class="headerlink" title="Density："></a><strong>Density：</strong></h4><p>就这个单词本身直接翻译的意思而言，其也代表“密度”。但需要注意的是，在Android中，其实并非如此。<br>注意我们这里指的是，通过代码“context.getResources().getDisplayMetrics().density”获取的“density”值。<br>而<strong>通过该方法获取到的该值，实际上是等价于“dpi / 160”的一个结果值</strong>。也就是说：<br><strong>“getResources().getDisplayMetrics().density” = “getResources().getDisplayMetrics().densityDpi / 160”</strong></p>
+<p>看到这样一个解析，聪明的人大概已经能预见什么了。我们似乎发现了某种关联：<br>在Android里：“dpi = 160，则1dp = 1px”、“dpi = 320，则1dp = 2px”。以此类推。<br>到此你已经发现，dp，px与160之间存在着某种规律：“1dp = (dpi / 160)px”<br>换算一下，最终得到公式: <strong>dp = density * px</strong> 。</p>
+<p>到了这里我们明白了，其实Android提供的该值，也就是为了让我们在dp与px之间做转换。<br>归根结底，其目的还是为了帮助我们做屏幕适配。</p>
+<p>使用场景：<br>虽然使用dp在xml文件中定义控件尺寸，能够很好的帮助我们完成适配。<br>但很多时候，我们也会需要在Java代码中动态的去设定控件的尺寸。</p>
+<p><strong>但由于在代码中的尺寸设定，基本都被默认为了px单位。</strong><br>所以这个时候就可以借助“density”来帮我们完成dp与px的转换，从而完成适配。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dip2px</span><span class="params">(Context context, <span class="keyword">float</span> dipValue)</span></span>&#123; </span><br><span class="line">                <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">int</span>)(dipValue * scale + <span class="number">0.5f</span>); </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>​        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2dip</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span></span>&#123; </span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>)(pxValue / scale + <span class="number">0.5f</span>); </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>原文链接：<a href="https://blog.csdn.net/ghost_Programmer/article/details/50042805" target="_blank" rel="external">https://blog.csdn.net/ghost_Programmer/article/details/50042805</a></p>
 
       
     </div>
@@ -414,7 +389,7 @@ Android正是根据设备DPI值得不同，选择清晰度不同的资源使用�
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">PX(pixel):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">DPI(Dots Per Inch):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">DP/DIP(device independent pixels):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">Density：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#PX-pixel"><span class="toc-number">1.</span> <span class="toc-text">PX(pixel):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DPI-Dots-Per-Inch"><span class="toc-number">2.</span> <span class="toc-text">DPI(Dots Per Inch):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DP-DIP-device-independent-pixels"><span class="toc-number">3.</span> <span class="toc-text">DP/DIP(device independent pixels):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Density："><span class="toc-number">4.</span> <span class="toc-text">Density：</span></a></li></ol>
         
     </div>
     <style>
