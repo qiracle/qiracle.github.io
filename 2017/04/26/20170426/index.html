@@ -16,18 +16,21 @@
 
 
 <meta name="description" content="初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。
-git reset  首先，我们要弄清以下">
+git reset
+首先，我们要弄清以下三条命">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈git撤销回退相关用法">
 <meta property="og:url" content="http://qiracle.github.io/2017/04/26/20170426/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
 <meta property="og:description" content="初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。
-git reset  首先，我们要弄清以下">
+git reset
+首先，我们要弄清以下三条命">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈git撤销回退相关用法">
 <meta name="twitter:description" content="初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。
-git reset  首先，我们要弄清以下">
+git reset
+首先，我们要弄清以下三条命">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -317,21 +320,28 @@ git reset  首先，我们要弄清以下">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>  初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>  首先，我们要弄清以下三条命令的区别：</p>
+        <p>初来公司实习，每次改完代码后都需要用代码管理工具git提交到代码库。由于刚开始对 git 并不熟悉，只会简单的 commit，push 指令，一旦提交出了问题需要撤销回退的话就不知道该怎么办了。经过一段时间的研究，总算是把里面相关原理搞懂了，遇到git提交出现问题，现在自己也能想办法解决而不至于手足无措了。下面就说说我对git撤销回退这块相关的理解。</p>
+<h3>git reset</h3>
+<p>首先，我们要弄清以下三条命令的区别：</p>
 <blockquote>
-<p><strong>git reset –hard</strong></p>
-<p><strong>git reset –soft</strong></p>
+<p><strong>git reset --hard</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>git reset --soft</strong></p>
+</blockquote>
+<blockquote>
 <p><strong>git reset</strong></p>
 </blockquote>
-<p><a id="more"></a>工作区，暂存区，本地仓库，远程仓库的概念我在这里就不介绍了。这是git最为基础的概念，可自行百度。下面说说这三条 git reset 指令的区别：</p>
-<p><strong>git reset –hard：</strong> 重置工作区，暂存区，本地仓库的所有文件到某一节点。例如 git reset –hard HEAD^ 表示工作区，暂存区，本地仓库的所有文件全部回退到上一个节点，也就是说你从上一个节点到这个节点之间所做的修改全部被撤销了。当然如果要回到特定的一个节点可以用 git reset –hard commitId 。通过指定要回到的节点值来回到对应的节点。</p>
-<p><strong>git reset –soft：</strong>只重置本地仓库的文件，工作区和暂存区的文件不变。</p>
-<p><strong>git reset</strong> 等同于 git reset –mixed，只重置本地仓库和暂存区文件，工作区文件不变。</p>
-<p>  当我们提交完并push代码到远程仓库后，发现代码有问题，想重新提交，首先在gerrit上abandon掉自己刚才上传的代码，接着，用git reset HEAD^或者git reset –soft HEAD^回到上一个节点（git reset HEAD^后，使用git add .就相当于git reset –soft），不要用git reset –hard。因为这会把你本地工作区修改的全部撤销，这样你之前的修改就全没了。虽然也有办法再找回来，只要找到那次提交的commitId就可以了，下面会介绍。</p>
+<p>&lt;!--more--&gt;工作区，暂存区，本地仓库，远程仓库的概念我在这里就不介绍了。这是git最为基础的概念，可自行百度。下面说说这三条 git reset 指令的区别：</p>
+<p><strong>git reset --hard：</strong> 重置工作区，暂存区，本地仓库的所有文件到某一节点。例如 git reset --hard HEAD^ 表示工作区，暂存区，本地仓库的所有文件全部回退到上一个节点，也就是说你从上一个节点到这个节点之间所做的修改全部被撤销了。当然如果要回到特定的一个节点可以用 git reset --hard commitId 。通过指定要回到的节点值来回到对应的节点。</p>
+<p>**git reset --soft：**只重置本地仓库的文件，工作区和暂存区的文件不变。</p>
+<p><strong>git reset</strong> 等同于 git reset --mixed，只重置本地仓库和暂存区文件，工作区文件不变。</p>
+<p>当我们提交完并push代码到远程仓库后，发现代码有问题，想重新提交，首先在gerrit上abandon掉自己刚才上传的代码，接着，用git reset HEAD^或者git reset --soft HEAD^回到上一个节点（git reset HEAD^后，使用git add .就相当于git reset --soft），不要用git reset --hard。因为这会把你本地工作区修改的全部撤销，这样你之前的修改就全没了。虽然也有办法再找回来，只要找到那次提交的commitId就可以了，下面会介绍。</p>
 <p>另外，我们还可以用git reset file 来使一个已经添加到暂存区的file文件重新返回到工作区。</p>
-<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>  我们通过git log就可以查看到每次提交的 commitId 了，如果嫌 git log 显示的信息过多，可以使用 git log –pretty=oneline 让每次提交的关键信息在一行显示。但是如果使用了 git reset –hard，那么使用 git log 只能看到你重置点之前的提交 commitId，无法看到重置点之后的提交 commitId，要想找到重置点之后的 commitId 可以用git reflog。</p>
-<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p>  git checkout有两个作用，如果后面接的是文件名的话，如 git checkout file 可以将一个工作区的文件撤销其修改。如果后面接的是分支名的话，如 git checkout b表示的是切换到b分支。对于工作区新建立的文件，用 git clean -df 可将其移除工作区。</p>
+<h3>git log</h3>
+<p>我们通过git log就可以查看到每次提交的 commitId 了，如果嫌 git log 显示的信息过多，可以使用 git log --pretty=oneline 让每次提交的关键信息在一行显示。但是如果使用了 git reset --hard，那么使用 git log 只能看到你重置点之前的提交 commitId，无法看到重置点之后的提交 commitId，要想找到重置点之后的 commitId 可以用git reflog。</p>
+<h3>git checkout</h3>
+<p>git checkout有两个作用，如果后面接的是文件名的话，如 git checkout file 可以将一个工作区的文件撤销其修改。如果后面接的是分支名的话，如 git checkout b表示的是切换到b分支。对于工作区新建立的文件，用 git clean -df 可将其移除工作区。</p>
 
       
     </div>
@@ -364,7 +374,7 @@ git reset  首先，我们要弄清以下">
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset"><span class="toc-number">1.</span> <span class="toc-text">git reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-log"><span class="toc-number">2.</span> <span class="toc-text">git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout"><span class="toc-number">3.</span> <span class="toc-text">git checkout</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">git reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">git checkout</span></a></li></ol>
         
     </div>
     <style>
