@@ -7,7 +7,9 @@
       <title><![CDATA[西藏游记]]></title>
       <url>http://qiracle.github.io/2020/10/02/20201002/</url>
       <content type="html"><![CDATA[<p>西藏，新疆，内蒙是国内我最想去的三个地方，它们分别对应着雪山，沙漠和草原，这次凑了7天假，连着两个周末，总共十一天，和朋友一起去西藏逛了一圈。</p>
-<p>由于只有十一天的时间，不算长，所以没有选择坐火车进藏，而是先从南京飞到重庆，再到重庆转机，飞到拉萨，目前国内能直飞拉萨的好像只有成都，重庆，西宁，西安了。进拉萨的机票不算贵，南京到重庆 300 多，重庆到拉萨 600 多，总共才 1000 多一点。但是有个很坑的地方是飞出拉萨的机票特别贵，回去时买的拉萨飞西安的就差不多 1700 。所以如果有时间的话，最好还是飞机进藏，火车出藏，这样既能欣赏到火车穿出青藏高原的沿路美景，还比较省钱。<a id="more"></a></p>
+<p>由于只有十一天的时间，不算长，所以没有选择坐火车进藏，而是先从南京飞到重庆，再到重庆转机，飞到拉萨，目前国内能直飞拉萨的好像只有成都，重庆，西宁，西安了。进拉萨的机票不算贵，南京到重庆 300 多，重庆到拉萨 600 多，总共才 1000 多一点。但是有个很坑的地方是飞出拉萨的机票特别贵，回去时买的拉萨飞西安的就差不多 1700 。所以如果有时间的话，最好还是飞机进藏，火车出藏，这样既能欣赏到火车穿出青藏高原的沿路美景，还比较省钱。</p>
+<p><img src="http://qiracle.cn/img/west/00.jpg" alt=""></p>
+<a id="more"></a>
 <h3 id="Day1-–-重庆"><a href="#Day1-–-重庆" class="headerlink" title="Day1 – 重庆"></a>Day1 – 重庆</h3><p>南京飞到重庆，早上差点没赶上飞机，幸好滴滴师傅给力，上了高速全程 120km/h 往机场赶，到了机场安检的时候已经有广播在喊我们的名字了，有惊无险。到了重庆，打车去市区的路上，一直跟司机师傅交流，问他哪好吃好玩的，中午就吃了他推荐的一家叫周师兄的火锅，他推荐的还有来凤鱼，璧山兔，不过已经没有胃口吃了。下午逛了李子坝，皇冠梯，凯旋梯，长江索道，晚上逛了洪崖洞，吃了串串，就不重点介绍这些了，因为此行的目的是西藏。</p>
 <p><img src="http://qiracle.cn/img/west/01.jpg" alt=""></p>
 <p><img src="http://qiracle.cn/img/west/02.jpg" alt=""></p>
@@ -321,6 +323,19 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Android layout_weight 计算方式]]></title>
+      <url>http://qiracle.github.io/2019/09/15/20190915/</url>
+      <content type="html"><![CDATA[<p>假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2</p>
+<p>第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：<a id="more"></a><br>第一个控件的宽度为 0+(1/(1+2+2))<em>X=X/5<br>第二个控件的宽度为 0+(2/(1+2+2))</em>X=2X/5<br>第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
+<p>第二种情况：每个控件的宽度属性都为android:layout_width=”match_parent”，那么额外的空间就是X-X-X-X=-2X<br>第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5<br>第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5<br>第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
+<p>第三种情况：其中第一个控件宽度属性为android:layout_width=”match_parent”，其他两个控件宽度为android:layout_width=”0dp”，额外的空间为X-X-0-0=0<br>第一个控件的宽度为 X+(1/(1+2+2))<em>0=X<br>第二个控件的宽度为 0+(2/(1+2+2))</em>0=0<br>第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
+<p>最终结论：layout_weight的公式<br>控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间<br>额外的空间=手机的宽度/高度-所有控件的宽度/高度 </p>
+<p>注：如果属性为android:layout_width=”wrap_content” 则计算时，总宽/高要减去控件本身占据的宽/高 </p>
+<p>转自：<a href="https://blog.csdn.net/Dazlly/article/details/13767343" target="_blank" rel="external">https://blog.csdn.net/Dazlly/article/details/13767343</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android屏幕适配 px,dp,dpi及density的关系与深入理解]]></title>
       <url>http://qiracle.github.io/2019/09/15/2019091502/</url>
       <content type="html"><![CDATA[<h4 id="PX-pixel"><a href="#PX-pixel" class="headerlink" title="PX(pixel):"></a><strong>PX(pixel):</strong></h4><p>即传统计算机语言中描述的像素，在Android则代表绝对像素。</p>
@@ -354,19 +369,6 @@
 <p>​        </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2dip</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span></span>&#123; </span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density; </span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>)(pxValue / scale + <span class="number">0.5f</span>); </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>原文链接：<a href="https://blog.csdn.net/ghost_Programmer/article/details/50042805" target="_blank" rel="external">https://blog.csdn.net/ghost_Programmer/article/details/50042805</a></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Android layout_weight 计算方式]]></title>
-      <url>http://qiracle.github.io/2019/09/15/20190915/</url>
-      <content type="html"><![CDATA[<p>假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2</p>
-<p>第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：<a id="more"></a><br>第一个控件的宽度为 0+(1/(1+2+2))<em>X=X/5<br>第二个控件的宽度为 0+(2/(1+2+2))</em>X=2X/5<br>第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
-<p>第二种情况：每个控件的宽度属性都为android:layout_width=”match_parent”，那么额外的空间就是X-X-X-X=-2X<br>第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5<br>第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5<br>第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
-<p>第三种情况：其中第一个控件宽度属性为android:layout_width=”match_parent”，其他两个控件宽度为android:layout_width=”0dp”，额外的空间为X-X-0-0=0<br>第一个控件的宽度为 X+(1/(1+2+2))<em>0=X<br>第二个控件的宽度为 0+(2/(1+2+2))</em>0=0<br>第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
-<p>最终结论：layout_weight的公式<br>控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间<br>额外的空间=手机的宽度/高度-所有控件的宽度/高度 </p>
-<p>注：如果属性为android:layout_width=”wrap_content” 则计算时，总宽/高要减去控件本身占据的宽/高 </p>
-<p>转自：<a href="https://blog.csdn.net/Dazlly/article/details/13767343" target="_blank" rel="external">https://blog.csdn.net/Dazlly/article/details/13767343</a></p>
 ]]></content>
     </entry>
     
