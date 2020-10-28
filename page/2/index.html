@@ -276,125 +276,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-20190824" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/08/24/20190824/" class="article-date">
-      <time datetime="2019-08-23T16:00:00.000Z" itemprop="datePublished">2019-08-24</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>JNI 是java 语言调用C/C++函数的接口。与JNI相关的开发工具包是NDK。下面记录Android Studio 里用 java代码调用 JNI的基本过程。当前环境：</p>
-<p>Android Studio：3.1.2.</p>
-<p>NDK：20.0.5&lt;!--more--&gt;</p>
-<h3>准备</h3>
-<p>下载NDK:</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082400.png" alt=""></p>
-<p>###1.创建Java类</p>
-<p>定义一个工具类，里面定义了native方法：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.qiracle.jnidemo.jni;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JniUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">static</span> &#123;</span><br><span class="line">                System.loadLibrary(<span class="string">"JniLib"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> String <span class="title">getJniString</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://qiracle.cn/img/20190824/2019082401.png" alt=""></p>
-<h3>2.创建JNI文件夹</h3>
-<p>在main文件夹下创建jni文件夹：</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082402.png" alt=""></p>
-<h3>3.生成头文件</h3>
-<p>两种方式：</p>
-<p>1.通过命令行</p>
-<p>javac JniUtils.java 编译生成 JniUtils.class文件。然后回退到包外目录javah -jni  cn.qiracle.jnidemo.jni.JniUtils。将生成的.h文件移动到main下的jni目录下。</p>
-<p>2.配置外部工具</p>
-<p>点击<code>File - Setting - Tools - External Tools</code> 打开外部工具配置页，点击 <code>+</code> 新建一个工具。</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082403.png" alt=""></p>
-<p>Program: <code>$JDKPath$\bin\javah.exe</code></p>
-<p>Arguments: <code>-classpath . -jni -d $ModuleFileDir$\src\main\jni $FileClass$</code></p>
-<p>Working directory: <code>$ModuleFileDir$\src\main\Java</code></p>
-<p>点击 <code>OK</code> 保存后就新建了一个工具。此时我们右击 <code>JniUtils.java</code>，在菜单中选择 <code>External Tools - javah</code> 就可以快速生成头文件并放到 jni 目录。</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082405.png" alt=""></p>
-<h3>4.编写C代码</h3>
-<p>在jni目录下新建一个cn_qiracle_jnidemo_jni_JniUtils.cpp文件。内容如下：</p>
-<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"cn_qiracle_jnidemo_jni_JniUtils.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jstring JNICALL <span class="title">Java_cn_qiracle_jnidemo_jni_JniUtils_getJniString</span></span><br><span class="line"><span class="params">(JNIEnv *env,jclass jobj)</span> </span>&#123;</span><br><span class="line"><span class="comment">//new 一个字符串，返回Hello World</span></span><br><span class="line"><span class="keyword">return</span> (*env).NewStringUTF(<span class="string">"Hello jni"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里输出 hello jni</p>
-<h3>5.创建mk文件</h3>
-<p>mk 文件用于告诉 ndk-build 该如何编译 c 源码。详情见<a href="https://developer.android.com/ndk/guides/build" target="_blank" rel="external">官方指南</a>。</p>
-<p>在jni目录下创建Android.mk:</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line"></span><br><span class="line">LOCAL_MODULE := JniLib</span><br><span class="line">LOCAL_SRC_FILES =: cn_qiracle_jnidemo_jni_JniUtils.cpp</span><br><span class="line">include $(BUILD_SHARED_LIBRARY)</span><br></pre></td></tr></table></figure></p>
-<p>创建 <code>Application.mk</code>：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">APP_MODULES := JniLib</span><br><span class="line">APP_ABI := all</span><br></pre></td></tr></table></figure></p>
-<h3>6.gradle配置</h3>
-<p>在 module 的 build.gradle 里，<code>amndroid.defaultConfig</code> 下加入下面配置：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ndk &#123;</span><br><span class="line">           moduleName &quot;JniLib&quot;</span><br><span class="line">       &#125;</span><br><span class="line">       sourceSets.main&#123;</span><br><span class="line">           jni.srcDirs = []</span><br><span class="line">           jniLibs.srcDir &quot;src/main/libs&quot;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></p>
-<h3>6.编译</h3>
-<p>这里我们配置使用外部工具：</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082404.png" alt=""></p>
-<ul>
-<li>Program: <code>D:\SDK\ndk-bundle\build\ndk-build.cmd</code> （注意这里是ndk-build路径）</li>
-<li>Working directory: <code>$ProjectFileDir$\app\src\main</code></li>
-</ul>
-<p>任意找个第地方右击，选择 <code>External Tools - ndk-build</code> 即可编译 c 源码。成功后可以看见创建了 <code>libs</code> 目录，里面包含了不同平台下的 so 文件。</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082406.png" alt=""></p>
-<h3>7.验证</h3>
-<p>在MainActivity.java里调用native方法：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Toast.makeText(this,JniUtils.getJniString(),Toast.LENGTH_SHORT).show();</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：</p>
-<p><img src="http://qiracle.cn/img/20190824/2019082407.png" alt=""></p>
-<p>参考：</p>
-<p><a href="https://www.jianshu.com/p/09ff3300f453" target="_blank" rel="external">https://www.jianshu.com/p/09ff3300f453</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JNI/">JNI</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-20190810" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -424,33 +305,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>AIDL 是 Android 中实现跨进程通信的一种方式。下面是一个简单的实现案例，通过 AIDL 实现客户端调用服务端的接口， 实现跨进程通信。&lt;!--more--&gt;</p>
-<h3>Server</h3>
-<p>首先，创建一个服务端工程 AIDLServer。main下面创建aidl文件夹，然后在aidl文件夹下创建包和aidl文件，如下：</p>
-<p><img src="http://qiracle.cn/img/20190810/2019081001.png" alt=""></p>
-<p>IMyAidlInterface.aidl 文件内容如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// IMyAidlInterface.aidl</span><br><span class="line">package cn.qiracle.aidlserver;</span><br><span class="line"></span><br><span class="line">// Declare any non-default types here with import statements</span><br><span class="line"></span><br><span class="line">interface IMyAidlInterface &#123;</span><br><span class="line">     void print();</span><br><span class="line">     int add(int a, int b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里定义了AIDL接口IMyAidlInterface，接口里定义了两个待实现的方法。然后 重新构建下工程，这样在build目录下就会生成IMyAidlInterface.java 文件。</p>
-<p>接着定义一个Service，如下：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.qiracle.aidlserver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Service;</span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.IBinder;</span><br><span class="line"><span class="keyword">import</span> android.os.RemoteException;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyBinder</span> <span class="keyword">extends</span> <span class="title">IMyAidlInterface</span>.<span class="title">Stub</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            Log.i(<span class="string">"qiracle"</span>, <span class="string">"my aidl test"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            Log.i(<span class="string">"qiracle"</span>, <span class="string">"a + b:"</span> + (a + b));</span><br><span class="line">            <span class="keyword">return</span> a + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在这个Service里 ，内部类MyBinder继承IMyAidlInterface.Stub ，然后实现接口里待实现的方法。这两个方法就是提供给客户端进行调用的。</p>
-<p>最后，清单文件里记得注册下服务</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;service</span><br><span class="line">    android:name=&quot;.MyService&quot;</span><br><span class="line">    android:enabled=&quot;true&quot;</span><br><span class="line">    android:exported=&quot;true&quot;&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">        &lt;action android:name=&quot;cn.qiracle.aidlservice&quot; /&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/service&gt;</span><br></pre></td></tr></table></figure></p>
-<p>然后启动服务</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setAction(<span class="string">"cn.qiracle.aidlservice"</span>);</span><br><span class="line">intent.setPackage(<span class="string">"cn.qiracle.aidlserver"</span>);</span><br><span class="line">startService(intent);</span><br></pre></td></tr></table></figure></p>
-<p>以上就是AIDL的服务端简单实现。主要就是定义一个AIDL接口，然后在服务里实现这个接口，提供给客户端调用。下面介绍客户端部分。</p>
-<h3>Client</h3>
-<p>先建立一个客户端的工程，跟服务端工程一样，需要在main下建立aidl目录，然后在aidl目录下新建包和aidl文件，这里的包名和aidl文件名必须和服务端保持一致。如下：</p>
-<p><img src="http://qiracle.cn/img/20190810/2019081002.png" alt=""></p>
-<p>IMyAidlInterface.aidl 的内容也和 服务端的 IMyAidlInterface.aidl 保持一致</p>
-<p>然后，在Activity里绑定服务，如下：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setAction(<span class="string">"cn.qiracle.aidlservice"</span>);</span><br><span class="line">intent.setPackage(<span class="string">"cn.qiracle.aidlserver"</span>);</span><br><span class="line"></span><br><span class="line">bindService(intent, <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">        iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,BIND_AUTO_CREATE);</span><br></pre></td></tr></table></figure></p>
-<p>可以通过按钮的点击事件，调用服务端的方法。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">click</span><span class="params">(View view)</span></span>&#123;</span><br><span class="line">    Toast.makeText(getApplicationContext(),<span class="string">"click"</span>,Toast.LENGTH_SHORT).show();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        iMyAidlInterface.print();</span><br><span class="line">        iMyAidlInterface.add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上就是客户端实现。</p>
-<p>开始运行，注意需要先运行服务端，开启Service，然后运行客户端，绑定服务，通过点击按钮，可以看到服务端控制台有日志打印。</p>
-<p>以上，我们就通过AIDL实现了跨进程的调用，方法的实现在服务端，方法的调用在客户端。</p>
-
+              <p>AIDL 是 Android 中实现跨进程通信的一种方式。下面是一个简单的实现案例，通过 AIDL 实现客户端调用服务端的接口， 实现跨进程通信。
+          
       
     </div>
     
@@ -467,6 +323,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AIDL/">AIDL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/08/10/20190810/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -515,64 +375,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>Handler</h3>
-<ol>
-<li>
-<p>Handler 的回调方法是在 Looper.loop()所调用的线程进行的；</p>
+              <h3 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h3><ol>
+<li><p>Handler 的回调方法是在 Looper.loop()所调用的线程进行的；</p>
 </li>
-<li>
-<p>Handler 的创建需要先调用 Looper.prepare() ，然后再手动调用 loop()方法开启循环；</p>
+<li><p>Handler 的创建需要先调用 Looper.prepare() ，然后再手动调用 loop()方法开启循环；</p>
 </li>
-<li>
-<p>App 启动时会在ActivityThread.main()方法中创建主线程的 Looper ,并开启循环，所以主线程使用 Handler 不用调用第2点的逻辑；&lt;!--more --&gt;</p>
-</li>
-<li>
-<p>延时消息并不会阻塞消息队列；</p>
-</li>
-<li>
-<p>异步消息不会马上执行，插入队列的方式跟同步消息一样，唯一的区别是当有消息屏障时，异步消息可以继续执行，同步消息则不行；</p>
-</li>
-<li>
-<p>Callback.handleMessage() 的优先级比 Handler.handleMessage()要高*</p>
-</li>
-<li>
-<p>Handler.post(Runnable)传递的 Runnale 对象并不会在新的线程执行；</p>
-</li>
-<li>
-<p>Message 的创建推荐使用 Message.obtain() 来获取，内部采用缓存消息池实现；</p>
-</li>
-<li>
-<p>不要在 handleMessage()中对消息进行异步处理；</p>
-</li>
-<li>
-<p>可以通过removeCallbacksAndMessages(null)或者静态类加弱引用的方式防止内存泄漏；</p>
-</li>
-<li>
-<p>Looper.loop()不会造成应用卡死，里面使用了 Linux 的 epoll 机制。</p>
-</li>
-</ol>
-<h3>Context</h3>
-<p>源码中的注释是这么来解释Context的：Context提供了关于应用环境全局信息的接口。<strong>它是一个抽象类，它的执行被Android系统所提供</strong>。它允许获取以应用为特征的资源和类型，是一个统领一些资源（应用程序环境变量等）的上下文。就是说，它描述一个应用程序环境的信息（即上下文）；是一个抽象类，Android提供了该抽象类的具体实现类；通过它我们可以获取应用程序的资源和类（包括应用级别操作，如启动Activity，发广播，接受Intent等）。既然上面Context是一个抽象类，那么肯定有他的实现类咯，我们在Context的源码中通过IDE可以查看到他的子类最终可以得到如下关系图：</p>
-<p><img src="http://94.191.72.22/blog/image/20190803/2019080301.png" alt=""></p>
-<p>Context类本身是一个纯abstract类，它有两个具体的实现子类：ContextImpl和ContextWrapper。其中ContextWrapper类，如其名所言，这只是一个包装而已，ContextWrapper构造函数中必须包含一个真正的Context引用，同时ContextWrapper中提供了attachBaseContext（）用于给ContextWrapper对象中指定真正的Context对象，调用ContextWrapper的方法都会被转向其所包含的真正的Context对象。ContextThemeWrapper类，如其名所言，其内部包含了与主题（Theme）相关的接口，这里所说的主题就是指在AndroidManifest.xml中通过android：theme为Application元素或者Activity元素指定的主题。当然，只有Activity才需要主题，Service是不需要主题的，因为Service是没有界面的后台场景，所以Service直接继承于ContextWrapper，Application同理。而ContextImpl类则真正实现了Context中的所以函数，应用程序中所调用的各种Context类的方法，其实现均来自于该类。一句话总结：<strong>Context的两个子类分工明确，其中ContextImpl是Context的具体实现类，ContextWrapper是Context的包装类。Activity，Application，Service虽都继承自ContextWrapper（Activity继承自ContextWrapper的子类ContextThemeWrapper），但它们初始化的过程中都会创建ContextImpl对象，由ContextImpl实现Context中的方法。</strong></p>
-<p><strong>一个应用程序有几个Context？</strong></p>
-<p>实这个问题本身并没有什么意义，关键还是在于对Context的理解，从上面的关系图我们已经可以得出答案了，在应用程序中Context的具体实现子类就是：Activity，Service，Application。<strong>那么Context数量=Activity数量+Service数量+1</strong>。当然如果你足够细心，可能会有疑问：我们常说四大组件，这里怎么只有Activity，Service持有Context，那Broadcast Receiver，Content Provider呢？Broadcast Receiver，Content Provider并不是Context的子类，他们所持有的Context都是其他地方传过去的，所以并不计入Context总数。上面的关系图也从另外一个侧面告诉我们Context类在整个Android系统中的地位是多么的崇高，因为很显然Activity，Service，Application都是其子类，其地位和作用不言而喻。</p>
-<h3>视图</h3>
-<p><strong>Activity</strong></p>
-<p>Activity并不负责视图控制，它只是控制生命周期和处理事件。真正控制视图的是Window。一个Activity包含了一个Window，Window才是真正代表一个窗口。<strong>Activity就像一个控制器，统筹视图的添加与显示，以及通过其他回调方法，来与Window、以及View进行交互。</strong></p>
-<p><strong>Window</strong></p>
-<p>Window是视图的承载器，内部持有一个 DecorView，而这个DecorView才是 view 的根布局。<strong>Window是一个抽象类，实际在Activity中持有的是其子类PhoneWindow。PhoneWindow中有个内部类DecorView，通过创建DecorView来加载Activity中设置的布局R.layout.activity_main</strong>。Window 通过WindowManager将DecorView加载其中，并将DecorView交给ViewRoot，进行视图绘制以及其他交互。</p>
-<p><strong>DecorView</strong></p>
-<p>DecorView是FrameLayout的子类，它可以被认为是Android视图树的根节点视图。DecorView作为顶级View，一般情况下它内部包含一个竖直方向的LinearLayout，<strong>在这个LinearLayout里面有上下三个部分，上面是个ViewStub，延迟加载的视图（应该是设置ActionBar，根据Theme设置），中间的是标题栏(根据Theme设置，有的布局没有)，下面的是内容栏。</strong></p>
-<p><strong>ViewRoot</strong></p>
-<p>ViewRoot可能比较陌生，但是其作用非常重大。所有View的绘制以及事件分发等交互都是通过它来执行或传递的。</p>
-<p><strong>ViewRoot对应ViewRootImpl类，它是连接WindowManagerService和DecorView的纽带，View的三大流程（测量（measure），布局（layout），绘制（draw））均通过ViewRoot来完成。</strong></p>
-<p>ViewRoot并不属于View树的一份子。从源码实现上来看，它既非View的子类，也非View的父类，但是，它实现了ViewParent接口，这让它可以作为View的名义上的父视图。RootView继承了Handler类，可以接收事件并分发，Android的所有触屏事件、按键事件、界面刷新等事件都是通过ViewRoot进行分发的。</p>
-<p><img src="http://94.191.72.22/blog/image/20190803/2019080302.png" alt=""></p>
-<p>要知道，当用户点击屏幕产生一个触摸行为，这个触摸行为则是通过底层硬件来传递捕获，然后交给ViewRootImpl，接着将事件传递给DecorView，而DecorView再交给PhoneWindow，PhoneWindow再交给Activity，然后接下来就是我们常见的View事件分发了。</p>
-<p><strong>硬件 -&gt; ViewRootImpl -&gt; DecorView -&gt; PhoneWindow -&gt; Activity</strong></p>
-<p><strong>通过以上了解可以知道，Activity就像个控制器，不负责视图部分。Window像个承载器，装着内部视图。DecorView就是个顶层视图，是所有View的最外层布局。ViewRoot像个连接器，负责沟通，通过硬件的感知来通知视图，进行用户之间的交互。</strong></p>
-
+<li><p>App 启动时会在ActivityThread.main()方法中创建主线程的 Looper ,并开启循环，所以主线程使用 Handler 不用调用第2点的逻辑；
+          
       
     </div>
     
@@ -589,6 +398,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/08/03/20190803/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -637,27 +450,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>1. 广播的接收权限</h3>
-<p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
+              <h3 id="1-广播的接收权限"><a href="#1-广播的接收权限" class="headerlink" title="1. 广播的接收权限"></a>1. 广播的接收权限</h3><p>设置广播接收权限的<strong>目的</strong>在于避免自己应用发送的广播被其他恶意应用接收到。简单来说就是定义<strong>谁能接收我的广播</strong>，用法如下：</p>
 <p>首先发送方的应用在清单文件里自定义一个权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。&lt;!--more--&gt;</p>
-<p>然后发送广播时调用如下 sendBoradcast 方法：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static final String PERMISSION_RECEIVER= &quot;cn.qiracle.RECEIVER&quot;;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">sendBroadcast(intent,PERMISSION_RECEIVER);</span><br></pre></td></tr></table></figure></p>
-<p>此时接收方app若是想接收到这个广播，需要在接收方应用的清单文件里添加如下权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3>2.广播的发送权限</h3>
-<p>设置广播的发送权限<strong>目的</strong>在于避免自己的应用里的 receiver 被其他恶意应用发送的带有同样 action 的广播所骚扰。简单来说就是定义<strong>谁能给我发送广播</strong>。用法如下：</p>
-<p>首先在接收方应用的清单文件里自定义一个权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后注册广播时采用如下regiserReceiver方法：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PERMISSION_SEND = <span class="string">"cn.qiracle.SEND"</span>;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">registerReceiver(<span class="keyword">new</span> MyReceiver(),intentFilter,PERMISSION_SEND,<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure></p>
-<p>上面是动态注册，静态注册广播方式如下：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".receiver.MyReceiver"</span></span><br><span class="line">    <span class="attr">android:permission</span>=<span class="string">"cn.qiracle.SEND"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.MYRECEIVER"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>推荐使用动态注册</strong>的方式，因为笔者尝试发现自定义权限时，静态注册的方式在 **Android8.0 **及以上会不起作用。</p>
-<p>此时广播的发送方 app 要想给这个应用发送广播，必须在清单文件里添加如下权限：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.SEND"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">"cn.qiracle.RECEIVER"</span></span><br><span class="line">    <span class="attr">android:protectionLevel</span>=<span class="string">"signature"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里 protectionLevel 选择 signature 或者 signatureOrSystem 更加安全。
+          
       
     </div>
     
@@ -674,6 +471,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/05/12/20190512/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -722,26 +523,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>主内存与工作内存</h3>
-<p>java内存模型规定了所有变量都存储在主内存中。<strong>此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数</strong>。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方工作内存中的变量。线程间变量值得传递均需要通过主内存来完成。 &lt;!--more--&gt;</p>
-<p>一个变量如何从主内存拷贝到工作内存，如何从工作内存同步回主内存之类的实现细节，java内存模型定义了以下八种操作来完成:</p>
-<ul>
-<li>lock(锁定)：作用于主内存的变量，把一个变量标记为一条线程独占状态</li>
-<li>unlock(解锁)：作用于主内存的变量，把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定</li>
-<li>read(读取)：作用于主内存的变量，把一个变量值从主内存传输到线程的工作内存中，以便随后的load动作使用</li>
-<li>load(载入)：作用于工作内存的变量，它把read操作从主内存中得到的变量值放入工作内存的变量副本中</li>
-<li>use(使用)：作用于工作内存的变量，把工作内存中的一个变量值传递给执行<a href="https://www.baidu.com/s?wd=%E5%BC%95%E6%93%8E&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd" target="_blank" rel="external">引擎</a></li>
-<li>assign(赋值)：作用于工作内存的变量，它把一个从执行引擎接收到的值赋给工作内存的变量</li>
-<li>store(存储)：作用于工作内存的变量，把工作内存中的一个变量的值传送到主内存中，以便随后的write的操作</li>
-<li>write(写入)：作用于工作内存的变量，它把store操作从工作内存中的一个变量的值传送到主内存的变量中</li>
-</ul>
-<p><img src="http://qiracle.cn/img/20190217/1.png" alt="java内存模型" title="java内存模型"></p>
-<h3>volatile 关键字</h3>
-<p>用于修饰变量。主要作用有两个：</p>
-<p>1.保证修改的可见性</p>
-<p>2.禁止指令重排序</p>
-<p>volatile不保证操作的原子性</p>
-
+              <h3 id="主内存与工作内存"><a href="#主内存与工作内存" class="headerlink" title="主内存与工作内存"></a>主内存与工作内存</h3><p>java内存模型规定了所有变量都存储在主内存中。<strong>此处的变量是指实例字段，静态字段和构成数组对象的元素。但不包括局部变量与方法参数</strong>。因为后者是线程私有的，不会被共享。除主内存之外，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取，赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间也无法之间访问对方工作内存中的变量。线程间变量值得传递均需要通过主内存来完成。
+          
       
     </div>
     
@@ -758,6 +541,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/02/17/20190217/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -806,69 +593,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>这一周来比较空闲，读了《深入理解java虚拟机一书》以提高自己对java底层的认知，还没看完，只是挑选了书中自己比较感兴趣的两个章节来看，写下此篇博客一是为了总结，二是为了方便今后回顾。下面是第一部分<strong>自动内存管理机制</strong> &lt;!--more--&gt;</p>
-<h3>运行时数据区域</h3>
-<p><img src="http://qiracle.cn/img/20190216/1.png" alt="java内存" title="java内存"></p>
-<h4>程序计数器</h4>
-<p>程序计数器时一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。为了线程切换后能够恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程直接的计数器互不影响，独立存储，我们称这类内存区域为“线程私有”的内存。</p>
-<h4>java虚拟机栈</h4>
-<p>与程序计数器一样，java虚拟机栈也是线程私有的，它的生命周期与线程相同。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
-<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackoverflowError异常；如果虚拟机栈可以动态扩展，当扩展时无法申请到足够的内存时会抛出OutOfMemoryError异常。</p>
-<h4>本地方法栈</h4>
-<p>本地方法栈与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行java方法服务，而本地方法栈则是为虚拟机使用到的Native方法服务。。本地方法栈也会抛出StackoverflowError和OutOfMemoryError异常。</p>
-<h4>java堆</h4>
-<p>对于大多数应用来说，java堆是java虚拟机所管理的内存中最大的一块。java堆是所以线程共享的一块内存区域，在虚拟机启动时创建。java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可。如果在堆中没有内存完成实例分配，并且堆无法再扩展时，将会抛出OutOfMemoryError异常。</p>
-<h4>方法区</h4>
-<p>方法区与java堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息，常量，静态变量，即时编译器编译后的代码等数据。垃圾回收行为在这个区域是比较少出现的，这个区域内存回收目标主要是针对常量池的回收和对类型的卸载。。当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</p>
-<h4>运行时常量池</h4>
-<p>运行时常量池时方法区的一部分。Class文件除了有类的版本，字段，方法，接口等描述信息外，还有一项信息就是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区运行时常量池中。运行期间也可能将新的常量放入池中，如String类的intern()方法。</p>
-<h3>确定对象是否存活的算法</h3>
-<p>垃圾回收器在对堆进行回收前，第一件事情就是要确定这些对象有哪些还存活着，哪些已经死去。</p>
-<h4>引用计数算法</h4>
-<p>给对象中添加一个引用计算器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器都为0的对象就是不可能再被使用的。。</p>
-<p>java语言没有选用引用计数法来管理内存，其中最主要的原因是它很难解决对象之间的相互循环引用的问题。如下：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReferenceCountGC objA = new ReferenceCountGC();</span><br><span class="line">ReferenceCountGC objB = new ReferenceCountGC();</span><br><span class="line">objA.instance = objB;</span><br><span class="line">objB.instance = objA;</span><br><span class="line">objA = null;</span><br><span class="line">objB = null;</span><br></pre></td></tr></table></figure></p>
-<h4>根搜索算法</h4>
-<p>在主流的商用程序语言中，都是使用根搜索算法判断对象是否存活的。基本思路是通过一系列的名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索走过的路径称为引用链，当一个对象待GC Roots没有任何引用链相连，则证明此对象是不可用的。</p>
-<p>Java语言里，可作为GC Roots对象包括下面几种：</p>
-<ul>
-<li>虚拟机栈中引用的对象</li>
-<li>方法区中的类静态属性引用的对象</li>
-<li>方法区中常量引用的对象</li>
-<li>本地方法栈中JNI的引用对象</li>
-</ul>
-<h3>java中的四种引用</h3>
-<p>**强引用：**代码至中普遍存在。类似 Object obj  = new Object()。主要强引用还在，垃圾回收器永远不会回收掉被引用的对象。</p>
-<p>**软引用：**当内存不够时，即系统将要发生内存溢出异常之前，将会把这些对象列进回收范围并进行二次回收。java中提供SoftReference类实现软引用。</p>
-<p>**弱引用：**被弱引用关联的对象只能生存到下次垃圾收集发生之前，当垃圾收集器工作时，无论当前内存是否足够，都会回收掉被弱引用关联的对象。java中提供WeakReference类实现软引用。</p>
-<p><strong>虚引用</strong>：一个对象是否有虚引用的存在，完全不会对其生存时间构成影响，也无法通过虚引用来取得一个对象实例。为一个对象设置虚引用关联的唯一目的就是希望这个对象在被收集器回收时收到一个系统通知。java中提供PhantomReference类实现软引用。</p>
-<h3>对象死亡过程</h3>
-<p>在跟搜索算法中不可达的对象也并非是非死不可的。这些不可达的对象先会被判断是否有必要执行finalize()方法，<strong>当对象没有覆盖finalize()方法，或者finalize()方法已经被虚拟机调用过</strong>，虚拟机会将这两种情况都视为“没有必要执行”。</p>
-<p>finalize()方法是对象逃脱死亡命运的最后一次机会，如果对象想要在finalize()方法中成功拯救自己，只要重新与引用链上的任何一个对象建立关联即可。譬如把自己(this)赋值给某个类变量或者某个对象的成员变量。如下：</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalizeEscapeGc</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FinalizeEscapeGc Save_HooK = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalized</span><span class="params">()</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.finalized();</span><br><span class="line">    FinalizeEscapeGc.Save_HooK = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>如何一个对象的finalize()方法都只会被系统自动调用一次，如果对象面临下一次回收，它的finalize()方法不会再次被执行。</strong></p>
-<h3>垃圾回收算法</h3>
-<h4><strong>标记-清除算法</strong></h4>
-<p>首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。它的主要缺点有两个:</p>
-<p>一是效率问题，标记和清楚过程效率都不高</p>
-<p>二是空间问题，标记清除后会产生大量不连续的内存碎片。</p>
-<p><img src="http://qiracle.cn/img/20190216/2.png" alt="标记-清除" title="标记-清除"></p>
-<h4><strong>复制算法</strong></h4>
-<p>它将可用内存按容量划分为大小相同的两块，每次只使用其中的一块，当一块内存用完了，就将还存活的对象复制到另一块上面，然后再把已使用过的内存空间一次清理掉。这种算法的代价是将内存缩小为原来的一半未免太高了一些。</p>
-<p><img src="http://qiracle.cn/img/20190216/3.png" alt="复制" title="复制"></p>
-<p>现在的商用虚拟机都采用这种收集算法来回收新生代，IBM的专门研究表明，新生代中的对象98%是朝生夕死的，所以并不需要按照1:1的比例来划分空间。而是将内存分为一块较大的Eden空间和两块较小的Survivor空间，每次使用Eden和其中一块Survivor。当回收时，将Eden和Survivor中还存活的对象一次性拷贝到另一块Survivor空间上，最后清理掉Eden和刚才用过的Survivor空间。HotSpot虚拟机默认Eden和Survivor的大小比例为8:1。当Survivor空间不够时，需要依赖其他内存（老年代）进行分配担保。</p>
-<h4><strong>标记-整理算法</strong></h4>
-<p>复制算法在对象存活率较高时需要执行较多的复制操作，更关键是如果不想浪费50%空间，就需要额外的空间进行担保，以应对内存中所有对象都100%存活的极端情况，所以老年代一般不能直接选用这种算法。</p>
-<p>标记-整理算法的标记过程仍然与标记-清除算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存活对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
-<p><img src="http://qiracle.cn/img/20190216/4.png" alt="标记-整理" title="标记-整理"></p>
-<h4><strong>分代收集算法</strong></h4>
-<p>根据对象的存活周期不同将内存划分为几块，一般是把Java堆分为新生代和老年代。在新生代中，每次垃圾收集时发现大批对象死去，只有少量存活，那就选用复制算法。老年代中因为对象存活率高，没有额外空间对它进行分配担保，就必须使用“标记-清理”，“标记-整理”算法来进行回收。</p>
-<h3>垃圾收集器</h3>
-<p><img src="http://qiracle.cn/img/20190216/5.png" alt="垃圾收集器" title="垃圾收集器"></p>
-<p>如果两个收集器之间存在连线，就说明他们可以搭配使用。下面就只说下Serial收集器：</p>
-<h5>Serial收集器</h5>
-<p>Serial收集器是最基本，历史最悠久的收集器，这是一个单线程的收集器。它在进行垃圾收集时，必须暂停其他所有工作线程指到它收集结束。</p>
-
+              <p>这一周来比较空闲，读了《深入理解java虚拟机一书》以提高自己对java底层的认知，还没看完，只是挑选了书中自己比较感兴趣的两个章节来看，写下此篇博客一是为了总结，二是为了方便今后回顾。下面是第一部分<strong>自动内存管理机制</strong>
+          
       
     </div>
     
@@ -885,6 +611,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/02/16/20190216/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -933,90 +663,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>系统及软件版本准备</h3>
-<p>CentOS-6.7-64bit</p>
+              <h3 id="系统及软件版本准备"><a href="#系统及软件版本准备" class="headerlink" title="系统及软件版本准备"></a>系统及软件版本准备</h3><p>CentOS-6.7-64bit</p>
 <p>Hadoop-2.8.3-src</p>
 <p>java-1.8.0_141</p>
 <p>apache-maven-3.3.9</p>
 <p>protobuf-2.5.0</p>
-<p>findbugs-1.3.9 &lt;!-- more --&gt;</p>
-<p>相关软件下载地址： 链接：https://pan.baidu.com/s/1FfRRPiosrhWpRIPYtcsEgg
-提取码：l84n</p>
-<h3>软件安装</h3>
-<h3>1.java-1.8.0_141</h3>
-<p>下载 jdk-8u141-linux-x64.tar.gz， 解压到 /root/apps/jdk1.8.0_141。解压命令:</p>
-<p><code>tar -xf jdk-8u141-linux-x64.tar.gz</code></p>
-<p>配置环境变量：</p>
-<p><code>vi /etc/profile</code></p>
-<p>在文件最下面加上:</p>
-<p><code>export JAVA_HOME=/root/apps/jdk1.8.0_141</code>
-<code>export PATH=$PATH:$JAVA_HOME/bin</code>
-<code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
-<p>添加完记得用下面的命令让其立即生效:</p>
-<p><code>source /etc/profile</code></p>
-<p><strong>注意：下面每次配置完环境变量都需要使用这个命令</strong></p>
-<p>检查是否安装成功:</p>
-<p><code>java -version</code></p>
-<p>如果输出下面信息，则表示安装成功：</p>
-<blockquote>
-<p>java version &quot;1.8.0_141&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_141-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</p>
-</blockquote>
-<h3>2.apache-maven-3.3.9</h3>
-<p>下载apache-maven-3.3.9-bin.zip，并使用 下面命令解压：</p>
-<p><code>unzip apache-maven-3.3.9-bin.zip</code></p>
-<p>我将其解压到了 /opt/software/a:pache-maven-3.3.9. 同样，配置环境变量，在/etc/profile中添加下面信息：</p>
-<p><code>export MAVEN_HOME=/opt/software/apache-maven-3.3.9</code>
-<code>export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot;</code>
-<code>export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
-<p>验证是否安装成功:</p>
-<p><code>mvn -version</code></p>
-<p>出现下列信息表明安装成功：</p>
-<blockquote>
-<p>Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)
-Maven home: /opt/software/apache-maven-3.3.9
-Java version: 1.8.0_141, vendor: Oracle Corporation
-Java home: /root/apps/jdk1.8.0_141/jre
-Default locale: en_US, platform encoding: UTF-8
-OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</p>
-</blockquote>
-<h3>3.protobuf-2.5.0</h3>
-<p>下载 protobuf-2.5.0.tar.gz ，解压到/opt/software/protobuf-2.5.0，接下来:</p>
-<p><code>cd protobuf-2.5.0</code></p>
-<p><code>yum install -y gcc gcc-c++ make cmake</code></p>
-<p>./configure --prefix=/usr/local/protobuf</p>
-<p>make &amp;&amp; make install</p>
-<p>同样导入环境变量：</p>
-<p><code>export PROTOC_HOME=/usr/local/protobuf</code>
-<code>export PATH=$PROTOC_HOME/bin:$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
-<p>验证是否安装成功：</p>
-<p><code>protoc --version</code></p>
-<p>出现下面信息表明安装成功：</p>
-<blockquote>
-<p>libprotoc 2.5.0</p>
-</blockquote>
-<h3>4. findbugs-1.3.9</h3>
-<p>下载findbugs-1.3.9.zip ，通过unzip findbugs-1.3.9.zip 解压到/opt/software/findbugs-1.3.9。</p>
-<p>同样需要配置环境变量</p>
-<p><code>export FINDBUGS_HOME=/opt/software/findbugs-1.3.9</code>
-<code>export PATH=$FINDBUGS_HOME/bin:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH</code></p>
-<p>验证是否安装成功：</p>
-<p><code>findbugs -version</code></p>
-<p>出现下面信息表示安装成功：</p>
-<blockquote>
-<p>1.3.9</p>
-</blockquote>
-<h3>5.其他依赖的安装</h3>
-<p><code>yum install -y openssl openssl-devel svn ncurses-devel zlib-devel libtool</code>
-<code>yum install -y snappy snappy-devel bzip2 bzip2-devel lzo lzo-devel lzop autoconf automake</code></p>
-<h3>6.编译</h3>
-<p>下载hadoop-2.8.3-src.tar.gz并解压 tar -xf hadoop-2.8.3-src.tar.gz 到 /root/hadoop-2.8.3-src。运行下面命令：</p>
-<p><code>cd hadoop-2.8.3-src</code></p>
-<p><code>mvn clean package -Pdist,native -DskipTests -Dtar</code></p>
-<p>编译过程中需要下载很多东西，需要很长时间，同时因为网络原因可能会一直卡在某个地方，这时可以ctrl+c中止然后重新运行上面命令。最后如果出现 BUILD SUCCESS 字样则表明编译成功.</p>
-<p>编译好的tar包在 /root/hadoop-2.8.3-src/hadoop-dist/target/hadoop-2.8.1.tar.gz下</p>
-
+<p>findbugs-1.3.9
+          
       
     </div>
     
@@ -1033,6 +686,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/01/06/20190106/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1081,27 +738,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>java IO流简介</h3>
-<p>java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。</p>
+              <h3 id="java-IO流简介"><a href="#java-IO流简介" class="headerlink" title="java IO流简介"></a>java IO流简介</h3><p>java IO流可 分为输入流 和 输出流。这里的输入和输出是相对于程序而言的，外部数据输入到程序中时，我们用输入流，程序中的数据输出到外部时，我们用输出流。</p>
 <p>输入流又可分为字节输入流和字符输入流。字节输入流的基类为InputStream，我们常用到它的子类FileInputStream, 字符输入流的基类为Reader，我们常用到它的子类FileReader。</p>
 <p>输出流又可分为字节输出流和字符输出流。字节输出流的基类为OutputStream，我们常用到它的子类FileOutputStream, 字符输出流的基类为Writer，我们常用到它的子类FileWriter。</p>
-<p>&lt;!--more--&gt;</p>
-<p><strong>那什么时候该用字节流，什么时候该用字符流呢？</strong></p>
-<p>一般来说，在输入输出一些二进制对象的时候比如图片，音乐，视频文件，我们用字节流。 在输入输出一些文本文件的时候比如文字，我们用字符流。字符其实可以理解为是字节+对应的编码表（utf-8,gbk等）构成的，相同的一段字节，用不同的编码格式，最后得到的字符是不一样的（生活常见的乱码就是这样产生的）</p>
-<p>另外，java在字节流和字符流中间提供了一层吧转换流，，可以将字节流转化为字符流。输入的转换流为InputStreamReader（InputStream is），输出的转换流为OutputStreamReader（OutputStream os ）。</p>
-<p>解释了这么多，不如用一图来总结一下：</p>
-<p>&lt;img src=&quot;http://qiracle.cn/img/20181128/io.bmp&quot; alt=&quot;IO流&quot;  /&gt;</p>
-<p></p>
-<h3>IO 流在代码中的实际应用</h3>
-<p>java提供了操作IO流的API，在代码中如何使用呢？ 接下来，直接附上几个比较实用的demo，可参考运用到自己的代码里</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">public class CopyMp3Demo &#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		long start = System.currentTimeMillis();</span><br><span class="line">		method1(&quot;e:\\music.mp3&quot;, &quot;copy1.mp3&quot;);</span><br><span class="line">		method2(&quot;e:\\music.mp3&quot;, &quot;copy2.mp3&quot;);</span><br><span class="line">		method3(&quot;e:\\music.mp3&quot;, &quot;copy3.mp3&quot;);</span><br><span class="line">		method4(&quot;e:\\music.mp3&quot;, &quot;copy4.mp3&quot;);</span><br><span class="line"></span><br><span class="line">		long end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(&quot; 总共耗时：&quot; + (end - start) + &quot;毫秒&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节</span><br><span class="line">	public static void method1(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = fis.read()) != -1) &#123;</span><br><span class="line">			fos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字节流一次读写一个字节数组</span><br><span class="line">	public static void method2(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		FileInputStream fis = new FileInputStream(src);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(dest);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = fis.read(bys)) != -1) &#123;</span><br><span class="line">			fos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fis.close();</span><br><span class="line">		fos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节：</span><br><span class="line"></span><br><span class="line">	public static void method3(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int by = 0;</span><br><span class="line">		while ((by = bis.read()) != -1) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字节流一次读写一个字节数组：</span><br><span class="line"></span><br><span class="line">	public static void method4(String src, String dest) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(src));</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		byte[] bys = new byte[1024];</span><br><span class="line">		while ((len = bis.read(bys)) != -1) &#123;</span><br><span class="line">			bos.write(bys, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里我们的目的是利用IO流将E盘根目录下的music.mp3文件拷贝到项目工程目录下，前面说了，拷贝音乐文件用字节流，这里提供了四种拷贝方式，可以比较拷贝所需时间，其中第一种方式(基本字节流一次读写一个字节 )最慢，第四种（高效字节流一次读写一个字节数组）最快，中间两种差不多。</p>
-<p>说一下这里的BufferedInputStream是输入流（对应的输出流BufferedOutputStream）的缓冲流，又称装饰流，一般我们建议在基本流外面包上装饰流，因为这样可极大提升效率。</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">//字符流读写数据的五种方式</span><br><span class="line">public class CopyTxtDemo &#123;</span><br><span class="line">	public static void main(String[] args) throws IOException &#123;</span><br><span class="line">		String SrcString = &quot;a.txt&quot;;</span><br><span class="line">		String DestString = &quot;b.txt&quot;;</span><br><span class="line">		// method1(SrcString,DestString);</span><br><span class="line">		// method3(SrcString,DestString);</span><br><span class="line">		// method4(SrcString,DestString);</span><br><span class="line">		method5(SrcString, DestString);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符</span><br><span class="line">	private static void method1(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read()) != -1) &#123;</span><br><span class="line">			fw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 基本字符流一次读写一个字符数组</span><br><span class="line">	private static void method2(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		FileReader fr = new FileReader(srcString);</span><br><span class="line">		FileWriter fw = new FileWriter(destString);</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = fr.read(chs)) != -1) &#123;</span><br><span class="line">			fw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 高效字符流一次读写一个字符</span><br><span class="line">	private static void method3(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read()) != -1) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一个字符数组</span><br><span class="line">	private static void method4(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		char[] chs = new char[1024];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while ((len = br.read(chs)) != -1) &#123;</span><br><span class="line">			bw.write(chs, 0, len);</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 高效字符流一次读写一行</span><br><span class="line">	private static void method5(String srcString, String destString) throws IOException &#123;</span><br><span class="line">		BufferedReader br = new BufferedReader(new FileReader(srcString));</span><br><span class="line">		BufferedWriter bw = new BufferedWriter(new FileWriter(destString));</span><br><span class="line"></span><br><span class="line">		String len = null;</span><br><span class="line">		while ((len = br.readLine()) != null) &#123;</span><br><span class="line">			bw.write(len);</span><br><span class="line">			bw.newLine();</span><br><span class="line">			bw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		bw.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上面代码的目的是将项目工程下的“a.txt”文件拷贝到b.txt里。前面说了拷贝文本文件用字符流。前四种拷贝方式就不说了，跟字节流差不多，第五种比较特殊，一次读写一行。</p>
-<p><strong>注意：上述代码最好加上try--catch，并在finally里关闭流。如下：</strong></p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">(String src, String dest)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	BufferedInputStream bis =<span class="keyword">null</span>;</span><br><span class="line">	BufferedOutputStream bos = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">		bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> by = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((by = bis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		bos.close();</span><br><span class="line">		bis.close();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+          
       
     </div>
     
@@ -1118,6 +758,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/11/28/20181128/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1166,35 +810,10 @@ OS name: &quot;linux&quot;, version: &quot;2.6.32-573.el6.x86_64&quot;, arch: &q
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.</p>
+              <p>Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.</p>
 <p>1.jar包的导入</p>
-<p>第一种：
-一般用于比较流行的第三方库上，直接将你在GitHub上看到的jar包compile放入build.gradle的dependencies里面，然后sync同步一下就可以了。例如：导入v7包。
-&lt;!--more--&gt;
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line">......</span><br><span class="line">compile ‘com.android.support:appcompat-v7:24.2.1’</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>第二种：
-我们已经从网上下好了（或者别人给你的）jar，需要将他导入到AS工程里，首先将jar包放到libs里面，然后还是在build.gradle的dependencies里面添加compile路径，最后sync一下。例如：导入volley。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line">.....</span><br><span class="line">compile files(‘libs/volley.jar’)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.aar包导入
-aar包是Android特有的一种引用包，Android Archive，它跟jar包的区别在于：
-jar包：只包含class文件和清单文件，不包含资源文件，比如图片等所有的 res下的资源文件；
-aar包：class以及res下的所有的资源文件全部包含。
-aar包的引用也很简单，以上是一个正常的module（工程应用，而非作为第三方library使用的）引用aar文件为例，首先也是将拿到的aar包放进libs下。然后按如下配置，最后sync一下就可以了，列如，导入一个叫abc.aar的包：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;  </span><br><span class="line">    flatDir &#123;  </span><br><span class="line">        dirs &apos;libs&apos;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;    // 此在android标签下添加</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">.....</span><br><span class="line">   compile(name: &apos;abc.aar, ext: &apos;aar&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意，以上是一个正常的module（工程应用，而非作为第三方library使用的）引用aar文件需要配置的步骤。</p>
-<p>下面说一下当一个library类型的module需要引用aar文件时：
-a.在该library中按照上面的代码，在library的module下的bulid.gradle中配置。</p>
-<p>b.任何依赖此library的module必须声明在它的build.gradle声明此 aar 的 lib 所在的位置，这个位置根据文件路径所确定</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">android&#123;    //android节点下配置</span><br><span class="line">    repositories &#123;</span><br><span class="line">          flatDir &#123;</span><br><span class="line">            dirs &apos;libs&apos;, &apos;../../../../library_module/libs&apos;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>c. 配置完b步骤后，还要在project的build.gradle文件中配置，如下:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">        flatDir &#123;</span><br><span class="line">            dirs &apos;../../../library_module/libs&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>梳理一下这里的依赖关系：
-aar-&gt;library module-&gt;依赖此library的module-&gt;project</p>
-<p>3.module的导入
-module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/20181021/" target="_blank" rel="external">Android Studio中module的导入</a> 已经讲过。这里主要说一下module是可以打包成aar包的，通过gradle的assembeRelease或assembleDebug可以将module打包成aar包（分别对应release版本和debug版本）。
-另外，笔者曾经遇到一个大坑，那就是当aar包引用第三方module的时候，编译不会报错，但是运行时会一直报类找不到的错误，因为在打包aar包时不会将第三方module打包进aar包里面。这里如果将第三方module先打包成aar包，给工程调用就不会出现这样的问题了。</p>
-
+<p>第一种：<br>一般用于比较流行的第三方库上，直接将你在GitHub上看到的jar包compile放入build.gradle的dependencies里面，然后sync同步一下就可以了。例如：导入v7包。<br>
+          
       
     </div>
     
@@ -1211,6 +830,10 @@ module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/201810
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/10/28/20181028/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1259,23 +882,9 @@ module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/201810
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ol>
+              <ol>
 <li>在当前工程里，点击 File-&gt;New-&gt;import module.  在弹出的对话框里选择需要导入的 module 的路径。这里将 module 名字改成了 :mylib .
-&lt;!--more--&gt;
-<img src="http://qiracle.cn/img/20181021/module_1.png" alt=""></li>
-</ol>
-<p>这一步之后会在主工程的build.gradle生成如下代码：</p>
-<p><img src="http://qiracle.cn/img/20181021/module_4.png" alt=""></p>
-<p>这里原本是 compile project(path: ':mylib')。 但是我这里的gradle是3之后的版本，所以需要将compile替换成implementation。</p>
-<p>2.如果导入的 mylib 之前是一个工程应用，则需要更改 mylib 里的 build.gradle。具体修改如下：</p>
-<p><img src="http://qiracle.cn/img/20181021/module_2.png" alt="">
-需要将图中的 com.android.application 改成 com.android.library 以及删除applicationId这一行。</p>
-<p>改完后记得sync一下。</p>
-<p>3.修改主工程下的 setting.gradle. 添加如下：</p>
-<p><img src="http://qiracle.cn/img/20181021/module_3.png" alt=""></p>
-<p>同样改完之后sync一下。</p>
-<p>这样，module的导入就完成了，我们可以试试调用module里的方法。</p>
-
+          
       
     </div>
     
@@ -1292,6 +901,80 @@ module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/201810
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/10/21/20181021/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20181014" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/10/14/20181014/" class="article-date">
+      <time datetime="2018-10-13T16:00:00.000Z" itemprop="datePublished">2018-10-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/14/20181014/">Android 混淆机制</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="什么是混淆"><a href="#什么是混淆" class="headerlink" title="什么是混淆"></a>什么是混淆</h3><p>　　按照我的个人理解，混淆就是将代码里的包名，类名，方法名，变量名等用无意义的a，b，c等字母代替。这样做的目的是为了防止他人获取你的apk后可以轻松的反编译并读取你的源码，而加入混淆之后，反编译出的源码是很难被读懂的。详细解释可参考<a href="https://blog.csdn.net/sinat_36176987/article/details/79119876">Android混淆是什么</a> 。
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2018/10/14/20181014/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

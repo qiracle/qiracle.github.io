@@ -15,49 +15,37 @@
 
 
 
-<meta name="description" content="1.python把函数作为参数
-import math
+<meta name="description" content="1.python把函数作为参数import math
 def f(x,y)
-	return (x+y)+x*y
+    return (x+y)+x*y
 def add(x, y, f):
     return f(x,y)
 
 print add(4, 9, f)
-
-参数f接收一个函数名，根据f的定义不同，可得到不同的值。&amp;lt;!--more--&amp;gt;
-2.python中map()函数
-def format_name(s):">
+参数f接收一个函数名，根据f的定义不同，可得到不同的值。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python中的高阶函数">
 <meta property="og:url" content="http://qiracle.github.io/2017/07/10/20170710/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="1.python把函数作为参数
-import math
+<meta property="og:description" content="1.python把函数作为参数import math
 def f(x,y)
-	return (x+y)+x*y
+    return (x+y)+x*y
 def add(x, y, f):
     return f(x,y)
 
 print add(4, 9, f)
-
-参数f接收一个函数名，根据f的定义不同，可得到不同的值。&amp;lt;!--more--&amp;gt;
-2.python中map()函数
-def format_name(s):">
+参数f接收一个函数名，根据f的定义不同，可得到不同的值。">
 <meta property="og:updated_time" content="2018-11-25T08:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python中的高阶函数">
-<meta name="twitter:description" content="1.python把函数作为参数
-import math
+<meta name="twitter:description" content="1.python把函数作为参数import math
 def f(x,y)
-	return (x+y)+x*y
+    return (x+y)+x*y
 def add(x, y, f):
     return f(x,y)
 
 print add(4, 9, f)
-
-参数f接收一个函数名，根据f的定义不同，可得到不同的值。&amp;lt;!--more--&amp;gt;
-2.python中map()函数
-def format_name(s):">
+参数f接收一个函数名，根据f的定义不同，可得到不同的值。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -347,46 +335,35 @@ def format_name(s):">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3>1.python把函数作为参数</h3>
-<pre><code>import math
+        <h3 id="1-python把函数作为参数"><a href="#1-python把函数作为参数" class="headerlink" title="1.python把函数作为参数"></a>1.python把函数作为参数</h3><pre><code>import math
 def f(x,y)
-	return (x+y)+x*y
+    return (x+y)+x*y
 def add(x, y, f):
     return f(x,y)
 
 print add(4, 9, f)
-</code></pre>
-<p>参数f接收一个函数名，根据f的定义不同，可得到不同的值。&lt;!--more--&gt;</p>
-<h3>2.python中map()函数</h3>
-<pre><code>def format_name(s):
+</code></pre><p>参数f接收一个函数名，根据f的定义不同，可得到不同的值。<a id="more"></a></p>
+<h3 id="2-python中map-函数"><a href="#2-python中map-函数" class="headerlink" title="2.python中map()函数"></a>2.python中map()函数</h3><pre><code>def format_name(s):
     return s[0].upper() + s[1:].lower()
 
-print map(format_name, ['HELLO', 'anddroid', 'iOS'])
-</code></pre>
-<p>**map()**是 Python 内置的高阶函数，它接收一个函数 f 和一个 list，并通过把函数 f 依次作用在 list 的每个元素上，得到一个新的 list 并返回。这里将列表里的每个元素首字母大写，其余字母小写输出。</p>
-<h3>3.python中reduce()函数</h3>
-<pre><code>def prod(x, y):
+print map(format_name, [&apos;HELLO&apos;, &apos;anddroid&apos;, &apos;iOS&apos;])
+</code></pre><p><strong>map()</strong>是 Python 内置的高阶函数，它接收一个函数 f 和一个 list，并通过把函数 f 依次作用在 list 的每个元素上，得到一个新的 list 并返回。这里将列表里的每个元素首字母大写，其余字母小写输出。</p>
+<h3 id="3-python中reduce-函数"><a href="#3-python中reduce-函数" class="headerlink" title="3.python中reduce()函数"></a>3.python中reduce()函数</h3><pre><code>def prod(x, y):
     return x+y
 
 print reduce(prod, [1,2,3,4,5.6])
-</code></pre>
-<p>**reduce()**函数也是Python内置的一个高阶函数。reduce()函数接收的参数和 map()类似，一个函数 f，一个list，但行为和 map()不同，reduce()传入的函数 f 必须接收两个参数，reduce()对list的每个元素反复调用函数f，并返回最终结果值。这里表示计算1+2+3+4+5+6的值。
-reduce()还可以接收第3个可选参数，作为计算的初始值。如果把初始值设为10，计算：</p>
+</code></pre><p><strong>reduce()</strong>函数也是Python内置的一个高阶函数。reduce()函数接收的参数和 map()类似，一个函数 f，一个list，但行为和 map()不同，reduce()传入的函数 f 必须接收两个参数，reduce()对list的每个元素反复调用函数f，并返回最终结果值。这里表示计算1+2+3+4+5+6的值。<br>reduce()还可以接收第3个可选参数，作为计算的初始值。如果把初始值设为10，计算：</p>
 <pre><code>print reduce(prod, [1,2,3,4,5.6]，10)
-</code></pre>
-<p>表示计算10+1+2+3+4+5+6的值</p>
-<h3>4.python中filter()函数</h3>
-<pre><code>import math
+</code></pre><p>表示计算10+1+2+3+4+5+6的值</p>
+<h3 id="4-python中filter-函数"><a href="#4-python中filter-函数" class="headerlink" title="4.python中filter()函数"></a>4.python中filter()函数</h3><pre><code>import math
 
 def is_sqr(x):
     r = int(math.sqrt(x))
     return r*r==x
 
 print filter(is_sqr, range(1, 101))
-</code></pre>
-<p>**filter()**函数是 Python 内置的另一个有用的高阶函数，filter()函数接收一个函数 f 和一个list，这个函数 f 的作用是对每个元素进行判断，返回 True或 False，filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。这里筛选出了1~100中平方根是整数的数。</p>
-<h3>5.python中自定义排序函数</h3>
-<pre><code>def cmp_ignore_case(s1, s2):
+</code></pre><p><strong>filter()</strong>函数是 Python 内置的另一个有用的高阶函数，filter()函数接收一个函数 f 和一个list，这个函数 f 的作用是对每个元素进行判断，返回 True或 False，filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。这里筛选出了1~100中平方根是整数的数。</p>
+<h3 id="5-python中自定义排序函数"><a href="#5-python中自定义排序函数" class="headerlink" title="5.python中自定义排序函数"></a>5.python中自定义排序函数</h3><pre><code>def cmp_ignore_case(s1, s2):
     u1 = s1.upper()
     u2 = s2.upper()
     if u1 &lt; u2:
@@ -395,46 +372,35 @@ print filter(is_sqr, range(1, 101))
         return 1
     return 0
 
-print sorted(['Java', 'Android', 'iOS', 'Python'], cmp_ignore_case )
-</code></pre>
-<p>sorted()也是一个高阶函数，它可以接收一个比较函数来实现自定义排序，比较函数的定义是，传入两个待比较的元素 x, y，如果 x 应该排在 y 的前面，返回 -1，如果 x 应该排在 y 的后面，返回 1。如果 x 和 y 相等，返回 0。这里输出['Android','iOS',, 'Java', 'Python']</p>
-<h3>6.python中返回函数</h3>
-<pre><code>def f():
-    print 'call f()...'
+print sorted([&apos;Java&apos;, &apos;Android&apos;, &apos;iOS&apos;, &apos;Python&apos;], cmp_ignore_case )
+</code></pre><p> sorted()也是一个高阶函数，它可以接收一个比较函数来实现自定义排序，比较函数的定义是，传入两个待比较的元素 x, y，如果 x 应该排在 y 的前面，返回 -1，如果 x 应该排在 y 的后面，返回 1。如果 x 和 y 相等，返回 0。这里输出[‘Android’,’iOS’,, ‘Java’, ‘Python’]</p>
+<h3 id="6-python中返回函数"><a href="#6-python中返回函数" class="headerlink" title="6.python中返回函数"></a>6.python中返回函数</h3><pre><code>def f():
+    print &apos;call f()...&apos;
     # 定义函数g:
     def g():
-        print 'call g()...'
+        print &apos;call g()...&apos;
     # 返回函数g:
     return g
-</code></pre>
-<p>仔细观察上面的函数定义，我们在函数 f 内部又定义了一个函数 g。由于函数 g 也是一个对象，函数名 g 就是指向函数 g 的变量，所以，最外层函数 f 可以返回变量 g，也就是函数 g 本身。
-调用函数 f，我们会得到 f 返回的一个函数：</p>
-<pre><code>		x = f()   # 调用f()
-	输出：call f()...
-		 x   # 变量x是f()返回的函数：
-	输出：&lt;function g at 0x1037bf320&gt;
-		x()   # x指向函数，因此可以调用
-	输出：call g()...   # 调用x()就是执行g()函数定义的代码
-</code></pre>
-<h3>7.python中闭包</h3>
-<pre><code>def f():
-    print 'f()...'
+</code></pre><p>仔细观察上面的函数定义，我们在函数 f 内部又定义了一个函数 g。由于函数 g 也是一个对象，函数名 g 就是指向函数 g 的变量，所以，最外层函数 f 可以返回变量 g，也就是函数 g 本身。<br>调用函数 f，我们会得到 f 返回的一个函数：</p>
+<pre><code>    x = f()   # 调用f()
+输出：call f()...
+     x   # 变量x是f()返回的函数：
+输出：&lt;function g at 0x1037bf320&gt;
+    x()   # x指向函数，因此可以调用
+输出：call g()...   # 调用x()就是执行g()函数定义的代码
+</code></pre><h3 id="7-python中闭包"><a href="#7-python中闭包" class="headerlink" title="7.python中闭包"></a>7.python中闭包</h3><pre><code>def f():
+    print &apos;f()...&apos;
     def g():
-        print 'g()...'
+        print &apos;g()...&apos;
     return g
-</code></pre>
-<p>像这种内层函数引用了外层函数的变量（参数也算变量），然后返回内层函数的情况，称为<strong>闭包（Closure）</strong>。
-<strong>闭包的特点</strong>是返回的函数还引用了外层函数的局部变量，所以，要正确使用闭包，就要确保引用的局部变量在函数返回后不能变</p>
-<h3>8.python中匿名函数</h3>
-<pre><code>def f(x):
-	return x*x
+</code></pre><p>像这种内层函数引用了外层函数的变量（参数也算变量），然后返回内层函数的情况，称为<strong>闭包（Closure）</strong>。<br><strong>闭包的特点</strong>是返回的函数还引用了外层函数的局部变量，所以，要正确使用闭包，就要确保引用的局部变量在函数返回后不能变</p>
+<h3 id="8-python中匿名函数"><a href="#8-python中匿名函数" class="headerlink" title="8.python中匿名函数"></a>8.python中匿名函数</h3><pre><code>def f(x):
+    return x*x
 
 print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
-</code></pre>
-<p>采用匿名函数如下：</p>
+</code></pre><p>采用匿名函数如下：</p>
 <pre><code>print map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9])
-</code></pre>
-<p>结果均为：[1, 4, 9, 16, 25, 36, 49, 64, 81]</p>
+</code></pre><p>结果均为：[1, 4, 9, 16, 25, 36, 49, 64, 81]</p>
 
       
     </div>
@@ -467,7 +433,7 @@ print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">1.python把函数作为参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">2.python中map()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">3.python中reduce()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">4.python中filter()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">5.python中自定义排序函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">6.python中返回函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">7.python中闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">8.python中匿名函数</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python把函数作为参数"><span class="toc-number">1.</span> <span class="toc-text">1.python把函数作为参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-python中map-函数"><span class="toc-number">2.</span> <span class="toc-text">2.python中map()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-python中reduce-函数"><span class="toc-number">3.</span> <span class="toc-text">3.python中reduce()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python中filter-函数"><span class="toc-number">4.</span> <span class="toc-text">4.python中filter()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python中自定义排序函数"><span class="toc-number">5.</span> <span class="toc-text">5.python中自定义排序函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python中返回函数"><span class="toc-number">6.</span> <span class="toc-text">6.python中返回函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-python中闭包"><span class="toc-number">7.</span> <span class="toc-text">7.python中闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-python中匿名函数"><span class="toc-number">8.</span> <span class="toc-text">8.python中匿名函数</span></a></li></ol>
         
     </div>
     <style>
@@ -574,7 +540,7 @@ print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/10/02/20201002/">西藏游记</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/14/20200614/">java反射获得泛型参数getGenericSuperclass</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/14/2020061402/">java 动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/20200321/">java 线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/01/20200101/">Android Studio 导入classes.jar包</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/01/20191201/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/02/20191102/">Android 性能优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/06/14/20200614/">java反射获得泛型参数getGenericSuperclass</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/14/2020061402/">java 动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/20200321/">java 线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/01/20200101/">Android Studio 导入classes.jar包</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/01/20191201/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/02/20191102/">Android 性能优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/20190921/">读《深入理解Java虚拟机》总结<三.java中的新生代和老年代内存></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/20190915/">Android layout_weight 计算方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/15/2019091502/">Android屏幕适配 px,dp,dpi及density的关系与深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/10/20190810/">Android AIDL的基本用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/03/20190803/">Android 知识点总结（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/20190512/">Android Boardcast 权限的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/20190217/">读《深入理解Java虚拟机》总结<二.java内存模型与线程></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/20190216/">读《深入理解Java虚拟机》总结<一自动内存管理机制></a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/06/20190106/">CentOS下编译Hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/28/20181128/">java IO流总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/20181028/">Android 中的jar包，aar包以及module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/20181021/">Android Studio 导入 module</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/20181014/">Android 混淆机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/02/20201002/">西藏游记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/20180328/">加密算法与HTTPS</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/20170810/">Android 系统 Settings 启动流程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/20170809/">记一个实用的git命令---谁动了我的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/20170728/">史上最详细的Android系统SystemUI 启动过程详细解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/20170710/">Python中的高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/07/20170707/">Android系统DeskClock时钟应用时区添加代码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/20170701/">Android 系统 overlay 机制重点小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/20170625/">数据结构-顺序表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/25/2017062502/">数据结构-链表的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/03/20170503/">Android系统工程模式启动过程详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/26/20170426/">浅谈git撤销回退相关用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/20170425/">在Android系统源码下编译apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/20170316/">git分支的简单操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/17/20170117/">java中的回调机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/10/20170110/">简单的python网络爬虫实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/20170109/">将自己制作的python包安装到ubuntu系统中</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/20170108/">python中的__name__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/07/20170107/">程序的内存四区模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/06/20170106/">python学习（四）——类中内置的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/05/20170105/">java中类的方法初始化顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/20170104/">Android开源项目推荐之「图片加载到底哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/03/20170103/">Android开源项目推荐之「网络请求哪家强」(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/20170102/">指针的九条铁律</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/20170101/">C语言中三种拷贝函数的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/20161231/">技术不是全部（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/30/20161230/">内存泄露与野指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/29/20161229/">python学习（三）——字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/28/20161228/">python学习（二）——列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/20161227/">python学习（一）——常用字符串函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/26/20161226/">java中throws和throw的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/20161225/">Android中实现Listview下拉刷新的核心代码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/24/20161224/">Eclipse下Android应用程序签名打包</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/23/2016summary/">回忆2016</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/22/20161222/">ActionBar的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/20161221/">小记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/20/20161220/">设计模式六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/20161219/">Android开发中，那些让你相见恨晚的方法、类或接口(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/18/20161218_mysql/">Windows下MySQL 5.6 解压版配置与安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/20161217/">差距是怎么产生的？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/16/linuxSum/">Linux命令小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/15/stornzhangTalk/">面试注意事项（转）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/float_clear/">CSS中清除浮动的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/life_code/">小记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/12/markdown/">markdown语法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/11/java.set/">javaSE基础-集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/10/mianshi/">迟来的面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/09/github.io/">初识github.io</a></li></ul>
 
 
 
