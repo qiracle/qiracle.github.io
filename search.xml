@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[AIDL机制解析]]></title>
       <url>http://qiracle.github.io/2020/11/08/20201108/</url>
-      <content type="html"><![CDATA[<p>关于AIDL的使用，已经在之前的博客</p>
+      <content type="html"><![CDATA[<p>关于AIDL的使用，已经在之前的博客<a href="http://qiracle.cn/2019/08/10/20190810/" target="_blank" rel="external">Android AIDL的基本用法</a></p>
 <p>里介绍过，这次主要通过剖析AIDL生成的java文件来讲解AIDL机制。用的还是之前博客的例子，它在build目录下生成的 IMyAidlInterface.java 文件内容如下：<a id="more"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> * This file is auto-generated.  DO NOT MODIFY.</span><br><span class="line"> * Original file: D:\\AndroidStudioProjects\\AIDLServer\\app\\src\\main\\aidl\\cn\\qiracle\\aidlserver\\IMyAidlInterface.aidl</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">package</span> cn.qiracle.aidlserver;</span><br><span class="line"><span class="comment">// Declare any non-default types here with import statements</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMyAidlInterface</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">os</span>.<span class="title">IInterface</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="comment">/** Local-side IPC implementation stub class. */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Stub</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">os</span>.<span class="title">Binder</span> <span class="keyword">implements</span> <span class="title">cn</span>.<span class="title">qiracle</span>.<span class="title">aidlserver</span>.<span class="title">IMyAidlInterface</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> java.lang.String DESCRIPTOR = <span class="string">"cn.qiracle.aidlserver.IMyAidlInterface"</span>;</span><br><span class="line"><span class="comment">/** Construct the stub at attach it to the interface. */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Stub</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.attachInterface(<span class="keyword">this</span>, DESCRIPTOR);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Cast an IBinder object into an cn.qiracle.aidlserver.IMyAidlInterface interface,</span><br><span class="line"> * generating a proxy if needed.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> cn.qiracle.aidlserver.<span class="function">IMyAidlInterface <span class="title">asInterface</span><span class="params">(android.os.IBinder obj)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> ((obj==<span class="keyword">null</span>)) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);</span><br><span class="line"><span class="keyword">if</span> (((iin!=<span class="keyword">null</span>)&amp;&amp;(iin <span class="keyword">instanceof</span> cn.qiracle.aidlserver.IMyAidlInterface))) &#123;</span><br><span class="line"><span class="keyword">return</span> ((cn.qiracle.aidlserver.IMyAidlInterface)iin);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> cn.qiracle.aidlserver.IMyAidlInterface.Stub.Proxy(obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="keyword">public</span> android.os.<span class="function">IBinder <span class="title">asBinder</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTransact</span><span class="params">(<span class="keyword">int</span> code, android.os.Parcel data, android.os.Parcel reply, <span class="keyword">int</span> flags)</span> <span class="keyword">throws</span> android.os.RemoteException</span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">switch</span> (code)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> INTERFACE_TRANSACTION:</span><br><span class="line">&#123;</span><br><span class="line">reply.writeString(DESCRIPTOR);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> TRANSACTION_print:</span><br><span class="line">&#123;</span><br><span class="line">data.enforceInterface(DESCRIPTOR);</span><br><span class="line"><span class="keyword">this</span>.print();</span><br><span class="line">reply.writeNoException();</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> TRANSACTION_add:</span><br><span class="line">&#123;</span><br><span class="line">data.enforceInterface(DESCRIPTOR);</span><br><span class="line"><span class="keyword">int</span> _arg0;</span><br><span class="line">_arg0 = data.readInt();</span><br><span class="line"><span class="keyword">int</span> _arg1;</span><br><span class="line">_arg1 = data.readInt();</span><br><span class="line"><span class="keyword">int</span> _result = <span class="keyword">this</span>.add(_arg0, _arg1);</span><br><span class="line">reply.writeNoException();</span><br><span class="line">reply.writeInt(_result);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">super</span>.onTransact(code, data, reply, flags);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">cn</span>.<span class="title">qiracle</span>.<span class="title">aidlserver</span>.<span class="title">IMyAidlInterface</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">private</span> android.os.IBinder mRemote;</span><br><span class="line">Proxy(android.os.IBinder remote)</span><br><span class="line">&#123;</span><br><span class="line">mRemote = remote;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="keyword">public</span> android.os.<span class="function">IBinder <span class="title">asBinder</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> mRemote;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">getInterfaceDescriptor</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> DESCRIPTOR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> android.os.RemoteException</span><br><span class="line"></span>&#123;</span><br><span class="line">android.os.Parcel _data = android.os.Parcel.obtain();</span><br><span class="line">android.os.Parcel _reply = android.os.Parcel.obtain();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">_data.writeInterfaceToken(DESCRIPTOR);</span><br><span class="line">mRemote.transact(Stub.TRANSACTION_print, _data, _reply, <span class="number">0</span>);</span><br><span class="line">_reply.readException();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">_reply.recycle();</span><br><span class="line">_data.recycle();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> android.os.RemoteException</span><br><span class="line"></span>&#123;</span><br><span class="line">android.os.Parcel _data = android.os.Parcel.obtain();</span><br><span class="line">android.os.Parcel _reply = android.os.Parcel.obtain();</span><br><span class="line"><span class="keyword">int</span> _result;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">_data.writeInterfaceToken(DESCRIPTOR);</span><br><span class="line">_data.writeInt(a);</span><br><span class="line">_data.writeInt(b);</span><br><span class="line">mRemote.transact(Stub.TRANSACTION_add, _data, _reply, <span class="number">0</span>);</span><br><span class="line">_reply.readException();</span><br><span class="line">_result = _reply.readInt();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">_reply.recycle();</span><br><span class="line">_data.recycle();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> _result;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRANSACTION_print = (android.os.IBinder.FIRST_CALL_TRANSACTION + <span class="number">0</span>);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRANSACTION_add = (android.os.IBinder.FIRST_CALL_TRANSACTION + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> android.os.RemoteException</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> android.os.RemoteException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结合上面的代码，我们一起看下：</p>
@@ -19,19 +19,19 @@
     </entry>
     
     <entry>
-      <title><![CDATA[java 动态代理]]></title>
-      <url>http://qiracle.github.io/2020/06/14/2020061402/</url>
-      <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代理的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ManToolsFactory</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaFactory</span> <span class="keyword">implements</span> <span class="title">ManToolsFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"按需求定制了一个size为"</span>+size+<span class="string">"的model"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MarkCompany</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*持有的真实对象*/</span></span><br><span class="line">    <span class="keyword">private</span> Object factory;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFactory</span><span class="params">(Object factory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.factory = factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过Proxy获得动态代理对象*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxyInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(factory.getClass().getClassLoader(),</span><br><span class="line">                factory.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过动态代理对象方法进行增强*/</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span><br><span class="line">            <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">  </span><br><span class="line">        Object result = method.invoke(factory, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*动态代理模式---------------*/</span></span><br><span class="line">        ManToolsFactory aafactory = <span class="keyword">new</span> AaFactory();</span><br><span class="line">        MarkCompany markCompany = <span class="keyword">new</span> MarkCompany();</span><br><span class="line"></span><br><span class="line">        markCompany.setFactory(aafactory);</span><br><span class="line">        ManToolsFactory employee1</span><br><span class="line">                = (ManToolsFactory)markCompany.getProxyInstance();</span><br><span class="line">        employee1.saleManTools(<span class="string">"E"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[java反射获得泛型参数getGenericSuperclass]]></title>
       <url>http://qiracle.github.io/2020/06/14/20200614/</url>
       <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.ParameterizedType;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Student st=<span class="keyword">new</span> Student();</span><br><span class="line">Class clazz=st.getClass();</span><br><span class="line"><span class="comment">//getSuperclass()获得该类的父类</span></span><br><span class="line">System.out.println(clazz.getSuperclass());</span><br><span class="line"><span class="comment">//getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">//Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line">Type type=clazz.getGenericSuperclass();</span><br><span class="line">System.out.println(type);</span><br><span class="line"><span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">ParameterizedType p=(ParameterizedType)type;</span><br><span class="line"><span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">Class c=(Class) p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">System.out.println(c);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>打印结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class com.test.Person</span><br><span class="line">com.test.Person&lt;com.test.Student&gt;</span><br><span class="line">class com.test.Student</span><br></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[java 动态代理]]></title>
+      <url>http://qiracle.github.io/2020/06/14/2020061402/</url>
+      <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代理的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ManToolsFactory</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaFactory</span> <span class="keyword">implements</span> <span class="title">ManToolsFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"按需求定制了一个size为"</span>+size+<span class="string">"的model"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MarkCompany</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*持有的真实对象*/</span></span><br><span class="line">    <span class="keyword">private</span> Object factory;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFactory</span><span class="params">(Object factory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.factory = factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过Proxy获得动态代理对象*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxyInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(factory.getClass().getClassLoader(),</span><br><span class="line">                factory.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过动态代理对象方法进行增强*/</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span><br><span class="line">            <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">  </span><br><span class="line">        Object result = method.invoke(factory, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*动态代理模式---------------*/</span></span><br><span class="line">        ManToolsFactory aafactory = <span class="keyword">new</span> AaFactory();</span><br><span class="line">        MarkCompany markCompany = <span class="keyword">new</span> MarkCompany();</span><br><span class="line"></span><br><span class="line">        markCompany.setFactory(aafactory);</span><br><span class="line">        ManToolsFactory employee1</span><br><span class="line">                = (ManToolsFactory)markCompany.getProxyInstance();</span><br><span class="line">        employee1.saleManTools(<span class="string">"E"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
     </entry>
     
@@ -982,6 +982,132 @@ print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
     </entry>
     
     <entry>
+      <title><![CDATA[数据结构-顺序表的基本操作]]></title>
+      <url>http://qiracle.github.io/2017/06/25/20170625/</url>
+      <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
+<pre><code>#include&lt;stdio.h&gt;
+
+#define MAXSIZE 20
+typedef int ElemType;
+
+typedef struct
+{
+    ElemType data[MAXSIZE];
+    int length;
+
+
+}SeqList;
+
+SeqList init_list(){//初始化
+    SeqList L;
+    L.length =0;
+
+    return L;
+}
+
+int list_length(SeqList *L){//获取长度
+    return L-&gt;length;
+}
+
+int get_element(SeqList L,int i){//根据序号查找元素
+    if(i&lt;1 || i&gt;L.length){
+        printf(&quot;序号超出范围&quot;);
+        return -1;
+    }
+    return L.data[i-1];
+
+
+}
+
+int list_locate(SeqList L,ElemType x){//根据元素查找位置
+    int i;
+    for(i=0; i&lt;L.length;i++)
+        if(L.data[i]==x)
+            return (i+1);
+
+
+        return -1;//未找到
+
+}
+
+void list_insert(SeqList *L, ElemType x,int i){ //插入元素
+
+    int j;
+    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
+    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
+    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
+        L-&gt;data[j+1] =L-&gt;data[j];
+    L-&gt;data[i-1] =x;
+    L-&gt;length++;
+
+
+    }
+
+}
+
+void list_delete(SeqList *L,int i){//删除元素
+    int j;
+    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
+    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
+    else {
+        for(j=i;j&lt;=L-&gt;length-1;j++)
+            L-&gt;data[j-1] =L-&gt;data[j];
+        L-&gt;length--;
+    }
+
+
+}
+
+
+SeqList list_scanf(SeqList L){ //创建链表
+int x;
+int i;
+    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
+    for(i=0;;i++){
+        scanf(&quot;%d&quot;,&amp;x);
+        if(x==-1){
+            break;
+        }
+ L.data[L.length] = x;
+ L.length++; 
+    }
+
+    return L;
+}
+
+void list_print(SeqList L){//打印链表
+    int k;
+    printf(&quot;顺序表的元素有:&quot;);
+    for(k = 0; k&lt;L.length;k++){
+        printf(&quot;%3d &quot;,L.data[k]);
+    }
+    printf(&quot;\n&quot;);
+
+}
+
+
+int main(){
+        int pos;
+        int key;
+    SeqList L = init_list();
+    L = list_scanf(L);
+
+    list_insert(&amp;L, 3, 2);
+
+//    list_delete(&amp;L,1);
+     //pos= list_locate(L,2);
+//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
+//key = get_element(L,3);
+//printf(&quot;该元素为：%d \n&quot;,key);
+    list_print(L);
+    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
+    return 0;
+
+}
+</code></pre>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[数据结构-链表的基本操作]]></title>
       <url>http://qiracle.github.io/2017/06/25/2017062502/</url>
       <content type="html"><![CDATA[<p>1.链表的定义<br>2.链表的初始化<br>3.链表元素增删改查<br><a id="more"></a></p>
@@ -1130,132 +1256,6 @@ list_insert(&amp;L,6,100);
 printf(&quot;第六位插入数字100：\n&quot;);
 list_print(L);
     return 0;
-}
-</code></pre>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[数据结构-顺序表的基本操作]]></title>
-      <url>http://qiracle.github.io/2017/06/25/20170625/</url>
-      <content type="html"><![CDATA[<p>1.顺序表的定义<br>2.顺序表的初始化<br>3.顺序表元素增删改查<br><a id="more"></a></p>
-<pre><code>#include&lt;stdio.h&gt;
-
-#define MAXSIZE 20
-typedef int ElemType;
-
-typedef struct
-{
-    ElemType data[MAXSIZE];
-    int length;
-
-
-}SeqList;
-
-SeqList init_list(){//初始化
-    SeqList L;
-    L.length =0;
-
-    return L;
-}
-
-int list_length(SeqList *L){//获取长度
-    return L-&gt;length;
-}
-
-int get_element(SeqList L,int i){//根据序号查找元素
-    if(i&lt;1 || i&gt;L.length){
-        printf(&quot;序号超出范围&quot;);
-        return -1;
-    }
-    return L.data[i-1];
-
-
-}
-
-int list_locate(SeqList L,ElemType x){//根据元素查找位置
-    int i;
-    for(i=0; i&lt;L.length;i++)
-        if(L.data[i]==x)
-            return (i+1);
-
-
-        return -1;//未找到
-
-}
-
-void list_insert(SeqList *L, ElemType x,int i){ //插入元素
-
-    int j;
-    if (L-&gt;length == MAXSIZE)  printf(&quot;溢出，不能插入 \n&quot;);
-    else if(i&lt;1 || i &gt; L-&gt;length+1) printf(&quot;插入范围出错 \n&quot;);
-    else { for(j=L-&gt;length-1; j&gt;=i-1; j--)
-        L-&gt;data[j+1] =L-&gt;data[j];
-    L-&gt;data[i-1] =x;
-    L-&gt;length++;
-
-
-    }
-
-}
-
-void list_delete(SeqList *L,int i){//删除元素
-    int j;
-    if(L-&gt;length&lt;=0) printf(&quot;空表，无法删除元素&quot;);
-    if(i&gt;L-&gt;length || i&lt;=0) printf(&quot;删除位置出错&quot;);
-    else {
-        for(j=i;j&lt;=L-&gt;length-1;j++)
-            L-&gt;data[j-1] =L-&gt;data[j];
-        L-&gt;length--;
-    }
-
-
-}
-
-
-SeqList list_scanf(SeqList L){ //创建链表
-int x;
-int i;
-    printf(&quot;请输入顺序表的元素(-1结束)&quot;);
-    for(i=0;;i++){
-        scanf(&quot;%d&quot;,&amp;x);
-        if(x==-1){
-            break;
-        }
- L.data[L.length] = x;
- L.length++; 
-    }
-
-    return L;
-}
-
-void list_print(SeqList L){//打印链表
-    int k;
-    printf(&quot;顺序表的元素有:&quot;);
-    for(k = 0; k&lt;L.length;k++){
-        printf(&quot;%3d &quot;,L.data[k]);
-    }
-    printf(&quot;\n&quot;);
-
-}
-
-
-int main(){
-        int pos;
-        int key;
-    SeqList L = init_list();
-    L = list_scanf(L);
-
-    list_insert(&amp;L, 3, 2);
-
-//    list_delete(&amp;L,1);
-     //pos= list_locate(L,2);
-//    printf(&quot;查找到该元素位于：%d \n&quot;,pos);
-//key = get_element(L,3);
-//printf(&quot;该元素为：%d \n&quot;,key);
-    list_print(L);
-    printf(&quot;length:%d \n&quot;,list_length(&amp;L));
-    return 0;
-
 }
 </code></pre>]]></content>
     </entry>
