@@ -15,19 +15,19 @@
 
 
 
-<meta name="description" content="假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2
-第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：">
+<meta name="description" content="关于AIDL的使用，已经在之前的博客
+里介绍过，这次主要通过剖析AIDL生成的java文件来讲解AIDL机制。用的还是之前博客的例子，它在build目录下生成的 IMyAidlInterface.java 文件内容如下：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android layout_weight 计算方式">
-<meta property="og:url" content="http://qiracle.github.io/2019/09/15/20190915/index.html">
+<meta property="og:title" content="AIDL机制解析">
+<meta property="og:url" content="http://qiracle.github.io/2020/11/08/20201108/index.html">
 <meta property="og:site_name" content="Qiracle's Blog">
-<meta property="og:description" content="假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2
-第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：">
-<meta property="og:updated_time" content="2019-09-15T01:17:21.000Z">
+<meta property="og:description" content="关于AIDL的使用，已经在之前的博客
+里介绍过，这次主要通过剖析AIDL生成的java文件来讲解AIDL机制。用的还是之前博客的例子，它在build目录下生成的 IMyAidlInterface.java 文件内容如下：">
+<meta property="og:updated_time" content="2020-11-08T08:03:23.535Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android layout_weight 计算方式">
-<meta name="twitter:description" content="假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2
-第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：">
+<meta name="twitter:title" content="AIDL机制解析">
+<meta name="twitter:description" content="关于AIDL的使用，已经在之前的博客
+里介绍过，这次主要通过剖析AIDL生成的java文件来讲解AIDL机制。用的还是之前博客的例子，它在build目录下生成的 IMyAidlInterface.java 文件内容如下：">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Android layout_weight 计算方式 | Qiracle&#39;s Blog</title>
+<title>AIDL机制解析 | Qiracle&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -273,11 +273,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-20190915" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20201108" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/15/20190915/" class="article-date">
-      <time datetime="2019-09-14T16:00:00.000Z" itemprop="datePublished">2019-09-15</time>
+      <a href="/2020/11/08/20201108/" class="article-date">
+      <time datetime="2020-11-07T16:00:00.000Z" itemprop="datePublished">2020-11-08</time>
 </a>
 
 
@@ -292,7 +292,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android layout_weight 计算方式
+      AIDL机制解析
     </h1>
   
 
@@ -317,13 +317,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>假设：LinearLayout为android:orientation=”horizontal”， layout_weight属性值分别为1、2、2</p>
-<p>第一种情况：每个控件的宽度属性都为android:layout_width=”0dp”，那么额外的空为（手机的宽度假设为X）X-0-0-0=X，那么根据sdk上所述：<a id="more"></a><br>第一个控件的宽度为 0+(1/(1+2+2))<em>X=X/5<br>第二个控件的宽度为 0+(2/(1+2+2))</em>X=2X/5<br>第三个控件的宽度为 0+(2/(1+2+2))*X=2X/5</p>
-<p>第二种情况：每个控件的宽度属性都为android:layout_width=”match_parent”，那么额外的空间就是X-X-X-X=-2X<br>第一个控件的宽度为 X+(1/(1+2+2))<em>(-2X)=3X/5<br>第二个控件的宽度为 X+(2/(1+2+2))</em>(-2X)=X/5<br>第三个控件的宽度为 X+(2/(1+2+2))*(-2X)=X/5</p>
-<p>第三种情况：其中第一个控件宽度属性为android:layout_width=”match_parent”，其他两个控件宽度为android:layout_width=”0dp”，额外的空间为X-X-0-0=0<br>第一个控件的宽度为 X+(1/(1+2+2))<em>0=X<br>第二个控件的宽度为 0+(2/(1+2+2))</em>0=0<br>第三个控件的宽度为 0+(2/(1+2+2))*0=0</p>
-<p>最终结论：layout_weight的公式<br>控件的宽度/高度 = 控件的width/height值+（该控件的weight值/所有控件的weight的和）×额外的空间<br>额外的空间=手机的宽度/高度-所有控件的宽度/高度 </p>
-<p>注：如果属性为android:layout_width=”wrap_content” 则计算时，总宽/高要减去控件本身占据的宽/高 </p>
-<p>转自：<a href="https://blog.csdn.net/Dazlly/article/details/13767343" target="_blank" rel="external">https://blog.csdn.net/Dazlly/article/details/13767343</a></p>
+        <p>关于AIDL的使用，已经在之前的博客</p>
+<p>里介绍过，这次主要通过剖析AIDL生成的java文件来讲解AIDL机制。用的还是之前博客的例子，它在build目录下生成的 IMyAidlInterface.java 文件内容如下：<a id="more"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> * This file is auto-generated.  DO NOT MODIFY.</span><br><span class="line"> * Original file: D:\\AndroidStudioProjects\\AIDLServer\\app\\src\\main\\aidl\\cn\\qiracle\\aidlserver\\IMyAidlInterface.aidl</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">package</span> cn.qiracle.aidlserver;</span><br><span class="line"><span class="comment">// Declare any non-default types here with import statements</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMyAidlInterface</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">os</span>.<span class="title">IInterface</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="comment">/** Local-side IPC implementation stub class. */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Stub</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">os</span>.<span class="title">Binder</span> <span class="keyword">implements</span> <span class="title">cn</span>.<span class="title">qiracle</span>.<span class="title">aidlserver</span>.<span class="title">IMyAidlInterface</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> java.lang.String DESCRIPTOR = <span class="string">"cn.qiracle.aidlserver.IMyAidlInterface"</span>;</span><br><span class="line"><span class="comment">/** Construct the stub at attach it to the interface. */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Stub</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.attachInterface(<span class="keyword">this</span>, DESCRIPTOR);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Cast an IBinder object into an cn.qiracle.aidlserver.IMyAidlInterface interface,</span><br><span class="line"> * generating a proxy if needed.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> cn.qiracle.aidlserver.<span class="function">IMyAidlInterface <span class="title">asInterface</span><span class="params">(android.os.IBinder obj)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> ((obj==<span class="keyword">null</span>)) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);</span><br><span class="line"><span class="keyword">if</span> (((iin!=<span class="keyword">null</span>)&amp;&amp;(iin <span class="keyword">instanceof</span> cn.qiracle.aidlserver.IMyAidlInterface))) &#123;</span><br><span class="line"><span class="keyword">return</span> ((cn.qiracle.aidlserver.IMyAidlInterface)iin);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> cn.qiracle.aidlserver.IMyAidlInterface.Stub.Proxy(obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="keyword">public</span> android.os.<span class="function">IBinder <span class="title">asBinder</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTransact</span><span class="params">(<span class="keyword">int</span> code, android.os.Parcel data, android.os.Parcel reply, <span class="keyword">int</span> flags)</span> <span class="keyword">throws</span> android.os.RemoteException</span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">switch</span> (code)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> INTERFACE_TRANSACTION:</span><br><span class="line">&#123;</span><br><span class="line">reply.writeString(DESCRIPTOR);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> TRANSACTION_print:</span><br><span class="line">&#123;</span><br><span class="line">data.enforceInterface(DESCRIPTOR);</span><br><span class="line"><span class="keyword">this</span>.print();</span><br><span class="line">reply.writeNoException();</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> TRANSACTION_add:</span><br><span class="line">&#123;</span><br><span class="line">data.enforceInterface(DESCRIPTOR);</span><br><span class="line"><span class="keyword">int</span> _arg0;</span><br><span class="line">_arg0 = data.readInt();</span><br><span class="line"><span class="keyword">int</span> _arg1;</span><br><span class="line">_arg1 = data.readInt();</span><br><span class="line"><span class="keyword">int</span> _result = <span class="keyword">this</span>.add(_arg0, _arg1);</span><br><span class="line">reply.writeNoException();</span><br><span class="line">reply.writeInt(_result);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">super</span>.onTransact(code, data, reply, flags);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">cn</span>.<span class="title">qiracle</span>.<span class="title">aidlserver</span>.<span class="title">IMyAidlInterface</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">private</span> android.os.IBinder mRemote;</span><br><span class="line">Proxy(android.os.IBinder remote)</span><br><span class="line">&#123;</span><br><span class="line">mRemote = remote;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="keyword">public</span> android.os.<span class="function">IBinder <span class="title">asBinder</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> mRemote;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">getInterfaceDescriptor</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> DESCRIPTOR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> android.os.RemoteException</span><br><span class="line"></span>&#123;</span><br><span class="line">android.os.Parcel _data = android.os.Parcel.obtain();</span><br><span class="line">android.os.Parcel _reply = android.os.Parcel.obtain();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">_data.writeInterfaceToken(DESCRIPTOR);</span><br><span class="line">mRemote.transact(Stub.TRANSACTION_print, _data, _reply, <span class="number">0</span>);</span><br><span class="line">_reply.readException();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">_reply.recycle();</span><br><span class="line">_data.recycle();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> android.os.RemoteException</span><br><span class="line"></span>&#123;</span><br><span class="line">android.os.Parcel _data = android.os.Parcel.obtain();</span><br><span class="line">android.os.Parcel _reply = android.os.Parcel.obtain();</span><br><span class="line"><span class="keyword">int</span> _result;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">_data.writeInterfaceToken(DESCRIPTOR);</span><br><span class="line">_data.writeInt(a);</span><br><span class="line">_data.writeInt(b);</span><br><span class="line">mRemote.transact(Stub.TRANSACTION_add, _data, _reply, <span class="number">0</span>);</span><br><span class="line">_reply.readException();</span><br><span class="line">_result = _reply.readInt();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">_reply.recycle();</span><br><span class="line">_data.recycle();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> _result;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRANSACTION_print = (android.os.IBinder.FIRST_CALL_TRANSACTION + <span class="number">0</span>);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRANSACTION_add = (android.os.IBinder.FIRST_CALL_TRANSACTION + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">throws</span> android.os.RemoteException</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> android.os.RemoteException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结合上面的代码，我们一起看下：</p>
+<p><strong>Stub</strong> 是aidl接口的静态抽象内部类，它继承于binder同时实现了aidl的接口，因为是抽象类，具体实现还是在server端service里创建一个binder的内部类继承这个Stub实现的</p>
+<p><strong>Proxy</strong> 是Stub的静态内部类，它也实现了aidl的接口</p>
+<p><strong>调用流程</strong>：<br>Client 在 bindService 之后，在 onServiceConnected  的回调里，拿到 IBinder 对象，通过 asInterface  方法，拿到proxy对象，前面说的，Proxy是Stub的静态内部类，它也实现了aidl的接口，所以通过这个proxy对象，我们就可以调 aidl 接口里定义的方法。这个 proxy 是个代理，它对 aidl 接口的具体实现是把要调的方法名，参数通过 remote. transact 传给服务端，这里的 remote 就是前面的 binder 对象，binder 通过 IPC 机制把要调用的方法名，方法参数传给了Server端.</p>
+<p>这时来到 Server 端，通过 client 端的 remote.transact 方法，会回调 Server 端的 onTransact 方法，onTransact 方法里有个 switch-case,根据回调里的code值，也就是方法名，找到对应的方法去执行，具体执行的方法就是service里创建的内部binder实现类里实现的方法。</p>
+<p>总结一下，从这个过程也可以看出，AIDL 用的是代理模式，Binder机制。所谓调用Server方法其实是通过代理对象把要调用的方法名，方法参数通过binder机制传给了Server端，server端再自己调用的一个过程</p>
 
       
     </div>
@@ -335,16 +337,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/09/21/20190921/">
-                    读《深入理解Java虚拟机》总结&lt;三.java中的新生代和老年代内存&gt;
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/09/15/2019091502/">
-                    Android屏幕适配 px,dp,dpi及density的关系与深入理解
+                <a href="/2020/06/14/2020061402/">
+                    java 动态代理
                 </a>
             </div>
         
@@ -392,7 +388,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Android layout_weight 计算方式　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"AIDL机制解析　| Qiracle's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -449,15 +445,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/09/21/20190921/" title="上一篇: 读《深入理解Java虚拟机》总结&lt;三.java中的新生代和老年代内存&gt;">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/09/15/2019091502/" title="下一篇: Android屏幕适配 px,dp,dpi及density的关系与深入理解">
+            <a href="/2020/06/14/2020061402/" title="下一篇: java 动态代理">
                 <i class="fa fa-angle-right"></i>
             </a>
         

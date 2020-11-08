@@ -276,11 +276,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-20200614" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20201108" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2020/06/14/20200614/" class="article-date">
-      <time datetime="2020-06-13T16:00:00.000Z" itemprop="datePublished">2020-06-14</time>
+      <a href="/2020/11/08/20201108/" class="article-date">
+      <time datetime="2020-11-07T16:00:00.000Z" itemprop="datePublished">2020-11-08</time>
 </a>
 
 
@@ -295,7 +295,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/14/20200614/">java反射获得泛型参数getGenericSuperclass</a>
+      <a class="article-title" href="/2020/11/08/20201108/">AIDL机制解析</a>
     </h1>
   
 
@@ -305,10 +305,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.ParameterizedType;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Student st=<span class="keyword">new</span> Student();</span><br><span class="line">Class clazz=st.getClass();</span><br><span class="line"><span class="comment">//getSuperclass()获得该类的父类</span></span><br><span class="line">System.out.println(clazz.getSuperclass());</span><br><span class="line"><span class="comment">//getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">//Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line">Type type=clazz.getGenericSuperclass();</span><br><span class="line">System.out.println(type);</span><br><span class="line"><span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">ParameterizedType p=(ParameterizedType)type;</span><br><span class="line"><span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">Class c=(Class) p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">System.out.println(c);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>打印结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class com.test.Person</span><br><span class="line">com.test.Person&lt;com.test.Student&gt;</span><br><span class="line">class com.test.Student</span><br></pre></td></tr></table></figure>
-
+              <p>关于AIDL的使用，已经在之前的博客</p>
+<p>里介绍过，这次主要通过剖析AIDL生成的java文件来讲解AIDL机制。用的还是之前博客的例子，它在build目录下生成的 IMyAidlInterface.java 文件内容如下：
+          
       
     </div>
     
@@ -325,6 +324,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2020/11/08/20201108/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -375,6 +378,74 @@
           
         <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代理的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ManToolsFactory</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaFactory</span> <span class="keyword">implements</span> <span class="title">ManToolsFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleManTools</span><span class="params">(String size)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"按需求定制了一个size为"</span>+size+<span class="string">"的model"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MarkCompany</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*持有的真实对象*/</span></span><br><span class="line">    <span class="keyword">private</span> Object factory;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFactory</span><span class="params">(Object factory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.factory = factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过Proxy获得动态代理对象*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxyInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(factory.getClass().getClassLoader(),</span><br><span class="line">                factory.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*通过动态代理对象方法进行增强*/</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span><br><span class="line">            <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">  </span><br><span class="line">        Object result = method.invoke(factory, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*动态代理模式---------------*/</span></span><br><span class="line">        ManToolsFactory aafactory = <span class="keyword">new</span> AaFactory();</span><br><span class="line">        MarkCompany markCompany = <span class="keyword">new</span> MarkCompany();</span><br><span class="line"></span><br><span class="line">        markCompany.setFactory(aafactory);</span><br><span class="line">        ManToolsFactory employee1</span><br><span class="line">                = (ManToolsFactory)markCompany.getProxyInstance();</span><br><span class="line">        employee1.saleManTools(<span class="string">"E"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20200614" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/06/14/20200614/" class="article-date">
+      <time datetime="2020-06-13T16:00:00.000Z" itemprop="datePublished">2020-06-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/14/20200614/">java反射获得泛型参数getGenericSuperclass</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.ParameterizedType;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Student st=<span class="keyword">new</span> Student();</span><br><span class="line">Class clazz=st.getClass();</span><br><span class="line"><span class="comment">//getSuperclass()获得该类的父类</span></span><br><span class="line">System.out.println(clazz.getSuperclass());</span><br><span class="line"><span class="comment">//getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">//Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line">Type type=clazz.getGenericSuperclass();</span><br><span class="line">System.out.println(type);</span><br><span class="line"><span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">ParameterizedType p=(ParameterizedType)type;</span><br><span class="line"><span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">Class c=(Class) p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">System.out.println(c);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class com.test.Person</span><br><span class="line">com.test.Person&lt;com.test.Student&gt;</span><br><span class="line">class com.test.Student</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -888,78 +959,6 @@
       
         <p class="article-more-link">
           <a href="/2019/09/15/2019091502/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190824" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/08/24/20190824/" class="article-date">
-      <time datetime="2019-08-23T16:00:00.000Z" itemprop="datePublished">2019-08-24</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/24/20190824/">Android Studio 配置 JNI</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>JNI 是java 语言调用C/C++函数的接口。与JNI相关的开发工具包是NDK。下面记录Android Studio 里用 java代码调用 JNI的基本过程。当前环境：</p>
-<p>Android Studio：3.1.2. </p>
-<p>NDK：20.0.5
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识总结/">知识总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JNI/">JNI</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/08/24/20190824/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
