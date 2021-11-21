@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qiracle.github.io/"/>
-  <updated>2020-11-08T08:06:48.442Z</updated>
+  <updated>2021-11-21T09:50:27.925Z</updated>
   <id>http://qiracle.github.io/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>https 加解密的一些理解</title>
+    <link href="http://qiracle.github.io/2021/11/21/20211121/"/>
+    <id>http://qiracle.github.io/2021/11/21/20211121/</id>
+    <published>2021-11-20T16:00:00.000Z</published>
+    <updated>2021-11-21T09:50:27.925Z</updated>
+    
+    <content type="html"><![CDATA[<p>客户端与服务端之间的通信为了保证通信过程安全一般会使用 https 传输数据，https 里既有用到非对称加密，也有用到对称加密。</p>
+<p>具体来说，客户端与服务端协商用什么加密算法的过程是非对称加密的，在协商完成之后，它们之间传输的数据是用对称加密的。</p>
+<a id="more"></a>
+<h3 id="协商过程"><a href="#协商过程" class="headerlink" title="协商过程"></a>协商过程</h3><ol>
+<li>客户端连上服务端</li>
+<li>服务端发送 CA 证书给客户端</li>
+<li>客户端验证该证书的可靠性</li>
+<li>客户端从 CA 证书中取出公钥</li>
+<li>客户端生成一个随机密钥 k，并用这个公钥加密得到 k’</li>
+<li>客户端把 k’ 发送给服务端</li>
+<li>服务端收到 k’ 后用自己的私钥解密得到 k</li>
+<li>此时双方都得到了密钥 k，协商完成。</li>
+</ol>
+<p><strong>解释几个概念：</strong></p>
+<p><strong>公钥，私钥：</strong>在非对称加密算法中，私钥只会自己持有，公钥可以公开给其他人，公钥加密，私钥能够解密，因为私钥只有自己持有，所以其他人无法解密。也可以用私钥加密，任何持有该公钥的人都可以解密，私钥加密的应用场景是确保信息的来源是你，没有被篡改，因为只有你才持有私钥。</p>
+<p><strong>ca证书：</strong>这是服务端拿着自己的公钥到去CA那申请的，CA会用自己的私钥给公钥加密，证书上的信息有：服务器端加密后的公钥、服务器的域名等相关信息以及形成摘要算法（MD5，SHA-1等），把这些信息通过证书上指定的摘要算法生成一个摘要，这个摘要再进行CA私钥的加密得到密文（就是我们常说的签名），生成的密文也放在证书里。</p>
+<p><strong>根证书：</strong>存在于客户端，它含有CA的公钥，用于验证CA证书的真伪。<strong><em>客户端收到服务端的CA证书后，首先用根证书里CA公钥，解密CA证书里解密的摘要，得到明文摘要，然后再根据CA证书里提到的生成摘要的算法，用摘要算法对证书内容生成摘要。然后比对之前解密后的摘要是否相同，相同则验证通过。</em></strong></p>
+<p><strong>再概括一下这个过程：</strong></p>
+<p>服务端将自己的CA证书发送给客户端，客户端用存在自己本地的根证书进行验证，验证过程就是上面斜体加粗部分。验证通过后可以拿到服务端公钥。然后客户端生成一个随机密钥，通过服务端公钥加密后发给服务端，服务端解密后得到密钥。之后服务端与客户端就用这个密钥进行对称加密传输数据。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;客户端与服务端之间的通信为了保证通信过程安全一般会使用 https 传输数据，https 里既有用到非对称加密，也有用到对称加密。&lt;/p&gt;
+&lt;p&gt;具体来说，客户端与服务端协商用什么加密算法的过程是非对称加密的，在协商完成之后，它们之间传输的数据是用对称加密的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="知识总结" scheme="http://qiracle.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="http" scheme="http://qiracle.github.io/tags/http/"/>
+    
+  </entry>
   
   <entry>
     <title>AIDL机制解析</title>
@@ -1045,43 +1087,6 @@
     
     
       <category term="java" scheme="http://qiracle.github.io/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 中的jar包，aar包以及module</title>
-    <link href="http://qiracle.github.io/2018/10/28/20181028/"/>
-    <id>http://qiracle.github.io/2018/10/28/20181028/</id>
-    <published>2018-10-27T16:00:00.000Z</published>
-    <updated>2018-11-25T08:40:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.</p>
-<p>1.jar包的导入</p>
-<p>第一种：<br>一般用于比较流行的第三方库上，直接将你在GitHub上看到的jar包compile放入build.gradle的dependencies里面，然后sync同步一下就可以了。例如：导入v7包。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line">......</span><br><span class="line">compile ‘com.android.support:appcompat-v7:24.2.1’</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>第二种：<br>我们已经从网上下好了（或者别人给你的）jar，需要将他导入到AS工程里，首先将jar包放到libs里面，然后还是在build.gradle的dependencies里面添加compile路径，最后sync一下。例如：导入volley。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line">.....</span><br><span class="line">compile files(‘libs/volley.jar’)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.aar包导入<br>aar包是Android特有的一种引用包，Android Archive，它跟jar包的区别在于：<br>jar包：只包含class文件和清单文件，不包含资源文件，比如图片等所有的 res下的资源文件；<br>aar包：class以及res下的所有的资源文件全部包含。<br>aar包的引用也很简单，以上是一个正常的module（工程应用，而非作为第三方library使用的）引用aar文件为例，首先也是将拿到的aar包放进libs下。然后按如下配置，最后sync一下就可以了，列如，导入一个叫abc.aar的包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;  </span><br><span class="line">    flatDir &#123;  </span><br><span class="line">        dirs &apos;libs&apos;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;    // 此在android标签下添加</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">.....</span><br><span class="line">   compile(name: &apos;abc.aar, ext: &apos;aar&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，以上是一个正常的module（工程应用，而非作为第三方library使用的）引用aar文件需要配置的步骤。</p>
-<p>下面说一下当一个library类型的module需要引用aar文件时：<br>a.在该library中按照上面的代码，在library的module下的bulid.gradle中配置。</p>
-<p>b.任何依赖此library的module必须声明在它的build.gradle声明此 aar 的 lib 所在的位置，这个位置根据文件路径所确定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">android&#123;    //android节点下配置</span><br><span class="line">    repositories &#123;</span><br><span class="line">          flatDir &#123;</span><br><span class="line">            dirs &apos;libs&apos;, &apos;../../../../library_module/libs&apos;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>c. 配置完b步骤后，还要在project的build.gradle文件中配置，如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">        flatDir &#123;</span><br><span class="line">            dirs &apos;../../../library_module/libs&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>梳理一下这里的依赖关系：<br>aar-&gt;library module-&gt;依赖此library的module-&gt;project</p>
-<p>3.module的导入<br>module的导入在上一篇博客中<a href="http://qiracle.cn/2018/10/21/20181021/" target="_blank" rel="external">Android Studio中module的导入</a> 已经讲过。这里主要说一下module是可以打包成aar包的，通过gradle的assembeRelease或assembleDebug可以将module打包成aar包（分别对应release版本和debug版本）。<br>另外，笔者曾经遇到一个大坑，那就是当aar包引用第三方module的时候，编译不会报错，但是运行时会一直报类找不到的错误，因为在打包aar包时不会将第三方module打包进aar包里面。这里如果将第三方module先打包成aar包，给工程调用就不会出现这样的问题了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Android  Studio中引入第三方资源一般有三种方式：jar包，aar包，module.&lt;/p&gt;
-&lt;p&gt;1.jar包的导入&lt;/p&gt;
-&lt;p&gt;第一种：&lt;br&gt;一般用于比较流行的第三方库上，直接将你在GitHub上看到的jar包compile放入build.gradle的dependencies里面，然后sync同步一下就可以了。例如：导入v7包。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="教程" scheme="http://qiracle.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-      <category term="Android" scheme="http://qiracle.github.io/tags/Android/"/>
     
   </entry>
   
